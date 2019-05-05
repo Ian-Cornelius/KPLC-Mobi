@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/txtConsumptionTrackHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/consumption_header"
+        android:textColor="@color/kplcGreen"
+        android:textSize="20sp"
+        android:fontFamily="@font/lato_bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtNoAction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="@string/no_action"
+        android:textColor="@color/kplcGreen"
+        android:textSize="16sp"
+        android:fontFamily="@font/lato_bold"
+        android:drawableLeft="@drawable/custom_tick_icon"
+        android:drawablePadding="6dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtConsumptionTrackHeader"
+        app:layout_constraintStart_toEndOf="@+id/txtConsumptionTrackHeader"
+        app:layout_constraintTop_toTopOf="@+id/txtConsumptionTrackHeader" />
+
+    <TextView
+        android:id="@+id/txtPrevNumUnitsBought"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:text="@string/previous_units_bought"
+        android:fontFamily="@font/lato_regular"
+        android:textColor="@color/custom_grey"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtConsumptionTrackHeader" />
+
+    <TextView
+        android:id="@+id/txtShowPrevNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="30"
+        android:fontFamily="@font/lato_regular"
+        android:textColor="@color/custom_grey"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtPrevNumUnitsBought"
+        app:layout_constraintStart_toEndOf="@+id/txtPrevNumUnitsBought"
+        app:layout_constraintTop_toTopOf="@+id/txtPrevNumUnitsBought" />
+
+    <TextView
+        android:id="@+id/txtEstNumConsumed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/units_consumed_estimate"
+        android:fontFamily="@font/lato_regular"
+        android:textColor="@color/custom_grey"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPrevNumUnitsBought" />
+
+    <TextView
+        android:id="@+id/txtShowEstConsumed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/lato_regular"
+        android:text="10"
+        android:textColor="@color/custom_grey"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtEstNumConsumed"
+        app:layout_constraintStart_toEndOf="@+id/txtEstNumConsumed"
+        app:layout_constraintTop_toTopOf="@+id/txtEstNumConsumed" />
+
+    <ImageButton
+        android:id="@+id/btnDisclaimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="@+id/txtShowEstConsumed"
+        app:layout_constraintStart_toEndOf="@+id/txtShowEstConsumed"
+        app:layout_constraintTop_toTopOf="@+id/txtShowEstConsumed"
+        app:srcCompat="@drawable/custom_exclamation_icon" />
+
+    <TextView
+        android:id="@+id/txtEstRemaining"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/units_remaining_estimate"
+        android:fontFamily="@font/lato_regular"
+        android:textColor="@color/custom_grey"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtEstNumConsumed" />
+
+    <TextView
+        android:id="@+id/txtShowEstRem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="20"
+        android:fontFamily="@font/lato_regular"
+        android:textColor="@color/custom_grey"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtEstRemaining"
+        app:layout_constraintStart_toEndOf="@+id/txtEstRemaining"
+        app:layout_constraintTop_toTopOf="@+id/txtEstRemaining" />
+
+    <TextView
+        android:id="@+id/txtDisclaimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="300dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/est_disclaimer"
+        android:fontFamily="@font/lato_bold"
+        android:textColor="@color/custom_grey"
+        android:textSize="16sp"
+        android:alpha="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDisclaimer" />
+
+    <TextView
+        android:id="@+id/separator"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="34dp"
+        android:background="@color/custom_grey"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineSeparatorEnd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtEstRemaining" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineSeparatorEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.8875" />
+
+</android.support.constraint.ConstraintLayout>

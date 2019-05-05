@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetStart="@+id/splash_start"
+        motion:constraintSetEnd="@+id/splash_end"
+        motion:motionInterpolator="easeOut"
+        motion:duration="2000">
+
+        <KeyFrameSet>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/txt_K"
+                motion:framePosition="12"
+                android:translationY="0dp"
+                motion:transitionEasing="linear"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/txt_P"
+                motion:framePosition="25"
+                android:translationY="0dp"
+                motion:transitionEasing="linear"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/txt_L"
+                motion:framePosition="38"
+                android:translationY="0dp"
+                motion:transitionEasing="linear"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/txt_C"
+                motion:framePosition="51"
+                android:translationY="0dp"
+                motion:transitionEasing="linear"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/txt_M"
+                motion:framePosition="64"
+                android:translationY="0dp"
+                motion:transitionEasing="linear"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/txt_o"
+                motion:framePosition="77"
+                android:translationY="0dp"
+                motion:transitionEasing="linear"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/txt_b"
+                motion:framePosition="90"
+                android:translationY="0dp"
+                motion:transitionEasing="linear"/>
+
+        </KeyFrameSet>
+
+    </Transition>
+
+    <ConstraintSet android:id="@+id/splash_start">
+
+        <Constraint
+            android:id="@+id/imgLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:alpha="0.0"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineSplashLogoBottom"
+            app:layout_constraintDimensionRatio="h,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guidelineSplashLogoTop"
+            app:srcCompat="@drawable/kplc_logo" />
+
+        <Constraint
+            android:id="@+id/guidelineSplashLogoTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="0dp"
+            app:layout_constraintGuide_percent="0.25" />
+
+        <Constraint
+            android:id="@+id/guidelineSplashLogoBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="0dp"
+            app:layout_constraintGuide_percent="0.65" />
+
+        <Constraint
+            android:id="@+id/guidelineTxtStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="0dp"
+            app:layout_constraintGuide_percent="0.32" />
+
+        <Constraint
+            android:id="@+id/txt_K"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            android:text="K"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:translationY="200dp"
+            app:layout_constraintStart_toStartOf="@+id/guidelineTxtStart"
+            app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
+
+        <Constraint
+            android:id="@+id/txt_P"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="P"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:translationY="200dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_K"
+            app:layout_constraintStart_toEndOf="@+id/txt_K"
+            app:layout_constraintTop_toTopOf="@+id/txt_K" />
+
+        <Constraint
+            android:id="@+id/txt_L"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="L"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:translationY="200dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_P"
+            app:layout_constraintStart_toEndOf="@+id/txt_P"
+            app:layout_constraintTop_toTopOf="@+id/txt_P" />
+
+        <Constraint
+            android:id="@+id/txt_C"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="C"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:translationY="200dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_L"
+            app:layout_constraintStart_toEndOf="@+id/txt_L"
+            app:layout_constraintTop_toTopOf="@+id/txt_L" />
+
+        <Constraint
+            android:id="@+id/txt_M"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="M"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:translationY="200dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_C"
+            app:layout_constraintStart_toEndOf="@+id/txt_C"
+            app:layout_constraintTop_toTopOf="@+id/txt_C" />
+
+        <Constraint
+            android:id="@+id/txt_o"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="o"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:translationY="200dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_M"
+            app:layout_constraintStart_toEndOf="@+id/txt_M"
+            app:layout_constraintTop_toTopOf="@+id/txt_M" />
+
+        <Constraint
+            android:id="@+id/txt_b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="b"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:translationY="200dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_o"
+            app:layout_constraintStart_toEndOf="@+id/txt_o"
+            app:layout_constraintTop_toTopOf="@+id/txt_o" />
+
+        <Constraint
+            android:id="@+id/txt_i"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="i"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:translationY="200dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_b"
+            app:layout_constraintStart_toEndOf="@+id/txt_b"
+            app:layout_constraintTop_toTopOf="@+id/txt_b" />
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/splash_end"
+        motion:deriveConstraintsFrom="@+id/splash_start">
+
+        <Constraint
+            android:id="@+id/imgLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:alpha="1.0"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineSplashLogoBottom"
+            app:layout_constraintDimensionRatio="h,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guidelineSplashLogoTop"
+            app:srcCompat="@drawable/kplc_logo" />
+
+        <Constraint
+            android:id="@+id/guidelineSplashLogoTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="0dp"
+            app:layout_constraintGuide_percent="0.25" />
+
+        <Constraint
+            android:id="@+id/guidelineSplashLogoBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="0dp"
+            app:layout_constraintGuide_percent="0.65" />
+
+        <Constraint
+            android:id="@+id/guidelineTxtStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="0dp"
+            app:layout_constraintGuide_percent="0.32" />
+
+        <Constraint
+            android:id="@+id/txt_K"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            android:text="K"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:translationY="0dp"
+            app:layout_constraintStart_toStartOf="@+id/guidelineTxtStart"
+            app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
+
+        <Constraint
+            android:id="@+id/txt_P"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="P"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:translationY="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_K"
+            app:layout_constraintStart_toEndOf="@+id/txt_K"
+            app:layout_constraintTop_toTopOf="@+id/txt_K" />
+
+        <Constraint
+            android:id="@+id/txt_L"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="L"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:translationY="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_P"
+            app:layout_constraintStart_toEndOf="@+id/txt_P"
+            app:layout_constraintTop_toTopOf="@+id/txt_P" />
+
+        <Constraint
+            android:id="@+id/txt_C"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="C"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:translationY="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_L"
+            app:layout_constraintStart_toEndOf="@+id/txt_L"
+            app:layout_constraintTop_toTopOf="@+id/txt_L" />
+
+        <Constraint
+            android:id="@+id/txt_M"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="M"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:translationY="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_C"
+            app:layout_constraintStart_toEndOf="@+id/txt_C"
+            app:layout_constraintTop_toTopOf="@+id/txt_C" />
+
+        <Constraint
+            android:id="@+id/txt_o"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="o"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:translationY="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_M"
+            app:layout_constraintStart_toEndOf="@+id/txt_M"
+            app:layout_constraintTop_toTopOf="@+id/txt_M" />
+
+        <Constraint
+            android:id="@+id/txt_b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="b"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:translationY="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_o"
+            app:layout_constraintStart_toEndOf="@+id/txt_o"
+            app:layout_constraintTop_toTopOf="@+id/txt_o" />
+
+        <Constraint
+            android:id="@+id/txt_i"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="i"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:translationY="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_b"
+            app:layout_constraintStart_toEndOf="@+id/txt_b"
+            app:layout_constraintTop_toTopOf="@+id/txt_b" />
+
+    </ConstraintSet>
+
+</MotionScene>

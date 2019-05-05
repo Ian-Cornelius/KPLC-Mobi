@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineTxtMenuTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.0338" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineTxtMenuStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.1787" />
+
+    <TextView
+        android:id="@+id/txtMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/menu"
+        android:textColor="@color/custom_grey"
+        android:fontFamily="@font/lato_bold"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/guidelineTxtMenuStart"
+        app:layout_constraintTop_toTopOf="@+id/guidelineTxtMenuTop" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineTxtSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.78" />
+
+    <TextView
+        android:id="@+id/txtSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/settings"
+        android:textColor="@color/custom_grey"
+        android:fontFamily="@font/lato_bold"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/guidelineTxtSettings"
+        app:layout_constraintTop_toTopOf="@+id/guidelineTxtMenuTop" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineAllTxtsStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.0655" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineHeaderTxtBuyPowerTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.1318" />
+
+    <TextView
+        android:id="@+id/headerTxtBuyPower"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/lato_regular"
+        android:text="@string/buy_power"
+        android:textColor="@color/kplcGreen"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/guidelineAllTxtsStart"
+        app:layout_constraintTop_toBottomOf="@+id/txtMenu" />
+
+    <TextView
+        android:id="@+id/headerTxtBuyPowerSeparator"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/kplcGreen"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineHeaderTxtBuyPowerSepEnd"
+        app:layout_constraintStart_toStartOf="@+id/guidelineAllTxtsStart"
+        app:layout_constraintTop_toBottomOf="@+id/headerTxtBuyPower" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineHeaderTxtBuyPowerSepEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.4287" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineTxtBuyTokensTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.1947" />
+
+    <TextView
+        android:id="@+id/txtBuyTokens"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/buy_tokens"
+        android:textColor="@color/custom_grey"
+        android:fontFamily="@font/lato_bold"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/guidelineAllTxtsStart"
+        app:layout_constraintTop_toBottomOf="@+id/headerTxtBuyPower" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineTxtPostPaidTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.2462" />
+
+    <TextView
+        android:id="@+id/txtPostPaid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/buy_post_paid"
+        android:textColor="@color/custom_grey"
+        android:fontFamily="@font/lato_bold"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/guidelineAllTxtsStart"
+        app:layout_constraintTop_toBottomOf="@+id/txtBuyTokens" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineTxtPurchaseHistTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.2976" />
+
+    <TextView
+        android:id="@+id/txtPurchaseHist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/purchase_history"
+        android:textColor="@color/custom_grey"
+        android:fontFamily="@font/lato_bold"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/guidelineAllTxtsStart"
+        app:layout_constraintTop_toBottomOf="@+id/txtPostPaid" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineHeaderTxtPowerIssuesTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.3796" />
+
+    <TextView
+        android:id="@+id/headerTxtPowerIssues"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="39dp"
+        android:text="@string/power_issues"
+        android:textColor="@color/kplcGreen"
+        android:fontFamily="@font/lato_regular"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/guidelineAllTxtsStart"
+        app:layout_constraintTop_toBottomOf="@+id/txtPurchaseHist" />
+
+    <TextView
+        android:id="@+id/headerTxtPowerIssuesSep"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/kplcGreen"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineHeaderTxtNotificationsSepEnd"
+        app:layout_constraintStart_toStartOf="@+id/guidelineAllTxtsStart"
+        app:layout_constraintTop_toBottomOf="@+id/headerTxtPowerIssues" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineHeaderTxtPowerIssuesSepEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.5272" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineTxtReportPowerTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.4425" />
+
+    <TextView
+        android:id="@+id/txtReportPower"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/report_power"
+        android:textColor="@color/custom_grey"
+        android:fontFamily="@font/lato_bold"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/guidelineAllTxtsStart"
+        app:layout_constraintTop_toBottomOf="@+id/headerTxtPowerIssuesSep" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineTxtKPLCResTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.496" />
+
+    <TextView
+        android:id="@+id/txtKPLCRes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/KPLC_reponses"
+        android:textColor="@color/custom_grey"
+        android:fontFamily="@font/lato_bold"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/guidelineAllTxtsStart"
+        app:layout_constraintTop_toBottomOf="@+id/txtReportPower" />
+
+    <TextView
+        android:id="@+id/newTagKPLCRes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/new_tag_bg"
+        android:fontFamily="@font/lato_regular"
+        android:paddingLeft="4dp"
+        android:paddingTop="2dp"
+        android:paddingRight="4dp"
+        android:paddingBottom="2dp"
+        android:text="@string/New"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtKPLCRes"
+        app:layout_constraintStart_toEndOf="@+id/txtKPLCRes"
+        app:layout_constraintTop_toTopOf="@+id/txtKPLCRes" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineHeaderTxtNotifications"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.58" />
+
+    <TextView
+        android:id="@+id/headerTxtNotifications"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="39dp"
+        android:text="@string/notifications"
+        android:textColor="@color/kplcGreen"
+        android:fontFamily="@font/lato_regular"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/guidelineAllTxtsStart"
+        app:layout_constraintTop_toBottomOf="@+id/txtKPLCRes" />
+
+    <TextView
+        android:id="@+id/headerTxtNotificationsSep"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/kplcGreen"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineHeaderTxtPowerIssuesSepEnd"
+        app:layout_constraintStart_toStartOf="@+id/guidelineAllTxtsStart"
+        app:layout_constraintTop_toBottomOf="@+id/headerTxtNotifications" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineHeaderTxtNotificationsSepEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.4725" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineTxtNotificationsTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.6389" />
+
+    <TextView
+        android:id="@+id/txtAllNotifications"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/all_notifications"
+        android:textColor="@color/custom_grey"
+        android:fontFamily="@font/lato_bold"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/guidelineAllTxtsStart"
+        app:layout_constraintTop_toBottomOf="@+id/headerTxtNotificationsSep" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineHeaderTxtMessTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.725" />
+
+    <TextView
+        android:id="@+id/headerTxtMess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="39dp"
+        android:text="@string/messages"
+        android:textColor="@color/kplcGreen"
+        android:fontFamily="@font/lato_regular"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/guidelineAllTxtsStart"
+        app:layout_constraintTop_toBottomOf="@+id/txtAllNotifications" />
+
+    <TextView
+        android:id="@+id/headerTxtMessSep"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/kplcGreen"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineHeaderTxtMessSepEnd"
+        app:layout_constraintStart_toStartOf="@+id/guidelineAllTxtsStart"
+        app:layout_constraintTop_toBottomOf="@+id/headerTxtMess" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineHeaderTxtMessSepEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.7097" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineTxtInboxTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.79" />
+
+    <TextView
+        android:id="@+id/txtInbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/inbox"
+        android:textColor="@color/custom_grey"
+        android:fontFamily="@font/lato_bold"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/guidelineAllTxtsStart"
+        app:layout_constraintTop_toBottomOf="@+id/headerTxtMessSep" />
+
+    <TextView
+        android:id="@+id/newTagInbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/new_tag_bg"
+        android:fontFamily="@font/lato_regular"
+        android:paddingStart="4dp"
+        android:paddingLeft="4dp"
+        android:paddingTop="2dp"
+        android:paddingEnd="4dp"
+        android:paddingRight="4dp"
+        android:paddingBottom="2dp"
+        android:text="@string/New"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtInbox"
+        app:layout_constraintStart_toEndOf="@+id/txtInbox"
+        app:layout_constraintTop_toTopOf="@+id/txtInbox" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineTxtLogOutTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.874" />
+
+    <TextView
+        android:id="@+id/txtLogOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="39dp"
+        android:text="@string/log_out"
+        android:textColor="@color/custom_grey"
+        android:fontFamily="@font/lato_bold"
+        android:textSize="16sp"
+        android:drawableLeft="@drawable/log_out_icon"
+        android:drawablePadding="11dp"
+        app:layout_constraintStart_toStartOf="@+id/guidelineAllTxtsStart"
+        app:layout_constraintTop_toBottomOf="@+id/txtInbox" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineBtnApplyPowerTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <Button
+        android:id="@+id/btnApplyPower"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="34dp"
+        android:background="@drawable/green_border_btn_bg"
+        android:drawableLeft="@drawable/right_arrow"
+        android:drawablePadding="6dp"
+        android:fontFamily="@font/lato_regular"
+        android:padding="15dp"
+        android:text="@string/apply_power"
+        android:textAllCaps="false"
+        android:textColor="@color/custom_grey"
+        app:layout_constraintStart_toStartOf="@+id/guidelineAllTxtsStart"
+        app:layout_constraintTop_toBottomOf="@+id/txtLogOut" />
+
+</android.support.constraint.ConstraintLayout>

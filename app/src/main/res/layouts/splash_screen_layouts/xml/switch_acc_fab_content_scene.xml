@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetStart="@+id/switchAccContentStartScene"
+        motion:constraintSetEnd="@+id/switchAccContentEndScene"
+        motion:duration="200"
+        motion:motionInterpolator="linear">
+
+        <OnClick
+            motion:clickAction="transitionToEnd"
+            motion:targetId="@+id/radioBtnAcc1"/>
+
+    </Transition>
+
+    <ConstraintSet android:id="@+id/switchAccContentStartScene">
+
+        <Constraint
+            android:id="@+id/switchAccFabContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.0"
+            android:background="@drawable/switch_acc_fab_content_bg"
+            android:scaleX="0.2"
+            android:scaleY="0.2"
+            app:layout_constraintBottom_toBottomOf="@+id/switchAccFabActivator"
+            app:layout_constraintEnd_toEndOf="@+id/switchAccFabActivator"/>
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/switchAccContentEndScene">
+
+        <Constraint
+            android:id="@+id/switchAccFabContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="1.0"
+            android:background="@drawable/switch_acc_fab_content_bg"
+            android:scaleX="1.0"
+            android:scaleY="1.0"
+            app:layout_constraintBottom_toBottomOf="@+id/switchAccFabActivator"
+            app:layout_constraintEnd_toEndOf="@+id/switchAccFabActivator"/>
+
+    </ConstraintSet>
+
+</MotionScene>

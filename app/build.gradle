@@ -1,0 +1,77 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.ian_cornelius.kplcmobi"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+
+        main {
+
+            res.srcDirs =
+                    [
+                            //For splash screen layout files
+                            'src/main/res/layouts/splash_screen_layouts',
+
+                            //For log in activity layout files
+                            'src/main/res/layouts/log_in_activity_layouts',
+
+                            //For sign up activity layout files
+                            'src/main/res/layouts/sign_up_activity_layouts',
+
+                            //For home activity layout files
+                            'src/main/res/layouts/home_activity_layouts',
+
+                            //For navigation view layout files
+                            'src/main/res/layouts/navigation_view_layouts',
+
+                            //For notifications fragment layout file
+                            'src/main/res/layouts/notification_fragment_layouts',
+
+                            //For notification fragment layout files, consumption track layouts
+                            'src/main/res/layouts/notification_fragment_layouts/consumption_track_layouts',
+
+                            //For notification fragment layout files, general notification layouts
+                            'src/main/res/layouts/notification_fragment_layouts/general_notifications_layouts',
+
+                            //For notification fragment layout files, planned power outages layout
+                            'src/main/res/layouts/notification_fragment_layouts/planned_power_outages_layouts',
+
+                            //For buy tokens fragment layout files
+                            'src/main/res/layouts/buy_tokens_fragment_layouts',
+
+                            'src/main/res/layouts/',
+                            'src/main/res/'
+                    ]
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+
+    //For motion layout
+    implementation 'com.android.support.constraint:constraint-layout:2.0.0-alpha5'
+
+    //Support library to support drawer layout's navigation view
+    implementation 'com.android.support:design:28.0.0'
+
+    implementation 'com.android.support:support-v4:28.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}

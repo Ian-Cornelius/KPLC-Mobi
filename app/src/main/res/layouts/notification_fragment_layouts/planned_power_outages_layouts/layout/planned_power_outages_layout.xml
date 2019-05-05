@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/plannedPowerOutagesLayoutsContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/headerPlannedOutages"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_bold"
+        android:text="@string/planned_outages_header"
+        android:textColor="@color/kplcGreen"
+        android:textSize="20sp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="@+id/guidelineListItemsStart"
+        app:layout_constraintTop_toBottomOf="@+id/genNotifsSeparator" />
+
+    <TextView
+        android:id="@+id/headerWeek"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_regular"
+        android:text="@string/this_week"
+        android:textColor="@color/custom_grey"
+        android:textSize="16sp"
+        android:layout_marginTop="22dp"
+        app:layout_constraintStart_toStartOf="@+id/guidelineListItemsStart"
+        app:layout_constraintTop_toBottomOf="@+id/headerPlannedOutages" />
+
+    <TextView
+        android:id="@+id/weeklySeparator"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/dashed_separator"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineAllNotifsSepEnd"
+        app:layout_constraintStart_toStartOf="@+id/guidelineListItemsStart"
+        app:layout_constraintTop_toBottomOf="@+id/weeklyEntries" />
+
+    <TextView
+        android:id="@+id/txtWeekNothingPlanned"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:fontFamily="@font/lato_bold"
+        android:text="@string/no_planned_outage"
+        android:textColor="@color/custom_grey"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/headerWeek"
+        app:layout_constraintStart_toEndOf="@+id/headerWeek"
+        app:layout_constraintTop_toTopOf="@+id/headerWeek" />
+
+    <LinearLayout
+        android:id="@+id/weeklyEntries"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="@+id/guidelineListItemsStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/weeklySeparator"
+        app:layout_constraintTop_toBottomOf="@+id/headerWeek"/>
+    <TextView
+        android:id="@+id/headerMonth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_regular"
+        android:text="@string/this_month"
+        android:textColor="@color/custom_grey"
+        android:textSize="16sp"
+        android:layout_marginTop="19dp"
+        app:layout_constraintStart_toStartOf="@+id/guidelineListItemsStart"
+        app:layout_constraintTop_toTopOf="@+id/weeklySeparator" />
+
+    <TextView
+        android:id="@+id/txtMonthNothingPlanned"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:fontFamily="@font/lato_bold"
+        android:text="@string/no_planned_outage"
+        android:textColor="@color/custom_grey"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/headerMonth"
+        app:layout_constraintStart_toEndOf="@+id/headerMonth"
+        app:layout_constraintTop_toTopOf="@+id/headerMonth" />
+
+    <TextView
+        android:id="@+id/plannedOutagesSep"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/custom_grey"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineAllNotifsSepEnd"
+        app:layout_constraintStart_toStartOf="@+id/guidelineListItemsStart"
+        app:layout_constraintTop_toBottomOf="@+id/txtMonthNothingPlanned" />
+
+</merge>

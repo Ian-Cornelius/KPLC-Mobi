@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.motion.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/launchRootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffffff"
+    app:layoutDescription="@xml/splash_screen_scene"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:alpha="0.0"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineSplashLogoBottom"
+        app:layout_constraintDimensionRatio="h,1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelineSplashLogoTop"
+        app:srcCompat="@drawable/kplc_logo" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineSplashLogoTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineSplashLogoBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.65" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineTxtStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.32" />
+
+    <TextView
+        android:id="@+id/txt_K"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:text="K"
+        android:textColor="#000"
+        android:textSize="26sp"
+        android:fontFamily="@font/gugi_font"
+        app:layout_constraintStart_toStartOf="@+id/guidelineTxtStart"
+        app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
+
+    <TextView
+        android:id="@+id/txt_P"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="P"
+        android:textColor="#000"
+        android:textSize="26sp"
+        android:fontFamily="@font/gugi_font"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_K"
+        app:layout_constraintStart_toEndOf="@+id/txt_K"
+        app:layout_constraintTop_toTopOf="@+id/txt_K" />
+
+    <TextView
+        android:id="@+id/txt_L"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="L"
+        android:textColor="#000"
+        android:textSize="26sp"
+        android:fontFamily="@font/gugi_font"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_P"
+        app:layout_constraintStart_toEndOf="@+id/txt_P"
+        app:layout_constraintTop_toTopOf="@+id/txt_P" />
+
+    <TextView
+        android:id="@+id/txt_C"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="C"
+        android:textColor="#000"
+        android:textSize="26sp"
+        android:fontFamily="@font/gugi_font"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_L"
+        app:layout_constraintStart_toEndOf="@+id/txt_L"
+        app:layout_constraintTop_toTopOf="@+id/txt_L" />
+
+    <TextView
+        android:id="@+id/txt_M"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="M"
+        android:textColor="#000"
+        android:textSize="26sp"
+        android:fontFamily="@font/gugi_font"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_C"
+        app:layout_constraintStart_toEndOf="@+id/txt_C"
+        app:layout_constraintTop_toTopOf="@+id/txt_C" />
+
+    <TextView
+        android:id="@+id/txt_o"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="o"
+        android:textColor="#000"
+        android:textSize="26sp"
+        android:fontFamily="@font/gugi_font"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_M"
+        app:layout_constraintStart_toEndOf="@+id/txt_M"
+        app:layout_constraintTop_toTopOf="@+id/txt_M" />
+
+    <TextView
+        android:id="@+id/txt_b"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="b"
+        android:textColor="#000"
+        android:textSize="26sp"
+        android:fontFamily="@font/gugi_font"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_o"
+        app:layout_constraintStart_toEndOf="@+id/txt_o"
+        app:layout_constraintTop_toTopOf="@+id/txt_o" />
+
+    <TextView
+        android:id="@+id/txt_i"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="i"
+        android:textColor="#000"
+        android:textSize="26sp"
+        android:fontFamily="@font/gugi_font"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_b"
+        app:layout_constraintStart_toEndOf="@+id/txt_b"
+        app:layout_constraintTop_toTopOf="@+id/txt_b" />
+
+</android.support.constraint.motion.MotionLayout>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/buyTokensFragLayoutsContainer"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/buy_tokens_main_content_layout" />
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineSwitchAccCustFabStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.8167" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineSwitchAccCustFabEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9611" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineSwitchAccCustFabBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9759" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineCustSnackBarTopShort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.898" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineCustSnackBarTopExtended"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2717" />
+
+    <LinearLayout
+        android:id="@+id/fabContentHolder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineSwitchAccCustFabBottom"
+        app:layout_constraintEnd_toEndOf="@+id/guidelineSwitchAccCustFabEnd"></LinearLayout>
+
+    <include
+        layout="@layout/switch_activity_fab_layout"
+        android:id="@+id/switchAccFabActivator"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineSwitchAccCustFabBottom"
+        app:layout_constraintDimensionRatio="w,1:1"
+        app:layout_constraintEnd_toStartOf="@id/guidelineSwitchAccCustFabEnd"
+        app:layout_constraintStart_toStartOf="@+id/guidelineSwitchAccCustFabStart" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineExpandedFabTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6077" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineExpandedFabStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.0944" />
+
+</android.support.constraint.ConstraintLayout>

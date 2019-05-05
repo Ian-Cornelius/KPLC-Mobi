@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/switchAccFabContent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:elevation="6dp"
+    android:background="@drawable/switch_acc_fab_content_bg">
+
+    <TextView
+        android:id="@+id/txtSwitchAccHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="26dp"
+        android:fontFamily="@font/lato_regular"
+        android:text="@string/switch_acc"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/headerSeparator"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineHeaderSeparatorEnd"
+        app:layout_constraintStart_toStartOf="@+id/txtSwitchAccHeader"
+        app:layout_constraintTop_toBottomOf="@+id/txtSwitchAccHeader" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineHeaderSeparatorEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.7516" />
+
+    <RadioButton
+        android:id="@+id/radioBtnAcc1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:buttonTint="@color/white"
+        android:checked="true"
+        android:fontFamily="@font/lato_regular"
+        android:text="87937562991"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/txtSwitchAccHeader"
+        app:layout_constraintTop_toBottomOf="@+id/txtSwitchAccHeader" />
+
+    <RadioButton
+        android:id="@+id/radioBtnAcc2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:buttonTint="@color/white"
+        android:fontFamily="@font/lato_regular"
+        android:text="86541278923"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/radioBtnAcc1"
+        app:layout_constraintTop_toBottomOf="@+id/radioBtnAcc1" />
+
+    <RadioButton
+        android:id="@+id/radioBtnAcc3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:buttonTint="@color/white"
+        android:fontFamily="@font/lato_regular"
+        android:text="45126751654"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/radioBtnAcc2"
+        app:layout_constraintTop_toBottomOf="@+id/radioBtnAcc2" />
+
+    <RadioButton
+        android:id="@+id/radioBtnAcc4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="56dp"
+        android:buttonTint="@color/white"
+        android:fontFamily="@font/lato_regular"
+        android:text="78942136422"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/radioBtnAcc3"
+        app:layout_constraintTop_toBottomOf="@+id/radioBtnAcc3" />
+
+    <TextView
+        android:id="@+id/txtCurrent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="70dp"
+        android:fontFamily="@font/lato_regular"
+        android:text="@string/current"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/radioBtnAcc1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/radioBtnAcc1"
+        app:layout_constraintTop_toTopOf="@+id/radioBtnAcc1" />
+
+</android.support.constraint.ConstraintLayout>

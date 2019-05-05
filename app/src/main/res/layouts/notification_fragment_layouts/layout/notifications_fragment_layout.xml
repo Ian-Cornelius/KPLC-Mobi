@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:layout_marginBottom="30dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineListItemsStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.0706" />
+
+        <include
+            layout="@layout/consumption_track_layout"
+            android:id="@+id/consumptionTrackLayoutContainer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="109dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guidelineListItemsStart"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/generalNotificationsLayoutContainer"
+            layout="@layout/general_notifications_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+        <include
+            android:id="@+id/plannedPowerOutagesLayoutsContainer"
+            layout="@layout/planned_power_outages_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineAllNotifsSepEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.8875" />
+
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>

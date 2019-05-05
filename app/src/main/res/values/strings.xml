@@ -1,0 +1,84 @@
+<resources>
+    <string name="app_name">KPLC Mobi</string>
+
+    <string name="log_in_header">KPLC Mob</string>
+    <string name="log_in_req">Please log in</string>
+    <string name="email_hint">Email</string>
+    <string name="pass_hint">Password</string>
+    <string name="log_in">Log In</string>
+    <string name="create_acc">Create an account</string>
+    <string name="power_req">Request for power connection</string>
+
+    <string name="create_acc_story">We just need a few details from you</string>
+    <string name="name">Name</string>
+    <string name="phone">Phone</string>
+    <string name="email">Email</string>
+    <string name="meter_no">Meter Number</string>
+    <string name="pass">Password</string>
+    <string name="confirm_pass">Confirm password</string>
+    <string name="create_acc_confirm">Create account</string>
+
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
+    <string name="notifications">Notifications</string>
+
+    <string name="menu">Menu</string>
+    <string name="settings">Settings</string>
+    <string name="buy_power">Buy power</string>
+    <string name="buy_tokens">Buy tokens</string>
+    <string name="buy_post_paid">Check and pay bill - Post Paid</string>
+    <string name="purchase_history">My purchase history</string>
+    <string name="power_issues">Power issues</string>
+    <string name="report_power">Report power problem</string>
+    <string name="KPLC_reponses">KPLC responses</string>
+    <string name="New">new</string>
+    <string name="all_notifications">All notifications</string>
+    <string name="messages">Messages</string>
+    <string name="inbox">Inbox</string>
+    <string name="log_out">Log out</string>
+    <string name="apply_power">Apply for power connection</string>
+
+    <string name="consumption_header">Consumption track</string>
+    <string name="previous_units_bought">Previous number of units bought:</string>
+    <string name="units_consumed_estimate">Estimated number of units consumed:</string>
+    <string name="units_remaining_estimate">Estimated number of units remaining:</string>
+    <string name="no_action">(No action needed)</string>
+    <string name="est_disclaimer">This may be inaccurate. It is based on estimated data</string>
+
+    <string name="general_notif">General notifications</string>
+    <string name="no_notif">Whoops! Nothing from us today</string>
+
+    <string name="planned_outages_header">Planned power outages</string>
+    <string name="this_week">This week</string>
+    <string name="this_month">This month</string>
+    <string name="no_planned_outage">Nothing planned here</string>
+    <string name="affect_outage">(This will affect you)</string>
+
+    <string name="buy_tokens_header">Please key in the cash amount or number of units you want to buy</string>
+    <string name="cash">Cash</string>
+    <string name="units">Units</string>
+    <string name="or">OR</string>
+    <string name="suggest_units">Suggested number of units:</string>
+    <string name="view_hist">View history</string>
+    <string name="purchase">Purchase</string>
+    <string name="token_num">Token number</string>
+    <string name="more_details">More details</string>
+    <string name="less_details">Less details</string>
+    <string name="date">Date</string>
+    <string name="kwh">(Kwh)</string>
+    <string name="amnt">Amount Ksh</string>
+    <string name="token_amnt">Token amount Ksh</string>
+    <string name="tax">Tax Ksh</string>
+    <string name="rep">REP Ksh</string>
+    <string name="warma">WARMA Ksh</string>
+    <string name="erc">ERC Ksh</string>
+    <string name="fuel_index">Fuel index Ksh</string>
+    <string name="forex">Forex Ksh</string>
+    <string name="inflation">Inflation adjustment Ksh</string>
+    <string name="success">Success</string>
+
+    <string name="switch_acc">Switch accounts</string>
+    <string name="current">(current)</string>
+
+</resources>

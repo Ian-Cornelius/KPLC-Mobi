@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineHeaderTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.0984" />
+
+    <TextView
+        android:id="@+id/txtHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/lato_bold"
+        android:text="@string/create_acc"
+        android:textColor="@color/custom_grey"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelineHeaderTop" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineCreateAccStoryTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.1719" />
+
+    <TextView
+        android:id="@+id/txtHeaderStory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/create_acc_story"
+        android:textColor="@color/custom_grey"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelineCreateAccStoryTop" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineEditNameTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.3016" />
+
+    <EditText
+        android:id="@+id/editName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/name"
+        android:inputType="textPersonName"
+        android:textColor="@color/custom_grey"
+        android:textSize="16sp"
+        android:textColorHint="@color/custom_grey"
+        android:backgroundTint="@color/kplcGreen"
+        android:fontFamily="@font/lato_bold"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineEditsEnd"
+        app:layout_constraintStart_toStartOf="@+id/guidelineEditsStart"
+        app:layout_constraintTop_toTopOf="@+id/guidelineEditNameTop" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineEditsStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.0361" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineEditsEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.9639" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineEditPhoneTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.3922" />
+
+    <EditText
+        android:id="@+id/editPhone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/phone"
+        android:inputType="phone"
+        android:textColor="@color/custom_grey"
+        android:textSize="16sp"
+        android:textColorHint="@color/custom_grey"
+        android:backgroundTint="@color/kplcGreen"
+        android:fontFamily="@font/lato_bold"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineEditsEnd"
+        app:layout_constraintStart_toStartOf="@+id/guidelineEditsStart"
+        app:layout_constraintTop_toTopOf="@+id/guidelineEditPhoneTop" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineEditEmailTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.4828" />
+
+    <EditText
+        android:id="@+id/editEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/kplcGreen"
+        android:ems="10"
+        android:fontFamily="@font/lato_bold"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/custom_grey"
+        android:textColorHint="@color/custom_grey"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineEditsEnd"
+        app:layout_constraintStart_toStartOf="@+id/guidelineEditsStart"
+        app:layout_constraintTop_toTopOf="@+id/guidelineEditEmailTop" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineEditMtrNoTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.5734" />
+
+    <EditText
+        android:id="@+id/editMtrNo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/meter_no"
+        android:inputType="number"
+        android:textColor="@color/custom_grey"
+        android:textSize="16sp"
+        android:textColorHint="@color/custom_grey"
+        android:backgroundTint="@color/kplcGreen"
+        android:fontFamily="@font/lato_bold"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineEditsEnd"
+        app:layout_constraintStart_toStartOf="@+id/guidelineEditsStart"
+        app:layout_constraintTop_toTopOf="@+id/guidelineEditMtrNoTop" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineEditPassTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.6641" />
+
+    <EditText
+        android:id="@+id/editPass"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/pass"
+        android:inputType="textPassword"
+        android:textColor="@color/custom_grey"
+        android:textSize="16sp"
+        android:textColorHint="@color/custom_grey"
+        android:backgroundTint="@color/kplcGreen"
+        android:fontFamily="@font/lato_bold"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineEditsEnd"
+        app:layout_constraintStart_toStartOf="@+id/guidelineEditsStart"
+        app:layout_constraintTop_toTopOf="@+id/guidelineEditPassTop" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineEditConfirmPassTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.7547" />
+
+    <EditText
+        android:id="@+id/editConfirmPass"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/confirm_pass"
+        android:inputType="textPassword"
+        android:textColor="@color/custom_grey"
+        android:textSize="16sp"
+        android:textColorHint="@color/custom_grey"
+        android:backgroundTint="@color/kplcGreen"
+        android:fontFamily="@font/lato_bold"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineEditsEnd"
+        app:layout_constraintStart_toStartOf="@+id/guidelineEditsStart"
+        app:layout_constraintTop_toTopOf="@+id/guidelineEditConfirmPassTop" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineCreateAccBtnTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.8469" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineCreateAccBtnStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.2694" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineCreateAccBtnEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.7306" />
+
+    <Button
+        android:id="@+id/btnCreateAcc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/login_signup_btn_bg"
+        android:elevation="4dp"
+        android:stateListAnimator="@null"
+        android:text="@string/create_acc_confirm"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:translationZ="4dp"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineCreateAccBtnEnd"
+        app:layout_constraintStart_toStartOf="@+id/guidelineCreateAccBtnStart"
+        app:layout_constraintTop_toTopOf="@+id/guidelineCreateAccBtnTop" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineBackBtnBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.06" />
+
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="56dp"
+        android:layout_height="0dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHeaderTop"
+        app:layout_constraintStart_toStartOf="@+id/guidelineEditsStart"
+        app:layout_constraintTop_toTopOf="@+id/guidelineBackBtnBottom"
+        app:srcCompat="@drawable/top_arrow_icon" />
+
+</android.support.constraint.ConstraintLayout>

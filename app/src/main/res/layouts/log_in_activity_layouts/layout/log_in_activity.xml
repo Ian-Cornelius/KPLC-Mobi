@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/logInRootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/log_in_screen_bg">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineHeaderTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.06875" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineHeaderStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.33" />
+
+    <TextView
+        android:id="@+id/txtHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_bold"
+        android:text="@string/log_in_header"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@+id/guidelineHeaderStart"
+        app:layout_constraintTop_toTopOf="@+id/guidelineHeaderTop" />
+
+    <ImageView
+        android:id="@+id/imgHeader"
+        android:layout_width="30dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtHeader"
+        app:layout_constraintStart_toEndOf="@+id/txtHeader"
+        app:layout_constraintTop_toTopOf="@+id/txtHeader"
+        app:srcCompat="@drawable/kplc_msg_logo_clearbg" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineTxtReqLogInTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.18125" />
+
+    <TextView
+        android:id="@+id/txtLogInReq"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/lato_bold"
+        android:text="@string/log_in_req"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelineTxtReqLogInTop" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineEditEmailTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.2916" />
+
+    <EditText
+        android:id="@+id/editEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/log_in_email_pass_border"
+        android:ems="10"
+        android:fontFamily="@font/lato_bold"
+        android:hint="@string/email_hint"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/kplcGreen"
+        android:textColorHint="@color/kplcGreen"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineEditsEnd"
+        app:layout_constraintStart_toStartOf="@+id/guidelineEditsStart"
+        app:layout_constraintTop_toTopOf="@+id/guidelineEditEmailTop" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineEditsStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.0417" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineEditsEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.9583" />
+
+    <EditText
+        android:id="@+id/editPass"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:fontFamily="@font/lato_bold"
+        android:hint="@string/pass_hint"
+        android:textColorHint="@color/kplcGreen"
+        android:textSize="16sp"
+        android:background="@drawable/log_in_email_pass_border"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineEditsEnd"
+        app:layout_constraintStart_toStartOf="@+id/guidelineEditsStart"
+        app:layout_constraintTop_toTopOf="@+id/guidelineEditPassTop" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineEditPassTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.4617" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineLogInBtnTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.64" />
+
+    <Button
+        android:id="@+id/btnLogIn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/login_signup_btn_bg"
+        android:fontFamily="@font/lato_regular"
+        android:text="@string/log_in"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:elevation="4dp"
+        android:translationZ="4dp"
+        android:stateListAnimator="@null"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineLogInBtnEnd"
+        app:layout_constraintStart_toStartOf="@+id/guidelineLogInBtnStart"
+        app:layout_constraintTop_toTopOf="@+id/guidelineLogInBtnTop" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineLogInBtnStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.286" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineLogInBtnEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.7139" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineCreateAccBtnTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.8344" />
+
+    <Button
+        android:id="@+id/btnCreateAcc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:fontFamily="@font/lato_bold"
+        android:text="@string/create_acc"
+        android:textAllCaps="false"
+        android:textColor="@color/custom_grey"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/guidelineEditsStart"
+        app:layout_constraintTop_toTopOf="@+id/guidelineCreateAccBtnTop" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineReqPowerBtnTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.914" />
+
+    <Button
+        android:id="@+id/btnReqForPower"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_bold"
+        android:text="@string/power_req"
+        android:textSize="16sp"
+        android:textColor="@color/custom_grey"
+        android:textAllCaps="false"
+        android:background="@null"
+        app:layout_constraintStart_toStartOf="@+id/guidelineEditsStart"
+        app:layout_constraintTop_toTopOf="@+id/guidelineReqPowerBtnTop" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.motion.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_toggle_btn"
+    app:layoutDescription="@xml/drawer_toggle_btn_scenes"
+    android:layout_width="20dp"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/btnDrawerToggleTopLine"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="@color/white"
+        android:transformPivotX="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/btnDrawerToggleMidLine"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineDrawerToggleMidLineEnd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDrawerToggleTopLine" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineDrawerToggleMidLineEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.75" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineDrawerToggleBottomLineEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.45" />
+
+    <TextView
+        android:id="@+id/btnDrawerToggleBottomLine"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/white"
+        android:transformPivotX="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineDrawerToggleBottomLineEnd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDrawerToggleMidLine" />
+
+</android.support.constraint.motion.MotionLayout>

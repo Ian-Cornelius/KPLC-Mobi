@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineCustomBgBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9639" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineCustomBgTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6704" />
+
+    <ImageView
+        android:id="@+id/customBg"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineCustomBgBottom"
+        app:layout_constraintDimensionRatio="h,1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelineCustomBgTop"
+        app:srcCompat="@drawable/custom_bg_buy_tokens" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineFragmentContentsStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1334" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineHeaderTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2347" />
+
+    <TextView
+        android:id="@+id/txtBuyTokensHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_regular"
+        android:text="@string/buy_tokens_header"
+        android:textAlignment="center"
+        android:textColor="@color/custom_grey"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineAllWidgetsRight"
+        app:layout_constraintStart_toStartOf="@+id/guidelineAllWidgetsLeft"
+        app:layout_constraintTop_toTopOf="@+id/guidelineHeaderTop" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineAllWidgetsLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.0633" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineAllWidgetsRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9367" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineEditCashTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3659" />
+
+    <EditText
+        android:id="@+id/editCashAmnt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/solid_ash_bg"
+        android:ems="10"
+        android:fontFamily="@font/lato_bold"
+        android:hint="@string/cash"
+        android:inputType="number"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineAllWidgetsRight"
+        app:layout_constraintStart_toStartOf="@+id/guidelineAllWidgetsLeft"
+        app:layout_constraintTop_toTopOf="@+id/guidelineEditCashTop" />
+
+    <TextView
+        android:id="@+id/txtOR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/lato_bold"
+        android:text="@string/or"
+        android:textColor="@color/custom_grey"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/editUnitsAmnt"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineAllWidgetsRight"
+        app:layout_constraintStart_toStartOf="@+id/guidelineAllWidgetsLeft"
+        app:layout_constraintTop_toBottomOf="@+id/editCashAmnt" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineEditUnitsTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5314" />
+
+    <EditText
+        android:id="@+id/editUnitsAmnt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/units"
+        android:inputType="number"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="14sp"
+        android:fontFamily="@font/lato_bold"
+        android:background="@drawable/solid_ash_bg"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineAllWidgetsRight"
+        app:layout_constraintStart_toStartOf="@+id/guidelineAllWidgetsLeft"
+        app:layout_constraintTop_toTopOf="@+id/guidelineEditUnitsTop" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineSuggestedUnitsTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6777" />
+
+    <TextView
+        android:id="@+id/txtSuggestedUnits"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/suggest_units"
+        android:textSize="14sp"
+        android:textColor="@color/custom_grey"
+        android:fontFamily="@font/lato_regular"
+        app:layout_constraintStart_toStartOf="@+id/guidelineAllWidgetsLeft"
+        app:layout_constraintTop_toTopOf="@+id/guidelineSuggestedUnitsTop" />
+
+    <TextView
+        android:id="@+id/txtShowSuggestedNumUnits"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="150"
+        android:textSize="14sp"
+        android:textColor="@color/custom_grey"
+        android:fontFamily="@font/lato_regular"
+        app:layout_constraintStart_toEndOf="@+id/txtSuggestedUnits"
+        app:layout_constraintTop_toTopOf="@+id/guidelineSuggestedUnitsTop" />
+
+    <Button
+        android:id="@+id/btnViewHist"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/history_btn_bg"
+        android:drawableLeft="@drawable/history_icon"
+        android:drawablePadding="8dp"
+        android:fontFamily="@font/lato_regular"
+        android:text="@string/view_hist"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtShowSuggestedNumUnits"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtShowSuggestedNumUnits" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineBtnPurchaseTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.7935" />
+
+    <Button
+        android:id="@+id/btnPurchase"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/purchase"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/lato_regular"
+        android:background="@drawable/login_signup_btn_bg"
+        android:elevation="6dp"
+        android:stateListAnimator="@null"
+        android:translationZ="2dp"
+        app:layout_constraintEnd_toEndOf="@+id/customBg"
+        app:layout_constraintStart_toStartOf="@+id/customBg"
+        app:layout_constraintTop_toTopOf="@+id/guidelineBtnPurchaseTop" />
+
+    <TextView
+        android:id="@+id/txtShowWhichAcc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="For account: 23456712345"
+        android:textColor="@color/custom_grey"
+        android:textSize="14sp"
+        android:fontFamily="@font/lato_bold"
+        app:layout_constraintStart_toStartOf="@+id/guidelineAllWidgetsLeft"
+        app:layout_constraintTop_toTopOf="@+id/guidelineFragmentContentsStart" />
+
+</android.support.constraint.ConstraintLayout>
