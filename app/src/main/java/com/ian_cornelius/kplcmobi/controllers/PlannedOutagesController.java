@@ -121,6 +121,9 @@ public class PlannedOutagesController{
      */
     public void generateChildren(){
 
+        /*
+        populate data
+         */
         allOutages = listGenerator.generateData();
 
         /*

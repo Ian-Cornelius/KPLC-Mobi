@@ -13,4 +13,7 @@
     <color name="ash">#E5E2E2</color>
     <color name="light_white">#7DFFFFFF</color>
 
+    <color name="shadow_color_1">#CABBBBBB</color>
+    <color name="shadow_color_2">#29000000</color>
+
 </resources>

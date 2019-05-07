@@ -69,9 +69,6 @@ public class BuyTokensFragment extends Fragment {
             }
         });
 
-        //buyTokensLayout.findViewById(R.id.fabContentHolder).setAnimation(closeAnimation);
-        //mSwitchAccFabContent = buyTokensLayout.findViewById(R.id.switchAccFabMainContainer);
-
         mSwitchAccFabActivator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,12 +76,10 @@ public class BuyTokensFragment extends Fragment {
                 if (!fabReverse){
                     mSwitchAccFabActivator.transitionToEnd();
                     getChildFragmentManager().beginTransaction().setCustomAnimations(R.anim.zoom_in_fab_content,R.anim.zoom_out_fab_content).replace(R.id.fabContentHolder,new SwitchAccFabContentFragment()).commit();
-                    //mSwitchAccFabContent.transitionToEnd();
                 } else{
                     mSwitchAccFabActivator.transitionToStart();
                     buyTokensLayout.findViewById(R.id.fabContentHolder).startAnimation(closeAnimation);
-//                    getChildFragmentManager().beginTransaction().setCustomAnimations(R.anim.zoom_out_fab_content,R.anim.zoom_in_fab_content).remove(getChildFragmentManager().findFragmentById(R.id.fabContentHolder)).commit();
-                    //mSwitchAccFabContent.transitionToStart();
+
                 }
 
                 fabReverse = !fabReverse;
@@ -101,9 +96,6 @@ public class BuyTokensFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
-        //load our fab
-        //getChildFragmentManager().beginTransaction().replace(R.id.switchAccFabFragmentHolder,new SwitchAccFabContentFragment()).commit();
 
     }
 

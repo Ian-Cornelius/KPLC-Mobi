@@ -205,8 +205,7 @@
 
     </ConstraintSet>
 
-    <ConstraintSet android:id="@+id/splash_end"
-        motion:deriveConstraintsFrom="@+id/splash_start">
+    <ConstraintSet android:id="@+id/splash_end">
 
         <Constraint
             android:id="@+id/imgLogo"

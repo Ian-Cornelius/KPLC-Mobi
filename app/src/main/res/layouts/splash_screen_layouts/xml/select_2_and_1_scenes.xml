@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetStart="@+id/select2From1Start"
+        motion:constraintSetEnd="@+id/select2From1End"
+        motion:duration="600"
+        motion:motionInterpolator="easeOut"/>
+
+    <ConstraintSet android:id="@+id/select2From1Start">
+
+        <Constraint
+            android:id="@+id/txtCurrent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="70dp"
+            android:fontFamily="@font/lato_regular"
+            android:text="@string/current"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/radioBtnAcc1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/radioBtnAcc1"
+            app:layout_constraintTop_toTopOf="@+id/radioBtnAcc1" />
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/select2From1End">
+
+        <Constraint
+            android:id="@+id/txtCurrent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="70dp"
+            android:fontFamily="@font/lato_regular"
+            android:text="@string/current"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/radioBtnAcc2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/radioBtnAcc2"
+            app:layout_constraintTop_toTopOf="@+id/radioBtnAcc2" />
+
+    </ConstraintSet>
+
+</MotionScene>

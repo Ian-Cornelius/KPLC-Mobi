@@ -78,4 +78,12 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.0944" />
 
+
+    <include layout="@layout/token_purchase_success_fragment"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelineCustSnackBarTopExtended"/>
+
 </android.support.constraint.ConstraintLayout>
