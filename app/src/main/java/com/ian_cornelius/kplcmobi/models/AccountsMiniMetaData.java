@@ -3,6 +3,8 @@ package com.ian_cornelius.kplcmobi.models;
 /*
 This class is to hold mini meta data about the user's accounts. Basically tell us which one is active, thus
 allow him/her to switch accounts appropriately when requesting for a service.
+
+TODO: Update this model to include types description, to separate between post-paid and pre-paid accounts
  */
 
 public class AccountsMiniMetaData {

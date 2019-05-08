@@ -82,4 +82,27 @@
     <string name="switch_acc">Switch accounts</string>
     <string name="current">(current)</string>
 
+    <string name="slide_up">Slide up for more</string>
+
+    <string name="outstanding_bill">Outstanding bill</string>
+    <string name="meter_reading">Meter reading</string>
+    <string name="previous_reading">Previous:</string>
+    <string name="current_reading">Current:</string>
+    <string name="units_consumed">Units consumed:</string>
+    <string name="due_date">Due date</string>
+    <string name="pay_stima">Pay stima bill</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <string name="quick_stats">Quick Stats</string>
+    <string name="tokens">Tokens</string>
+    <string name="cash_amnt">Cash Amount</string>
+    <string name="highest">Highest</string>
+    <string name="average">Average</string>
+    <string name="full_hist">Full History</string>
+    <string name="sort">Sort</string>
+    <string name="text">Text</string>
+    <string name="graph">Graph</string>
+
 </resources>

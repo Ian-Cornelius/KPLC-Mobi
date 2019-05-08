@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetStart="@+id/startScene"
+        motion:constraintSetEnd="@+id/endScene"
+        motion:motionInterpolator="easeOut"
+        motion:duration="400">
+
+        <KeyFrameSet>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/txtPayPrompt"
+                motion:framePosition="60"
+                motion:transitionEasing="linear"
+                android:translationY="0dp"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/btnYes"
+                motion:framePosition="100"
+                motion:transitionEasing="linear"
+                android:translationY="0dp"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/btnNo"
+                motion:framePosition="100"
+                motion:transitionEasing="linear"
+                android:translationY="0dp"/>
+
+        </KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/startScene">
+
+        <Constraint
+            android:id="@+id/txtShwAccNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="For account no: 34598218756"
+            android:textColor="@color/custom_grey"
+            android:textSize="14sp"
+            android:fontFamily="@font/lato_bold"
+            android:alpha="1.0"
+            app:layout_constraintStart_toStartOf="@+id/guidelineAllContentsStart"
+            app:layout_constraintTop_toTopOf="@+id/guidelineAllLayoutContentsTop" />
+
+        <Constraint
+            android:id="@+id/txtOutstandingBill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/outstanding_bill"
+            android:textColor="@color/kplcGreen"
+            android:textSize="20sp"
+            android:fontFamily="@font/lato_regular"
+            android:alpha="1.0"
+            app:layout_constraintStart_toStartOf="@+id/guidelineAllContentsStart"
+            app:layout_constraintTop_toTopOf="@+id/guidelinePostPaidHeaderTop" />
+
+        <Constraint
+            android:id="@+id/txtShwOutstandingBill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Ksh 2300"
+            android:textColor="@color/custom_grey"
+            android:textSize="16sp"
+            android:fontFamily="@font/lato_regular"
+            android:alpha="1.0"
+            app:layout_constraintStart_toStartOf="@+id/guidelineAllContentsStart"
+            app:layout_constraintTop_toBottomOf="@+id/txtOutstandingBill" />
+
+        <TextView
+            android:id="@+id/txtMeterReading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/meter_reading"
+            android:textColor="@color/kplcGreen"
+            android:textSize="20sp"
+            android:fontFamily="@font/lato_regular"
+            android:alpha="1.0"
+            app:layout_constraintStart_toStartOf="@+id/guidelineAllContentsStart"
+            app:layout_constraintTop_toTopOf="@+id/guidelineMeterReadingTop" />
+
+        <Constraint
+            android:id="@+id/txtPreviousReading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/previous_reading"
+            android:textColor="@color/custom_grey"
+            android:textSize="16sp"
+            android:fontFamily="@font/lato_regular"
+            android:alpha="1.0"
+            app:layout_constraintStart_toStartOf="@+id/guidelineAllContentsStart"
+            app:layout_constraintTop_toBottomOf="@+id/txtMeterReading" />
+
+        <Constraint
+            android:id="@+id/txtShwPreviousReading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:text="345"
+            android:textColor="@color/custom_grey"
+            android:textSize="16sp"
+            android:fontFamily="@font/lato_regular"
+            android:alpha="1.0"
+            app:layout_constraintBottom_toBottomOf="@+id/txtPreviousReading"
+            app:layout_constraintStart_toEndOf="@+id/txtPreviousReading"
+            app:layout_constraintTop_toTopOf="@+id/txtPreviousReading" />
+
+        <Constraint
+            android:id="@+id/txtCurrentReading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/current_reading"
+            android:textColor="@color/custom_grey"
+            android:textSize="16sp"
+            android:fontFamily="@font/lato_regular"
+            android:alpha="1.0"
+            app:layout_constraintStart_toStartOf="@+id/txtPreviousReading"
+            app:layout_constraintTop_toBottomOf="@+id/txtPreviousReading" />
+
+        <Constraint
+            android:id="@+id/txtShwCurrentReading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="550"
+            android:textColor="@color/custom_grey"
+            android:textSize="16sp"
+            android:fontFamily="@font/lato_regular"
+            android:alpha="1.0"
+            app:layout_constraintBottom_toBottomOf="@+id/txtCurrentReading"
+            app:layout_constraintStart_toStartOf="@+id/txtShwPreviousReading"
+            app:layout_constraintTop_toTopOf="@+id/txtCurrentReading" />
+
+        <Constraint
+            android:id="@+id/txtUnitsConsumed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/units_consumed"
+            android:textColor="@color/custom_grey"
+            android:textSize="16sp"
+            android:fontFamily="@font/lato_regular"
+            android:alpha="1.0"
+            app:layout_constraintStart_toStartOf="@+id/txtCurrentReading"
+            app:layout_constraintTop_toBottomOf="@+id/txtCurrentReading" />
+
+        <Constraint
+            android:id="@+id/txtShowUnitsConsumed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="205"
+            android:textColor="@color/custom_grey"
+            android:textSize="16sp"
+            android:fontFamily="@font/lato_regular"
+            android:alpha="1.0"
+            app:layout_constraintBottom_toBottomOf="@+id/txtUnitsConsumed"
+            app:layout_constraintStart_toStartOf="@+id/txtShwCurrentReading"
+            app:layout_constraintTop_toTopOf="@+id/txtUnitsConsumed" />
+
+        <Constraint
+            android:id="@+id/txtDueDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/due_date"
+            android:textColor="@color/kplcGreen"
+            android:textSize="20sp"
+            android:fontFamily="@font/lato_regular"
+            android:alpha="1.0"
+            app:layout_constraintStart_toStartOf="@+id/guidelineAllContentsStart"
+            app:layout_constraintTop_toTopOf="@+id/guidelineDueDateTop" />
+
+        <Constraint
+            android:id="@+id/txtShwDueDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="12/05/2019"
+            android:textColor="@color/custom_grey"
+            android:textSize="16sp"
+            android:fontFamily="@font/lato_regular"
+            android:alpha="1.0"
+            app:layout_constraintStart_toStartOf="@+id/guidelineAllContentsStart"
+            app:layout_constraintTop_toBottomOf="@+id/txtDueDate" />
+
+        <Constraint
+            android:id="@+id/btnPay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/pay_stima"
+            android:textAllCaps="false"
+            android:textColor="@color/custom_grey"
+            android:textSize="16sp"
+            android:fontFamily="@font/lato_regular"
+            android:background="@drawable/green_border_btn_bg"
+            android:drawableLeft="@drawable/ksh_note"
+            android:drawableStart="@drawable/ksh_note"
+            android:drawablePadding="-6dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:gravity="center"
+            android:textAlignment="gravity"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineBtnPayEnd"
+            app:layout_constraintStart_toStartOf="@+id/guidelineBtnPayStart"
+            app:layout_constraintTop_toTopOf="@+id/guidelineBtnPayTop" />
+
+        <Constraint
+            android:id="@+id/txtPayPrompt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:text="Are you sure you want to pay Ksh2300 to KPLC Post Paid account 45638276219"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textColor="@color/custom_grey"
+            android:fontFamily="@font/lato_regular"
+            android:translationY="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnPay" />
+
+        <Constraint
+            android:id="@+id/btnYes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="@string/yes"
+            android:textColor="@color/kplcGreen"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            android:fontFamily="@font/lato_bold"
+            android:translationY="150dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintEnd_toEndOf="@+id/txtPayPrompt"
+            app:layout_constraintTop_toBottomOf="@+id/txtPayPrompt" />
+
+        <Constraint
+            android:id="@+id/btnNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no"
+            android:textColor="@color/kplcGreen"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            android:fontFamily="@font/lato_bold"
+            android:translationY="150dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintTop_toTopOf="@+id/btnYes"
+            app:layout_constraintStart_toStartOf="@+id/txtPayPrompt" />
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/endScene">
+
+        <Constraint
+            android:id="@+id/txtShwAccNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="For account no: 34598218756"
+            android:textColor="@color/custom_grey"
+            android:textSize="14sp"
+            android:fontFamily="@font/lato_bold"
+            android:alpha="0.1"
+            app:layout_constraintStart_toStartOf="@+id/guidelineAllContentsStart"
+            app:layout_constraintTop_toTopOf="@+id/guidelineAllLayoutContentsTop" />
+
+        <Constraint
+            android:id="@+id/txtOutstandingBill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/outstanding_bill"
+            android:textColor="@color/kplcGreen"
+            android:textSize="20sp"
+            android:fontFamily="@font/lato_regular"
+            android:alpha="0.1"
+            app:layout_constraintStart_toStartOf="@+id/guidelineAllContentsStart"
+            app:layout_constraintTop_toTopOf="@+id/guidelinePostPaidHeaderTop" />
+
+        <Constraint
+            android:id="@+id/txtShwOutstandingBill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Ksh 2300"
+            android:textColor="@color/custom_grey"
+            android:textSize="16sp"
+            android:fontFamily="@font/lato_regular"
+            android:alpha="0.1"
+            app:layout_constraintStart_toStartOf="@+id/guidelineAllContentsStart"
+            app:layout_constraintTop_toBottomOf="@+id/txtOutstandingBill" />
+
+        <Constraint
+            android:id="@+id/txtMeterReading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/meter_reading"
+            android:textColor="@color/kplcGreen"
+            android:textSize="20sp"
+            android:fontFamily="@font/lato_regular"
+            android:alpha="0.1"
+            app:layout_constraintStart_toStartOf="@+id/guidelineAllContentsStart"
+            app:layout_constraintTop_toTopOf="@+id/guidelineMeterReadingTop" />
+
+        <Constraint
+            android:id="@+id/txtPreviousReading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/previous_reading"
+            android:textColor="@color/custom_grey"
+            android:textSize="16sp"
+            android:fontFamily="@font/lato_regular"
+            android:alpha="0.1"
+            app:layout_constraintStart_toStartOf="@+id/guidelineAllContentsStart"
+            app:layout_constraintTop_toBottomOf="@+id/txtMeterReading" />
+
+        <Constraint
+            android:id="@+id/txtShwPreviousReading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:text="345"
+            android:textColor="@color/custom_grey"
+            android:textSize="16sp"
+            android:fontFamily="@font/lato_regular"
+            android:alpha="0.1"
+            app:layout_constraintBottom_toBottomOf="@+id/txtPreviousReading"
+            app:layout_constraintStart_toEndOf="@+id/txtPreviousReading"
+            app:layout_constraintTop_toTopOf="@+id/txtPreviousReading" />
+
+        <Constraint
+            android:id="@+id/txtCurrentReading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/current_reading"
+            android:textColor="@color/custom_grey"
+            android:textSize="16sp"
+            android:fontFamily="@font/lato_regular"
+            android:alpha="0.1"
+            app:layout_constraintStart_toStartOf="@+id/txtPreviousReading"
+            app:layout_constraintTop_toBottomOf="@+id/txtPreviousReading" />
+
+        <Constraint
+            android:id="@+id/txtShwCurrentReading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="550"
+            android:textColor="@color/custom_grey"
+            android:textSize="16sp"
+            android:fontFamily="@font/lato_regular"
+            android:alpha="0.1"
+            app:layout_constraintBottom_toBottomOf="@+id/txtCurrentReading"
+            app:layout_constraintStart_toStartOf="@+id/txtShwPreviousReading"
+            app:layout_constraintTop_toTopOf="@+id/txtCurrentReading" />
+
+        <Constraint
+            android:id="@+id/txtUnitsConsumed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/units_consumed"
+            android:textColor="@color/custom_grey"
+            android:textSize="16sp"
+            android:fontFamily="@font/lato_regular"
+            android:alpha="0.1"
+            app:layout_constraintStart_toStartOf="@+id/txtCurrentReading"
+            app:layout_constraintTop_toBottomOf="@+id/txtCurrentReading" />
+
+        <Constraint
+            android:id="@+id/txtShowUnitsConsumed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="205"
+            android:textColor="@color/custom_grey"
+            android:textSize="16sp"
+            android:fontFamily="@font/lato_regular"
+            android:alpha="0.1"
+            app:layout_constraintBottom_toBottomOf="@+id/txtUnitsConsumed"
+            app:layout_constraintStart_toStartOf="@+id/txtShwCurrentReading"
+            app:layout_constraintTop_toTopOf="@+id/txtUnitsConsumed" />
+
+        <Constraint
+            android:id="@+id/txtDueDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/due_date"
+            android:textColor="@color/kplcGreen"
+            android:textSize="20sp"
+            android:fontFamily="@font/lato_regular"
+            android:alpha="0.1"
+            app:layout_constraintStart_toStartOf="@+id/guidelineAllContentsStart"
+            app:layout_constraintTop_toTopOf="@+id/guidelineDueDateTop" />
+
+        <Constraint
+            android:id="@+id/txtShwDueDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="12/05/2019"
+            android:textColor="@color/custom_grey"
+            android:textSize="16sp"
+            android:fontFamily="@font/lato_regular"
+            android:alpha="0.1"
+            app:layout_constraintStart_toStartOf="@+id/guidelineAllContentsStart"
+            app:layout_constraintTop_toBottomOf="@+id/txtDueDate" />
+
+        <Constraint
+            android:id="@+id/btnPay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/green_border_btn_bg"
+            android:drawableStart="@drawable/ksh_note"
+            android:drawableLeft="@drawable/ksh_note"
+            android:drawablePadding="-6dp"
+            android:fontFamily="@font/lato_regular"
+            android:gravity="center"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/pay_stima"
+            android:textAlignment="gravity"
+            android:textAllCaps="false"
+            android:textColor="@color/custom_grey"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineBtnPayTop"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineBtnPayEnd"
+            app:layout_constraintStart_toStartOf="@+id/guidelineBtnPayStart" />
+
+        <Constraint
+            android:id="@+id/txtPayPrompt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:text="Are you sure you want to pay Ksh2300 to KPLC Post Paid account 45638276219"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textColor="@color/custom_grey"
+            android:fontFamily="@font/lato_regular"
+            android:translationY="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnPay" />
+
+        <Constraint
+            android:id="@+id/btnYes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="@string/yes"
+            android:textColor="@color/kplcGreen"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            android:fontFamily="@font/lato_bold"
+            android:translationY="0dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintEnd_toEndOf="@+id/txtPayPrompt"
+            app:layout_constraintTop_toBottomOf="@+id/txtPayPrompt" />
+
+        <Constraint
+            android:id="@+id/btnNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no"
+            android:textColor="@color/kplcGreen"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            android:fontFamily="@font/lato_bold"
+            android:translationY="0dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintTop_toTopOf="@+id/btnYes"
+            app:layout_constraintStart_toStartOf="@+id/txtPayPrompt" />
+
+
+    </ConstraintSet>
+
+</MotionScene>

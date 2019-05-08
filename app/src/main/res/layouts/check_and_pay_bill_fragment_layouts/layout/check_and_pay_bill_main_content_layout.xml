@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.motion.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    app:layoutDescription="@xml/check_and_pay_bill_main_content_scene"
+    android:id="@+id/checkAndPayBillMainContentLayout"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineAllLayoutContentsTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1334" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineAllContentsStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.0806" />
+
+    <TextView
+        android:id="@+id/txtShwAccNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="For account no: 34598218756"
+        android:textColor="@color/custom_grey"
+        android:textSize="14sp"
+        android:fontFamily="@font/lato_bold"
+        app:layout_constraintStart_toStartOf="@+id/guidelineAllContentsStart"
+        app:layout_constraintTop_toTopOf="@+id/guidelineAllLayoutContentsTop" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelinePostPaidHeaderTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2347" />
+
+    <TextView
+        android:id="@+id/txtOutstandingBill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/outstanding_bill"
+        android:textColor="@color/kplcGreen"
+        android:textSize="20sp"
+        android:fontFamily="@font/lato_regular"
+        app:layout_constraintStart_toStartOf="@+id/guidelineAllContentsStart"
+        app:layout_constraintTop_toTopOf="@+id/guidelinePostPaidHeaderTop" />
+
+    <TextView
+        android:id="@+id/txtShwOutstandingBill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Ksh 2300"
+        android:textColor="@color/custom_grey"
+        android:textSize="16sp"
+        android:fontFamily="@font/lato_regular"
+        app:layout_constraintStart_toStartOf="@+id/guidelineAllContentsStart"
+        app:layout_constraintTop_toBottomOf="@+id/txtOutstandingBill" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineMeterReadingTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3822" />
+
+    <TextView
+        android:id="@+id/txtMeterReading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/meter_reading"
+        android:textColor="@color/kplcGreen"
+        android:textSize="20sp"
+        android:fontFamily="@font/lato_regular"
+        app:layout_constraintStart_toStartOf="@+id/guidelineAllContentsStart"
+        app:layout_constraintTop_toTopOf="@+id/guidelineMeterReadingTop" />
+
+    <TextView
+        android:id="@+id/txtPreviousReading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/previous_reading"
+        android:textColor="@color/custom_grey"
+        android:textSize="16sp"
+        android:fontFamily="@font/lato_regular"
+        app:layout_constraintStart_toStartOf="@+id/guidelineAllContentsStart"
+        app:layout_constraintTop_toBottomOf="@+id/txtMeterReading" />
+
+    <TextView
+        android:id="@+id/txtShwPreviousReading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:text="345"
+        android:textColor="@color/custom_grey"
+        android:textSize="16sp"
+        android:fontFamily="@font/lato_regular"
+        app:layout_constraintBottom_toBottomOf="@+id/txtPreviousReading"
+        app:layout_constraintStart_toEndOf="@+id/txtPreviousReading"
+        app:layout_constraintTop_toTopOf="@+id/txtPreviousReading" />
+
+    <TextView
+        android:id="@+id/txtCurrentReading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/current_reading"
+        android:textColor="@color/custom_grey"
+        android:textSize="16sp"
+        android:fontFamily="@font/lato_regular"
+        app:layout_constraintStart_toStartOf="@+id/txtPreviousReading"
+        app:layout_constraintTop_toBottomOf="@+id/txtPreviousReading" />
+
+    <TextView
+        android:id="@+id/txtShwCurrentReading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="550"
+        android:textColor="@color/custom_grey"
+        android:textSize="16sp"
+        android:fontFamily="@font/lato_regular"
+        app:layout_constraintBottom_toBottomOf="@+id/txtCurrentReading"
+        app:layout_constraintStart_toStartOf="@+id/txtShwPreviousReading"
+        app:layout_constraintTop_toTopOf="@+id/txtCurrentReading" />
+
+    <TextView
+        android:id="@+id/txtUnitsConsumed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/units_consumed"
+        android:textColor="@color/custom_grey"
+        android:textSize="16sp"
+        android:fontFamily="@font/lato_regular"
+        app:layout_constraintStart_toStartOf="@+id/txtCurrentReading"
+        app:layout_constraintTop_toBottomOf="@+id/txtCurrentReading" />
+
+    <TextView
+        android:id="@+id/txtShowUnitsConsumed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="205"
+        android:textColor="@color/custom_grey"
+        android:textSize="16sp"
+        android:fontFamily="@font/lato_regular"
+        app:layout_constraintBottom_toBottomOf="@+id/txtUnitsConsumed"
+        app:layout_constraintStart_toStartOf="@+id/txtShwCurrentReading"
+        app:layout_constraintTop_toTopOf="@+id/txtUnitsConsumed" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineDueDateTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6185" />
+
+    <TextView
+        android:id="@+id/txtDueDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/due_date"
+        android:textColor="@color/kplcGreen"
+        android:textSize="20sp"
+        android:fontFamily="@font/lato_regular"
+        app:layout_constraintStart_toStartOf="@+id/guidelineAllContentsStart"
+        app:layout_constraintTop_toTopOf="@+id/guidelineDueDateTop" />
+
+    <TextView
+        android:id="@+id/txtShwDueDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="12/05/2019"
+        android:textColor="@color/custom_grey"
+        android:textSize="16sp"
+        android:fontFamily="@font/lato_regular"
+        app:layout_constraintStart_toStartOf="@+id/guidelineAllContentsStart"
+        app:layout_constraintTop_toBottomOf="@+id/txtDueDate" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineBtnPayTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.806" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineBtnPayStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.2944" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineBtnPayEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.7056" />
+
+    <Button
+        android:id="@+id/btnPay"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/pay_stima"
+        android:textAllCaps="false"
+        android:textColor="@color/custom_grey"
+        android:textSize="16sp"
+        android:fontFamily="@font/lato_regular"
+        android:background="@drawable/green_border_btn_bg"
+        android:drawableLeft="@drawable/ksh_note"
+        android:drawableStart="@drawable/ksh_note"
+        android:drawablePadding="-6dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:gravity="center"
+        android:textAlignment="gravity"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineBtnPayEnd"
+        app:layout_constraintStart_toStartOf="@+id/guidelineBtnPayStart"
+        app:layout_constraintTop_toTopOf="@+id/guidelineBtnPayTop" />
+
+    <TextView
+        android:id="@+id/txtPayPrompt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:text="Are you sure you want to pay Ksh2300 to KPLC Post Paid account 45638276219"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textColor="@color/custom_grey"
+        android:fontFamily="@font/lato_regular"
+        android:translationY="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPay" />
+
+    <Button
+        android:id="@+id/btnYes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:text="@string/yes"
+        android:textColor="@color/kplcGreen"
+        android:textSize="16sp"
+        android:textAllCaps="false"
+        android:fontFamily="@font/lato_bold"
+        android:translationY="150dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="@+id/txtPayPrompt"
+        app:layout_constraintTop_toBottomOf="@+id/txtPayPrompt" />
+
+    <Button
+        android:id="@+id/btnNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no"
+        android:textColor="@color/kplcGreen"
+        android:textSize="16sp"
+        android:textAllCaps="false"
+        android:fontFamily="@font/lato_bold"
+        android:translationY="150dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toTopOf="@+id/btnYes"
+        app:layout_constraintStart_toStartOf="@+id/txtPayPrompt" />
+
+</android.support.constraint.motion.MotionLayout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.motion.MotionLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    app:layoutDescription="@xml/check_and_pay_bill_fragment_scene"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/check_and_pay_bill_main_content_layout"
+        android:id="@+id/checkAndPayBillMainContentLayout"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineSwitchAccCustFabStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.8167" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineSwitchAccCustFabEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9611" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineSwitchAccCustFabBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9759" />
+
+    <LinearLayout
+        android:id="@+id/fabContentHolder"
+        android:layout_width="280dp"
+        android:layout_height="297dp"
+        android:background="@android:color/transparent"
+        android:orientation="vertical"
+        android:translationX="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineSwitchAccCustFabBottom"
+        app:layout_constraintEnd_toEndOf="@+id/guidelineSwitchAccCustFabEnd"></LinearLayout>
+
+    <include
+        layout="@layout/switch_activity_fab_layout"
+        android:id="@+id/switchAccFabActivator"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineSwitchAccCustFabBottom"
+        app:layout_constraintDimensionRatio="w,1:1"
+        app:layout_constraintEnd_toStartOf="@id/guidelineSwitchAccCustFabEnd"
+        app:layout_constraintStart_toStartOf="@+id/guidelineSwitchAccCustFabStart" />
+
+</android.support.constraint.motion.MotionLayout>

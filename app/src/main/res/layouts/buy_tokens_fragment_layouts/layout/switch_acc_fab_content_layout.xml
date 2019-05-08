@@ -4,6 +4,7 @@
     android:id="@+id/switchAccFabContent"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    app:layoutDescription="@xml/switch_acc_fab_content_scene"
     android:elevation="6dp"
     android:background="@drawable/switch_acc_fab_content_bg">
 

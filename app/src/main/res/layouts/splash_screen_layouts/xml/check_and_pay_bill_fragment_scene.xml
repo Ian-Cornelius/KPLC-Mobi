@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetStart="@+id/checkAndPayFragmentStart"
+        motion:constraintSetEnd="@+id/checkAndPayFragmentEnd"
+        motion:duration="400"
+        motion:motionInterpolator="easeOut"/>
+
+    <ConstraintSet android:id="@+id/checkAndPayFragmentStart">
+
+        <Constraint
+            android:id="@+id/fabContentHolder"
+            android:layout_width="280dp"
+            android:layout_height="297dp"
+            android:background="@android:color/transparent"
+            android:orientation="vertical"
+            android:translationX="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineSwitchAccCustFabBottom"
+            app:layout_constraintEnd_toEndOf="@+id/guidelineSwitchAccCustFabEnd"></Constraint>
+
+        <Constraint
+            layout="@layout/switch_activity_fab_layout"
+            android:id="@+id/switchAccFabActivator"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineSwitchAccCustFabBottom"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@id/guidelineSwitchAccCustFabEnd"
+            app:layout_constraintStart_toStartOf="@+id/guidelineSwitchAccCustFabStart" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/checkAndPayFragmentEnd">
+
+        <Constraint
+            android:id="@+id/fabContentHolder"
+            android:layout_width="280dp"
+            android:layout_height="297dp"
+            android:background="@android:color/transparent"
+            android:orientation="vertical"
+            android:translationX="400dp"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineSwitchAccCustFabBottom"
+            app:layout_constraintEnd_toEndOf="@+id/guidelineSwitchAccCustFabEnd"></Constraint>
+
+        <Constraint
+            layout="@layout/switch_activity_fab_layout"
+            android:id="@+id/switchAccFabActivator"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineSwitchAccCustFabBottom"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintStart_toEndOf="parent" />
+
+    </ConstraintSet>
+
+</MotionScene>

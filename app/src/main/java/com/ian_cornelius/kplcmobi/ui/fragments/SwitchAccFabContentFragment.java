@@ -156,8 +156,8 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
                         /*
                         Put (current) in correct position
                          */
-                        mSwitchAccFabContentLayout.loadLayoutDescription(R.xml.select_2_and_1_scenes);
-//                        mSwitchAccFabContentLayout.setTransition(R.id.select2From1Start,R.id.select2From1End);
+                        //mSwitchAccFabContentLayout.loadLayoutDescription(R.xml.select_2_and_1_scenes);
+                        mSwitchAccFabContentLayout.setTransition(R.id.select2From1Start,R.id.select2From1End);
                         mSwitchAccFabContentLayout.setProgress(100);
                     }
 
@@ -217,7 +217,7 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
                     /*
                     Radio button 2 gone
                      */
-                    mRadioBtnAcc2.setVisibility(View.GONE);
+                    mRadioBtnAcc2.setVisibility(View.INVISIBLE);
 
                 } else if(maxSize - i == 2){
 
@@ -225,7 +225,7 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
                     Radio button 3 gone
                      */
                     Log.e("Error","Radio btn 3 should be gone");
-                    mRadioBtnAcc3.setVisibility(View.GONE);
+                    mRadioBtnAcc3.setVisibility(View.INVISIBLE);
 
                 } else if(maxSize - i == 3){
 
@@ -287,12 +287,12 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
                      */
                     if (previouslyCheckedRadioBtn.getId() == R.id.radioBtnAcc2){
 
-                        playCurrentAnimation(R.xml.select_2_and_1_scenes, true);
-                        //mSwitchAccFabContentLayout.setTransition(R.id.select1From2Start,R.id.select1From2End);
-                        //mSwitchAccFabContentLayout.transitionToEnd();
+//                        playCurrentAnimation(R.xml.select_2_and_1_scenes, true);
+                        mSwitchAccFabContentLayout.setTransition(R.id.select1From2Start,R.id.select1From2End);
+                        mSwitchAccFabContentLayout.transitionToEnd();
                     } else if (previouslyCheckedRadioBtn.getId() == R.id.radioBtnAcc3){
 
-                        playCurrentAnimation(R.xml.select_3_and_1_scenes,true);
+                        //playCurrentAnimation(R.xml.select_3_and_1_scenes,true);
                     }
 
                     /*
@@ -310,9 +310,9 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
 
                     if(previouslyCheckedRadioBtn.getId() == R.id.radioBtnAcc1){
 
-                        playCurrentAnimation(R.xml.select_2_and_1_scenes, false);
-                        //mSwitchAccFabContentLayout.setTransition(R.id.select2From1Start,R.id.select2From1End);
-                        //mSwitchAccFabContentLayout.transitionToEnd();
+//                        playCurrentAnimation(R.xml.select_2_and_1_scenes, false);
+                        mSwitchAccFabContentLayout.setTransition(R.id.select2From1Start,R.id.select2From1End);
+                        mSwitchAccFabContentLayout.transitionToEnd();
                     }
 
                     /*
@@ -330,9 +330,9 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
 
                     if(previouslyCheckedRadioBtn.getId() == R.id.radioBtnAcc1){
 
-                        playCurrentAnimation(R.xml.select_3_and_1_scenes, false);
-                        //mSwitchAccFabContentLayout.setTransition(R.id.select2From1Start,R.id.select2From1End);
-                        //mSwitchAccFabContentLayout.transitionToEnd();
+//                        playCurrentAnimation(R.xml.select_3_and_1_scenes, false);
+                        mSwitchAccFabContentLayout.setTransition(R.id.select3From1Start,R.id.select3From1End);
+                        mSwitchAccFabContentLayout.transitionToEnd();
                     }
 
                     /*

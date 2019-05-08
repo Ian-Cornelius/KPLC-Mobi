@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.motion.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/buyTokensFragLayoutsContainer"
     android:background="@color/white"
+    app:layoutDescription="@xml/buy_tokens_fragment_snackbar_slide_scene"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -36,19 +37,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.898" />
+        app:layout_constraintGuide_percent="0.888" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guidelineCustSnackBarTopExtended"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.2717" />
+        app:layout_constraintGuide_percent="0.2417" />
 
     <LinearLayout
         android:id="@+id/fabContentHolder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="280dp"
+        android:layout_height="297dp"
         android:background="@android:color/transparent"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/guidelineSwitchAccCustFabBottom"
@@ -79,11 +80,13 @@
         app:layout_constraintGuide_percent="0.0944" />
 
 
-    <include layout="@layout/token_purchase_success_fragment"
-        android:layout_height="wrap_content"
+    <include
+        layout="@layout/token_purchase_success_fragment"
+        android:id="@+id/token_purchase_success_fragment_holder"
         android:layout_width="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guidelineCustSnackBarTopExtended"/>
+        app:layout_constraintTop_toTopOf="@+id/guidelineCustSnackBarTopShort" />
 
-</android.support.constraint.ConstraintLayout>
+</android.support.constraint.motion.MotionLayout>

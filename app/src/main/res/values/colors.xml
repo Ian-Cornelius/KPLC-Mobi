@@ -16,4 +16,6 @@
     <color name="shadow_color_1">#CABBBBBB</color>
     <color name="shadow_color_2">#29000000</color>
 
+    <color name="kplcDarkYellow">#DCBB2B</color>
+
 </resources>

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/buy_tokens_main_content_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:alpha="0.2"
+    android:alpha="1.0"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <android.support.constraint.Guideline

@@ -53,6 +53,12 @@ android {
                             //For buy tokens fragment layout files
                             'src/main/res/layouts/buy_tokens_fragment_layouts',
 
+                            //For check and pay bill post paid layout files
+                            'src/main/res/layouts/check_and_pay_bill_fragment_layouts',
+
+                            //For purchase history layout files
+                            'src/main/res/layouts/my_purchase_history_fragment_layouts',
+
                             'src/main/res/layouts/',
                             'src/main/res/'
                     ]

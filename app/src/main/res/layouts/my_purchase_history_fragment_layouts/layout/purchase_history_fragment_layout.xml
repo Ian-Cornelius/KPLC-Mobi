@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineContentsTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1334" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/quickStatsLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/purchase_history_cards_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelineContentsTop">
+
+        <TextView
+            android:id="@+id/txtQuickStats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="24dp"
+            android:drawableRight="@drawable/stats_icon"
+            android:drawablePadding="5dp"
+            android:fontFamily="@font/lato_regular"
+            android:text="@string/quick_stats"
+            android:textColor="@color/kplcGreen"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnSwitcAcc"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="30dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/lato_regular"
+            android:text="@string/switch_acc"
+            android:textAllCaps="false"
+            android:textColor="@color/custom_grey"
+            android:textSize="16sp"
+            android:gravity="bottom"
+            app:layout_constraintBottom_toBottomOf="@+id/txtQuickStats"
+            app:layout_constraintStart_toEndOf="@+id/txtQuickStats"
+            app:layout_constraintTop_toTopOf="@+id/txtQuickStats" />
+
+        <TextView
+            android:id="@+id/txtHighest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="155dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/lato_regular"
+            android:text="@string/highest"
+            android:textColor="@color/custom_grey"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtQuickStats" />
+
+        <TextView
+            android:id="@+id/txtAverage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
+            android:fontFamily="@font/lato_regular"
+            android:text="@string/average"
+            android:textColor="@color/custom_grey"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/txtHighest"
+            app:layout_constraintTop_toTopOf="@+id/txtHighest" />
+
+        <TextView
+            android:id="@+id/lineSeparator"
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/kplcGreen"
+            app:layout_constraintBottom_toBottomOf="@+id/txtShwAmntHighest"
+            app:layout_constraintEnd_toStartOf="@+id/txtAverage"
+            app:layout_constraintStart_toEndOf="@+id/txtHighest"
+            app:layout_constraintTop_toTopOf="@+id/txtHighest" />
+
+        <TextView
+            android:id="@+id/txtShwTokenHighest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/lato_regular"
+            android:text="100"
+            android:textColor="@color/custom_grey"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/txtHighest"
+            app:layout_constraintTop_toBottomOf="@+id/txtHighest" />
+
+        <TextView
+            android:id="@+id/txtShwAmntHighest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="44dp"
+            android:fontFamily="@font/lato_regular"
+            android:text="1000"
+            android:textColor="@color/custom_grey"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/txtShwTokenHighest"
+            app:layout_constraintTop_toBottomOf="@+id/txtShwTokenHighest" />
+
+        <TextView
+            android:id="@+id/txtTokens"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="46dp"
+            android:text="@string/tokens"
+            android:textColor="@color/custom_grey"
+            android:textSize="16sp"
+            android:fontFamily="@font/lato_regular"
+            app:layout_constraintBottom_toBottomOf="@+id/txtShwTokenHighest"
+            app:layout_constraintEnd_toStartOf="@+id/txtShwTokenHighest"
+            app:layout_constraintTop_toTopOf="@+id/txtShwTokenHighest" />
+
+        <TextView
+            android:id="@+id/txtCash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cash_amnt"
+            android:textColor="@color/custom_grey"
+            android:textSize="16sp"
+            android:fontFamily="@font/lato_regular"
+            app:layout_constraintBottom_toBottomOf="@+id/txtShwAmntHighest"
+            app:layout_constraintEnd_toEndOf="@+id/txtTokens"
+            app:layout_constraintStart_toStartOf="@+id/txtTokens"
+            app:layout_constraintTop_toTopOf="@+id/txtShwAmntHighest" />
+
+        <TextView
+            android:id="@+id/txtShwTokenAverage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="80"
+            android:textColor="@color/custom_grey"
+            android:textSize="16sp"
+            android:fontFamily="@font/lato_regular"
+            app:layout_constraintBottom_toBottomOf="@+id/txtShwTokenHighest"
+            app:layout_constraintStart_toStartOf="@+id/txtAverage"
+            app:layout_constraintTop_toTopOf="@+id/txtShwTokenHighest" />
+
+        <TextView
+            android:id="@+id/txtShwAmntAverage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="870"
+            android:textColor="@color/custom_grey"
+            android:textSize="16sp"
+            android:fontFamily="@font/lato_regular"
+            app:layout_constraintBottom_toBottomOf="@+id/txtShwAmntHighest"
+            app:layout_constraintStart_toStartOf="@+id/txtShwTokenAverage"
+            app:layout_constraintTop_toTopOf="@+id/txtShwAmntHighest" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/fullHistoryMainLayout"
+        android:layout_width="0dp"
+        android:layout_height="669dp"
+        android:background="@drawable/full_history_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quickStatsLayout">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/fullHistoryFragHolder"
+            android:layout_width="0dp"
+            android:layout_height="601dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </android.support.constraint.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/txtFullHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/full_hist"
+            android:textColor="@color/kplcGreen"
+            android:textSize="20sp"
+            android:drawableRight="@drawable/graph_icon"
+            android:drawablePadding="5dp"
+            android:fontFamily="@font/lato_regular"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/sortContentFragmentHolder"
+            android:layout_width="28dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="vertical"
+            android:background="@android:color/transparent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txtFullHistory"
+            app:layout_constraintTop_toTopOf="@+id/btnSort"/>
+
+        <Button
+            android:id="@+id/btnSort"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="114dp"
+            android:layout_marginTop="4dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/sort_icon"
+            android:fontFamily="@font/lato_regular"
+            android:text="@string/sort"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/txtFullHistory"
+            app:layout_constraintStart_toEndOf="@+id/txtFullHistory"
+            app:layout_constraintTop_toTopOf="@+id/txtFullHistory" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <include
+        layout="@layout/purchase_history_fab_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>

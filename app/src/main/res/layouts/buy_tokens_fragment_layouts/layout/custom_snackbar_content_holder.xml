@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/token_success_frag_background"
+    android:background="@drawable/buy_tokens_custom_snackbar_bg"
     android:layout_height="wrap_content">
 
     <android.support.constraint.Guideline
@@ -10,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.0729" />
+        app:layout_constraintGuide_percent="0.0929" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guidelineDetailsEnd"
@@ -32,7 +33,7 @@
         android:layout_height="wrap_content"
         android:text="@string/token_num"
         android:textColor="@color/kplcGreen"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:fontFamily="@font/lato_regular"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDetailsEnd"
         app:layout_constraintTop_toTopOf="@+id/guidelineDetailsStartTop" />
@@ -44,7 +45,7 @@
         android:fontFamily="@font/lato_regular"
         android:text="3445-6234-5412-8976-3456"
         android:textColor="@color/kplcGreen"
-        android:textSize="14sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/guidelineDetailsShowStart"
         app:layout_constraintTop_toTopOf="@+id/guidelineDetailsStartTop" />
 
@@ -55,7 +56,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/formatted_mtr_no"
         android:textColor="@color/kplcGreen"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:fontFamily="@font/lato_regular"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDetailsEnd"
         app:layout_constraintTop_toBottomOf="@+id/txtTokenNo" />
@@ -66,7 +67,7 @@
         android:layout_height="wrap_content"
         android:text="34512893451"
         android:textColor="@color/kplcGreen"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:fontFamily="@font/lato_regular"
         app:layout_constraintBottom_toBottomOf="@+id/txtMtrNo"
         app:layout_constraintStart_toStartOf="@+id/guidelineDetailsShowStart"
@@ -79,7 +80,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/date"
         android:textColor="@color/kplcGreen"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:fontFamily="@font/lato_regular"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDetailsEnd"
         app:layout_constraintTop_toBottomOf="@+id/txtMtrNo" />
@@ -90,7 +91,7 @@
         android:layout_height="wrap_content"
         android:text="21/5/2019"
         android:textColor="@color/kplcGreen"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:fontFamily="@font/lato_regular"
         app:layout_constraintBottom_toBottomOf="@+id/txtDate"
         app:layout_constraintStart_toStartOf="@+id/guidelineDetailsShowStart"
@@ -103,7 +104,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/units"
         android:textColor="@color/kplcGreen"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:fontFamily="@font/lato_regular"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDetailsEnd"
         app:layout_constraintTop_toBottomOf="@+id/txtDate" />
@@ -115,7 +116,7 @@
         android:fontFamily="@font/lato_regular"
         android:text="150.71"
         android:textColor="@color/kplcGreen"
-        android:textSize="14sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/txtUnits"
         app:layout_constraintStart_toStartOf="@+id/guidelineDetailsShowStart"
         app:layout_constraintTop_toTopOf="@+id/txtUnits" />
@@ -127,7 +128,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/amnt"
         android:textColor="@color/kplcGreen"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:fontFamily="@font/lato_regular"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDetailsEnd"
         app:layout_constraintTop_toBottomOf="@+id/txtUnits" />
@@ -139,7 +140,7 @@
         android:fontFamily="@font/lato_regular"
         android:text="1500"
         android:textColor="@color/kplcGreen"
-        android:textSize="14sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/txtAmnt"
         app:layout_constraintStart_toStartOf="@+id/guidelineDetailsShowStart"
         app:layout_constraintTop_toTopOf="@+id/txtAmnt" />
@@ -151,7 +152,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/token_amnt"
         android:textColor="@color/kplcGreen"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:fontFamily="@font/lato_regular"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDetailsEnd"
         app:layout_constraintTop_toBottomOf="@+id/txtAmnt" />
@@ -163,7 +164,7 @@
         android:fontFamily="@font/lato_regular"
         android:text="1250.7"
         android:textColor="@color/kplcGreen"
-        android:textSize="14sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/txtTokenAmnt"
         app:layout_constraintStart_toStartOf="@+id/guidelineDetailsShowStart"
         app:layout_constraintTop_toTopOf="@+id/txtTokenAmnt" />
@@ -175,7 +176,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/tax"
         android:textColor="@color/kplcGreen"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:fontFamily="@font/lato_regular"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDetailsEnd"
         app:layout_constraintTop_toBottomOf="@+id/txtTokenAmnt" />
@@ -186,7 +187,7 @@
         android:layout_height="wrap_content"
         android:text="50.23"
         android:textColor="@color/kplcGreen"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:fontFamily="@font/lato_regular"
         app:layout_constraintBottom_toBottomOf="@+id/txtTax"
         app:layout_constraintStart_toStartOf="@+id/guidelineDetailsShowStart"
@@ -199,7 +200,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/rep"
         android:textColor="@color/kplcGreen"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:fontFamily="@font/lato_regular"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDetailsEnd"
         app:layout_constraintTop_toBottomOf="@+id/txtTax" />
@@ -210,7 +211,7 @@
         android:layout_height="wrap_content"
         android:text="15.37"
         android:textColor="@color/kplcGreen"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:fontFamily="@font/lato_regular"
         app:layout_constraintBottom_toBottomOf="@+id/txtREP"
         app:layout_constraintStart_toStartOf="@+id/guidelineDetailsShowStart"
@@ -224,7 +225,7 @@
         android:fontFamily="@font/lato_regular"
         android:text="@string/warma"
         android:textColor="@color/kplcGreen"
-        android:textSize="14sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDetailsEnd"
         app:layout_constraintTop_toBottomOf="@+id/txtREP" />
 
@@ -234,7 +235,7 @@
         android:layout_height="wrap_content"
         android:text="5.07"
         android:textColor="@color/kplcGreen"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:fontFamily="@font/lato_regular"
         app:layout_constraintBottom_toBottomOf="@+id/txtWARMA"
         app:layout_constraintStart_toStartOf="@+id/guidelineDetailsShowStart"
@@ -247,7 +248,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/erc"
         android:textColor="@color/kplcGreen"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:fontFamily="@font/lato_regular"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDetailsEnd"
         app:layout_constraintTop_toBottomOf="@+id/txtWARMA" />
@@ -258,7 +259,7 @@
         android:layout_height="wrap_content"
         android:text="5.47"
         android:textColor="@color/kplcGreen"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:fontFamily="@font/lato_regular"
         app:layout_constraintBottom_toBottomOf="@+id/txtERC"
         app:layout_constraintStart_toStartOf="@+id/guidelineDetailsShowStart"
@@ -271,7 +272,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/fuel_index"
         android:textColor="@color/kplcGreen"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:fontFamily="@font/lato_regular"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDetailsEnd"
         app:layout_constraintTop_toBottomOf="@+id/txtERC" />
@@ -282,7 +283,7 @@
         android:layout_height="wrap_content"
         android:text="25.47"
         android:textColor="@color/kplcGreen"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:fontFamily="@font/lato_regular"
         app:layout_constraintBottom_toBottomOf="@+id/txtFuelIndex"
         app:layout_constraintStart_toStartOf="@+id/guidelineDetailsShowStart"
@@ -295,7 +296,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/forex"
         android:textColor="@color/kplcGreen"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:fontFamily="@font/lato_regular"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDetailsEnd"
         app:layout_constraintTop_toBottomOf="@+id/txtFuelIndex" />
@@ -306,7 +307,7 @@
         android:layout_height="wrap_content"
         android:text="0.63"
         android:textColor="@color/kplcGreen"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:fontFamily="@font/lato_regular"
         app:layout_constraintBottom_toBottomOf="@+id/txtForex"
         app:layout_constraintStart_toStartOf="@+id/guidelineDetailsShowStart"
@@ -319,7 +320,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/inflation"
         android:textColor="@color/kplcGreen"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:fontFamily="@font/lato_regular"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDetailsEnd"
         app:layout_constraintTop_toBottomOf="@+id/txtForex" />
@@ -330,25 +331,20 @@
         android:layout_height="wrap_content"
         android:text="3.17"
         android:textColor="@color/kplcGreen"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:fontFamily="@font/lato_regular"
         app:layout_constraintBottom_toBottomOf="@+id/txtInflationAdjustment"
         app:layout_constraintStart_toStartOf="@+id/guidelineDetailsShowStart"
         app:layout_constraintTop_toTopOf="@+id/txtInflationAdjustment" />
 
-    <Button
-        android:id="@+id/btnMoreLessDetails"
+    <TextView
+        android:id="@+id/txtSlideUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:background="@android:color/transparent"
-        android:fontFamily="@font/lato_regular"
-        android:text="@string/less_details"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/txtShwInflation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/txtShwInflation" />
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="42dp"
+        android:text="@string/slide_up"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineDetailsEnd"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

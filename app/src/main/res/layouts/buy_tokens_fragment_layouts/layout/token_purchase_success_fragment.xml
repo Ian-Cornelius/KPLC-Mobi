@@ -3,11 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/token_purchase_success_fragment_holder"
     android:background="@android:color/transparent"
     android:elevation="20dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <include layout="@layout/custom_snackbar_content_holder"/>
 
 </android.support.constraint.ConstraintLayout>
