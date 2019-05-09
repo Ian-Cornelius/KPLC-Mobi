@@ -180,63 +180,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/quickStatsLayout">
 
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/fullHistoryFragHolder"
-            android:layout_width="0dp"
-            android:layout_height="601dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="30dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
 
-        </android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/txtFullHistory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="34dp"
-            android:layout_marginTop="24dp"
-            android:text="@string/full_hist"
-            android:textColor="@color/kplcGreen"
-            android:textSize="20sp"
-            android:drawableRight="@drawable/graph_icon"
-            android:drawablePadding="5dp"
-            android:fontFamily="@font/lato_regular"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <LinearLayout
-            android:id="@+id/sortContentFragmentHolder"
-            android:layout_width="28dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:orientation="vertical"
-            android:background="@android:color/transparent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/txtFullHistory"
-            app:layout_constraintTop_toTopOf="@+id/btnSort"/>
-
-        <Button
-            android:id="@+id/btnSort"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginStart="114dp"
-            android:layout_marginTop="4dp"
-            android:background="@android:color/transparent"
-            android:drawableLeft="@drawable/sort_icon"
-            android:fontFamily="@font/lato_regular"
-            android:text="@string/sort"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/txtFullHistory"
-            app:layout_constraintStart_toEndOf="@+id/txtFullHistory"
-            app:layout_constraintTop_toTopOf="@+id/txtFullHistory" />
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/fullHistoryFragHolder"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quickStatsLayout"
+        app:layout_constraintTop_toTopOf="@id/fullHistoryMainLayout">
 
     </android.support.constraint.ConstraintLayout>
 

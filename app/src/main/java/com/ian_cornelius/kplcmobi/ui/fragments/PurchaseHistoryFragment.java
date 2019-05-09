@@ -26,6 +26,9 @@ public class PurchaseHistoryFragment extends Fragment {
 
         View purchaseHistoryView = inflater.inflate(R.layout.purchase_history_fragment_layout,container,false);
 
+        //Set up our list view - default start view, by setting up its fragment
+        getChildFragmentManager().beginTransaction().replace(R.id.fullHistoryFragHolder, new PurchaseHistoryListFragment()).commit();
+
         return purchaseHistoryView;
     }
 

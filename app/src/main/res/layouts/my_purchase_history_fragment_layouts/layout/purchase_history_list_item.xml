@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingBottom="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/txtShwDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_regular"
+        android:text="12/10/2018"
+        android:textColor="@color/custom_grey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtTokens"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/lato_regular"
+        android:text="@string/tokens"
+        android:textColor="@color/custom_grey"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineSeparator1Start"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@+id/txtShwDate"
+        app:layout_constraintTop_toBottomOf="@+id/txtShwDate" />
+
+    <TextView
+        android:id="@+id/txtShwTokens"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/lato_regular"
+        android:text="90"
+        android:textColor="@color/custom_grey"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineSeparator1Start"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@+id/txtTokens"
+        app:layout_constraintTop_toBottomOf="@+id/txtTokens" />
+
+    <TextView
+        android:id="@+id/txtSeparator1"
+        android:layout_width="12dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/list_item_separator"
+        app:layout_constraintBottom_toBottomOf="@+id/txtShowTokenNum"
+        app:layout_constraintStart_toStartOf="@+id/guidelineSeparator1Start"
+        app:layout_constraintTop_toTopOf="@+id/txtTokens" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineSeparator1Start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.2897" />
+
+    <TextView
+        android:id="@+id/txtCash"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/lato_regular"
+        android:text="@string/cash"
+        android:textColor="@color/custom_grey"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineSeparator2"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@+id/txtSeparator1"
+        app:layout_constraintTop_toTopOf="@+id/txtTokens" />
+
+    <TextView
+        android:id="@+id/txtShwCash"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/lato_regular"
+        android:text="950"
+        android:textColor="@color/custom_grey"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineSeparator2"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@+id/txtCash"
+        app:layout_constraintTop_toTopOf="@+id/txtShwTokens" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineSeparator2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5353" />
+
+    <TextView
+        android:id="@+id/txtSeparator2"
+        android:layout_width="12dp"
+        android:layout_height="0dp"
+        android:background="@drawable/list_item_separator"
+        app:layout_constraintBottom_toBottomOf="@+id/txtShowTokenNum"
+        app:layout_constraintStart_toStartOf="@+id/guidelineSeparator2"
+        app:layout_constraintTop_toTopOf="@+id/txtSeparator1" />
+
+    <TextView
+        android:id="@+id/txtTokenNo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Token number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtSeparator2"
+        app:layout_constraintTop_toTopOf="@+id/txtCash" />
+
+    <TextView
+        android:id="@+id/txtShowTokenNum"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="7685-2345-1985-9218-6523"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/custom_grey"
+        android:fontFamily="@font/lato_regular"
+        app:layout_constraintStart_toStartOf="@+id/txtTokenNo"
+        app:layout_constraintTop_toTopOf="@+id/txtShwCash" />
+</android.support.constraint.ConstraintLayout>
