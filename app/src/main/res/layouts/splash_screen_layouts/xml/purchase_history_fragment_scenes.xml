@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetStart="@+id/purchaseHistCoordinatorStart"
+        motion:constraintSetEnd="@+id/purchaseHistCoordinatorEnd"
+        motion:motionInterpolator="linear"
+        motion:duration="600">
+
+        <OnSwipe
+            motion:dragDirection="dragUp"
+            motion:touchAnchorId="@+id/fullHistoryFragHolder"
+            motion:touchAnchorSide="top"/>
+
+    </Transition>
+
+    <ConstraintSet android:id="@+id/purchaseHistCoordinatorStart">
+
+        <Constraint
+            android:id="@+id/guidelineQuickStatsBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.4156" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/purchaseHistCoordinatorEnd">
+
+        <Constraint
+            android:id="@+id/guidelineQuickStatsBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1334" />
+
+    </ConstraintSet>
+
+</MotionScene>

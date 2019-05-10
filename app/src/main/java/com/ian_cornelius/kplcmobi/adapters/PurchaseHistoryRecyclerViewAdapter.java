@@ -22,6 +22,12 @@ public class PurchaseHistoryRecyclerViewAdapter extends RecyclerView.Adapter<Pur
     private ArrayList<PurchaseHistoryRecord> purchaseHistoryRecords;
 
     /*
+    Tell us how to order our views
+     */
+    private boolean newestToOldest = true;
+    private int dataSize; //Help us reduce stack calls on getItemCount()
+
+    /*
     Inner class to hold our views
      */
     public class MyViewHolder extends RecyclerView.ViewHolder{
@@ -85,11 +91,27 @@ public class PurchaseHistoryRecyclerViewAdapter extends RecyclerView.Adapter<Pur
 
         /*
         Put content in our UI widgets held by MyViewHolder
+
+        Do view ordering here, by manipulating array access
+
+        Position starts from 0, based on get() access. So, to reverse, do getItemCount() - position
          */
-        holder.mTxtDate.setText(purchaseHistoryRecords.get(position).date);
-        holder.mTxtTokens.setText(purchaseHistoryRecords.get(position).tokens);
-        holder.mTxtCash.setText(purchaseHistoryRecords.get(position).cash);
-        holder.mtxtTokenNo.setText(purchaseHistoryRecords.get(position).tokenNumber);
+
+        if (newestToOldest){
+
+            //Normal access
+            holder.mTxtDate.setText(purchaseHistoryRecords.get(position).date);
+            holder.mTxtTokens.setText(purchaseHistoryRecords.get(position).tokens);
+            holder.mTxtCash.setText(purchaseHistoryRecords.get(position).cash);
+            holder.mtxtTokenNo.setText(purchaseHistoryRecords.get(position).tokenNumber);
+        } else{
+
+            //reverse access
+            holder.mTxtDate.setText(purchaseHistoryRecords.get(dataSize - position -1).date);
+            holder.mTxtTokens.setText(purchaseHistoryRecords.get(dataSize - position -1).tokens);
+            holder.mTxtCash.setText(purchaseHistoryRecords.get(dataSize - position -1).cash);
+            holder.mtxtTokenNo.setText(purchaseHistoryRecords.get(dataSize - position -1).tokenNumber);
+        }
 
     }
 
@@ -120,6 +142,7 @@ public class PurchaseHistoryRecyclerViewAdapter extends RecyclerView.Adapter<Pur
     public void updateAdapterData(ArrayList<PurchaseHistoryRecord> records){
 
         purchaseHistoryRecords = records;
+        dataSize = getItemCount();
         this.notifyDataSetChanged();
     }
 
@@ -132,6 +155,25 @@ public class PurchaseHistoryRecyclerViewAdapter extends RecyclerView.Adapter<Pur
     public void clearData(){
 
         purchaseHistoryRecords.clear();
+    }
+
+    /*
+    Method invoked by sort list fragment, to tell adapter to reorder list
+     */
+    public void reorderList(boolean newestToOldest){
+
+        if (this.newestToOldest == newestToOldest){
+
+            //Redundant call. Do nothing
+        } else {
+
+            //different setting from current. Save setting and reorder
+            this.newestToOldest = newestToOldest;
+
+            //data size doesn't change. No need to update here
+
+            notifyDataSetChanged();
+        }
     }
 
 }

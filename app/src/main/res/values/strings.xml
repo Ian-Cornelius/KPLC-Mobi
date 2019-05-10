@@ -105,4 +105,7 @@
     <string name="text">Text</string>
     <string name="graph">Graph</string>
 
+    <string name="oldest">Oldest</string>
+    <string name="newest">Newest</string>
+
 </resources>

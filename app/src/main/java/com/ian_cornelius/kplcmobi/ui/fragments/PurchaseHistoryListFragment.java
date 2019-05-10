@@ -9,6 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.LinearLayoutManager;
+import android.widget.Button;
+
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.ian_cornelius.kplcmobi.R;
 
@@ -24,11 +28,26 @@ public class PurchaseHistoryListFragment extends Fragment {
     private RecyclerView mPurchaseHistoryListRecycler;
     private PurchaseHistoryRecyclerViewAdapter adapter;
 
+    /*
+    Sort button to sort list. Activate its frag.
+     */
+    private Button mBtnSort;
+    private Animation mClassicZoomOut;
+
+    private View fragView;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View purchaseHistListFragment = inflater.inflate(R.layout.purchase_history_list_fragment_layout, container, false);
+
+        /*
+        Get button reference
+         */
+        mBtnSort = purchaseHistListFragment.findViewById(R.id.btnSort);
+        mClassicZoomOut = AnimationUtils.loadAnimation(getActivity(), R.anim.classic_zoom_out);
+        fragView = purchaseHistListFragment.findViewById(R.id.sortContentFragmentHolder);
 
         /*
         Instantiate recycler view and adapters
@@ -48,9 +67,77 @@ public class PurchaseHistoryListFragment extends Fragment {
         PurchaseHistoryRecordsGenerator.getInstance().getAdapterReference(adapter);
         adapter.requestHistoryData("324");
 
+        /*
+        Handle clicks on button sort
+         */
+        mBtnSort.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                /*
+                Launch its frag and kill button clicks to avoid dual or over creation of frags
+                 */
+                SortContentFragment fragment = new SortContentFragment();
+                fragment.getFragmentAndAdapter(getFragInstance(),adapter);
+                getChildFragmentManager().beginTransaction().setCustomAnimations(R.anim.classic_zoom_in, R.anim.classic_zoom_out).replace(R.id.sortContentFragmentHolder, fragment).commit();
+
+            }
+        });
+
+        /*
+        Animation listener
+         */
+        mClassicZoomOut.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+                /*
+                Kill fragment
+                 */
+                getChildFragmentManager().beginTransaction().remove(getChildFragmentManager().findFragmentById(R.id.sortContentFragmentHolder)).commit();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+
         return purchaseHistListFragment;
     }
 
+
+    /*
+    Okay, so here's why I am not using interfaces - the fragments in question are not reusable. So no need. Restrict
+    communication, what I think is best case.
+
+    Save for the switch accounts fragment. Best to put an interface here. Or probably not.
+     */
+
+    /*
+    get fragment instance
+     */
+    protected PurchaseHistoryListFragment getFragInstance(){
+
+        return this;
+    }
+
+   /*
+   Method to request for fragment destruction
+    */
+   protected void killSortContentFrag(){
+
+       /*
+       Play animation, which will kill frag on end
+        */
+       fragView.startAnimation(mClassicZoomOut);
+   }
 
     @Override
     public void onAttach(Context context) {
