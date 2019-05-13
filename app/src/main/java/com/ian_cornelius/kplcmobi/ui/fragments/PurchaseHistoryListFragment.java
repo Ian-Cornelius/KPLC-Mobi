@@ -81,6 +81,8 @@ public class PurchaseHistoryListFragment extends Fragment {
                 fragment.getFragmentAndAdapter(getFragInstance(),adapter);
                 getChildFragmentManager().beginTransaction().setCustomAnimations(R.anim.classic_zoom_in, R.anim.classic_zoom_out).replace(R.id.sortContentFragmentHolder, fragment).commit();
 
+                mBtnSort.setEnabled(false);
+
             }
         });
 
@@ -97,9 +99,11 @@ public class PurchaseHistoryListFragment extends Fragment {
             public void onAnimationEnd(Animation animation) {
 
                 /*
-                Kill fragment
+                Kill fragment, enable sort button
                  */
                 getChildFragmentManager().beginTransaction().remove(getChildFragmentManager().findFragmentById(R.id.sortContentFragmentHolder)).commit();
+
+                mBtnSort.setEnabled(true);
             }
 
             @Override

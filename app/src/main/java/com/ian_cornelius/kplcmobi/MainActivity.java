@@ -1,5 +1,6 @@
 package com.ian_cornelius.kplcmobi;
 
+import android.support.constraint.motion.MotionScene;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -56,6 +57,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTransitionTrigger(MotionLayout motionLayout, int i, boolean b, float v) {
 
+            }
+
+            @Override
+            public boolean allowsTransition(MotionScene.Transition transition){
+
+                return false;
             }
         });
     }

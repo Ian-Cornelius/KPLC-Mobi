@@ -34,6 +34,7 @@ import com.ian_cornelius.kplcmobi.ui.fragments.BuyTokensFragment;
 import com.ian_cornelius.kplcmobi.ui.fragments.CheckAndPayBillFragment;
 import com.ian_cornelius.kplcmobi.ui.fragments.NotificationsFragment;
 import com.ian_cornelius.kplcmobi.ui.fragments.PurchaseHistoryFragment;
+import com.ian_cornelius.kplcmobi.ui.fragments.ReportPowerProblemFragment;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -262,8 +263,20 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.txtReportPower:
 
-                //call fragment switcher, with appropriate argument
-                Toast.makeText(this,"Clicked on report power",Toast.LENGTH_SHORT).show();
+                if (getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder) instanceof ReportPowerProblemFragment){
+
+                    Toast.makeText(this,"You're already in report power problem",Toast.LENGTH_SHORT).show();
+
+                } else{
+
+                    getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in,R.anim.slide_out).replace(R.id.home_fragments_holder, new ReportPowerProblemFragment()).commit();
+
+                    //change views in action bar
+                    mTxtFragName.setText(R.string.report_power);
+                    changeActionBarImage(R.drawable.report_power_bar);
+                    mHomeDrawerLayout.closeDrawer(Gravity.START,true);
+
+                }
                 break;
 
             case R.id.txtKPLCRes:

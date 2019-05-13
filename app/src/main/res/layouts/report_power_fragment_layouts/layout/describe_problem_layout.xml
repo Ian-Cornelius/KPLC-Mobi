@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.motion.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:layoutDescription="@xml/describe_problem_layout_scene"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <android.support.v7.widget.AppCompatRadioButton
+        android:id="@+id/radioBlackout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_regular"
+        android:text="@string/blackout"
+        android:textColor="@color/custom_grey"
+        app:buttonTint="@color/kplcGreen"
+        android:translationX="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.v7.widget.AppCompatRadioButton
+        android:id="@+id/radioBlownTransformer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/lato_regular"
+        android:text="@string/blown_transformer"
+        android:textColor="@color/custom_grey"
+        app:buttonTint="@color/kplcGreen"
+        android:translationX="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/radioBlackout" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/otherTextArea"
+        android:layout_width="315dp"
+        android:layout_height="105dp"
+        android:background="@drawable/ash_grey_edit_text_bg"
+        android:transformPivotX="0dp"
+        android:transformPivotY="105dp"
+        android:scaleY="0.0"
+        android:scaleX="0.0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/txtCharCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="0/200"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editDescription"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="32dp"
+            android:backgroundTint="@color/white"
+            android:ems="10"
+            android:hint="@string/desc_prob_hint"
+            android:inputType="textMultiLine"
+            android:maxLength="200"
+            android:scrollbars="vertical"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtCharCount" />
+
+        <Button
+            android:id="@+id/btnClose"
+            android:layout_width="40dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/lato_regular"
+            android:text="@string/close"
+            android:textAllCaps="false"
+            android:textColor="@color/custom_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editDescription" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.v7.widget.AppCompatRadioButton
+        android:id="@+id/radioOther"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/lato_regular"
+        android:text="@string/other"
+        android:textColor="@color/custom_grey"
+        app:buttonTint="@color/kplcGreen"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/radioBlownTransformer" />
+</android.support.constraint.motion.MotionLayout>

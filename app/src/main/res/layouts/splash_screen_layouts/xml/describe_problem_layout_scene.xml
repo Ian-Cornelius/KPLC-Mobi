@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetStart="@+id/clickOtherStart"
+        motion:constraintSetEnd="@+id/clickOtherEnd"
+        motion:duration="400"
+        motion:motionInterpolator="easeOut"/>
+
+    <ConstraintSet android:id="@+id/clickOtherStart">
+
+        <Constraint
+            android:id="@+id/radioBlackout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lato_regular"
+            android:text="@string/blackout"
+            android:textColor="@color/custom_grey"
+            app:buttonTint="@color/kplcGreen"
+            android:translationX="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@+id/radioBlownTransformer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/lato_regular"
+            android:text="@string/blown_transformer"
+            android:textColor="@color/custom_grey"
+            app:buttonTint="@color/kplcGreen"
+            android:translationX="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/radioBlackout" />
+
+        <Constraint
+            android:id="@+id/otherTextArea"
+            android:layout_width="315dp"
+            android:layout_height="105dp"
+            android:background="@drawable/ash_grey_edit_text_bg"
+            android:scaleY="0.0"
+            android:scaleX="0.0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <Constraint
+            android:id="@+id/radioOther"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/lato_regular"
+            android:text="@string/other"
+            android:textColor="@color/custom_grey"
+            app:buttonTint="@color/kplcGreen"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/radioBlownTransformer" />
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/clickOtherEnd">
+
+        <Constraint
+            android:id="@+id/radioBlackout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lato_regular"
+            android:text="@string/blackout"
+            android:textColor="@color/custom_grey"
+            app:buttonTint="@color/kplcGreen"
+            android:translationX="-100dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@+id/radioBlownTransformer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/lato_regular"
+            android:text="@string/blown_transformer"
+            android:textColor="@color/custom_grey"
+            app:buttonTint="@color/kplcGreen"
+            android:translationX="-150dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/radioBlackout" />
+
+        <Constraint
+            android:id="@+id/otherTextArea"
+            android:layout_width="315dp"
+            android:layout_height="105dp"
+            android:background="@drawable/ash_grey_edit_text_bg"
+            android:scaleY="1.0"
+            android:scaleX="1.0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <Constraint
+            android:id="@+id/radioOther"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/lato_regular"
+            android:text="@string/other"
+            android:textColor="@color/custom_grey"
+            app:buttonTint="@color/kplcGreen"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/otherTextArea" />
+
+    </ConstraintSet>
+
+</MotionScene>

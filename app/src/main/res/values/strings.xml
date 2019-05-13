@@ -108,4 +108,20 @@
     <string name="oldest">Oldest</string>
     <string name="newest">Newest</string>
 
+    <string name="report_header">"Don't stay in the dark. Tell us and we'll respond swiftly"</string>
+    <string name="desc_problem">Describe your problem</string>
+    <string name="location">Provide your location (Optional)</string>
+    <string name="send_report">Send report</string>
+    <string name="desc_prob_hint">Describe your problem here</string>
+    <string name="type_location">Type your location</string>
+    <string name="find_location">Find my location</string>
+    <string name="finish_report">"That's all. Send us the report and we'll get back to you shortly"</string>
+    <string name="skip">Skip</string>
+    <string name="next">Next</string>
+    <string name="back">Back</string>
+    
+    <string name="blackout">Blackout</string>
+    <string name="blown_transformer">Blown transformer</string>
+    <string name="other">Other</string>
+
 </resources>
