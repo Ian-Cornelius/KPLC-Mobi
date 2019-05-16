@@ -124,4 +124,10 @@
     <string name="blown_transformer">Blown transformer</string>
     <string name="other">Other</string>
 
+    <string name="finding_location">We are getting your location. Please wait&#8230;</string>
+    <string name="cancel">Cancel</string>
+    <string name="retry">Retry</string>
+
+    <string name="reply_prompt">Talk to us&#8230;</string>
+
 </resources>

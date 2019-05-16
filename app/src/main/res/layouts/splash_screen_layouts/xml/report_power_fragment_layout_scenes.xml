@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetStart="@+id/reportFragmentScene1Start"
+        motion:constraintSetEnd="@+id/reportFragmentScene1End"
+        motion:duration="400"
+        motion:motionInterpolator="easeOut"/>
+
+    <Transition
+        motion:constraintSetStart="@+id/reportFragmentScene2Start"
+        motion:constraintSetEnd="@+id/reportFragmentScene2End"
+        motion:duration="400"
+        motion:motionInterpolator="easeOut">
+
+        <KeyFrameSet>
+
+            <KeyPosition
+                motion:motionTarget="@+id/btnSkip"
+                motion:framePosition="50"
+                android:layout_marginTop="0dp"
+                motion:keyPositionType="deltaRelative"
+                motion:percentY="1"
+                motion:percentX="0.2"
+                motion:transitionEasing="linear"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/btnSkip"
+                motion:framePosition="50"
+                android:alpha="0.0"
+                motion:transitionEasing="linear"/>
+
+            <KeyPosition
+                motion:motionTarget="@+id/btnNext"
+                motion:framePosition="50"
+                motion:keyPositionType="pathRelative"
+                motion:percentX="0.25"
+                motion:transitionEasing="linear"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/btnNext"
+                motion:framePosition="50"
+                android:alpha="1.0"
+                motion:transitionEasing="linear"/>
+
+            <KeyPosition
+                motion:motionTarget="@+id/btnSendReport"
+                motion:framePosition="50"
+                motion:percentX="4"
+                motion:transitionEasing="linear"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/btnSendReport"
+                motion:framePosition="50"
+                android:alpha="0.0"
+                android:layout_marginEnd="0dp"/>
+
+        </KeyFrameSet>
+    </Transition>
+
+    <Transition
+        motion:constraintSetStart="@+id/reportFragmentScene1End"
+        motion:constraintSetEnd="@+id/reportFragmentScene1Start"
+        motion:duration="400"
+        motion:motionInterpolator="easeOut"/>
+
+
+    <ConstraintSet android:id="@+id/reportFragmentScene1Start">
+
+        <Constraint
+            android:id="@+id/btnNext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/green_border_btn_bg"
+            android:drawableLeft="@drawable/arrow_right_green"
+            android:drawablePadding="-16dp"
+            android:paddingLeft="16dp"
+            android:text="@string/next"
+            android:textAllCaps="false"
+            android:textColor="@color/kplcGreen"
+            android:fontFamily="@font/lato_regular"
+            android:alpha="1.0"
+            app:layout_constraintDimensionRatio="w,3:1"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineBtnsEnd"
+            app:layout_constraintStart_toStartOf="@+id/guidelineBtnsStart"
+            app:layout_constraintTop_toTopOf="@+id/guidelineButtonsTop" />
+
+        <Constraint
+            android:id="@+id/btnSkip"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/skip"
+            android:textColor="@color/kplcBlue"
+            android:textAllCaps="false"
+            android:fontFamily="@font/lato_regular"
+            android:background="@drawable/blue_btn_bg_skip"
+            android:drawableLeft="@drawable/skip_icon"
+            android:drawablePadding="-16dp"
+            android:paddingLeft="16dp"
+            android:alpha="0.0"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineBtnsEnd"
+            app:layout_constraintStart_toStartOf="@+id/guidelineBtnsStart"
+            app:layout_constraintTop_toBottomOf="@+id/btnNext" />
+
+        <Constraint
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/back"
+            android:textAllCaps="false"
+            android:textColor="@color/kplcBlue"
+            android:fontFamily="@font/lato_regular"
+            android:background="@android:color/transparent"
+            android:alpha="0.0"
+            app:layout_constraintStart_toStartOf="@+id/reportFragsHolder"
+            app:layout_constraintTop_toTopOf="@+id/guidelineButtonsTop" />
+
+        <Constraint
+            android:id="@+id/btnSendReport"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="48dp"
+            android:alpha="0.0"
+            android:background="@drawable/login_signup_btn_bg"
+            android:drawableRight="@drawable/arrow_right_white"
+            android:drawablePadding="-8dp"
+            android:elevation="4dp"
+            android:fontFamily="@font/lato_regular"
+            android:paddingRight="22dp"
+            android:text="@string/send_report"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:translationZ="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/btnNext"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineBtnSendEnd"
+            app:layout_constraintStart_toStartOf="@+id/guidelineBtnSendStart"
+            app:layout_constraintTop_toTopOf="@+id/btnNext" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/reportFragmentScene1End">
+
+        <Constraint
+            android:id="@+id/btnNext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/green_border_btn_bg"
+            android:drawableLeft="@drawable/arrow_right_green"
+            android:drawablePadding="-16dp"
+            android:paddingLeft="16dp"
+            android:text="@string/next"
+            android:textAllCaps="false"
+            android:textColor="@color/kplcGreen"
+            android:fontFamily="@font/lato_regular"
+            android:alpha="1.0"
+            app:layout_constraintDimensionRatio="w,3:1"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineBtnsEnd"
+            app:layout_constraintStart_toStartOf="@+id/guidelineBtnsStart"
+            app:layout_constraintTop_toTopOf="@+id/guidelineButtonsTop" />
+
+        <Constraint
+            android:id="@+id/btnSkip"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/skip"
+            android:textColor="@color/kplcBlue"
+            android:textAllCaps="false"
+            android:fontFamily="@font/lato_regular"
+            android:background="@drawable/blue_btn_bg_skip"
+            android:drawableLeft="@drawable/skip_icon"
+            android:drawablePadding="-16dp"
+            android:paddingLeft="16dp"
+            android:alpha="1.0"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineBtnsEnd"
+            app:layout_constraintStart_toStartOf="@+id/guidelineBtnsStart"
+            app:layout_constraintTop_toBottomOf="@+id/btnNext" />
+
+        <Constraint
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/back"
+            android:textAllCaps="false"
+            android:textColor="@color/kplcBlue"
+            android:fontFamily="@font/lato_regular"
+            android:background="@android:color/transparent"
+            android:alpha="1.0"
+            app:layout_constraintStart_toStartOf="@+id/reportFragsHolder"
+            app:layout_constraintTop_toTopOf="@+id/guidelineButtonsTop" />
+
+        <Constraint
+            android:id="@+id/btnSendReport"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="48dp"
+            android:alpha="0.0"
+            android:background="@drawable/login_signup_btn_bg"
+            android:drawableRight="@drawable/arrow_right_white"
+            android:drawablePadding="-8dp"
+            android:elevation="4dp"
+            android:fontFamily="@font/lato_regular"
+            android:paddingRight="22dp"
+            android:text="@string/send_report"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:translationZ="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/btnNext"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineBtnSendEnd"
+            app:layout_constraintStart_toStartOf="@+id/guidelineBtnSendStart"
+            app:layout_constraintTop_toTopOf="@+id/btnNext" />
+    </ConstraintSet>
+
+
+    <ConstraintSet android:id="@+id/reportFragmentScene2Start">
+
+        <Constraint
+            android:id="@+id/btnNext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/green_border_btn_bg"
+            android:drawableLeft="@drawable/arrow_right_green"
+            android:drawablePadding="-16dp"
+            android:paddingLeft="16dp"
+            android:text="@string/next"
+            android:textAllCaps="false"
+            android:textColor="@color/kplcGreen"
+            android:fontFamily="@font/lato_regular"
+            android:alpha="1.0"
+            app:layout_constraintDimensionRatio="w,3:1"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineBtnsEnd"
+            app:layout_constraintStart_toStartOf="@+id/guidelineBtnsStart"
+            app:layout_constraintTop_toTopOf="@+id/guidelineButtonsTop" />
+
+        <Constraint
+            android:id="@+id/btnSkip"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/skip"
+            android:textColor="@color/kplcBlue"
+            android:textAllCaps="false"
+            android:fontFamily="@font/lato_regular"
+            android:background="@drawable/blue_btn_bg_skip"
+            android:drawableLeft="@drawable/skip_icon"
+            android:drawablePadding="-16dp"
+            android:paddingLeft="16dp"
+            android:alpha="1.0"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineBtnsEnd"
+            app:layout_constraintStart_toStartOf="@+id/guidelineBtnsStart"
+            app:layout_constraintTop_toBottomOf="@+id/btnNext" />
+
+        <Constraint
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/back"
+            android:textAllCaps="false"
+            android:textColor="@color/kplcBlue"
+            android:fontFamily="@font/lato_regular"
+            android:background="@android:color/transparent"
+            android:alpha="1.0"
+            app:layout_constraintStart_toStartOf="@+id/reportFragsHolder"
+            app:layout_constraintTop_toTopOf="@+id/guidelineButtonsTop" />
+
+        <Constraint
+            android:id="@+id/btnSendReport"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="48dp"
+            android:alpha="0.0"
+            android:background="@drawable/login_signup_btn_bg"
+            android:drawableRight="@drawable/arrow_right_white"
+            android:drawablePadding="-8dp"
+            android:elevation="4dp"
+            android:fontFamily="@font/lato_regular"
+            android:paddingRight="22dp"
+            android:text="@string/send_report"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:translationZ="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/btnNext"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineBtnSendEnd"
+            app:layout_constraintStart_toStartOf="@+id/guidelineBtnSendStart"
+            app:layout_constraintTop_toTopOf="@+id/btnNext" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/reportFragmentScene2End">
+
+
+        <Constraint
+            android:id="@+id/btnNext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/green_border_btn_bg"
+            android:drawableLeft="@drawable/arrow_right_green"
+            android:drawablePadding="-16dp"
+            android:paddingLeft="16dp"
+            android:text="@string/next"
+            android:textAllCaps="false"
+            android:textColor="@color/kplcGreen"
+            android:fontFamily="@font/lato_regular"
+            android:alpha="0.0"
+            app:layout_constraintDimensionRatio="w,3:1"
+            app:layout_constraintEnd_toEndOf="@+id/btnSendReport"
+            app:layout_constraintStart_toStartOf="@+id/btnSendReport"
+            app:layout_constraintTop_toTopOf="@+id/guidelineButtonsTop" />
+
+        <Constraint
+            android:id="@+id/btnSkip"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:text="@string/skip"
+            android:textColor="@color/kplcBlue"
+            android:textAllCaps="false"
+            android:fontFamily="@font/lato_regular"
+            android:background="@drawable/blue_btn_bg_skip"
+            android:drawableLeft="@drawable/skip_icon"
+            android:drawablePadding="-16dp"
+            android:paddingLeft="16dp"
+            android:alpha="0.0"
+            app:layout_constraintEnd_toEndOf="@+id/btnSendReport"
+            app:layout_constraintStart_toStartOf="@+id/btnSendReport"
+            app:layout_constraintTop_toTopOf="@+id/btnNext" />
+
+        <Constraint
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/back"
+            android:textAllCaps="false"
+            android:textColor="@color/kplcBlue"
+            android:fontFamily="@font/lato_regular"
+            android:background="@android:color/transparent"
+            android:alpha="1.0"
+            app:layout_constraintStart_toStartOf="@+id/reportFragsHolder"
+            app:layout_constraintTop_toTopOf="@+id/guidelineButtonsTop" />
+
+        <Constraint
+            android:id="@+id/btnSendReport"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:alpha="1.0"
+            android:background="@drawable/login_signup_btn_bg"
+            android:drawableRight="@drawable/arrow_right_white"
+            android:drawablePadding="-8dp"
+            android:elevation="4dp"
+            android:fontFamily="@font/lato_regular"
+            android:paddingRight="22dp"
+            android:text="@string/send_report"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:translationZ="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/btnNext"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineBtnSendEnd"
+            app:layout_constraintStart_toStartOf="@+id/guidelineBtnSendStart"
+            app:layout_constraintTop_toTopOf="@+id/btnNext" />
+    </ConstraintSet>
+
+
+    <ConstraintSet android:id="@+id/reportFragmentState2Intermediate">
+
+        <Constraint
+            android:id="@+id/btnNext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/green_border_btn_bg"
+            android:drawableLeft="@drawable/arrow_right_green"
+            android:drawablePadding="-16dp"
+            android:paddingLeft="16dp"
+            android:text="@string/next"
+            android:textAllCaps="false"
+            android:textColor="@color/kplcGreen"
+            android:fontFamily="@font/lato_regular"
+            android:alpha="0.1"
+            app:layout_constraintDimensionRatio="w,3:1"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineBtnsEnd"
+            app:layout_constraintStart_toStartOf="@+id/guidelineBtnsStart"
+            app:layout_constraintTop_toTopOf="@+id/guidelineButtonsTop" />
+
+        <Constraint
+            android:id="@+id/btnSkip"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/skip"
+            android:textColor="@color/kplcBlue"
+            android:textAllCaps="false"
+            android:fontFamily="@font/lato_regular"
+            android:background="@drawable/blue_btn_bg_skip"
+            android:drawableLeft="@drawable/skip_icon"
+            android:drawablePadding="-16dp"
+            android:paddingLeft="16dp"
+            android:alpha="0.1"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineBtnsEnd"
+            app:layout_constraintStart_toStartOf="@+id/guidelineBtnsStart"
+            app:layout_constraintTop_toBottomOf="@+id/btnNext" />
+
+        <Constraint
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/back"
+            android:textAllCaps="false"
+            android:textColor="@color/kplcBlue"
+            android:fontFamily="@font/lato_regular"
+            android:background="@android:color/transparent"
+            android:alpha="0.1"
+            app:layout_constraintStart_toStartOf="@+id/reportFragsHolder"
+            app:layout_constraintTop_toTopOf="@+id/guidelineButtonsTop" />
+
+        <Constraint
+            android:id="@+id/btnSendReport"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="48dp"
+            android:alpha="0.0"
+            android:background="@drawable/login_signup_btn_bg"
+            android:drawableRight="@drawable/arrow_right_white"
+            android:drawablePadding="-8dp"
+            android:elevation="4dp"
+            android:fontFamily="@font/lato_regular"
+            android:paddingRight="22dp"
+            android:text="@string/send_report"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:translationZ="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/btnNext"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineBtnSendEnd"
+            app:layout_constraintStart_toStartOf="@+id/guidelineBtnSendStart"
+            app:layout_constraintTop_toTopOf="@+id/btnNext" />
+    </ConstraintSet>
+
+    <StateSet>
+
+        <State android:id="@+id/reportIntermediate"
+            motion:constraints="@id/reportFragmentState2Intermediate"/>
+
+        <State android:id="@+id/reportState2"
+            motion:constraints="@id/reportFragmentScene2Start"/>
+    </StateSet>
+
+</MotionScene>

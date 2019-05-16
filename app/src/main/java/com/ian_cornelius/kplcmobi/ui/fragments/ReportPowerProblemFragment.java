@@ -9,11 +9,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Button;
 import android.support.constraint.motion.MotionLayout;
-import android.widget.TextSwitcher;
+import android.widget.Toast;
 
 import com.ian_cornelius.kplcmobi.R;
 
@@ -23,10 +22,8 @@ public class ReportPowerProblemFragment extends Fragment {
     /*
     Handling button clicks
      */
-    private Button mBtnNext, mBtnSkip, mBtnBack;
+    private Button mBtnNext, mBtnSkip, mBtnBack,mBtnSendReport;
     private MotionLayout customProgressBar;
-
-    private TextView mTxtProgressStatus;
 
     /*
     Keep track of motion states
@@ -37,7 +34,7 @@ public class ReportPowerProblemFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View reportPowerProblemView = inflater.inflate(R.layout.report_power_fragment_layout, container, false);
+        final View reportPowerProblemView = inflater.inflate(R.layout.report_power_fragment_layout, container, false);
 
         /*
         Get button references
@@ -45,16 +42,19 @@ public class ReportPowerProblemFragment extends Fragment {
         mBtnNext = reportPowerProblemView.findViewById(R.id.btnNext);
         mBtnBack = reportPowerProblemView.findViewById(R.id.btnBack);
         mBtnSkip = reportPowerProblemView.findViewById(R.id.btnSkip);
-
-        /*
-        Text view reference
-         */
-        mTxtProgressStatus = reportPowerProblemView.findViewById(R.id.txtCurrentPoint);
+        mBtnSendReport = reportPowerProblemView.findViewById(R.id.btnSendReport);
 
         /*
         Motion layout instances
          */
         customProgressBar = reportPowerProblemView.findViewById(R.id.customProgressBarLayout);
+
+        /*
+        Starting at state 1. btnBack, btnSkip and btnSendReport should be disabled
+         */
+        mBtnBack.setEnabled(false);
+        mBtnSkip.setEnabled(false);
+        mBtnSendReport.setEnabled(false);
 
         /*
         Set up click listeners
@@ -65,15 +65,54 @@ public class ReportPowerProblemFragment extends Fragment {
 
                 if (progressState == 1){
 
-                    customProgressBar.setTransitionDuration(400);
-                    customProgressBar.transitionToState(R.id.state2);
-                    killAllButtons();
+                    /*
+                    Check that data has been keyed in. Then perform appropriate transitions
+                     */
+                    if (((DescribePowerProblemFragment)getChildFragmentManager().findFragmentById(R.id.reportFragsHolder)).isDataKeyed()){
 
-                    progressState++;
+                        //flush data
+
+                        //do transitions
+                        customProgressBar.setTransitionDuration(400);
+                        customProgressBar.transitionToState(R.id.state2);
+
+                        /*
+                        Kill btnNext alone, since it was the only one active at state 1
+                         */
+                        mBtnNext.setEnabled(false);
+
+                        /*
+                        Animate alphas of btnBack and btnSkip, using motion layout for fragment
+                         */
+                        ((MotionLayout) reportPowerProblemView).setTransition(R.id.reportFragmentScene1Start, R.id.reportFragmentScene1End);
+                        ((MotionLayout) reportPowerProblemView).transitionToEnd();
+
+                        //Switch frags
+                        /*
+                        Funny, but today is when I get to know what these arguments are for.
+                        First anim is how we are going to animate the fragment coming in. Second for the fragment going out/being
+                        removed. Jeeze!
+                         */
+                        getChildFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in, R.anim.slide_out).replace(R.id.reportFragsHolder, new ProvideLocationFragment()).commit();
+
+                        progressState++;
+                    } else {
+
+                        Toast.makeText(getActivity(), "Please describe your problem", Toast.LENGTH_SHORT).show();
+                    }
+
                 } else if (progressState == 2){
 
                     customProgressBar.transitionToState(R.id.state3);
                     killAllButtons();
+
+                    /*
+                    Animate alphas of btnBack, btnSkip and btnSendReport, using motion layout for fragment
+                     */
+                    ((MotionLayout) reportPowerProblemView).setTransition(R.id.reportFragmentScene2Start, R.id.reportFragmentScene2End);
+                    ((MotionLayout) reportPowerProblemView).transitionToEnd();
+
+                    getChildFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in, R.anim.slide_out).replace(R.id.reportFragsHolder, new FinishReportFragment()).commit();
 
                     progressState++;
                 }
@@ -89,13 +128,66 @@ public class ReportPowerProblemFragment extends Fragment {
                     customProgressBar.setTransitionDuration(400);
                     customProgressBar.transitionToState(R.id.state1);
                     killAllButtons();
+
+                    /*
+                    Animate alphas of btnBack and btnSkip, using motion layout for fragment
+
+                    Transition set incase it was a sequential back press
+                     */
+                    ((MotionLayout) reportPowerProblemView).setTransition(R.id.reportFragmentScene1End, R.id.reportFragmentScene1Start);
+                    ((MotionLayout) reportPowerProblemView).transitionToEnd();
+
+                    //Switch frags
+                    getChildFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right).replace(R.id.reportFragsHolder, new DescribePowerProblemFragment()).commit();
                     progressState--;
                 } else if (progressState == 3){
 
+                    /*
+                    Animate alphas of btnBack and btnSkip, using motion layout for fragment
+                    Transition already set when moving from 2 to 3
+                     */
+                    ((MotionLayout) reportPowerProblemView).transitionToStart();
+
                     customProgressBar.transitionToStart();
                     killAllButtons();
+
+                    //Switch frags
+                    getChildFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right).replace(R.id.reportFragsHolder, new ProvideLocationFragment()).commit();
                     progressState--;
                 }
+            }
+        });
+
+        mBtnSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                /*
+                Jump from frag location to send report
+                 */
+                customProgressBar.transitionToState(R.id.state3);
+                killAllButtons();
+
+                    /*
+                    Animate alphas of btnBack, btnSkip and btnSendReport, using motion layout for fragment
+                     */
+                ((MotionLayout) reportPowerProblemView).setTransition(R.id.reportFragmentScene2Start, R.id.reportFragmentScene2End);
+                ((MotionLayout) reportPowerProblemView).transitionToEnd();
+
+                getChildFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in, R.anim.slide_out).replace(R.id.reportFragsHolder, new FinishReportFragment()).commit();
+
+                progressState++;
+            }
+        });
+
+        mBtnSendReport.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick (View v){
+
+                /*
+                Send full report
+                 */
             }
         });
 
@@ -117,11 +209,29 @@ public class ReportPowerProblemFragment extends Fragment {
             public void onTransitionCompleted(MotionLayout motionLayout, int i) {
 
                 /*
-                Re-enable buttons
+                Re-enable buttons, based on current progress state. If state 1, only enable btnNext,
+                because we are coming from state 2. If progress state is 3, only enable back
                  */
-                mBtnBack.setEnabled(true);
-                mBtnNext.setEnabled(true);
-                mBtnSkip.setEnabled(true);
+                if (progressState == 1){
+
+                    mBtnNext.setEnabled(true);
+                } else if (progressState == 3){
+
+                    mBtnBack.setEnabled(true);
+
+                    /*
+                    Enable btnSendReport
+                     */
+                    mBtnSendReport.setEnabled(true);
+                } else{
+
+                    //progress state is 2
+                    mBtnBack.setEnabled(true);
+                    mBtnNext.setEnabled(true);
+                    mBtnSkip.setEnabled(true);
+
+                    mBtnSendReport.setEnabled(false); //In case coming from 3 to 2
+                }
 
             }
 
@@ -153,6 +263,41 @@ public class ReportPowerProblemFragment extends Fragment {
         mBtnBack.setEnabled(false);
         mBtnNext.setEnabled(false);
         mBtnSkip.setEnabled(false);
+
+        /*
+        Just had to do this... DEAD!😂
+         */
+    }
+
+    /*
+    Use this to reduce alpha when find location icon is clicked
+     */
+    public void raiseAlpha(boolean raiseAlpha){
+
+        if (raiseAlpha){
+
+            /*
+            reenable button clicks
+             */
+            mBtnNext.setEnabled(true);
+            mBtnBack.setEnabled(true);
+            mBtnSkip.setEnabled(true);
+
+            ((MotionLayout)mBtnNext.getParent()).transitionToState(R.id.reportState2);
+            customProgressBar.setAlpha(1.0f);
+        } else {
+
+            /*
+            disable button clicks
+             */
+            mBtnNext.setEnabled(false);
+            mBtnBack.setEnabled(false);
+            mBtnSkip.setEnabled(false);
+
+            ((MotionLayout)mBtnNext.getParent()).transitionToState(R.id.reportIntermediate);
+            customProgressBar.setAlpha(0.1f);
+        }
+
     }
 
     @Override

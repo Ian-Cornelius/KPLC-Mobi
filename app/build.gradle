@@ -62,6 +62,9 @@ android {
                             //For report power layout files
                             'src/main/res/layouts/report_power_fragment_layouts',
 
+                            //For KPLC responses layout files
+                            'src/main/res/layouts/kplc_responses_fragment_layouts',
+
                             'src/main/res/layouts/',
                             'src/main/res/'
                     ]

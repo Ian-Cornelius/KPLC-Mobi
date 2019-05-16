@@ -17,5 +17,6 @@
     <color name="shadow_color_2">#29000000</color>
 
     <color name="kplcDarkYellow">#DCBB2B</color>
+    <color name="custom_red">#E91B1B</color>
 
 </resources>

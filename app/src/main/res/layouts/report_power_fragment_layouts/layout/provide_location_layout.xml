@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.motion.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:layoutDescription="@xml/provide_location_layout_scene_test"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/editLocation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/ash_grey_edit_text_bg"
+        android:paddingLeft="8dp"
+        android:paddingTop="2dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:hint="@string/type_location"
+            android:textColor="@color/custom_grey"
+            android:textSize="14sp"
+            android:inputType="text"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <TextView
+        android:id="@+id/txtOr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/lato_bold"
+        android:text="@string/or"
+        android:textColor="@color/custom_grey"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editLocation" />
+
+    <ImageView
+        android:id="@+id/locationIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtOr"
+        app:srcCompat="@drawable/location_icon" />
+
+    <TextView
+        android:id="@+id/txtFindMyLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/lato_regular"
+        android:text="@string/find_location"
+        android:textColor="@color/custom_grey"
+        android:alpha="1.0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/locationIcon" />
+
+    <TextView
+        android:id="@+id/txtFindingLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/finding_location"
+        android:textColor="@color/custom_grey"
+        android:fontFamily="@font/lato_regular"
+        android:alpha="0.0"
+        app:layout_constraintBottom_toBottomOf="@+id/txtFindMyLocation"
+        app:layout_constraintEnd_toEndOf="@+id/txtFindMyLocation"
+        app:layout_constraintStart_toStartOf="@+id/txtFindMyLocation"
+        app:layout_constraintTop_toTopOf="@+id/txtFindMyLocation" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
+        android:background="@android:color/transparent"
+        android:drawableLeft="@drawable/plus_sign"
+        android:fontFamily="@font/lato_regular"
+        android:text="@string/cancel"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:translationX="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/txtFindMyLocation"
+        app:layout_constraintStart_toEndOf="@+id/txtFindMyLocation"
+        app:layout_constraintTop_toTopOf="@+id/locationIcon" />
+
+    <TextView
+        android:id="@+id/txtFoundLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Riat Area, Kisumu West"
+        android:textColor="@color/custom_grey"
+        android:fontFamily="@font/lato_regular"
+        android:translationX="0dp"
+        app:layout_constraintStart_toEndOf="@+id/btnCancel"
+        app:layout_constraintTop_toTopOf="@+id/btnCancel" />
+
+    <Button
+        android:id="@+id/btnRetry"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="@string/retry"
+        android:textAllCaps="false"
+        android:textColor="@color/custom_red"
+        android:background="@android:color/transparent"
+        android:drawableLeft="@drawable/retry_icon"
+        android:alpha="1.0"
+        app:layout_constraintBottom_toBottomOf="@+id/txtFindingLocation"
+        app:layout_constraintStart_toStartOf="@+id/btnCancel"
+        app:layout_constraintTop_toTopOf="@+id/txtFindingLocation" />
+
+</android.support.constraint.motion.MotionLayout>

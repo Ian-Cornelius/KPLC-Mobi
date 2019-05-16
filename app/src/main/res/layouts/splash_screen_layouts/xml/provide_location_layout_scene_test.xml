@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetStart="@id/locationState1"
+        motion:constraintSetEnd="@id/locationState2"
+        motion:duration="400"
+        motion:motionInterpolator="easeOut"/>
+
+    <Transition
+        motion:constraintSetStart="@id/locationState2"
+        motion:constraintSetEnd="@id/locationState3"
+        motion:duration="400"
+        motion:motionInterpolator="easeOut"/>
+
+    <ConstraintSet android:id="@+id/locationState1">
+
+        <Constraint
+            android:id="@+id/editLocation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/ash_grey_edit_text_bg"
+            android:paddingLeft="8dp"
+            android:paddingTop="2dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="12dp"
+            android:scaleX="1.0"
+            android:scaleY="1.0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Constraint
+            android:id="@+id/txtOr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/lato_bold"
+            android:scaleX="1.0"
+            android:scaleY="1.0"
+            android:text="@string/or"
+            android:textColor="@color/custom_grey"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editLocation" />
+
+        <Constraint
+            android:id="@+id/locationIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="8dp"
+            android:scaleX="1.0"
+            android:scaleY="1.0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtOr"
+            app:srcCompat="@drawable/location_icon" />
+
+        <Constraint
+            android:id="@+id/txtFindMyLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/lato_regular"
+            android:text="@string/find_location"
+            android:textColor="@color/custom_grey"
+            android:scaleX="1.0"
+            android:scaleY="1.0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/locationIcon" />
+
+        <Constraint
+            android:id="@+id/txtFindingLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/finding_location"
+            android:textColor="@color/custom_grey"
+            android:fontFamily="@font/lato_regular"
+            android:alpha="0.0"
+            app:layout_constraintBottom_toBottomOf="@+id/txtFindMyLocation"
+            app:layout_constraintEnd_toEndOf="@+id/txtFindMyLocation"
+            app:layout_constraintStart_toStartOf="@+id/txtFindMyLocation"
+            app:layout_constraintTop_toTopOf="@+id/txtFindMyLocation" />
+
+        <Constraint
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginStart="8dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/plus_sign"
+            android:fontFamily="@font/lato_regular"
+            android:text="@string/cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:translationX="200dp"
+            app:layout_constraintBottom_toTopOf="@+id/txtFindMyLocation"
+            app:layout_constraintStart_toEndOf="@+id/txtFindMyLocation"
+            app:layout_constraintTop_toTopOf="@+id/locationIcon" />
+
+        <Constraint
+            android:id="@+id/txtFoundLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Riat Area, Kisumu West"
+            android:textColor="@color/custom_grey"
+            android:fontFamily="@font/lato_regular"
+            android:translationX="100dp"
+            app:layout_constraintStart_toEndOf="@+id/btnCancel"
+            app:layout_constraintTop_toTopOf="@+id/btnCancel" />
+
+        <Constraint
+            android:id="@+id/btnRetry"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="@string/retry"
+            android:textAllCaps="false"
+            android:textColor="@color/custom_red"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/retry_icon"
+            android:alpha="0.0"
+            app:layout_constraintBottom_toBottomOf="@+id/txtFindingLocation"
+            app:layout_constraintStart_toStartOf="@+id/btnCancel"
+            app:layout_constraintTop_toTopOf="@+id/txtFindingLocation" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/locationState2">
+
+        <Constraint
+            android:id="@+id/editLocation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/ash_grey_edit_text_bg"
+            android:paddingLeft="8dp"
+            android:paddingTop="2dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="12dp"
+            android:scaleX="0.4"
+            android:scaleY="0.4"
+            android:alpha="0.0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Constraint
+            android:id="@+id/txtOr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/or"
+            android:textColor="@color/custom_grey"
+            android:textSize="16sp"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
+            android:alpha="0.25"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/editLocation" />
+
+        <Constraint
+            android:id="@+id/locationIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="8dp"
+            android:scaleX="1.8"
+            android:scaleY="1.8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txtOr"
+            app:srcCompat="@drawable/location_icon" />
+
+        <Constraint
+            android:id="@+id/txtFindMyLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/lato_regular"
+            android:text="@string/find_location"
+            android:textColor="@color/custom_grey"
+            android:scaleX="1.0"
+            android:scaleY="1.0"
+            android:alpha="0.0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/locationIcon" />
+
+        <Constraint
+            android:id="@+id/txtFindingLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/finding_location"
+            android:textColor="@color/custom_grey"
+            android:fontFamily="@font/lato_regular"
+            android:alpha="1.0"
+            app:layout_constraintBottom_toBottomOf="@+id/txtFindMyLocation"
+            app:layout_constraintEnd_toEndOf="@+id/txtFindMyLocation"
+            app:layout_constraintStart_toStartOf="@+id/txtFindMyLocation"
+            app:layout_constraintTop_toTopOf="@+id/txtFindMyLocation" />
+
+        <Constraint
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginBottom="8dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/plus_sign"
+            android:fontFamily="@font/lato_regular"
+            android:text="@string/cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:translationX="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/txtFindMyLocation"
+            app:layout_constraintStart_toEndOf="@+id/txtFindMyLocation"
+            app:layout_constraintTop_toTopOf="@+id/locationIcon" />
+
+        <Constraint
+            android:id="@+id/txtFoundLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Riat Area, Kisumu West"
+            android:textColor="@color/custom_grey"
+            android:fontFamily="@font/lato_regular"
+            android:translationX="100dp"
+            app:layout_constraintStart_toEndOf="@+id/btnCancel"
+            app:layout_constraintTop_toTopOf="@+id/btnCancel" />
+
+        <Constraint
+            android:id="@+id/btnRetry"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="@string/retry"
+            android:textAllCaps="false"
+            android:textColor="@color/custom_red"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/retry_icon"
+            android:alpha="0.0"
+            app:layout_constraintBottom_toBottomOf="@+id/txtFindingLocation"
+            app:layout_constraintStart_toStartOf="@+id/btnCancel"
+            app:layout_constraintTop_toTopOf="@+id/txtFindingLocation" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/locationState3">
+
+        <Constraint
+            android:id="@+id/editLocation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/ash_grey_edit_text_bg"
+            android:paddingLeft="8dp"
+            android:paddingTop="2dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="12dp"
+            android:scaleX="0.4"
+            android:scaleY="0.4"
+            android:alpha="0.0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Constraint
+            android:id="@+id/txtOr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/or"
+            android:textColor="@color/custom_grey"
+            android:textSize="16sp"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
+            android:alpha="0.25"
+            android:translationX="-50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/editLocation" />
+
+        <Constraint
+            android:id="@+id/locationIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="8dp"
+            android:scaleX="1.8"
+            android:scaleY="1.8"
+            android:translationX="-50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txtOr"
+            app:srcCompat="@drawable/location_icon" />
+
+        <Constraint
+            android:id="@+id/txtFindMyLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/lato_regular"
+            android:text="@string/find_location"
+            android:textColor="@color/custom_grey"
+            android:scaleX="1.0"
+            android:scaleY="1.0"
+            android:translationX="-50dp"
+            android:alpha="1.0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/locationIcon" />
+
+        <Constraint
+            android:id="@+id/txtFindingLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/finding_location"
+            android:textColor="@color/custom_grey"
+            android:fontFamily="@font/lato_regular"
+            android:alpha="0.0"
+            android:translationX="-50dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txtFindMyLocation"
+            app:layout_constraintEnd_toEndOf="@+id/txtFindMyLocation"
+            app:layout_constraintStart_toStartOf="@+id/txtFindMyLocation"
+            app:layout_constraintTop_toTopOf="@+id/txtFindMyLocation" />
+
+        <Constraint
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginBottom="0dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/plus_sign"
+            android:fontFamily="@font/lato_regular"
+            android:text="@string/cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:translationX="0dp"
+            android:alpha="0.0"
+            app:layout_constraintBottom_toBottomOf="@+id/btnRetry"
+            app:layout_constraintStart_toEndOf="@+id/txtFindMyLocation"
+            app:layout_constraintTop_toTopOf="@+id/btnRetry" />
+
+        <Constraint
+            android:id="@+id/txtFoundLocation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/lato_regular"
+            android:text="Riat Area, Kisumu West"
+            android:textColor="@color/custom_grey"
+            android:translationX="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/locationIcon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/locationIcon"
+            app:layout_constraintTop_toTopOf="@+id/locationIcon" />
+
+        <Constraint
+            android:id="@+id/btnRetry"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="@string/retry"
+            android:textAllCaps="false"
+            android:textColor="@color/custom_red"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/retry_icon"
+            android:alpha="1.0"
+            app:layout_constraintBottom_toBottomOf="@+id/txtFindingLocation"
+            app:layout_constraintStart_toStartOf="@+id/btnCancel"
+            app:layout_constraintTop_toTopOf="@+id/txtFindingLocation" />
+
+    </ConstraintSet>
+
+    <StateSet motion:defaultState="@+id/locationState1">
+
+        <State android:id="@+id/findLocationState1"
+            motion:constraints="@id/locationState1"/>
+
+        <State android:id="@+id/findLocationState2"
+            motion:constraints="@id/locationState2"/>
+
+        <State android:id="@+id/findLocationState3"
+            motion:constraints="@id/locationState3"/>
+    </StateSet>
+
+</MotionScene>

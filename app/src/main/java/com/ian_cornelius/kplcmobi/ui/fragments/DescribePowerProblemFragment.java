@@ -34,10 +34,12 @@ public class DescribePowerProblemFragment extends Fragment {
     private EditText mEditDesc;
 
     /*
-    For live character count
+    For live character count, and determination of whether we have content keyed/selected in here or not
      */
     private TextView mTxtCharCount;
     private int charCount = 0;
+    private boolean isRadioSelected = false;
+
     private final TextWatcher characterCounter = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -85,13 +87,74 @@ public class DescribePowerProblemFragment extends Fragment {
         /*
         Set up on click listeners
          */
+        mRadioBlackout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                /*
+                If radio blown transformer was previously checked, remove check.
+
+                We do not remove for radio other because it is automatically removed when the edit text is closed
+                 */
+                if (mRadioBlown.isChecked()){
+
+                    mRadioBlown.setChecked(false);
+                }
+
+                //Set our isRadioSelected var to true
+                isRadioSelected = true;
+            }
+        });
+
+        mRadioBlown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Log.e("Error","Radio blown clicked");
+                /*
+                If radio blackout was checked, remove check
+                 */
+                if (mRadioBlackout.isChecked()){
+
+                    mRadioBlackout.setChecked(false);
+                }
+
+                isRadioSelected = true;
+            }
+        });
+
         mRadioOther.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v){
 
+                /*
+                if blackout or blown transformer was previously checked, remove check
+                 */
+                if (mRadioBlackout.isChecked()){
+
+                    mRadioBlackout.setChecked(false);
+                }
+                if (mRadioBlown.isChecked()){
+
+                    mRadioBlown.setChecked(false);
+                }
+
+
+                /*
+                Transition to our edit text
+                 */
+
                 ((MotionLayout) descProbView).transitionToEnd();
                 mEditDesc.setEnabled(true);
+
+                /*
+                We don't bother with the value of isRadioSelected here. Because, we need actual text to be
+                keyed in. So, we work with charCount var instead. Updated by textwatcher.
+
+                Nope. Created a loop hole. Select other, then this thing progresses
+                 */
+                isRadioSelected = false;
             }
         });
 
@@ -99,13 +162,49 @@ public class DescribePowerProblemFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                /*
+                Transition off our edit text
+                 */
                 ((MotionLayout) descProbView).transitionToStart();
+
+                /*
+                Disable the edit text, and remove check on other. Also, clear edit text text
+                 */
+                mEditDesc.setText("");
                 mEditDesc.setEnabled(false);
                 mRadioOther.setChecked(false);
+
+                /*
+                Reset char count var. Yes.
+
+                Also, since all radios now not selected, reset isRadioSelected
+                 */
+                charCount = 0;
+                isRadioSelected = false;
             }
         });
 
         return descProbView;
+    }
+
+    /*
+    Method to help us validate there are entries keyed in, to allow us to flush them to
+    model then proceed.
+     */
+    public boolean isDataKeyed(){
+
+        return isRadioSelected || (charCount > 0);
+    }
+
+    /*
+    This method flushes the keyed in data to the report power outage model. Takes the model instance created by parent
+    frag as argument
+     */
+    public void flushData(){
+
+        /*
+        Save our data in model
+         */
     }
 
 
