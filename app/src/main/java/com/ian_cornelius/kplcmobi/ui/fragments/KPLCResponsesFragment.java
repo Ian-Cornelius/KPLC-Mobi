@@ -60,6 +60,15 @@ public class KPLCResponsesFragment extends Fragment {
 
     }
 
+    /*
+    Help us get access to our mainAdapter, and get to know whether we have an expanded view or not,
+    then perform necessary action
+     */
+    public KPLCResponsesMainRecyclerViewAdapter getMainAdapter(){
+
+        return this.mainAdapter;
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated

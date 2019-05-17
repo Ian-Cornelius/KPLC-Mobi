@@ -1,5 +1,6 @@
 package com.ian_cornelius.kplcmobi.ui.home;
 
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -363,5 +364,36 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         //start thread
         imageThread.start();
+    }
+
+    /*
+    Detect back press. Perform appropriate action
+     */
+    @Override
+    public void onBackPressed(){
+
+        /*
+        Basically, get fragment instance we have active. If it is KPLC responses, detect if we have an expanded view,
+        close it. Otherwise, do default action
+         */
+        Fragment currentFrag = getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder);
+
+        /*
+        Now the if-elses
+         */
+        if (currentFrag instanceof KPLCResponsesFragment){
+
+            //check if expanded view
+            if (((KPLCResponsesFragment) currentFrag).getMainAdapter().getCurrentView() != null){
+
+                /*
+                We have an expanded view. Close it
+                 */
+                ((KPLCResponsesFragment) currentFrag).getMainAdapter().closeCurrentView();
+            } else {
+
+                //default action
+            }
+        }
     }
 }

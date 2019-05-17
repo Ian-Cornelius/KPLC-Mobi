@@ -4,22 +4,24 @@ import android.support.v7.widget.RecyclerView;
 
 /*
 Hold our threads list, containing objects of MessageThread type. (thread name, messages node ref.)
+
+Data saving idea - get a new message, load it, save it to local store, now work with faster, local store access. Take
+care of out of memory exceptions.
+
+So, listener for watcher space fires, gets data referenced, saves in local store, if memory not full, wait for
+next event. Like it!
  */
 import java.util.ArrayList;
 
+import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
+import android.widget.EditText;
 
 import android.support.annotation.NonNull;
 
-/*
-For layout animations
- */
-import android.animation.ValueAnimator;
-import android.animation.AnimatorSet;
-import android.view.animation.AccelerateDecelerateInterpolator;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.ian_cornelius.kplcmobi.utils.animators.CustomLayoutAnimator;
@@ -27,23 +29,18 @@ import com.ian_cornelius.kplcmobi.utils.animators.CustomLayoutAnimator;
 import com.ian_cornelius.kplcmobi.models.MessageThread;
 
 import com.ian_cornelius.kplcmobi.R;
+
+/*
+For layout animations
+ */
 import com.ian_cornelius.kplcmobi.utils.layout_managers.CustomLinearLayoutManager;
+
+import android.support.constraint.motion.MotionLayout;
+import android.text.TextWatcher;
 
 public class KPLCResponsesMainRecyclerViewAdapter extends RecyclerView.Adapter<KPLCResponsesMainRecyclerViewAdapter.MyViewHolder> {
 
     private ArrayList<String> messageThreads = new ArrayList<>();
-
-    /*
-    Trying out layout animations
-     */
-    ValueAnimator layoutAnimator = ValueAnimator.ofInt(363, 983).setDuration(2000);
-
-    //Jumped some code
-
-    /*
-    Create a new animator set that we will use to play the animation
-     */
-    AnimatorSet set = new AnimatorSet();
 
     private RecyclerView mainRecycler;
 
@@ -55,9 +52,41 @@ public class KPLCResponsesMainRecyclerViewAdapter extends RecyclerView.Adapter<K
     private int currentPosition = 0;
 
     /*
+    Text watcher to assist in final animation
+     */
+    private View currentView = null;
+    private TextWatcher editWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            if (s.length() == 0){
+
+                //close edit text
+                ((MotionLayout)currentView).transitionToState(R.id.resListItemState2);
+            }
+
+            if (s.length() == 1){
+
+                //open it, exposing send btn
+                ((MotionLayout) currentView).transitionToState(R.id.resListItemState3);
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
+
+    /*
     Inner class to hold our views
      */
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         /*
         We'll define our views here
@@ -67,17 +96,27 @@ public class KPLCResponsesMainRecyclerViewAdapter extends RecyclerView.Adapter<K
         private KPLCResponsesInnerRecyclerAdapter innerRecyclerAdapter;
 
         /*
+        For edit text
+         */
+        private EditText mEditReply;
+
+        /*
         Public constructor
          */
         public MyViewHolder(View viewItem){
 
             super(viewItem);
 
-//            setUpAnimator(viewItem);
             /*
             Set up widget references here
              */
             innerRecyclerView = viewItem.findViewById(R.id.innerContentsRecycler);
+            mEditReply = viewItem.findViewById(R.id.editReply);
+
+            /*
+            Text watcher for each edit text
+             */
+            mEditReply.addTextChangedListener(editWatcher);
 
             /*
             Set up adapter. Set it up here, so that its unique for each
@@ -88,37 +127,48 @@ public class KPLCResponsesMainRecyclerViewAdapter extends RecyclerView.Adapter<K
             ((LinearLayoutManager)innerRecyclerView.getLayoutManager()).setReverseLayout(true);
             innerRecyclerView.setAdapter(innerRecyclerAdapter);
 
-            viewItem.setOnClickListener(new View.OnClickListener(){
-
-                @Override
-                public void onClick(View v){
-
-                    /*
-                    Start our animation for the layout
-                     */
-//                    set.play(layoutAnimator);
-//                    set.setInterpolator(new AccelerateDecelerateInterpolator());
-//                    set.start();
-                    customLayoutAnimator.init(mainRecycler,v,reverse);
-                    currentPosition = getAdapterPosition();
-
-                    //Attempt loading data
-                    if (!reverse){
-
-                        innerRecyclerAdapter.loadData();
-                    } else {
-
-                        innerRecyclerAdapter.invalidateData();
-                        Log.e("Error", "Invalidate data called at reverse value " + reverse);
-                    }
-
-                    Log.e("Error", "Scrolling status " + mainRecycler.isVerticalScrollBarEnabled());
-
-                    Log.e("Error", "OnClickTriggered " + " position " + getAdapterPosition());
-                    Log.e("Error", "Getting height params as " + v.getHeight() + "\n main recycler " + mainRecycler.getHeight());
-                }
-            });
+            viewItem.setOnClickListener(this);
         }
+
+
+        /*
+        handle clicks. Maybe this will help reduce heap size (we are not creating new listeners with each item)
+
+        okay. See some subtle changes according to profiler. Proof only with significant data size.
+
+        Will keep it this way, however.
+         */
+        @Override
+        public void onClick(View v){
+
+            //First, check we don't have an already expanded view...Okay, not necessary. Blocked by design
+            //from ever clicking another. So, must close current to ever click another...
+
+            //Save this as current view
+            currentView = v;
+
+            //disable clicks on this view - to avoid repetitive executions
+            //Have to do this here, so that once anim starts, not disrupted. Re-enabling done
+            //at anim end, for similar reasons.
+            v.setEnabled(false);
+
+            //Always forward movement, not reversing. Reverse only useful for layout animator and scroll updater to only
+            //animate properly and enable scrolling effectively
+            ((MotionLayout) v).transitionToState(R.id.resListItemState2);
+
+            customLayoutAnimator.init(mainRecycler,v,reverse);
+            currentPosition = getAdapterPosition(); //Only need to set current position here.
+
+            //Load data. Not reversing
+            //innerRecyclerAdapter.loadData();
+
+            Log.e("Error", "Scrolling status " + mainRecycler.isVerticalScrollBarEnabled());
+
+            Log.e("Error", "OnClickTriggered " + " position " + getAdapterPosition());
+            Log.e("Error", "Getting height params as " + v.getHeight() + "\n main recycler " + mainRecycler.getHeight());
+
+        }
+
     }
 
 
@@ -133,31 +183,11 @@ public class KPLCResponsesMainRecyclerViewAdapter extends RecyclerView.Adapter<K
         messageThreads.add("Let's see how well you do");
         messageThreads.add("It's the last one");
 
-    }
+        messageThreads.add("and a little bit more");
+        messageThreads.add("yes");
+        messageThreads.add("legend!!");
+        messageThreads.add("It works!!");
 
-    private void setUpAnimator(final View item){
-
-        /*
-        Set up our animators
-         */
-        layoutAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-
-                /*
-                Get the value the interpolator is at
-                 */
-                Integer value = (Integer) animation.getAnimatedValue();
-
-                //Set layout height 1:1 of the tick
-                item.getLayoutParams().height = value.intValue();
-
-                Log.e("Error", "int value " + value.toString());
-
-                //Force all layouts to see which ones are affected by this layout's height change
-                item.requestLayout();
-            }
-        });
     }
 
 
@@ -172,7 +202,7 @@ public class KPLCResponsesMainRecyclerViewAdapter extends RecyclerView.Adapter<K
         /*
         Inflate our item
          */
-        View viewItem = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.kplc_responses_main_recycler_list_item, viewGroup, false);
+        View viewItem = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.kplc_responses_main_recycler_list_item_test, viewGroup, false);
 
         return new MyViewHolder(viewItem);
     }
@@ -226,7 +256,75 @@ public class KPLCResponsesMainRecyclerViewAdapter extends RecyclerView.Adapter<K
      */
     public void toggleReverse(){
 
+        /*
+        Re-enable view, only if reversing
+         */
+        if (reverse){
+
+
+            currentView.setEnabled(true);
+
+            //Set current view to null, done at toggle reverse. Doing it at close curret view will give null pointer
+            //cause animator may still be running, and toggle reverse will need it
+            currentView = null;
+        } else {
+
+            //See what loading data at this point does
+            //invalidate inner recycler data
+            ((KPLCResponsesInnerRecyclerAdapter)((RecyclerView)currentView.findViewById(R.id.innerContentsRecycler)).getAdapter()).loadData();
+
+            //So, kill numMessages counter and set its text to zero. Update model. Logic for processing data still missing
+
+        }
         reverse = !reverse;
+    }
+
+    /*
+    Use this method to get to know if we have an expanded view or not. Represented by var
+    currentView. If null, no expanded view. Else, we have an expanded view
+     */
+    public View getCurrentView(){
+
+        return currentView;
+    }
+
+
+    /*
+    Method to tell this adapter to close currentView. Basically, all onClick functions done at reverse, done here
+     */
+    public void closeCurrentView(){
+
+        //Clear all text in edit text, for this view. Doing this before transition to state 1, to avoid state confusion
+        ((EditText)currentView.findViewById(R.id.editReply)).setText(null); //can ignore this and choose to have a history of previous text
+
+        /*
+        Invoke motion layout transition
+         */
+        ((MotionLayout) currentView).transitionToState(R.id.resListItemState1);
+
+        //Invoke layout animator
+        customLayoutAnimator.init(mainRecycler, currentView, reverse);
+
+        //invalidate inner recycler data
+        ((KPLCResponsesInnerRecyclerAdapter)((RecyclerView)currentView.findViewById(R.id.innerContentsRecycler)).getAdapter()).invalidateData();
+
+    }
+
+    /*
+    This guy was failing because the current position was shifting?? So, can't send back a consistent view?
+
+    Don't know. Was switching between adjacent one i.e upper and lower one.
+
+    What I remember is, getAdapterPosition, which is what sets our current position var, gets us the position
+    of this widget in our adapter (direct correlation with the array position/index). Get layout position accurately places it in the layout.
+
+    Actually that was the problem. Current position was not accurately referencing my current view
+
+    Try out a new UX, waiting for motion layout to finish, then,
+     */
+    public void runMotionLayout(){
+
+
     }
 
 }

@@ -32,4 +32,14 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/customProfileImage"
         app:layout_constraintTop_toTopOf="@+id/customProfileImage" />
+
+    <TextView
+        android:id="@+id/txtDateTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="23.2.2019 10:00AM"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/txtClientMessage"
+        app:layout_constraintTop_toBottomOf="@+id/txtClientMessage" />
 </android.support.constraint.ConstraintLayout>

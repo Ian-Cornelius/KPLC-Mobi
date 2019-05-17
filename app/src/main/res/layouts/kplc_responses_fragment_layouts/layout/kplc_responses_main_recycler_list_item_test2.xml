@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+
+    <android.support.constraint.utils.ImageFilterView
+        android:id="@+id/listItemBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/msg_thread_bg_expanded"
+        app:altSrc="@drawable/sort_list_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/txtResponseHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/lato_bold"
+        android:text="Power Report 23/3/2019 - REF 23456698827392"
+        android:textColor="@color/custom_grey"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/kplcLogoResponses"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/kplcLogoResponses"
+        app:layout_constraintTop_toTopOf="@+id/kplcLogoResponses" />
+
+    <ImageView
+        android:id="@+id/kplcLogoResponses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/kplc_logo_messages" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/innerContentsRecycler"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/editReply"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtLastMessageTrunc" />
+
+    <ImageButton
+        android:id="@+id/btnSendMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:background="@android:color/transparent"
+        android:translationX="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editReply"
+        app:layout_constraintEnd_toEndOf="@+id/listItemBackground"
+        app:layout_constraintTop_toTopOf="@+id/editReply"
+        app:srcCompat="@drawable/send_btn" />
+
+    <EditText
+        android:id="@+id/editReply"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/ash_grey_edit_text_bg_full_round"
+        android:ems="10"
+        android:hint="@string/reply_prompt"
+        android:inputType="textMultiLine"
+        android:maxHeight="100dp"
+        android:paddingLeft="21dp"
+        android:paddingTop="12dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="12dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="14sp"
+        android:translationX="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/listItemBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txtLastMessageTrunc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/lato_regular"
+        android:text="Hi Ian, we've received your complaint. Our..."
+        android:textColor="@color/custom_grey"
+        android:textSize="14sp"
+        android:translationX="100dp"
+        android:alpha="0.0"
+        app:layout_constraintEnd_toEndOf="@+id/txtTime"
+        app:layout_constraintStart_toStartOf="@+id/txtResponseHeader"
+        app:layout_constraintTop_toBottomOf="@+id/txtResponseHeader" />
+
+    <TextView
+        android:id="@+id/txtTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:text="10:20PM"
+        android:textSize="12sp"
+        android:translationX="100dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtResponseHeader"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtResponseHeader" />
+
+    <TextView
+        android:id="@+id/txtNumMessages"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/num_messages_bg"
+        android:gravity="center_vertical"
+        android:text="1"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/kplcLogoResponses"
+        app:layout_constraintEnd_toEndOf="@+id/kplcLogoResponses"
+        app:layout_constraintHorizontal_bias="0.29"
+        app:layout_constraintStart_toEndOf="@+id/kplcLogoResponses"
+        app:layout_constraintTop_toTopOf="@+id/kplcLogoResponses" />
+
+</android.support.constraint.ConstraintLayout>

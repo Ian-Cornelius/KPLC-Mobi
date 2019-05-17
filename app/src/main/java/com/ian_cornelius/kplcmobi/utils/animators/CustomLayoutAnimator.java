@@ -45,6 +45,11 @@ Animator set
 import android.animation.AnimatorSet;
 
 /*
+MotionLayout
+ */
+import android.support.constraint.motion.MotionLayout;
+
+/*
 Interpolator. Can, later, be passed as init() argument
  */
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -111,7 +116,8 @@ public class CustomLayoutAnimator {
             minThreshold = animatedView.getHeight();
             maxThreshold = mainRecyclerView.getHeight();
 
-            layoutAnimator = ValueAnimator.ofInt(minThreshold, maxThreshold).setDuration(400);
+            //Doing a +20, to push it down a bit. Using margin value of edit text, which is at 32dp
+            layoutAnimator = ValueAnimator.ofInt(minThreshold, maxThreshold + 20).setDuration(400);
 
             layoutAnimatorSet = new AnimatorSet();
             layoutAnimatorSet.play(layoutAnimator);
@@ -154,6 +160,7 @@ public class CustomLayoutAnimator {
                 Call our height updater
                  */
                 updateLayoutHeight((Integer) animation.getAnimatedValue());
+                adapter.updateScroll();
 
                 /*
                 If end of anim, call onAnimEnd in adapter
@@ -163,15 +170,16 @@ public class CustomLayoutAnimator {
 
                     Log.e("Alert", "updateScrollCalled");
 
-                    adapter.updateScroll();
+                    //adapter.updateScroll();
 
                 }
 
                 /*
                 reset our already invoked end method, on animation end
                  */
-                if ( ((Integer) animation.getAnimatedValue()).intValue() == maxThreshold){
+                if ( ((Integer) animation.getAnimatedValue()).intValue() == maxThreshold + 20){
 
+                    //adapter.updateScroll();
                     adapter.toggleReverse();
                 }
             }
@@ -188,6 +196,15 @@ public class CustomLayoutAnimator {
 
         if (!reverse){
 
+            /*
+            Test our motion layout. Set its progress.
+
+            Works!
+
+            Best to place it b4 changing layout params. Seems to be less laggy this way
+             */
+//            ((MotionLayout) animatedView).setProgress((float)animatedValue/maxThreshold);
+
             //We are not reversing the height
 
             /*
@@ -199,16 +216,26 @@ public class CustomLayoutAnimator {
             Force all layouts to see which ones are affected by these changes
              */
             animatedView.requestLayout();
+
+
         } else{
+
+            /*
+            Test our motion layout. Set its progress.
+
+            Works!
+             */
+//            ((MotionLayout) animatedView).setProgress(1 - (float)animatedValue/maxThreshold);
 
             /*
             Set layout height as maxThreshold - (animatedValue - minThreshold)
 
             (animatedValue - minThreshold = range of values)
              */
-            animatedView.getLayoutParams().height = maxThreshold - (animatedValue - minThreshold);
+            animatedView.getLayoutParams().height = (maxThreshold + 20) - (animatedValue - minThreshold);
 
             animatedView.requestLayout();
+
         }
     }
 }
