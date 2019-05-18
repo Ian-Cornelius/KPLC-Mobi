@@ -1,5 +1,16 @@
 package com.ian_cornelius.kplcmobi.adapters;
 
+/*
+I am thinking of using this same adapter for inbox. They hold the same structure, just different context (one)
+is a string of responses concerning a certain power report. So, inside, same structure. Only that, outside,
+one is packaged as KPLC responses, other as general messages.
+
+So, will *recycle* this one 😂
+
+Load data needs to be aware of what data it needs to load, based on "context" sent in.
+ */
+
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +21,9 @@ import java.util.ArrayList;
 
 import com.ian_cornelius.kplcmobi.R;
 
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+
 public class KPLCResponsesInnerRecyclerAdapter extends RecyclerView.Adapter<KPLCResponsesInnerRecyclerAdapter.MyViewHolder> {
 
     /*
@@ -17,6 +31,15 @@ public class KPLCResponsesInnerRecyclerAdapter extends RecyclerView.Adapter<KPLC
      */
     private ArrayList<String> messages = new ArrayList<>(); //Should not be initialized. Will take ref. from generated
 
+    /*
+    Test extra animation
+     */
+    private Animation slideIn;
+
+
+    /*
+    Add another ViewHolder, and statically defined view types, publicly accessed, and final.
+     */
 
     /*
     Inner class to hold our views
@@ -45,11 +68,12 @@ public class KPLCResponsesInnerRecyclerAdapter extends RecyclerView.Adapter<KPLC
     /*
      Constructor for main class
      */
-    public KPLCResponsesInnerRecyclerAdapter(){
+    public KPLCResponsesInnerRecyclerAdapter(Context context){
 
         /*
         Add dummy test data. Will do nothing here actually, once testing done
          */
+        slideIn = AnimationUtils.loadAnimation(context, R.anim.text_switcher_fade_in);
     }
 
 
@@ -76,7 +100,10 @@ public class KPLCResponsesInnerRecyclerAdapter extends RecyclerView.Adapter<KPLC
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position){
 
-
+        /*
+        Run anim. A bit expensive on java side
+         */
+        holder.itemView.startAnimation(slideIn);
 
     }
 

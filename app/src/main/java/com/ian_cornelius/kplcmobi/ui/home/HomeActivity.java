@@ -33,6 +33,7 @@ import android.widget.Toast;
 import com.ian_cornelius.kplcmobi.R;
 import com.ian_cornelius.kplcmobi.ui.fragments.BuyTokensFragment;
 import com.ian_cornelius.kplcmobi.ui.fragments.CheckAndPayBillFragment;
+import com.ian_cornelius.kplcmobi.ui.fragments.InboxFragment;
 import com.ian_cornelius.kplcmobi.ui.fragments.KPLCResponsesFragment;
 import com.ian_cornelius.kplcmobi.ui.fragments.NotificationsFragment;
 import com.ian_cornelius.kplcmobi.ui.fragments.PurchaseHistoryFragment;
@@ -323,14 +324,27 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.txtInbox:
 
-                //call fragment switcher, with appropriate argument
-                Toast.makeText(this,"Clicked on inbox",Toast.LENGTH_SHORT).show();
+                /*
+                switch fragments. Don't switch it own
+                 */
+                if (getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder) instanceof InboxFragment){
+
+                    Toast.makeText(this,"You're already in inbox",Toast.LENGTH_SHORT).show();
+
+                } else{
+
+                    //Switch fragment
+                    getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in,R.anim.slide_out).replace(R.id.home_fragments_holder,new InboxFragment()).commit();
+                    //change views in action bar
+                    changeActionBarImage(R.drawable.inbox_bar);
+                    mTxtFragName.setText(R.string.inbox);
+                    mHomeDrawerLayout.closeDrawer(Gravity.START,true);
+                }
                 break;
 
             case R.id.txtLogOut:
 
-                //switch to log in activity. Should I use finish? or just intent...good question... Need to destroy this activity completely on log out
-                Toast.makeText(this,"Clicked on log out",Toast.LENGTH_SHORT).show();
+                finish();
                 break;
 
             case R.id.btnApplyPower:

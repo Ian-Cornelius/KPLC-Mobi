@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.motion.MotionLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:layoutDescription="@xml/inbox_fragment_layout_scene"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineAllContentsTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1334" />
+
+    <ImageView
+        android:id="@+id/imgInboxLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelineAllContentsTop"
+        app:srcCompat="@drawable/kplc_logo_messages" />
+
+    <TextView
+        android:id="@+id/txtInboxPrompt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="23dp"
+        android:layout_marginEnd="26dp"
+        android:text="@string/inbox_prompt"
+        android:textColor="@color/custom_grey"
+        android:fontFamily="@font/lato_regular"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgInboxLogo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgInboxLogo"
+        app:layout_constraintTop_toTopOf="@+id/imgInboxLogo" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/inboxRecycler"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/editMsg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imgInboxLogo"
+        app:layout_constraintTop_toBottomOf="@+id/imgInboxLogo" />
+
+    <ImageButton
+        android:id="@+id/msgSendBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@android:color/transparent"
+        android:rotation="45"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/send_btn" />
+
+    <EditText
+        android:id="@+id/editMsg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ash_grey_edit_text_bg_full_round"
+        android:ems="10"
+        android:hint="@string/reply_prompt"
+        android:inputType="textMultiLine"
+        android:maxHeight="100dp"
+        android:paddingLeft="21dp"
+        android:paddingTop="12dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="12dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/msgSendBtn"
+        app:layout_constraintEnd_toEndOf="@+id/msgSendBtn"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="@+id/inboxRecycler"
+        app:layout_constraintTop_toTopOf="@+id/msgSendBtn" />
+</android.support.constraint.motion.MotionLayout>

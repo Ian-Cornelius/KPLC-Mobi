@@ -50,6 +50,7 @@ public class KPLCResponsesMainRecyclerViewAdapter extends RecyclerView.Adapter<K
     private CustomLayoutAnimator customLayoutAnimator = CustomLayoutAnimator.getInstance();
     private boolean reverse = false;
     private int currentPosition = 0;
+    private int rollBackPosition  = 0;
 
     /*
     Text watcher to assist in final animation
@@ -121,7 +122,7 @@ public class KPLCResponsesMainRecyclerViewAdapter extends RecyclerView.Adapter<K
             /*
             Set up adapter. Set it up here, so that its unique for each
              */
-            innerRecyclerAdapter = new KPLCResponsesInnerRecyclerAdapter();
+            innerRecyclerAdapter = new KPLCResponsesInnerRecyclerAdapter(viewItem.getContext());
 
             innerRecyclerView.setLayoutManager(new LinearLayoutManager(viewItem.getContext()));
             ((LinearLayoutManager)innerRecyclerView.getLayoutManager()).setReverseLayout(true);
@@ -158,6 +159,7 @@ public class KPLCResponsesMainRecyclerViewAdapter extends RecyclerView.Adapter<K
 
             customLayoutAnimator.init(mainRecycler,v,reverse);
             currentPosition = getAdapterPosition(); //Only need to set current position here.
+            rollBackPosition = ((CustomLinearLayoutManager) mainRecycler.getLayoutManager()).findFirstCompletelyVisibleItemPosition();
 
             //Load data. Not reversing
             //innerRecyclerAdapter.loadData();
@@ -228,6 +230,7 @@ public class KPLCResponsesMainRecyclerViewAdapter extends RecyclerView.Adapter<K
     public void getRecyclerInstance(RecyclerView mainRecycler){
 
         this.mainRecycler = mainRecycler;
+
     }
 
     /*
@@ -246,7 +249,7 @@ public class KPLCResponsesMainRecyclerViewAdapter extends RecyclerView.Adapter<K
         } else{
 
             //Scroll back to original position. So, need to save it
-            ((CustomLinearLayoutManager) mainRecycler.getLayoutManager()).scrollToPositionWithOffset(currentPosition,0);
+            ((CustomLinearLayoutManager) mainRecycler.getLayoutManager()).scrollToPositionWithOffset(rollBackPosition,0);
             ((CustomLinearLayoutManager) mainRecycler.getLayoutManager()).setScrollEnabled(true);
         }
     }
@@ -264,13 +267,15 @@ public class KPLCResponsesMainRecyclerViewAdapter extends RecyclerView.Adapter<K
 
             currentView.setEnabled(true);
 
+            //invalidate inner recycler data
+            ((KPLCResponsesInnerRecyclerAdapter)((RecyclerView)currentView.findViewById(R.id.innerContentsRecycler)).getAdapter()).invalidateData();
+
             //Set current view to null, done at toggle reverse. Doing it at close curret view will give null pointer
             //cause animator may still be running, and toggle reverse will need it
             currentView = null;
         } else {
 
-            //See what loading data at this point does
-            //invalidate inner recycler data
+            //See what loading data for inner adapter at this point does
             ((KPLCResponsesInnerRecyclerAdapter)((RecyclerView)currentView.findViewById(R.id.innerContentsRecycler)).getAdapter()).loadData();
 
             //So, kill numMessages counter and set its text to zero. Update model. Logic for processing data still missing
@@ -305,8 +310,7 @@ public class KPLCResponsesMainRecyclerViewAdapter extends RecyclerView.Adapter<K
         //Invoke layout animator
         customLayoutAnimator.init(mainRecycler, currentView, reverse);
 
-        //invalidate inner recycler data
-        ((KPLCResponsesInnerRecyclerAdapter)((RecyclerView)currentView.findViewById(R.id.innerContentsRecycler)).getAdapter()).invalidateData();
+
 
     }
 

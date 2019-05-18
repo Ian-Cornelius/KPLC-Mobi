@@ -130,4 +130,6 @@
 
     <string name="reply_prompt">Talk to us&#8230;</string>
 
+    <string name="inbox_prompt">"Send us a message about anything, and we'll get back to you"</string>
+
 </resources>

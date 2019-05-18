@@ -65,6 +65,9 @@ android {
                             //For KPLC responses layout files
                             'src/main/res/layouts/kplc_responses_fragment_layouts',
 
+                            //For inbox layout files
+                            'src/main/res/layouts/inbox_fragment_layouts',
+
                             'src/main/res/layouts/',
                             'src/main/res/'
                     ]

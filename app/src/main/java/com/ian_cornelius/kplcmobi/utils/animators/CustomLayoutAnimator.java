@@ -53,6 +53,8 @@ import android.support.constraint.motion.MotionLayout;
 Interpolator. Can, later, be passed as init() argument
  */
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
 
 import com.ian_cornelius.kplcmobi.adapters.KPLCResponsesMainRecyclerViewAdapter;
 
@@ -117,11 +119,11 @@ public class CustomLayoutAnimator {
             maxThreshold = mainRecyclerView.getHeight();
 
             //Doing a +20, to push it down a bit. Using margin value of edit text, which is at 32dp
-            layoutAnimator = ValueAnimator.ofInt(minThreshold, maxThreshold + 20).setDuration(400);
+            layoutAnimator = ValueAnimator.ofInt(minThreshold, maxThreshold + 20).setDuration(600);
 
             layoutAnimatorSet = new AnimatorSet();
             layoutAnimatorSet.play(layoutAnimator);
-            layoutAnimatorSet.setInterpolator(new AccelerateDecelerateInterpolator());
+            layoutAnimatorSet.setInterpolator(new LinearInterpolator());
 
             //Set up our adapter instance
             adapter = (KPLCResponsesMainRecyclerViewAdapter) mainRecyclerView.getAdapter();
