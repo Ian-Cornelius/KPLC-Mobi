@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.motion.MotionLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/changePersonalDetailsLayout"
-    app:layoutDescription="@xml/settings_fragment_change_personal_details_scenes"
     android:layout_width="match_parent"
     android:layout_height="150dp"
     android:background="@android:color/transparent">
@@ -31,6 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:translationX="-400dp"
         app:layout_constraintStart_toStartOf="@+id/txtChangePersonalHeader"
         app:layout_constraintTop_toBottomOf="@+id/txtChangePersonalHeader"
         app:srcCompat="@drawable/bullet_marker" />
@@ -44,6 +43,7 @@
         android:text="@string/change_id"
         android:textColor="@color/custom_grey"
         android:textSize="14sp"
+        android:translationX="-400dp"
         app:layout_constraintBottom_toBottomOf="@+id/bulletMarkerChangeId"
         app:layout_constraintStart_toEndOf="@+id/bulletMarkerChangeId"
         app:layout_constraintTop_toTopOf="@+id/bulletMarkerChangeId" />
@@ -53,9 +53,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:rotation="90"
+        android:scaleX="1.2"
+        android:scaleY="1.2"
         app:layout_constraintEnd_toEndOf="@+id/bulletMarkerChangeId"
         app:layout_constraintStart_toStartOf="@+id/bulletMarkerChangeId"
-        app:layout_constraintTop_toBottomOf="@+id/bulletMarkerChangeId"
+        app:layout_constraintBottom_toTopOf="@+id/bulletMarkerChangeId"
         app:srcCompat="@drawable/bullet_marker" />
 
     <TextView
@@ -81,7 +84,7 @@
         android:text="@string/back"
         android:textAllCaps="false"
         android:textColor="@color/custom_grey"
-        android:translationX="200dp"
+        android:translationX="0dp"
         app:layout_constraintEnd_toEndOf="@+id/txtChangePhone"
         app:layout_constraintTop_toBottomOf="@+id/personalDetailsFrag" />
 
@@ -90,10 +93,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/bulletMarkerChangeId"
+        app:layout_constraintStart_toStartOf="@+id/txtChangeId"
         app:layout_constraintTop_toBottomOf="@+id/txtChangeId" />
-</android.support.constraint.motion.MotionLayout>
+</android.support.constraint.ConstraintLayout>

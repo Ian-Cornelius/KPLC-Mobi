@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/securitySettingsLayout"
-    app:layoutDescription="@xml/settings_fragment_security_settings_scenes"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@android:color/transparent">
+    android:layout_height="100dp"
+    android:background="@android:color/transparent"
+    app:layoutDescription="@xml/settings_fragment_security_settings_scenes">
 
 
     <TextView
@@ -59,21 +59,18 @@
         android:id="@+id/separator"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_marginTop="12dp"
         android:background="@color/ash"
         app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
         app:layout_constraintStart_toStartOf="@+id/bulletChangePass"
-        app:layout_constraintTop_toBottomOf="@+id/txtChangePass" />
+        app:layout_constraintTop_toBottomOf="@+id/securityFragHolder" />
 
     <LinearLayout
         android:id="@+id/securityFragHolder"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="1dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@+id/separator"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/bulletChangePass"
         app:layout_constraintTop_toBottomOf="@+id/txtChangePass" />

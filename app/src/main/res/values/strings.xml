@@ -144,5 +144,10 @@
     <string name="acc_num">Account number</string>
     <string name="old_pass">Old password</string>
     <string name="new_pass">New password</string>
+    <string name="old_id">Old id number</string>
+    <string name="new_id">New id number</string>
+    <string name="old_phone">Old phone number</string>
+    <string name="new_phone">New phone number</string>
+    <string name="change_phone_num">Change phone number</string>
 
 </resources>

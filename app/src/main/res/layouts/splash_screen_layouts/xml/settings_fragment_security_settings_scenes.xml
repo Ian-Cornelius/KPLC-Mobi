@@ -8,12 +8,7 @@
         motion:constraintSetStart="@+id/securityState0"
         motion:constraintSetEnd="@+id/securityState1"
         motion:duration="400"
-        motion:motionInterpolator="easeOut">
-
-        <OnClick
-            motion:targetId="@+id/txtChangePass"
-            motion:clickAction="toggle"/>
-    </Transition>
+        motion:motionInterpolator="easeOut"/>
 
     <ConstraintSet android:id="@+id/securityState0">
 

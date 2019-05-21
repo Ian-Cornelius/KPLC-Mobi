@@ -17,11 +17,15 @@ import android.widget.Toast;
 
 import com.ian_cornelius.kplcmobi.R;
 import com.ian_cornelius.kplcmobi.controllers.ManageAccountsController;
+import com.ian_cornelius.kplcmobi.controllers.PersonalDetailsController;
+import com.ian_cornelius.kplcmobi.controllers.SecuritySettingsController;
 
 
 public class SettingsFragment extends Fragment {
 
     private ManageAccountsController manageAccountsController;
+    private SecuritySettingsController securitySettingsController;
+    private PersonalDetailsController personalDetailsController;
 
     private TextView mTxtMainAcc, mTxtAcc2, mTxtAcc3, mTxtAcc4;
 
@@ -43,6 +47,8 @@ public class SettingsFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         manageAccountsController = new ManageAccountsController(this);
+        securitySettingsController = new SecuritySettingsController(this);
+        personalDetailsController = new PersonalDetailsController(this);
     }
 
 
@@ -52,6 +58,11 @@ public class SettingsFragment extends Fragment {
         View settingsView = inflater.inflate(R.layout.settings_fragment_layout,container, false);
 
         manageAccountsController.initViews(settingsView.findViewById(R.id.manageAccLayout), settingsView.findViewById(R.id.settingsLayout));
+
+        securitySettingsController.initViews(settingsView.findViewById(R.id.securitySettingsLayout), settingsView.findViewById(R.id.settingsLayout));
+
+        personalDetailsController.initViews(settingsView.findViewById(R.id.changePersonalDetailsLayout), settingsView.findViewById(R.id.settingsLayout));
+
 
         return settingsView;
     }

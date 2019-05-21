@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetStart="@+id/personalState0"
+        motion:constraintSetEnd="@+id/personalState1"
+        motion:duration="400"
+        motion:motionInterpolator="easeOut"/>
+
+    <Transition
+        motion:constraintSetStart="@+id/personalState0"
+        motion:constraintSetEnd="@+id/personalState2"
+        motion:duration="400"
+        motion:motionInterpolator="easeOut"/>
+
+    <ConstraintSet android:id="@+id/personalState0">
+
+        <Constraint
+            android:id="@+id/txtChangePersonalHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="18dp"
+            android:drawableRight="@drawable/account_card_icon"
+            android:drawablePadding="16dp"
+            android:fontFamily="@font/lato_regular"
+            android:gravity="top"
+            android:text="@string/change_pers_details"
+            android:textAlignment="gravity"
+            android:textColor="@color/kplcGreen"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@+id/bulletMarkerChangeId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@+id/txtChangePersonalHeader"
+            app:layout_constraintTop_toBottomOf="@+id/txtChangePersonalHeader"
+            app:srcCompat="@drawable/bullet_marker" />
+
+        <Constraint
+            android:id="@+id/txtChangeId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/lato_regular"
+            android:text="@string/change_id"
+            android:textColor="@color/custom_grey"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/bulletMarkerChangeId"
+            app:layout_constraintStart_toEndOf="@+id/bulletMarkerChangeId"
+            app:layout_constraintTop_toTopOf="@+id/bulletMarkerChangeId" />
+
+        <Constraint
+            android:id="@+id/bulletChangePhone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="@+id/bulletMarkerChangeId"
+            app:layout_constraintStart_toStartOf="@+id/bulletMarkerChangeId"
+            app:layout_constraintTop_toBottomOf="@+id/bulletMarkerChangeId"
+            app:srcCompat="@drawable/bullet_marker" />
+
+        <Constraint
+            android:id="@+id/txtChangePhone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/lato_regular"
+            android:text="@string/change_phone"
+            android:textColor="@color/custom_grey"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/bulletChangePhone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/txtChangeId"
+            app:layout_constraintTop_toTopOf="@+id/bulletChangePhone"
+            app:layout_constraintVertical_bias="0.17000002" />
+
+        <Constraint
+            android:id="@+id/btnBackPers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="@string/back"
+            android:textAllCaps="false"
+            android:textColor="@color/custom_grey"
+            android:translationX="200dp"
+            app:layout_constraintEnd_toEndOf="@+id/txtChangePhone"
+            app:layout_constraintTop_toBottomOf="@+id/personalDetailsFrag" />
+
+        <Constraint
+            android:id="@+id/personalDetailsFrag"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="vertical"
+            android:alpha="0.0"
+            android:scaleY="0.0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/bulletMarkerChangeId"
+            app:layout_constraintTop_toBottomOf="@+id/txtChangeId" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/personalState1">
+
+        <Constraint
+            android:id="@+id/txtChangePersonalHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="18dp"
+            android:drawableRight="@drawable/account_card_icon"
+            android:drawablePadding="16dp"
+            android:fontFamily="@font/lato_regular"
+            android:gravity="top"
+            android:text="@string/change_pers_details"
+            android:textAlignment="gravity"
+            android:textColor="@color/kplcGreen"
+            android:textSize="18sp"
+            android:translationY="-6dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@+id/bulletMarkerChangeId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:rotation="90"
+            android:scaleX="1.2"
+            android:scaleY="1.2"
+            app:layout_constraintStart_toStartOf="@+id/txtChangePersonalHeader"
+            app:layout_constraintTop_toBottomOf="@+id/txtChangePersonalHeader"
+            app:srcCompat="@drawable/bullet_marker" />
+
+        <Constraint
+            android:id="@+id/txtChangeId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:fontFamily="@font/lato_regular"
+            android:text="@string/change_id"
+            android:textColor="@color/custom_grey"
+            android:textSize="14sp"
+            android:scaleY="1.2"
+            android:scaleX="1.2"
+            app:layout_constraintBottom_toBottomOf="@+id/bulletMarkerChangeId"
+            app:layout_constraintStart_toEndOf="@+id/bulletMarkerChangeId"
+            app:layout_constraintTop_toTopOf="@+id/bulletMarkerChangeId" />
+
+        <Constraint
+            android:id="@+id/bulletChangePhone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:translationX="-400dp"
+            app:layout_constraintEnd_toEndOf="@+id/bulletMarkerChangeId"
+            app:layout_constraintStart_toStartOf="@+id/bulletMarkerChangeId"
+            app:layout_constraintTop_toBottomOf="@+id/bulletMarkerChangeId"
+            app:srcCompat="@drawable/bullet_marker" />
+
+        <Constraint
+            android:id="@+id/txtChangePhone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/lato_regular"
+            android:text="@string/change_phone"
+            android:textColor="@color/custom_grey"
+            android:textSize="14sp"
+            android:translationX="-400dp"
+            app:layout_constraintBottom_toBottomOf="@+id/bulletChangePhone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/txtChangeId"
+            app:layout_constraintTop_toTopOf="@+id/bulletChangePhone"
+            app:layout_constraintVertical_bias="0.17000002" />
+
+        <Constraint
+            android:id="@+id/btnBackPers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="@string/back"
+            android:textAllCaps="false"
+            android:textColor="@color/custom_grey"
+            android:translationX="0dp"
+            app:layout_constraintEnd_toEndOf="@+id/txtChangePhone"
+            app:layout_constraintTop_toBottomOf="@+id/personalDetailsFrag" />
+
+        <Constraint
+            android:id="@+id/personalDetailsFrag"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/bulletMarkerChangeId"
+            app:layout_constraintTop_toBottomOf="@+id/txtChangeId" />
+    </ConstraintSet>
+
+
+    <ConstraintSet android:id="@+id/personalState2">
+
+        <Constraint
+            android:id="@+id/txtChangePersonalHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="18dp"
+            android:drawableRight="@drawable/account_card_icon"
+            android:drawablePadding="16dp"
+            android:fontFamily="@font/lato_regular"
+            android:gravity="top"
+            android:text="@string/change_pers_details"
+            android:textAlignment="gravity"
+            android:textColor="@color/kplcGreen"
+            android:textSize="18sp"
+            android:translationY="-6dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@+id/bulletMarkerChangeId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:translationX="-400dp"
+            app:layout_constraintStart_toStartOf="@+id/txtChangePersonalHeader"
+            app:layout_constraintTop_toBottomOf="@+id/txtChangePersonalHeader"
+            app:srcCompat="@drawable/bullet_marker" />
+
+        <Constraint
+            android:id="@+id/txtChangeId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/lato_regular"
+            android:text="@string/change_id"
+            android:textColor="@color/custom_grey"
+            android:textSize="14sp"
+            android:translationX="-400dp"
+            app:layout_constraintBottom_toBottomOf="@+id/bulletMarkerChangeId"
+            app:layout_constraintStart_toEndOf="@+id/bulletMarkerChangeId"
+            app:layout_constraintTop_toTopOf="@+id/bulletMarkerChangeId" />
+
+        <Constraint
+            android:id="@+id/bulletChangePhone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:rotation="90"
+            android:scaleX="1.2"
+            android:scaleY="1.2"
+            app:layout_constraintEnd_toEndOf="@+id/bulletMarkerChangeId"
+            app:layout_constraintStart_toStartOf="@+id/bulletMarkerChangeId"
+            app:layout_constraintBottom_toTopOf="@+id/bulletMarkerChangeId"
+            app:srcCompat="@drawable/bullet_marker" />
+
+        <Constraint
+            android:id="@+id/txtChangePhone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/lato_regular"
+            android:text="@string/change_phone"
+            android:textColor="@color/custom_grey"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/bulletChangePhone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/txtChangeId"
+            app:layout_constraintTop_toTopOf="@+id/bulletChangePhone"
+            app:layout_constraintVertical_bias="0.17000002" />
+
+        <Constraint
+            android:id="@+id/btnBackPers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="@string/back"
+            android:textAllCaps="false"
+            android:textColor="@color/custom_grey"
+            android:translationX="0dp"
+            app:layout_constraintEnd_toEndOf="@+id/txtChangePhone"
+            app:layout_constraintTop_toBottomOf="@+id/personalDetailsFrag" />
+
+        <Constraint
+            android:id="@+id/personalDetailsFrag"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/bulletMarkerChangeId"
+            app:layout_constraintTop_toBottomOf="@+id/txtChangeId" />
+    </ConstraintSet>
+
+</MotionScene>

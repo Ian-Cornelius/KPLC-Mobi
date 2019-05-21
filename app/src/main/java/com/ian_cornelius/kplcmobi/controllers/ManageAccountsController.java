@@ -150,6 +150,9 @@ public class ManageAccountsController {
 
                 if (!reverse){
 
+                    //Set up appropriate root transitions
+                    mSettingsLayout.setTransition(R.id.settingsFragmentState0, R.id.settingsFragmentState1);
+
                     mManageAccLayout.setTransition(R.id.manageAccState0, R.id.manageAccState1);
                     mManageAccLayout.transitionToEnd();
 
@@ -177,6 +180,9 @@ public class ManageAccountsController {
                  */
                 if (!reverse){
 
+                    //Set up appropriate root transitions
+                    mSettingsLayout.setTransition(R.id.settingsFragmentState0, R.id.settingsFragmentState1);
+
                     mManageAccLayout.setTransition(R.id.manageAccState0, R.id.manageAccState2);
                     mManageAccLayout.transitionToEnd();
 
@@ -197,6 +203,9 @@ public class ManageAccountsController {
 
                 if (!reverse){
 
+                    //Set up appropriate root transitions
+                    mSettingsLayout.setTransition(R.id.settingsFragmentState0, R.id.settingsFragmentState1);
+
                     mManageAccLayout.setTransition(R.id.manageAccState0, R.id.manageAccState3);
                     mManageAccLayout.transitionToEnd();
 
@@ -214,6 +223,9 @@ public class ManageAccountsController {
             public void onClick(View v) {
 
                 if (!reverse){
+
+                    //Set up appropriate root transitions
+                    mSettingsLayout.setTransition(R.id.settingsFragmentState0, R.id.settingsFragmentState1);
 
                     mManageAccLayout.setTransition(R.id.manageAccState0, R.id.manageAccState4);
                     mManageAccLayout.transitionToEnd();
@@ -234,6 +246,9 @@ public class ManageAccountsController {
                 //Case 1 - called ONLY to add account (thus context for view acc details was never set)
 
                 if (manageContext == 0 && !reverse){
+
+                    //Set up appropriate root transitions
+                    mSettingsLayout.setTransition(R.id.settingsFragmentState0, R.id.settingsFragmentState1);
 
                     mManageAccLayout.setTransition(R.id.manageAccState0, R.id.manageAccState5);
                     mManageAccLayout.transitionToEnd();
