@@ -68,6 +68,9 @@ android {
                             //For inbox layout files
                             'src/main/res/layouts/inbox_fragment_layouts',
 
+                            //For settings layout files
+                            'src/main/res/layouts/settings_fragment_layouts',
+
                             'src/main/res/layouts/',
                             'src/main/res/'
                     ]

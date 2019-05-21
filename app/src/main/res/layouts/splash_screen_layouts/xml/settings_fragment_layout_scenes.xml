@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <Transition
+        motion:constraintSetStart="@+id/settingsFragmentState0"
+        motion:constraintSetEnd="@+id/settingsFragmentState1"
+        motion:duration="400"
+        motion:motionInterpolator="easeOut"/>
+
+    <ConstraintSet android:id="@+id/settingsFragmentState0">
+
+        <Constraint
+            android:id="@+id/changePersonalDetailsLayout"
+            layout="@layout/settings_fragment_change_personal_details"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="50dp"
+            app:layout_constraintBottom_toBottomOf="@+id/settingsBg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/securitySettingsLayout" />
+
+        <Constraint
+            android:id="@+id/securitySettingsLayout"
+            layout="@layout/settings_fragment_security_settings"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/manageAccLayout" />
+
+        <Constraint
+            android:id="@+id/manageAccLayout"
+            layout="@layout/settings_fragment_manage_acc"
+            android:layout_width="0dp"
+            android:layout_height="260dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/settingsBg" />
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/settingsFragmentState1">
+
+        <Constraint
+            android:id="@+id/changePersonalDetailsLayout"
+            layout="@layout/settings_fragment_change_personal_details"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="50dp"
+            android:translationX="-400dp"
+            android:alpha="0.0"
+            app:layout_constraintBottom_toBottomOf="@+id/settingsBg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/securitySettingsLayout" />
+
+        <Constraint
+            android:id="@+id/securitySettingsLayout"
+            layout="@layout/settings_fragment_security_settings"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:translationX="-400dp"
+            android:alpha="0.0"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/manageAccLayout" />
+
+        <Constraint
+            android:id="@+id/manageAccLayout"
+            layout="@layout/settings_fragment_manage_acc"
+            android:layout_width="0dp"
+            android:layout_height="560dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/settingsBg" />
+    </ConstraintSet>
+
+</MotionScene>

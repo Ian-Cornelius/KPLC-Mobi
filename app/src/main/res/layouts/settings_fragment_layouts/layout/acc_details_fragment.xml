@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
+
+    <TextView
+        android:id="@+id/verticalLine"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/ash"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/roundDotPrimaryAcc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/verticalLine"
+        app:layout_constraintStart_toStartOf="@+id/verticalLine"
+        app:layout_constraintTop_toTopOf="@+id/verticalLine"
+        app:srcCompat="@drawable/ash_dot" />
+
+    <TextView
+        android:id="@+id/txtIsPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:fontFamily="@font/lato_regular"
+        android:text="Primary account"
+        android:textColor="@color/custom_grey"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/roundDotPrimaryAcc"
+        app:layout_constraintStart_toEndOf="@+id/roundDotPrimaryAcc"
+        app:layout_constraintTop_toTopOf="@+id/roundDotPrimaryAcc" />
+
+    <ImageView
+        android:id="@+id/roundDotOwner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="@+id/roundDotPrimaryAcc"
+        app:layout_constraintStart_toStartOf="@+id/roundDotPrimaryAcc"
+        app:layout_constraintTop_toBottomOf="@+id/roundDotPrimaryAcc"
+        app:srcCompat="@drawable/ash_dot" />
+
+    <TextView
+        android:id="@+id/txtOwnerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_regular"
+        android:text="Owner name: Ian Omondi C."
+        android:textColor="@color/custom_grey"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/roundDotOwner"
+        app:layout_constraintStart_toStartOf="@+id/txtIsPrimary"
+        app:layout_constraintTop_toTopOf="@+id/roundDotOwner" />
+
+    <ImageView
+        android:id="@+id/roundDotStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="@+id/roundDotOwner"
+        app:layout_constraintStart_toStartOf="@+id/roundDotOwner"
+        app:layout_constraintTop_toBottomOf="@+id/roundDotOwner"
+        app:srcCompat="@drawable/ash_dot" />
+
+    <TextView
+        android:id="@+id/txtStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_regular"
+        android:text="Status: Active"
+        android:textColor="@color/custom_grey"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/roundDotStatus"
+        app:layout_constraintStart_toStartOf="@+id/txtOwnerName"
+        app:layout_constraintTop_toTopOf="@+id/roundDotStatus" />
+
+    <ImageView
+        android:id="@+id/roundDotAccType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="@+id/roundDotStatus"
+        app:layout_constraintStart_toStartOf="@+id/roundDotStatus"
+        app:layout_constraintTop_toBottomOf="@+id/roundDotStatus"
+        app:srcCompat="@drawable/ash_dot" />
+
+    <TextView
+        android:id="@+id/txtAccType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_regular"
+        android:text="Account type: Post paid"
+        android:textColor="@color/custom_grey"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/roundDotAccType"
+        app:layout_constraintStart_toStartOf="@+id/txtStatus"
+        app:layout_constraintTop_toTopOf="@+id/roundDotAccType" />
+
+    <ImageView
+        android:id="@+id/roundDotAccArrears"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="@+id/roundDotAccType"
+        app:layout_constraintStart_toStartOf="@+id/roundDotAccType"
+        app:layout_constraintTop_toBottomOf="@+id/roundDotAccType"
+        app:srcCompat="@drawable/ash_dot" />
+
+    <TextView
+        android:id="@+id/txtAccArrears"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_regular"
+        android:text="Account arrears: NIL"
+        android:textColor="@color/custom_grey"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/roundDotAccArrears"
+        app:layout_constraintStart_toStartOf="@+id/txtAccType"
+        app:layout_constraintTop_toTopOf="@+id/roundDotAccArrears" />
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtAccArrears" />
+</android.support.constraint.ConstraintLayout>

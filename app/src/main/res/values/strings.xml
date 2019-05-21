@@ -132,4 +132,17 @@
 
     <string name="inbox_prompt">"Send us a message about anything, and we'll get back to you"</string>
 
+    <string name="manage_acc_header">Manage accounts</string>
+    <string name="main">main</string>
+    <string name="add_acc">Add account</string>
+    <string name="sec_settings">Security settings</string>
+    <string name="change_pass">Change password</string>
+    <string name="change_pers_details">Change personal details</string>
+    <string name="change_id">Change id number</string>
+    <string name="change_phone">Change phone number (We use this number to pay your bills)</string>
+
+    <string name="acc_num">Account number</string>
+    <string name="old_pass">Old password</string>
+    <string name="new_pass">New password</string>
+
 </resources>

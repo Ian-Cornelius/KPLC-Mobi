@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/manageAccLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
+
+
+    <TextView
+        android:id="@+id/txtManageAccHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="18dp"
+        android:drawableRight="@drawable/account_persona"
+        android:drawablePadding="16dp"
+        android:fontFamily="@font/lato_regular"
+        android:gravity="top"
+        android:text="@string/manage_acc_header"
+        android:textAlignment="gravity"
+        android:textColor="@color/kplcGreen"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/bulletMarkerMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:translationX="-400dp"
+        android:rotation="0"
+        android:scaleX="1.0"
+        android:scaleY="1.0"
+        app:layout_constraintStart_toStartOf="@+id/txtManageAccHeader"
+        app:layout_constraintTop_toBottomOf="@+id/txtManageAccHeader"
+        app:srcCompat="@drawable/bullet_marker_blue" />
+
+    <TextView
+        android:id="@+id/txtMainAcc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:fontFamily="@font/lato_regular"
+        android:text="12983546198 (main)"
+        android:textColor="@color/custom_grey"
+        android:textSize="14sp"
+        android:translationX="-400dp"
+        android:scaleX="1.0"
+        android:scaleY="1.0"
+        app:layout_constraintBottom_toBottomOf="@+id/bulletMarkerMain"
+        app:layout_constraintStart_toEndOf="@+id/bulletMarkerMain"
+        app:layout_constraintTop_toTopOf="@+id/bulletMarkerMain" />
+
+    <ImageView
+        android:id="@+id/bulletMarkerAcc2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:rotation="90"
+        android:scaleX="1.2"
+        android:scaleY="1.2"
+        app:layout_constraintEnd_toEndOf="@+id/bulletMarkerMain"
+        app:layout_constraintStart_toStartOf="@+id/bulletMarkerMain"
+        app:layout_constraintTop_toTopOf="@+id/bulletMarkerMain"
+        app:srcCompat="@drawable/bullet_marker" />
+
+    <TextView
+        android:id="@+id/txtAcc2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:fontFamily="@font/lato_regular"
+        android:text="93829488333"
+        android:textColor="@color/custom_grey"
+        android:textSize="14sp"
+        android:translationX="0dp"
+        android:scaleX="1.2"
+        android:scaleY="1.2"
+        app:layout_constraintBottom_toBottomOf="@+id/bulletMarkerAcc2"
+        app:layout_constraintStart_toStartOf="@+id/txtMainAcc"
+        app:layout_constraintTop_toTopOf="@+id/bulletMarkerAcc2" />
+
+    <ImageView
+        android:id="@+id/bulletMarkerAcc3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:translationX="-500dp"
+        android:rotation="0"
+        android:scaleX="1.0"
+        android:scaleY="1.0"
+        app:layout_constraintEnd_toEndOf="@+id/bulletMarkerAcc2"
+        app:layout_constraintStart_toStartOf="@+id/bulletMarkerAcc2"
+        app:layout_constraintTop_toBottomOf="@+id/bulletMarkerAcc2"
+        app:srcCompat="@drawable/bullet_marker" />
+
+    <TextView
+        android:id="@+id/txtAcc3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_regular"
+        android:text="94827492848"
+        android:textColor="@color/custom_grey"
+        android:textSize="14sp"
+        android:translationX="-500dp"
+        android:scaleX="1.0"
+        android:scaleY="1.0"
+        app:layout_constraintBottom_toBottomOf="@+id/bulletMarkerAcc3"
+        app:layout_constraintStart_toStartOf="@+id/txtAcc2"
+        app:layout_constraintTop_toTopOf="@+id/bulletMarkerAcc3" />
+
+    <ImageView
+        android:id="@+id/bulletMarker4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:translationX="-600dp"
+        android:rotation="0"
+        android:scaleX="1.0"
+        android:scaleY="1.0"
+        app:layout_constraintEnd_toEndOf="@+id/bulletMarkerAcc3"
+        app:layout_constraintStart_toStartOf="@+id/bulletMarkerAcc3"
+        app:layout_constraintTop_toBottomOf="@+id/bulletMarkerAcc3"
+        app:srcCompat="@drawable/bullet_marker" />
+
+    <TextView
+        android:id="@+id/txtAcc4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_regular"
+        android:text="86727933476"
+        android:textColor="@color/custom_grey"
+        android:textSize="14sp"
+        android:translationX="-600dp"
+        android:scaleX="1.0"
+        android:scaleY="1.0"
+        app:layout_constraintBottom_toBottomOf="@+id/bulletMarker4"
+        app:layout_constraintStart_toStartOf="@+id/txtAcc3"
+        app:layout_constraintTop_toTopOf="@+id/bulletMarker4" />
+
+    <Button
+        android:id="@+id/btnAddAcc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="24dp"
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/lato_regular"
+        android:text="@string/add_acc"
+        android:textAlignment="viewEnd"
+        android:textAllCaps="false"
+        android:textColor="@color/custom_grey"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/txtMainAcc"
+        app:layout_constraintStart_toStartOf="@+id/bulletMarker4"
+        app:layout_constraintTop_toBottomOf="@+id/txtAcc4" />
+
+    <ImageView
+        android:id="@+id/imgPlus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rotation="45"
+        app:layout_constraintBottom_toBottomOf="@+id/btnAddAcc"
+        app:layout_constraintStart_toStartOf="@+id/btnAddAcc"
+        app:layout_constraintTop_toTopOf="@+id/btnAddAcc"
+        app:srcCompat="@drawable/add_acc_icon" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineLineEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.6431" />
+
+    <TextView
+        android:id="@+id/separator"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/ash"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineLineEnd"
+        app:layout_constraintStart_toStartOf="@+id/imgPlus"
+        app:layout_constraintTop_toBottomOf="@+id/btnAddAcc" />
+
+    <LinearLayout
+        android:id="@+id/manageAccFragHolder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/transparent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddAcc"
+        app:layout_constraintStart_toEndOf="@+id/bulletMarkerMain"
+        app:layout_constraintTop_toBottomOf="@+id/txtAcc2" />
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:text="@string/back"
+        android:textAllCaps="false"
+        android:textColor="@color/custom_grey"
+        android:textAlignment="center"
+        android:visibility="visible"
+        android:enabled="false"
+        app:layout_constraintBottom_toBottomOf="@+id/separator"
+        app:layout_constraintStart_toEndOf="@+id/separator"
+        app:layout_constraintTop_toTopOf="@+id/separator" />
+</android.support.constraint.ConstraintLayout>

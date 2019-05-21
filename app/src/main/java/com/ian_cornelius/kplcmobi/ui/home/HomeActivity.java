@@ -38,6 +38,7 @@ import com.ian_cornelius.kplcmobi.ui.fragments.KPLCResponsesFragment;
 import com.ian_cornelius.kplcmobi.ui.fragments.NotificationsFragment;
 import com.ian_cornelius.kplcmobi.ui.fragments.PurchaseHistoryFragment;
 import com.ian_cornelius.kplcmobi.ui.fragments.ReportPowerProblemFragment;
+import com.ian_cornelius.kplcmobi.ui.fragments.SettingsFragment;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -205,9 +206,21 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                  */
 
                 /*
-                Check if current fragment matches the one trying to switch to
+                switch fragments. Don't switch it own
                  */
-                Toast.makeText(this,"Clicked on settings",Toast.LENGTH_SHORT).show();
+                if (getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder) instanceof SettingsFragment){
+
+                    Toast.makeText(this,"You're already in settings",Toast.LENGTH_SHORT).show();
+
+                } else{
+
+                    //Switch fragment
+                    getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in,R.anim.slide_out).replace(R.id.home_fragments_holder,new SettingsFragment()).commit();
+                    //change views in action bar
+                    changeActionBarImage(R.drawable.settings_bar);
+                    mTxtFragName.setText(R.string.settings);
+                    mHomeDrawerLayout.closeDrawer(Gravity.START,true);
+                }
                 break;
 
             case R.id.txtBuyTokens:

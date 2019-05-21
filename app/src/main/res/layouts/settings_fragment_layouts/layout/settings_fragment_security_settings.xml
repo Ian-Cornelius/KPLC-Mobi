@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.motion.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/securitySettingsLayout"
+    app:layoutDescription="@xml/settings_fragment_security_settings_scenes"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
+
+
+    <TextView
+        android:id="@+id/txtSecSettingsHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="18dp"
+        android:drawableRight="@drawable/lock_icon"
+        android:drawablePadding="16dp"
+        android:fontFamily="@font/lato_regular"
+        android:gravity="top"
+        android:text="@string/sec_settings"
+        android:textAlignment="gravity"
+        android:textColor="@color/kplcGreen"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/bulletChangePass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/txtSecSettingsHeader"
+        app:layout_constraintTop_toBottomOf="@+id/txtSecSettingsHeader"
+        app:srcCompat="@drawable/bullet_marker" />
+
+    <TextView
+        android:id="@+id/txtChangePass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/lato_regular"
+        android:text="@string/change_pass"
+        android:textColor="@color/custom_grey"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/bulletChangePass"
+        app:layout_constraintStart_toEndOf="@+id/bulletChangePass"
+        app:layout_constraintTop_toTopOf="@+id/bulletChangePass" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.8681" />
+
+    <TextView
+        android:id="@+id/separator"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/ash"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
+        app:layout_constraintStart_toStartOf="@+id/bulletChangePass"
+        app:layout_constraintTop_toBottomOf="@+id/txtChangePass" />
+
+    <LinearLayout
+        android:id="@+id/securityFragHolder"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="1dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/separator"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/bulletChangePass"
+        app:layout_constraintTop_toBottomOf="@+id/txtChangePass" />
+
+    <Button
+        android:id="@+id/btnBackSec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:background="@android:color/transparent"
+        android:text="@string/back"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="@+id/separator"
+        app:layout_constraintStart_toEndOf="@+id/separator"
+        app:layout_constraintTop_toTopOf="@+id/separator" />
+</android.support.constraint.motion.MotionLayout>
