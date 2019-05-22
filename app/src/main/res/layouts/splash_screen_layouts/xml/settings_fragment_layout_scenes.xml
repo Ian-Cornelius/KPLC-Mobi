@@ -14,14 +14,49 @@
     <Transition
         motion:constraintSetStart="@+id/settingsFragmentState0"
         motion:constraintSetEnd="@+id/settingsFragmentState2"
-        motion:duration="400"
-        motion:motionInterpolator="easeOut"/>
+        motion:duration="600"
+        motion:motionInterpolator="easeOut">
+
+        <KeyFrameSet>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/manageAccLayout"
+                motion:framePosition="40"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"
+                android:alpha="1.0"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/changePersonalDetailsLayout"
+                motion:framePosition="50"
+                motion:transitionEasing="linear"
+                android:alpha="1.0"
+                android:translationY="100dp"
+                android:translationX="0dp"/>
+        </KeyFrameSet>
+    </Transition>
 
     <Transition
         motion:constraintSetStart="@+id/settingsFragmentState0"
         motion:constraintSetEnd="@+id/settingsFragmentState3"
-        motion:duration="400"
-        motion:motionInterpolator="easeOut"/>
+        motion:duration="600"
+        motion:motionInterpolator="easeOut">
+
+        <KeyFrameSet>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/manageAccLayout"
+                motion:framePosition="65"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/securitySettingsLayout"
+                motion:framePosition="10"
+                motion:transitionEasing="linear"
+                android:translationX="-200dp"/>
+        </KeyFrameSet>
+    </Transition>
 
     <ConstraintSet android:id="@+id/settingsFragmentState0">
 
@@ -124,7 +159,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="50dp"
             android:translationX="-400dp"
-            android:translationY="-100dp"
+            android:translationY="100dp"
             app:layout_constraintBottom_toBottomOf="@+id/settingsBg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -152,7 +187,9 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:scaleY="0.5"
+            android:scaleX="0.5"
             android:alpha="0.0"
+            android:translationX="-400dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/settingsBg" />

@@ -7,32 +7,500 @@
     <Transition
         motion:constraintSetStart="@+id/manageAccState0"
         motion:constraintSetEnd="@+id/manageAccState1"
-        motion:duration="400"
-        motion:motionInterpolator="easeOut"/>
+        motion:duration="1000"
+        motion:motionInterpolator="easeOut">
+
+        <KeyFrameSet>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/bulletMarkerMain"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                android:rotation="0"
+                android:scaleX="1.0"
+                android:scaleY="1.0"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/txtMainAcc"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                android:scaleX="1.0"
+                android:scaleY="1.0"/>
+
+            <KeyPosition
+                motion:motionTarget="@+id/imgPlus"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                motion:percentY="0"/>
+
+            <KeyPosition
+                motion:motionTarget="@+id/btnAddAcc"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                motion:percentY="0"/>
+
+            <KeyPosition
+                motion:motionTarget="@+id/btnBack"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                motion:percentY="0"/>
+
+            <KeyPosition
+                motion:motionTarget="@+id/separator"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                motion:percentY="0"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/manageAccFragHolder"
+                motion:framePosition="90"
+                motion:transitionEasing="linear"
+                android:alpha="0.0"
+                android:scaleY="0.0"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/bulletMarkerAcc2"
+                motion:framePosition="70"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/txtAcc2"
+                motion:framePosition="70"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/bulletMarkerAcc3"
+                motion:framePosition="45"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/txtAcc3"
+                motion:framePosition="45"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/bulletMarker4"
+                motion:framePosition="10"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/txtAcc4"
+                motion:framePosition="10"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"/>
+
+        </KeyFrameSet>
+    </Transition>
 
     <Transition
         motion:constraintSetStart="@+id/manageAccState0"
         motion:constraintSetEnd="@+id/manageAccState2"
-        motion:duration="400"
-        motion:motionInterpolator="easeOut"/>
+        motion:duration="1000"
+        motion:motionInterpolator="easeOut">
+
+        <KeyFrameSet>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/bulletMarkerAcc2"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                android:rotation="0"
+                android:scaleY="1.0"
+                android:scaleX="1.0" />
+
+            <KeyPosition
+                motion:motionTarget="@+id/bulletMarkerAcc2"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                motion:percentY="0"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/txtAcc2"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                android:scaleX="1.0"
+                android:scaleY="1.0"/>
+
+            <KeyPosition
+                motion:motionTarget="@+id/txtAcc2"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                motion:percentY="0"/>
+
+            <KeyPosition
+                motion:motionTarget="@+id/imgPlus"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                motion:percentY="0"/>
+
+            <KeyPosition
+                motion:motionTarget="@+id/btnAddAcc"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                motion:percentY="0"/>
+
+            <KeyPosition
+                motion:motionTarget="@+id/btnBack"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                motion:percentY="0"/>
+
+            <KeyPosition
+                motion:motionTarget="@+id/separator"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                motion:percentY="0"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/manageAccFragHolder"
+                motion:framePosition="90"
+                motion:transitionEasing="linear"
+                android:alpha="0.0"
+                android:scaleY="0.0"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/bulletMarkerMain"
+                motion:framePosition="70"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/txtMainAcc"
+                motion:framePosition="70"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/bulletMarkerAcc3"
+                motion:framePosition="45"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/txtAcc3"
+                motion:framePosition="45"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/bulletMarker4"
+                motion:framePosition="10"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/txtAcc4"
+                motion:framePosition="10"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"/>
+
+        </KeyFrameSet>
+    </Transition>
 
     <Transition
         motion:constraintSetStart="@+id/manageAccState0"
         motion:constraintSetEnd="@+id/manageAccState3"
-        motion:duration="400"
-        motion:motionInterpolator="easeOut"/>
+        motion:duration="1000"
+        motion:motionInterpolator="easeOut">
+
+        <KeyFrameSet>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/bulletMarkerAcc3"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                android:rotation="0"
+                android:scaleY="1.0"
+                android:scaleX="1.0" />
+
+            <KeyPosition
+                motion:motionTarget="@+id/bulletMarkerAcc3"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                motion:percentY="0"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/txtAcc3"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                android:scaleX="1.0"
+                android:scaleY="1.0"/>
+
+            <KeyPosition
+                motion:motionTarget="@+id/txtAcc3"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                motion:percentY="0"/>
+
+            <KeyPosition
+                motion:motionTarget="@+id/imgPlus"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                motion:percentY="0"/>
+
+            <KeyPosition
+                motion:motionTarget="@+id/btnAddAcc"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                motion:percentY="0"/>
+
+            <KeyPosition
+                motion:motionTarget="@+id/btnBack"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                motion:percentY="0"/>
+
+            <KeyPosition
+                motion:motionTarget="@+id/separator"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                motion:percentY="0"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/manageAccFragHolder"
+                motion:framePosition="90"
+                motion:transitionEasing="linear"
+                android:alpha="0.0"
+                android:scaleY="0.0"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/bulletMarkerMain"
+                motion:framePosition="70"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/txtMainAcc"
+                motion:framePosition="70"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/bulletMarkerAcc2"
+                motion:framePosition="45"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/txtAcc2"
+                motion:framePosition="45"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/bulletMarker4"
+                motion:framePosition="10"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/txtAcc4"
+                motion:framePosition="10"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"/>
+
+        </KeyFrameSet>
+
+    </Transition>
 
     <Transition
         motion:constraintSetStart="@+id/manageAccState0"
         motion:constraintSetEnd="@+id/manageAccState4"
-        motion:duration="400"
-        motion:motionInterpolator="easeOut"/>
+        motion:duration="1000"
+        motion:motionInterpolator="easeOut">
+
+        <KeyFrameSet>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/bulletMarker4"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                android:rotation="0"
+                android:scaleY="1.0"
+                android:scaleX="1.0" />
+
+            <KeyPosition
+                motion:motionTarget="@+id/bulletMarker4"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                motion:percentY="0"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/txtAcc4"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                android:scaleX="1.0"
+                android:scaleY="1.0"/>
+
+            <KeyPosition
+                motion:motionTarget="@+id/txtAcc4"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                motion:percentY="0"/>
+
+            <KeyPosition
+                motion:motionTarget="@+id/imgPlus"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                motion:percentY="0"/>
+
+            <KeyPosition
+                motion:motionTarget="@+id/btnAddAcc"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                motion:percentY="0"/>
+
+            <KeyPosition
+                motion:motionTarget="@+id/btnBack"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                motion:percentY="0"/>
+
+            <KeyPosition
+                motion:motionTarget="@+id/separator"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                motion:percentY="0"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/manageAccFragHolder"
+                motion:framePosition="90"
+                motion:transitionEasing="linear"
+                android:alpha="0.0"
+                android:scaleY="0.0"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/bulletMarkerMain"
+                motion:framePosition="70"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/txtMainAcc"
+                motion:framePosition="70"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/bulletMarkerAcc2"
+                motion:framePosition="45"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/txtAcc2"
+                motion:framePosition="45"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/bulletMarkerAcc3"
+                motion:framePosition="10"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/txtAcc3"
+                motion:framePosition="10"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"/>
+
+        </KeyFrameSet>
+    </Transition>
 
     <Transition
         motion:constraintSetStart="@+id/manageAccState0"
         motion:constraintSetEnd="@+id/manageAccState5"
-        motion:duration="400"
-        motion:motionInterpolator="easeOut"/>
+        motion:duration="1000"
+        motion:motionInterpolator="easeOut">
+
+        <KeyFrameSet>
+
+            <KeyPosition
+                motion:motionTarget="@+id/imgPlus"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                motion:percentY="0"/>
+
+            <KeyPosition
+                motion:motionTarget="@+id/btnAddAcc"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                motion:percentY="0"/>
+
+            <KeyPosition
+                motion:motionTarget="@+id/btnBack"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                motion:percentY="0"/>
+
+            <KeyPosition
+                motion:motionTarget="@+id/separator"
+                motion:framePosition="80"
+                motion:transitionEasing="linear"
+                motion:percentY="0"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/manageAccFragHolder"
+                motion:framePosition="90"
+                motion:transitionEasing="linear"
+                android:alpha="0.0"
+                android:scaleY="0.0"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/bulletMarkerMain"
+                motion:framePosition="70"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/txtMainAcc"
+                motion:framePosition="70"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/bulletMarkerAcc2"
+                motion:framePosition="45"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/txtAcc2"
+                motion:framePosition="45"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/bulletMarkerAcc3"
+                motion:framePosition="10"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/txtAcc3"
+                motion:framePosition="10"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/bulletMarker4"
+                motion:framePosition="6"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/txtAcc4"
+                motion:framePosition="6"
+                motion:transitionEasing="linear"
+                android:translationX="0dp"/>
+        </KeyFrameSet>
+    </Transition>
 
     <ConstraintSet android:id="@+id/manageAccState0">
 
@@ -139,6 +607,7 @@
             android:id="@+id/btnAddAcc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:translationX="12dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="24dp"
             android:background="@android:color/transparent"
@@ -227,7 +696,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
-            android:translationX="-400dp"
+            android:translationX="-200dp"
             app:layout_constraintEnd_toEndOf="@+id/bulletMarkerMain"
             app:layout_constraintStart_toStartOf="@+id/bulletMarkerMain"
             app:layout_constraintTop_toBottomOf="@+id/bulletMarkerMain"
@@ -241,7 +710,7 @@
             android:text="93829488333"
             android:textColor="@color/custom_grey"
             android:textSize="14sp"
-            android:translationX="-400dp"
+            android:translationX="-200dp"
             app:layout_constraintBottom_toBottomOf="@+id/bulletMarkerAcc2"
             app:layout_constraintStart_toStartOf="@+id/txtMainAcc"
             app:layout_constraintTop_toTopOf="@+id/bulletMarkerAcc2" />
@@ -251,7 +720,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
-            android:translationX="-500dp"
+            android:translationX="-400dp"
             app:layout_constraintEnd_toEndOf="@+id/bulletMarkerAcc2"
             app:layout_constraintStart_toStartOf="@+id/bulletMarkerAcc2"
             app:layout_constraintTop_toBottomOf="@+id/bulletMarkerAcc2"
@@ -265,7 +734,7 @@
             android:text="94827492848"
             android:textColor="@color/custom_grey"
             android:textSize="14sp"
-            android:translationX="-500dp"
+            android:translationX="-400dp"
             app:layout_constraintBottom_toBottomOf="@+id/bulletMarkerAcc3"
             app:layout_constraintStart_toStartOf="@+id/txtAcc2"
             app:layout_constraintTop_toTopOf="@+id/bulletMarkerAcc3" />
@@ -275,7 +744,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
-            android:translationX="-600dp"
+            android:translationX="-700dp"
             app:layout_constraintEnd_toEndOf="@+id/bulletMarkerAcc3"
             app:layout_constraintStart_toStartOf="@+id/bulletMarkerAcc3"
             app:layout_constraintTop_toBottomOf="@+id/bulletMarkerAcc3"
@@ -289,7 +758,7 @@
             android:text="86727933476"
             android:textColor="@color/custom_grey"
             android:textSize="14sp"
-            android:translationX="-600dp"
+            android:translationX="-700dp"
             app:layout_constraintBottom_toBottomOf="@+id/bulletMarker4"
             app:layout_constraintStart_toStartOf="@+id/txtAcc3"
             app:layout_constraintTop_toTopOf="@+id/bulletMarker4" />
@@ -412,6 +881,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:translationX="-500dp"
+            android:translationY="44dp"
             app:layout_constraintEnd_toEndOf="@+id/bulletMarkerAcc2"
             app:layout_constraintStart_toStartOf="@+id/bulletMarkerAcc2"
             app:layout_constraintTop_toBottomOf="@+id/bulletMarkerAcc2"
@@ -426,6 +896,7 @@
             android:textColor="@color/custom_grey"
             android:textSize="14sp"
             android:translationX="-500dp"
+            android:translationY="44dp"
             app:layout_constraintBottom_toBottomOf="@+id/bulletMarkerAcc3"
             app:layout_constraintStart_toStartOf="@+id/txtAcc2"
             app:layout_constraintTop_toTopOf="@+id/bulletMarkerAcc3" />
@@ -436,6 +907,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:translationX="-600dp"
+            android:translationY="44dp"
             app:layout_constraintEnd_toEndOf="@+id/bulletMarkerAcc3"
             app:layout_constraintStart_toStartOf="@+id/bulletMarkerAcc3"
             app:layout_constraintTop_toBottomOf="@+id/bulletMarkerAcc3"
@@ -450,6 +922,7 @@
             android:textColor="@color/custom_grey"
             android:textSize="14sp"
             android:translationX="-600dp"
+            android:translationY="44dp"
             app:layout_constraintBottom_toBottomOf="@+id/bulletMarker4"
             app:layout_constraintStart_toStartOf="@+id/txtAcc3"
             app:layout_constraintTop_toTopOf="@+id/bulletMarker4" />
@@ -596,6 +1069,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:translationX="-600dp"
+            android:translationY="74dp"
             app:layout_constraintEnd_toEndOf="@+id/bulletMarkerAcc3"
             app:layout_constraintStart_toStartOf="@+id/bulletMarkerAcc3"
             app:layout_constraintTop_toBottomOf="@+id/bulletMarkerAcc3"
@@ -610,6 +1084,7 @@
             android:textColor="@color/custom_grey"
             android:textSize="14sp"
             android:translationX="-600dp"
+            android:translationY="74dp"
             app:layout_constraintBottom_toBottomOf="@+id/bulletMarker4"
             app:layout_constraintStart_toStartOf="@+id/txtAcc3"
             app:layout_constraintTop_toTopOf="@+id/bulletMarker4" />

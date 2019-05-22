@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.ian_cornelius.kplcmobi.R;
@@ -14,11 +16,30 @@ import com.ian_cornelius.kplcmobi.R;
 
 public class ChangeIdPhoneFragment extends Fragment {
 
+    private boolean isPhone = false;
 
+
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+
+        super.onCreate(savedInstanceState);
+
+        if (getArguments().getString("context").equals("phone")){
+
+            isPhone = true;
+        }
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View changeIdPhoneView = inflater.inflate(R.layout.change_id_phone_layout, container, false);
+
+        if (isPhone){
+
+            ((EditText)changeIdPhoneView.findViewById(R.id.editOld)).setHint(R.string.old_phone);
+            ((EditText) changeIdPhoneView.findViewById(R.id.editNew)).setHint(R.string.new_phone);
+            ((Button) changeIdPhoneView.findViewById(R.id.btnChange)).setText(R.string.change_phone_num);
+        }
 
         return changeIdPhoneView;
     }

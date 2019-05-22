@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.constraint.motion.MotionLayout;
+import android.support.constraint.motion.MotionScene;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -81,10 +82,16 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
         //get the user accounts list. Need to do this asynchronously. Show progress dialog. So, shouldn't be invoked
         //in this thread. Invoke progress dialog. When thread finishes, calls a method in main UI thread to close
         //progress dialog and show populated list
+
+        //Changes. Accounts list process invoked on entrance to any frag that needs it. Singleton maintains state
+        //Singleton state only changed by settings, under manage accounts (addition or removal of an account)
         userAccountsList = UserAccountsList.getInstance();
 
         //Set up our texts appropriately
         setUpRadioTexts();
+
+        //set up motion layout listener to avoid motion interference on run, by user
+        setUpMotionListener();
 
         return switchAccFabContentView;
     }
@@ -157,8 +164,11 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
                         Put (current) in correct position
                          */
                         //mSwitchAccFabContentLayout.loadLayoutDescription(R.xml.select_2_and_1_scenes);
-                        mSwitchAccFabContentLayout.setTransition(R.id.select2From1Start,R.id.select2From1End);
-                        mSwitchAccFabContentLayout.setProgress(100);
+//                        mSwitchAccFabContentLayout.setTransition(R.id.select2From1Start,R.id.select2From1End);
+//                        mSwitchAccFabContentLayout.setProgress(100);
+
+                        mSwitchAccFabContentLayout.transitionToState(R.id.baseState2);
+
                     }
 
                 } else if (counter == 3){
@@ -175,8 +185,10 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
                         /*
                         Put (current) in correct position
                          */
-                        mSwitchAccFabContentLayout.setTransition(R.id.select3From1Start,R.id.select3From1End);
-                        mSwitchAccFabContentLayout.setProgress(100);
+//                        mSwitchAccFabContentLayout.setTransition(R.id.select3From1Start,R.id.select3From1End);
+//                        mSwitchAccFabContentLayout.setProgress(100);
+
+                        mSwitchAccFabContentLayout.transitionToState(R.id.baseState3);
                     }
 
                 } else if (counter == 4){
@@ -215,9 +227,10 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
                 if (maxSize - i == 1){
 
                     /*
-                    Radio button 2 gone
+                    Radio button 2 gone, and not set up for clicks
                      */
                     mRadioBtnAcc2.setVisibility(View.INVISIBLE);
+                    mRadioBtnAcc2.setEnabled(false);
 
                 } else if(maxSize - i == 2){
 
@@ -226,6 +239,7 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
                      */
                     Log.e("Error","Radio btn 3 should be gone");
                     mRadioBtnAcc3.setVisibility(View.INVISIBLE);
+                    mRadioBtnAcc3.setEnabled(false);
 
                 } else if(maxSize - i == 3){
 
@@ -233,6 +247,7 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
                     Radio button 4 gone
                      */
                     mRadioBtnAcc4.setVisibility(View.INVISIBLE);
+                    mRadioBtnAcc4.setEnabled(false);
                 } else {
 
                     /*
@@ -243,6 +258,38 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
             }
 
         }
+    }
+
+    private void setUpMotionListener(){
+
+        mSwitchAccFabContentLayout.setTransitionListener(new MotionLayout.TransitionListener() {
+            @Override
+            public void onTransitionStarted(MotionLayout motionLayout, int i, int i1) {
+
+                toggleClick(false);
+            }
+
+            @Override
+            public void onTransitionChange(MotionLayout motionLayout, int i, int i1, float v) {
+
+            }
+
+            @Override
+            public void onTransitionCompleted(MotionLayout motionLayout, int i) {
+
+                toggleClick(true);
+            }
+
+            @Override
+            public void onTransitionTrigger(MotionLayout motionLayout, int i, boolean b, float v) {
+
+            }
+
+            @Override
+            public boolean allowsTransition(MotionScene.Transition transition) {
+                return false;
+            }
+        });
     }
 
 
@@ -281,19 +328,8 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
                     Log.e("Error","Previously checked should be instance of radio 2" + String.valueOf(previouslyCheckedRadioBtn == mRadioBtnAcc2));
                     previouslyCheckedRadioBtn.setChecked(false);
 
-                    /*
-                    Do appropriate transition. We know the currently checked button. Use the previously checked
-                    button for final determination
-                     */
-                    if (previouslyCheckedRadioBtn.getId() == R.id.radioBtnAcc2){
-
-//                        playCurrentAnimation(R.xml.select_2_and_1_scenes, true);
-                        mSwitchAccFabContentLayout.setTransition(R.id.select1From2Start,R.id.select1From2End);
-                        mSwitchAccFabContentLayout.transitionToEnd();
-                    } else if (previouslyCheckedRadioBtn.getId() == R.id.radioBtnAcc3){
-
-                        //playCurrentAnimation(R.xml.select_3_and_1_scenes,true);
-                    }
+                    //Transition to appropriate state
+                    mSwitchAccFabContentLayout.transitionToState(R.id.baseState1);
 
                     /*
                     Now set the previously checked button to this one
@@ -308,12 +344,8 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
 
                     previouslyCheckedRadioBtn.setChecked(false);
 
-                    if(previouslyCheckedRadioBtn.getId() == R.id.radioBtnAcc1){
-
-//                        playCurrentAnimation(R.xml.select_2_and_1_scenes, false);
-                        mSwitchAccFabContentLayout.setTransition(R.id.select2From1Start,R.id.select2From1End);
-                        mSwitchAccFabContentLayout.transitionToEnd();
-                    }
+                    //Transition to appropriate state
+                    mSwitchAccFabContentLayout.transitionToState(R.id.baseState2);
 
                     /*
                     Now set the previously checked button to this one
@@ -328,17 +360,29 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
 
                     previouslyCheckedRadioBtn.setChecked(false);
 
-                    if(previouslyCheckedRadioBtn.getId() == R.id.radioBtnAcc1){
-
-//                        playCurrentAnimation(R.xml.select_3_and_1_scenes, false);
-                        mSwitchAccFabContentLayout.setTransition(R.id.select3From1Start,R.id.select3From1End);
-                        mSwitchAccFabContentLayout.transitionToEnd();
-                    }
+                    //Transition to appropriate state
+                    mSwitchAccFabContentLayout.transitionToState(R.id.baseState3);
 
                     /*
                     Now set the previously checked button to this one
                      */
                     previouslyCheckedRadioBtn = mRadioBtnAcc3;
+
+                    break;
+
+                case R.id.radioBtnAcc4:
+
+                    mRadioBtnAcc4.setChecked(true);
+
+                    previouslyCheckedRadioBtn.setChecked(false);
+
+                    //Transition to appropriate state
+                    mSwitchAccFabContentLayout.transitionToState(R.id.baseState4);
+
+                    /*
+                    Now set previously checked button to this one
+                     */
+                    previouslyCheckedRadioBtn = mRadioBtnAcc4;
 
                     break;
 
@@ -349,24 +393,16 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
         }
     }
 
-    private void playCurrentAnimation(int motionScene, boolean reverse){
+    /*
+    No method needed to tell of changes in list, since cannot be changed dynamically
+     */
 
-        mSwitchAccFabContentLayout.loadLayoutDescription(motionScene);
-        mSwitchAccFabContentLayout.setTransitionDuration(600);
-        Log.e("Error","Set transition duration " + mSwitchAccFabContentLayout.getTransitionTimeMs());
-        if (reverse){
+    private void toggleClick(boolean enable){
 
-            mSwitchAccFabContentLayout.setTransitionDuration(600);
-            Log.e("Error","Invoked anim reverse");
-            mSwitchAccFabContentLayout.transitionToStart();
-        } else{
-
-            Log.e("Error","Invoked anim forward");
-            mSwitchAccFabContentLayout.transitionToEnd();
-        }
-//        mSwitchAccFabContentLayout.setTransition(beginId, endId);
-//        mSwitchAccFabContentLayout.transitionToEnd();
-
+        mRadioBtnAcc1.setEnabled(enable);
+        mRadioBtnAcc2.setEnabled(enable);
+        mRadioBtnAcc3.setEnabled(enable);
+        mRadioBtnAcc4.setEnabled(enable);
     }
 
     @Override

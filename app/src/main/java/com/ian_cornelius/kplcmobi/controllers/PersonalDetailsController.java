@@ -4,6 +4,7 @@ package com.ian_cornelius.kplcmobi.controllers;
 Control the widgets in personal details layout in settings
  */
 
+import android.os.Bundle;
 import android.support.constraint.motion.MotionScene;
 import android.util.Log;
 import android.view.View;
@@ -83,7 +84,15 @@ public class PersonalDetailsController {
                 if (!reverse && clickContext == 1){
 
                     //launch frag to change id num (change hints)
-                    refFrag.getChildFragmentManager().beginTransaction().setCustomAnimations(R.anim.zoom_in_fab_content, R.anim.zoom_out_fab_content).replace(R.id.personalDetailsFrag, new ChangeIdPhoneFragment()).commit();
+
+                    //First, set proper bundle arguments
+                    Bundle bundle = new Bundle();
+                    bundle.putString("context","id");
+
+                    ChangeIdPhoneFragment changeIdPhoneFragment = new ChangeIdPhoneFragment();
+                    changeIdPhoneFragment.setArguments(bundle);
+
+                    refFrag.getChildFragmentManager().beginTransaction().setCustomAnimations(R.anim.zoom_in_fab_content, R.anim.zoom_out_fab_content).replace(R.id.personalDetailsFrag, changeIdPhoneFragment).commit();
 
                     //set reverse to true
                     reverse = true;
@@ -100,7 +109,15 @@ public class PersonalDetailsController {
                 } else if (!reverse && clickContext == 2){
 
                     //launch frag for change phone num
-                    refFrag.getChildFragmentManager().beginTransaction().setCustomAnimations(R.anim.zoom_in_fab_content, R.anim.zoom_out_fab_content).replace(R.id.personalDetailsFrag, new ChangeIdPhoneFragment()).commit();
+
+                    //First, set proper bundle arguments
+                    Bundle bundle = new Bundle();
+                    bundle.putString("context","phone");
+
+                    ChangeIdPhoneFragment changeIdPhoneFragment = new ChangeIdPhoneFragment();
+                    changeIdPhoneFragment.setArguments(bundle);
+
+                    refFrag.getChildFragmentManager().beginTransaction().setCustomAnimations(R.anim.zoom_in_fab_content, R.anim.zoom_out_fab_content).replace(R.id.personalDetailsFrag, changeIdPhoneFragment).commit();
 
                     //set reverse to true
                     reverse = true;

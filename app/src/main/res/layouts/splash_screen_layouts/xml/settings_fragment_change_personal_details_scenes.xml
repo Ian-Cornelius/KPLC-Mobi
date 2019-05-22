@@ -7,13 +7,30 @@
     <Transition
         motion:constraintSetStart="@+id/personalState0"
         motion:constraintSetEnd="@+id/personalState1"
-        motion:duration="400"
-        motion:motionInterpolator="easeOut"/>
+        motion:duration="600"
+        motion:motionInterpolator="easeOut">
+
+        <KeyFrameSet>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/bulletChangePhone"
+                motion:framePosition="25"
+                motion:transitionEasing="linear"
+                android:translationX="-400dp"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/txtChangePhone"
+                motion:framePosition="25"
+                motion:transitionEasing="linear"
+                android:translationX="-400dp"/>
+            
+        </KeyFrameSet>
+    </Transition>
 
     <Transition
         motion:constraintSetStart="@+id/personalState0"
         motion:constraintSetEnd="@+id/personalState2"
-        motion:duration="400"
+        motion:duration="600"
         motion:motionInterpolator="easeOut"/>
 
     <ConstraintSet android:id="@+id/personalState0">
