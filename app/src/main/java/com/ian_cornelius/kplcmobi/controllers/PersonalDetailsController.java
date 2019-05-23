@@ -16,6 +16,7 @@ import com.ian_cornelius.kplcmobi.R;
 import com.ian_cornelius.kplcmobi.ui.fragments.ChangeIdPhoneFragment;
 import com.ian_cornelius.kplcmobi.ui.fragments.ChangePasswordFragment;
 import com.ian_cornelius.kplcmobi.ui.fragments.SettingsFragment;
+import com.ian_cornelius.kplcmobi.ui.home.HomeActivity;
 
 public class PersonalDetailsController {
 
@@ -199,6 +200,13 @@ public class PersonalDetailsController {
             public void onClick(View v) {
 
                 if (reverse){
+
+                    /*
+                    Solve motion layout bugs.
+                     */
+                    ((HomeActivity) mBtnBackPers.getContext()).getWindow().getDecorView().findViewById(R.id.home_fragments_holder).invalidate();
+                    ((HomeActivity) mBtnBackPers.getContext()).getWindow().getDecorView().findViewById(R.id.home_fragments_holder).requestLayout();
+                    ((HomeActivity) mBtnBackPers.getContext()).getWindow().getDecorView().findViewById(R.id.home_fragments_holder).forceLayout();
 
                     //transition to start
                     mSettingsLayout.transitionToStart();

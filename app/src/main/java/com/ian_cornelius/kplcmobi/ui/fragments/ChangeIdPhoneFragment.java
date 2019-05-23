@@ -18,6 +18,8 @@ public class ChangeIdPhoneFragment extends Fragment {
 
     private boolean isPhone = false;
 
+    private EditText mEditOld, mEditNew;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -34,10 +36,13 @@ public class ChangeIdPhoneFragment extends Fragment {
 
         View changeIdPhoneView = inflater.inflate(R.layout.change_id_phone_layout, container, false);
 
+        mEditOld = changeIdPhoneView.findViewById(R.id.editOld);
+        mEditNew = changeIdPhoneView.findViewById(R.id.editNew);
+
         if (isPhone){
 
-            ((EditText)changeIdPhoneView.findViewById(R.id.editOld)).setHint(R.string.old_phone);
-            ((EditText) changeIdPhoneView.findViewById(R.id.editNew)).setHint(R.string.new_phone);
+            mEditOld.setHint(R.string.old_phone);
+            mEditNew.setHint(R.string.new_phone);
             ((Button) changeIdPhoneView.findViewById(R.id.btnChange)).setText(R.string.change_phone_num);
         }
 
@@ -54,6 +59,12 @@ public class ChangeIdPhoneFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+
+        /*
+        Reduce text bloat, help forced layout refresh
+         */
+        mEditNew.setText(null);
+        mEditOld.setText(null);
 
     }
 

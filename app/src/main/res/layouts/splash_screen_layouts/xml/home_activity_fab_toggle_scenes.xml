@@ -10,7 +10,7 @@
         motion:duration="400"
         motion:motionInterpolator="easeOut"/>
 
-    <ConstraintSet android:id="@+id/checkAndPayFragmentStart">
+    <ConstraintSet android:id="@+id/checkAndPayFragmentEnd">
 
         <Constraint
             android:id="@+id/fabContentHolder"
@@ -20,7 +20,7 @@
             android:orientation="vertical"
             android:translationX="0dp"
             app:layout_constraintBottom_toTopOf="@+id/guidelineSwitchAccCustFabBottom"
-            app:layout_constraintEnd_toEndOf="@+id/guidelineSwitchAccCustFabEnd"></Constraint>
+            app:layout_constraintEnd_toEndOf="@+id/guidelineSwitchAccCustFabEnd"/>
 
         <Constraint
             layout="@layout/switch_activity_fab_layout"
@@ -33,7 +33,7 @@
             app:layout_constraintStart_toStartOf="@+id/guidelineSwitchAccCustFabStart" />
     </ConstraintSet>
 
-    <ConstraintSet android:id="@+id/checkAndPayFragmentEnd">
+    <ConstraintSet android:id="@+id/checkAndPayFragmentStart">
 
         <Constraint
             android:id="@+id/fabContentHolder"
@@ -43,7 +43,7 @@
             android:orientation="vertical"
             android:translationX="400dp"
             app:layout_constraintBottom_toTopOf="@+id/guidelineSwitchAccCustFabBottom"
-            app:layout_constraintEnd_toEndOf="@+id/guidelineSwitchAccCustFabEnd"></Constraint>
+            app:layout_constraintEnd_toEndOf="@+id/guidelineSwitchAccCustFabEnd"/>
 
         <Constraint
             layout="@layout/switch_activity_fab_layout"

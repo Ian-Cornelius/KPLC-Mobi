@@ -11,34 +11,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 
-/*
-For our fab animations
- */
-import android.support.constraint.motion.MotionLayout;
-
 import com.ian_cornelius.kplcmobi.R;
+import com.ian_cornelius.kplcmobi.ui.home.HomeActivity;
 
 
-public class BuyTokensFragment extends Fragment {
+public class BuyTokensFragment extends Fragment implements HomeActivity.FabButtonToggle{
 
     /*
     Hold our edit texts and buttons references
      */
     private EditText mEditCashAmnt, mEditUnitsAmnt;
     private Button mBtnViewHist, mBtnPurchase;
-
-
-    /*
-    For our fab animation
-     */
-    private MotionLayout mSwitchAccFabActivator,mSwitchAccFabContent;
-    private Animation closeAnimation;
-    private boolean fabReverse;
 
 
     @Override
@@ -60,65 +46,6 @@ public class BuyTokensFragment extends Fragment {
         mEditUnitsAmnt = buyTokensLayout.findViewById(R.id.editUnitsAmnt);
         mBtnViewHist = buyTokensLayout.findViewById(R.id.btnViewHist);
         mBtnPurchase = buyTokensLayout.findViewById(R.id.btnPurchase);
-
-        /*
-        Try out our fab animation
-         */
-
-        mSwitchAccFabActivator = buyTokensLayout.findViewById(R.id.switchAccFabActivator);
-        closeAnimation = AnimationUtils.loadAnimation(getActivity(),R.anim.zoom_out_fab_content);
-        closeAnimation.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-
-                getChildFragmentManager().beginTransaction().remove(getChildFragmentManager().findFragmentById(R.id.fabContentHolder)).commit();
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-
-        mSwitchAccFabActivator.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (!fabReverse){
-                    mSwitchAccFabActivator.transitionToEnd();
-                    getChildFragmentManager().beginTransaction().setCustomAnimations(R.anim.zoom_in_fab_content,R.anim.zoom_out_fab_content).replace(R.id.fabContentHolder,new SwitchAccFabContentFragment()).commit();
-
-                    //Disable our overlapping views
-                    toggleOverlappingWidgets(false, false);
-
-                    /*
-                    Kill opacity of main content view
-                     */
-                    buyTokensLayout.findViewById(R.id.buy_tokens_main_content_layout).setAlpha(0.1f);
-
-                } else{
-                    mSwitchAccFabActivator.transitionToStart();
-                    buyTokensLayout.findViewById(R.id.fabContentHolder).startAnimation(closeAnimation);
-
-                    //Enable our overlapping views
-                    toggleOverlappingWidgets(true, false);
-
-                    /*
-                    Build back opacity of main content view
-                     */
-                    buyTokensLayout.findViewById(R.id.buy_tokens_main_content_layout).setAlpha(1.0f);
-
-                }
-
-                fabReverse = !fabReverse;
-
-            }
-        });
 
         /*
         Handle button clicks
@@ -146,6 +73,14 @@ public class BuyTokensFragment extends Fragment {
             public void onClick(View v) {
 
                 /*
+                Very important bug fixing. Edit texts get focus, motion layout goes haywire.
+                Put right before reverse of layout to default state, or launch a new frag
+                 */
+                getActivity().getWindow().getDecorView().findViewById(R.id.home_fragments_holder).invalidate();
+                getActivity().getWindow().getDecorView().findViewById(R.id.home_fragments_holder).requestLayout();
+                getActivity().getWindow().getDecorView().findViewById(R.id.home_fragments_holder).forceLayout();
+
+                /*
                 Do error handling. Function return true on correct parse, false otherwise
 
                 If true, perform network request to buy tokens, display progress dialog, then on success,
@@ -156,13 +91,16 @@ public class BuyTokensFragment extends Fragment {
                 Show custom snackbar. But first, kill alpha of main_content_layout and switch acc fab activator
                  */
                 buyTokensLayout.findViewById(R.id.buy_tokens_main_content_layout).setAlpha(0.1f);
-                mSwitchAccFabActivator.setAlpha(0.1f);
+
+                //request activity to hide fab
+                ((HomeActivity)getActivity()).toggleFab(false);
+
                 getChildFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_up, R.anim.slide_up).replace(R.id.token_purchase_success_fragment_holder, new BuyTokensSuccessCustomSnackBar()).commit();
 
                 /*
                 Disable edit texts and buttons. Actually will help to avoid double purchase
                  */
-                toggleOverlappingWidgets(false, true);
+                toggleButtons(false);
             }
         });
 
@@ -172,20 +110,17 @@ public class BuyTokensFragment extends Fragment {
     }
 
     /*
-    Method to activate and deactivate clicks on buttons and edits texts under our custom fab content layout
+    Implement method of interface, to communicate about toggle buttons
      */
-    private void toggleOverlappingWidgets(boolean enabled, boolean includeFabActivator){
+    @Override
+    public void toggleButtons(boolean enable){
 
-        mEditUnitsAmnt.setEnabled(enabled);
-        mEditCashAmnt.setEnabled(enabled);
-        mBtnPurchase.setEnabled(enabled);
-        mBtnViewHist.setEnabled(enabled);
+        mEditUnitsAmnt.setEnabled(enable);
+        mEditCashAmnt.setEnabled(enable);
+        mBtnPurchase.setEnabled(enable);
+        mBtnViewHist.setEnabled(enable);
 
-        if (includeFabActivator){
-
-            mSwitchAccFabActivator.setEnabled(!includeFabActivator);
-        }
-
+        Log.e("INTERFACE AT TOKENS","TOGGLE INVOKED");
     }
 
 

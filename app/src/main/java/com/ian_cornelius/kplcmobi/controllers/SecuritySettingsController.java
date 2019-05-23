@@ -14,6 +14,7 @@ import android.support.constraint.motion.MotionLayout;
 import com.ian_cornelius.kplcmobi.R;
 import com.ian_cornelius.kplcmobi.ui.fragments.ChangePasswordFragment;
 import com.ian_cornelius.kplcmobi.ui.fragments.SettingsFragment;
+import com.ian_cornelius.kplcmobi.ui.home.HomeActivity;
 
 public class SecuritySettingsController {
 
@@ -133,6 +134,13 @@ public class SecuritySettingsController {
         mBtnBackSec.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                /*
+                Bug solving for motion layout
+                 */
+                ((HomeActivity) mBtnBackSec.getContext()).getWindow().getDecorView().findViewById(R.id.home_fragments_holder).invalidate();
+                ((HomeActivity) mBtnBackSec.getContext()).getWindow().getDecorView().findViewById(R.id.home_fragments_holder).requestLayout();
+                ((HomeActivity) mBtnBackSec.getContext()).getWindow().getDecorView().findViewById(R.id.home_fragments_holder).forceLayout();
 
                 //Transition all layouts to start
                 mSettingsLayout.transitionToStart();

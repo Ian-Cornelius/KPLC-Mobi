@@ -4,18 +4,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <Transition
-        motion:constraintSetStart="@+id/progressBarIcon1Start"
-        motion:constraintSetEnd="@+id/progressBarIcon2End"
+        motion:constraintSetStart="@+id/progressBarState1"
+        motion:constraintSetEnd="@+id/progressBarState2"
         motion:duration="400"
         motion:motionInterpolator="easeOut"/>
 
     <Transition
-        motion:constraintSetStart="@+id/progressBarIcon2Start"
-        motion:constraintSetEnd="@+id/progressBarIcon3End"
+        motion:constraintSetStart="@+id/progressBarState2"
+        motion:constraintSetEnd="@+id/progressBarState3"
         motion:duration="400"
         motion:motionInterpolator="easeOut"/>
 
-    <ConstraintSet android:id="@+id/progressBarIcon1Start">
+    <Transition
+        motion:constraintSetStart="@+id/progressBarState2"
+        motion:constraintSetEnd="@+id/progressBarState1"
+        motion:duration="400"
+        motion:motionInterpolator="easeOut"/>
+
+    <Transition
+        motion:constraintSetStart="@+id/progressBarState3"
+        motion:constraintSetEnd="@+id/progressBarState3"
+        motion:duration="400"
+        motion:motionInterpolator="easeOut"/>
+
+    <ConstraintSet android:id="@+id/progressBarState1">
 
         <Constraint
             android:id="@+id/txtDescProb"
@@ -110,7 +122,7 @@
 
     </ConstraintSet>
 
-    <ConstraintSet android:id="@+id/progressBarIcon2End">
+    <ConstraintSet android:id="@+id/progressBarState2">
 
         <Constraint
             android:id="@+id/txtDescProb"
@@ -205,101 +217,7 @@
 
     </ConstraintSet>
 
-    <ConstraintSet android:id="@+id/progressBarIcon2Start">
-
-        <Constraint
-            android:id="@+id/txtDescProb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/lato_regular"
-            android:text="@string/desc_problem"
-            android:textColor="@color/custom_grey"
-            android:alpha="0.0"
-            app:layout_constraintEnd_toEndOf="@+id/markerIcon2"
-            app:layout_constraintStart_toStartOf="@+id/markerIcon2"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Constraint
-            android:id="@+id/txtProvideLocat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/lato_regular"
-            android:text="@string/location"
-            android:textColor="@color/custom_grey"
-            android:alpha="1.0"
-            app:layout_constraintEnd_toEndOf="@+id/markerIcon2"
-            app:layout_constraintStart_toStartOf="@+id/markerIcon2"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Constraint
-            android:id="@+id/txtSendReport"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/lato_regular"
-            android:text="@string/send_report"
-            android:textColor="@color/custom_grey"
-            android:alpha="0.0"
-            app:layout_constraintEnd_toEndOf="@+id/markerIcon2"
-            app:layout_constraintStart_toStartOf="@+id/markerIcon2"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Constraint
-            android:id="@+id/markerIcon1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:scaleY="1.0"
-            android:scaleX="1.0"
-            app:layout_constraintStart_toStartOf="@+id/guidelineMarkersStart"
-            app:layout_constraintTop_toBottomOf="@+id/txtDescProb"
-            app:srcCompat="@drawable/marker_icon_1" />
-
-        <Constraint
-            android:id="@+id/markerIcon2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:scaleY="1.0"
-            android:scaleX="1.0"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/markerIcon1"
-            app:srcCompat="@drawable/marker_icon_2" />
-
-        <Constraint
-            android:id="@+id/progressBarGreen"
-            android:layout_width="0dp"
-            android:layout_height="6dp"
-            android:layout_marginBottom="2dp"
-            android:background="@drawable/progress_bar_1_green"
-            android:scaleX="1.0"
-            app:layout_constraintBottom_toBottomOf="@+id/markerIcon1"
-            app:layout_constraintEnd_toStartOf="@+id/markerIcon2"
-            app:layout_constraintStart_toEndOf="@+id/markerIcon1" />
-
-        <Constraint
-            android:id="@+id/markerIcon3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scaleY="0.0"
-            android:scaleX="0.0"
-            app:layout_constraintEnd_toStartOf="@+id/guidelineMarkersEnd"
-            app:layout_constraintTop_toTopOf="@+id/markerIcon2"
-            app:srcCompat="@drawable/marker_icon_3" />
-
-        <Constraint
-            android:id="@+id/progressBarBlue"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/progress_bar_2_blue"
-            android:scaleX="0.0"
-            app:layout_constraintBottom_toBottomOf="@+id/progressBarGreen"
-            app:layout_constraintEnd_toStartOf="@+id/markerIcon3"
-            app:layout_constraintStart_toEndOf="@+id/markerIcon2"
-            app:layout_constraintTop_toTopOf="@+id/progressBarGreen" />
-    </ConstraintSet>
-
-    <ConstraintSet android:id="@+id/progressBarIcon3End">
+    <ConstraintSet android:id="@+id/progressBarState3">
 
         <Constraint
             android:id="@+id/txtDescProb"
@@ -396,13 +314,13 @@
     <StateSet>
 
         <State android:id="@+id/state1"
-            motion:constraints="@+id/progressBarIcon1Start"/>
+            motion:constraints="@+id/progressBarState1"/>
 
         <State android:id="@+id/state2"
-            motion:constraints="@+id/progressBarIcon2Start"/>
+            motion:constraints="@+id/progressBarState2"/>
 
         <State android:id="@+id/state3"
-            motion:constraints="@+id/progressBarIcon3End"/>
+            motion:constraints="@+id/progressBarState3"/>
     </StateSet>
 
 </MotionScene>

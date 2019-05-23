@@ -102,6 +102,8 @@ public class UserAccountsList {
         metaData.setAccountNumber("43100094875");
         metaData.setActive(false);
 
+        accountsMiniMetaDataArrayList.add(metaData);
+
         Log.e("Error","JVM Automatically called singleton constructor");
 
     }

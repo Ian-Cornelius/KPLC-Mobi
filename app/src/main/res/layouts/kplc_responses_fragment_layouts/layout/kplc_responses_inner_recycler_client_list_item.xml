@@ -27,7 +27,7 @@
         android:paddingTop="8dp"
         android:paddingRight="12dp"
         android:paddingBottom="12dp"
-        android:text="Sasa KPLC. Stima iko wapi. Nipee stima buana! Nipee stima!!"
+        android:text="Hey KPLC! Just wanted to know if you good 😁"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/customProfileImage"

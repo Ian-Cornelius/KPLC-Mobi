@@ -16,10 +16,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <android.support.constraint.ConstraintLayout
+        <android.support.constraint.motion.MotionLayout
             android:id="@+id/drawerCustomActionBar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:layoutDescription="@xml/home_activity_fab_toggle_scenes">
 
 
             <android.support.constraint.ConstraintLayout
@@ -75,7 +76,50 @@
                 app:layout_constraintEnd_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toTopOf="parent" />
 
-        </android.support.constraint.ConstraintLayout>
+            <!--Added -->
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guidelineSwitchAccCustFabStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.8167" />
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guidelineSwitchAccCustFabEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.9611" />
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guidelineSwitchAccCustFabBottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.9759" />
+
+            <LinearLayout
+            android:id="@+id/fabContentHolder"
+            android:layout_width="280dp"
+            android:layout_height="297dp"
+            android:background="@android:color/transparent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineSwitchAccCustFabBottom"
+            app:layout_constraintEnd_toEndOf="@+id/guidelineSwitchAccCustFabEnd"/>
+
+            <include
+                layout="@layout/switch_activity_fab_layout"
+                android:id="@+id/switchAccFabActivator"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/guidelineSwitchAccCustFabBottom"
+                app:layout_constraintDimensionRatio="w,1:1"
+                app:layout_constraintEnd_toStartOf="@id/guidelineSwitchAccCustFabEnd"
+                app:layout_constraintStart_toStartOf="@+id/guidelineSwitchAccCustFabStart" />
+
+
+        </android.support.constraint.motion.MotionLayout>
 
         <android.support.design.widget.NavigationView
             android:id="@+id/navView"

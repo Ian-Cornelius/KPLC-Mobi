@@ -16,6 +16,7 @@ import com.ian_cornelius.kplcmobi.R;
 import com.ian_cornelius.kplcmobi.ui.fragments.AccountDetailsFragment;
 import com.ian_cornelius.kplcmobi.ui.fragments.AddAccountFragment;
 import com.ian_cornelius.kplcmobi.ui.fragments.SettingsFragment;
+import com.ian_cornelius.kplcmobi.ui.home.HomeActivity;
 
 public class ManageAccountsController {
 
@@ -289,6 +290,12 @@ public class ManageAccountsController {
                  */
                 if (reverse && (manageContext == 1 || manageContext == 2)){
 
+                    /*
+                    Solving motion layout bugs. I swear at this rate I'll employ myself at Google 😎😂😂
+                     */
+                    ((HomeActivity) mBtnBack.getContext()).getWindow().getDecorView().findViewById(R.id.home_fragments_holder).invalidate();
+                    ((HomeActivity) mBtnBack.getContext()).getWindow().getDecorView().findViewById(R.id.home_fragments_holder).requestLayout();
+                    ((HomeActivity) mBtnBack.getContext()).getWindow().getDecorView().findViewById(R.id.home_fragments_holder).forceLayout();
                     /*
                     Reversing from viewing account, or adding account. All transitions valid as start state is default for both
                      */

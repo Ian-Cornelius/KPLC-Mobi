@@ -15,9 +15,10 @@ import android.support.constraint.motion.MotionLayout;
 import android.widget.Toast;
 
 import com.ian_cornelius.kplcmobi.R;
+import com.ian_cornelius.kplcmobi.ui.home.HomeActivity;
 
 
-public class ReportPowerProblemFragment extends Fragment {
+public class ReportPowerProblemFragment extends Fragment implements HomeActivity.FabButtonToggle {
 
     /*
     Handling button clicks
@@ -73,8 +74,15 @@ public class ReportPowerProblemFragment extends Fragment {
                         //flush data
 
                         //do transitions
-                        customProgressBar.setTransitionDuration(400);
-                        customProgressBar.transitionToState(R.id.state2);
+                        //customProgressBar.setTransitionDuration(400);
+                        //customProgressBar.transitionToState(R.id.state2);
+
+                        /*
+                        Motion layout motion layout. Weird bugs. Transition to state ignoring listeners. Must manually
+                        set transition at this point, cause it is disabling my buttons
+                         */
+                        customProgressBar.setTransition(R.id.progressBarState1, R.id.progressBarState2);
+                        customProgressBar.transitionToEnd();
 
                         /*
                         Kill btnNext alone, since it was the only one active at state 1
@@ -87,6 +95,18 @@ public class ReportPowerProblemFragment extends Fragment {
                         ((MotionLayout) reportPowerProblemView).setTransition(R.id.reportFragmentScene1Start, R.id.reportFragmentScene1End);
                         ((MotionLayout) reportPowerProblemView).transitionToEnd();
 
+
+                        //Weird. Super weird bug
+                        //((DescribePowerProblemFragment) getChildFragmentManager().findFragmentById(R.id.reportFragsHolder)).flushData();
+
+                        /*
+                        Once again, motion layout. I have to refresh views, for new frag to be drawn. Motion layout sort of blocking
+                        that.
+                         */
+                        getActivity().getWindow().getDecorView().findViewById(R.id.home_fragments_holder).invalidate();
+                        getActivity().getWindow().getDecorView().findViewById(R.id.home_fragments_holder).requestLayout();
+                        getActivity().getWindow().getDecorView().findViewById(R.id.home_fragments_holder).forceLayout();
+
                         //Switch frags
                         /*
                         Funny, but today is when I get to know what these arguments are for.
@@ -95,7 +115,11 @@ public class ReportPowerProblemFragment extends Fragment {
                          */
                         getChildFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in, R.anim.slide_out).replace(R.id.reportFragsHolder, new ProvideLocationFragment()).commit();
 
+                        //((HomeActivity) getActivity()).toggleAlpha(0.5f);
+
                         progressState++;
+
+                        Log.e("HANG", "STUCK AT TRANSITION TO LOCATION");
                     } else {
 
                         Toast.makeText(getActivity(), "Please describe your problem", Toast.LENGTH_SHORT).show();
@@ -203,6 +227,7 @@ public class ReportPowerProblemFragment extends Fragment {
             @Override
             public void onTransitionChange(MotionLayout motionLayout, int i, int i1, float v) {
 
+                //pleaseListen(); It did boy. It did. Thanks!
             }
 
             @Override
@@ -231,6 +256,12 @@ public class ReportPowerProblemFragment extends Fragment {
                     mBtnSkip.setEnabled(true);
 
                     mBtnSendReport.setEnabled(false); //In case coming from 3 to 2
+
+                    //bug fixing. I honestly don't know what's up. Internal motion layout beta issues
+
+                    //((MotionLayout) reportPowerProblemView).transitionToEnd();
+                    //((HomeActivity) getActivity()).toggleAlpha(1.0f);
+                    Log.e("HOME CALL", "INVOKED");
                 }
 
             }
@@ -269,6 +300,18 @@ public class ReportPowerProblemFragment extends Fragment {
          */
     }
 
+
+    /*
+    Overridden method to toggle buttons here. Will not "kill" the other one cause I love the comment right under it...for now
+     */
+    @Override
+    public void toggleButtons(boolean enable){
+
+        mBtnBack.setEnabled(enable);
+        mBtnNext.setEnabled(enable);
+        mBtnSkip.setEnabled(enable);
+    }
+
     /*
     Use this to reduce alpha when find location icon is clicked
      */
@@ -298,6 +341,14 @@ public class ReportPowerProblemFragment extends Fragment {
             customProgressBar.setAlpha(0.1f);
         }
 
+    }
+
+    /*
+    Just to solve a bug ey...
+     */
+    private void pleaseListen(){
+
+        Log.e("PLEASE LISTEN","I BET I WILL NOW");
     }
 
     @Override

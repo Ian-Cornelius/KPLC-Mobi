@@ -9,6 +9,23 @@
         motion:constraintSetEnd="@+id/resListItemState2"
         motion:duration="150" />
 
+    <Transition
+        motion:constraintSetStart="@+id/resListItemState2"
+        motion:constraintSetEnd="@+id/resListItemState3"
+        motion:duration="150"
+        motion:motionInterpolator="easeOut"/>
+
+    <Transition
+        motion:constraintSetStart="@+id/resListItemState3"
+        motion:constraintSetEnd="@+id/resListItemState2"
+        motion:duration="150"
+        motion:motionInterpolator="easeOut"/>
+
+    <Transition
+        motion:constraintSetStart="@+id/resListItemState2"
+        motion:constraintSetEnd="@+id/resListItemState1"
+        motion:duration="150" />
+
 
     <ConstraintSet android:id="@+id/resListItemState1">
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,20 +24,15 @@ import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import com.ian_cornelius.kplcmobi.R;
+import com.ian_cornelius.kplcmobi.ui.home.HomeActivity;
 
 
-public class CheckAndPayBillFragment extends Fragment {
+public class CheckAndPayBillFragment extends Fragment implements HomeActivity.FabButtonToggle {
 
     /*
     For fab activator
      */
-    private MotionLayout mSwitchAccFabActivator, mCheckAndPayBillMainContent;
-    private boolean reverse = false;
-
-    /*
-    For fab content
-     */
-    private Animation closeAnim;
+    private MotionLayout mCheckAndPayBillMainContent;
 
     /*
     For checking out
@@ -52,7 +48,7 @@ public class CheckAndPayBillFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        final View checkAndPayBillView = inflater.inflate(R.layout.check_and_pay_bill_fragment_layout,container,false);
+        View checkAndPayBillView = inflater.inflate(R.layout.check_and_pay_bill_fragment_layout,container,false);
 
         /*
         For our button
@@ -62,88 +58,7 @@ public class CheckAndPayBillFragment extends Fragment {
         mBtnNo = checkAndPayBillView.findViewById(R.id.btnNo);
 
 
-        /*
-        Get fab activator instance and main content motion layouts
-         */
-        mSwitchAccFabActivator = checkAndPayBillView.findViewById(R.id.switchAccFabActivator);
         mCheckAndPayBillMainContent = checkAndPayBillView.findViewById(R.id.checkAndPayBillMainContentLayout);
-
-        /*
-        For our animation
-         */
-        closeAnim = AnimationUtils.loadAnimation(getActivity(),R.anim.zoom_out_fab_content);
-
-        closeAnim.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-
-                //remove fab content
-                getChildFragmentManager().beginTransaction().remove(getChildFragmentManager().findFragmentById(R.id.fabContentHolder)).commit();
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-
-        /*
-        Set up its onClick listener and do appropriate actions
-         */
-        mSwitchAccFabActivator.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick (View v){
-
-                /*
-                do appropriate fab action
-                 */
-                if (!reverse){
-
-                    mSwitchAccFabActivator.transitionToEnd();
-
-                    //Launch the fab content
-                    getChildFragmentManager().beginTransaction().setCustomAnimations(R.anim.zoom_in_fab_content, R.anim.zoom_out_fab_content).replace(R.id.fabContentHolder, new SwitchAccFabContentFragment()).commit();
-
-                    /*
-                    Set alpha down for main content
-                     */
-                    mCheckAndPayBillMainContent.setAlpha(0.1f);
-
-                    /*
-                    Kill button clicks
-                     */
-                    mBtnPay.setEnabled(false);
-
-                } else{
-
-                    mSwitchAccFabActivator.transitionToStart();
-                    checkAndPayBillView.findViewById(R.id.fabContentHolder).startAnimation(closeAnim);
-
-                    /*
-                    Set alpha back up for main content
-                     */
-                    mCheckAndPayBillMainContent.setAlpha(1.0f);
-
-                    /*
-                    Enable button clicks
-                     */
-                    mBtnPay.setEnabled(true);
-
-
-                }
-
-                reverse = !reverse;
-            }
-
-
-        });
-
 
         /*
         Set up button listeners
@@ -155,7 +70,9 @@ public class CheckAndPayBillFragment extends Fragment {
                 //do animation
                 mBtnPay.setBackground(null);
                 mCheckAndPayBillMainContent.transitionToEnd();
-                ((MotionLayout) checkAndPayBillView).transitionToEnd();
+
+                //hide fab from view
+                ((HomeActivity)getActivity()).toggleFab(false);
 
             }
         });
@@ -167,7 +84,9 @@ public class CheckAndPayBillFragment extends Fragment {
                 //do reverse animation
                 mBtnPay.setBackgroundResource(R.drawable.green_border_btn_bg);
                 mCheckAndPayBillMainContent.transitionToStart();
-                ((MotionLayout) checkAndPayBillView).transitionToStart();
+
+                //Show fab
+                ((HomeActivity) getActivity()).toggleFab(true);
             }
         });
 
@@ -180,6 +99,15 @@ public class CheckAndPayBillFragment extends Fragment {
         });
 
         return checkAndPayBillView;
+    }
+
+    //method for us to communicate between activity and fragment, concerning fab and btn activations
+    @Override
+    public void toggleButtons(boolean enable){
+
+        mBtnPay.setEnabled(enable);
+
+        Log.e("TOGGLE AT POST PAID","INVOKED");
     }
 
 

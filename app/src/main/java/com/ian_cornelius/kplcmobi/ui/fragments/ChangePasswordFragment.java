@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.ian_cornelius.kplcmobi.R;
@@ -19,11 +20,16 @@ import com.ian_cornelius.kplcmobi.R;
  */
 public class ChangePasswordFragment extends Fragment {
 
+    private EditText mEditOldPass, mEditNewPass;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View changePassView = inflater.inflate(R.layout.change_password_layout, container, false);
+
+        mEditOldPass = changePassView.findViewById(R.id.editOldPass);
+        mEditNewPass = changePassView.findViewById(R.id.editNewPass);
 
         return changePassView;
     }
@@ -39,6 +45,9 @@ public class ChangePasswordFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
 
+        //Reduce text bloat, easen layout refresh
+        mEditNewPass.setText(null);
+        mEditOldPass.setText(null);
     }
 
     /**

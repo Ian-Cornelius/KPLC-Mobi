@@ -24,6 +24,7 @@ import android.support.annotation.NonNull;
 
 import android.support.v7.widget.LinearLayoutManager;
 
+import com.ian_cornelius.kplcmobi.ui.home.HomeActivity;
 import com.ian_cornelius.kplcmobi.utils.animators.CustomLayoutAnimator;
 
 import com.ian_cornelius.kplcmobi.models.MessageThread;
@@ -68,13 +69,17 @@ public class KPLCResponsesMainRecyclerViewAdapter extends RecyclerView.Adapter<K
             if (s.length() == 0){
 
                 //close edit text
-                ((MotionLayout)currentView).transitionToState(R.id.resListItemState2);
+                //((MotionLayout)currentView).transitionToState(R.id.resListItemState2);
+                ((MotionLayout) currentView).setTransition(R.id.resListItemState3, R.id.resListItemState2);
+                ((MotionLayout) currentView).transitionToEnd();
             }
 
-            if (s.length() == 1){
+            if (s.length() == 1 && before == 0){
 
                 //open it, exposing send btn
-                ((MotionLayout) currentView).transitionToState(R.id.resListItemState3);
+                //((MotionLayout) currentView).transitionToState(R.id.resListItemState3);
+                ((MotionLayout) currentView).setTransition(R.id.resListItemState2, R.id.resListItemState3);
+                ((MotionLayout) currentView).transitionToEnd();
             }
         }
 
@@ -155,7 +160,9 @@ public class KPLCResponsesMainRecyclerViewAdapter extends RecyclerView.Adapter<K
 
             //Always forward movement, not reversing. Reverse only useful for layout animator and scroll updater to only
             //animate properly and enable scrolling effectively
-            ((MotionLayout) v).transitionToState(R.id.resListItemState2);
+            //((MotionLayout) v).transitionToState(R.id.resListItemState2);
+            ((MotionLayout) v).setTransition(R.id.resListItemState1, R.id.resListItemState2);
+            ((MotionLayout) v).transitionToEnd();
 
             customLayoutAnimator.init(mainRecycler,v,reverse);
             currentPosition = getAdapterPosition(); //Only need to set current position here.
@@ -302,10 +309,22 @@ public class KPLCResponsesMainRecyclerViewAdapter extends RecyclerView.Adapter<K
         //Clear all text in edit text, for this view. Doing this before transition to state 1, to avoid state confusion
         ((EditText)currentView.findViewById(R.id.editReply)).setText(null); //can ignore this and choose to have a history of previous text
 
+        /**
+         * Very vital piece of code here. Help solve motion layout refresh layout bugs
+         * TODO Put this code in every fragment with edit text
+         */
+        ((HomeActivity)currentView.getContext()).getWindow().getDecorView().findViewById(R.id.home_fragments_holder).invalidate();
+        ((HomeActivity) currentView.getContext()).getWindow().getDecorView().findViewById(R.id.home_fragments_holder).requestLayout();
+        ((HomeActivity) currentView.getContext()).getWindow().getDecorView().findViewById(R.id.home_fragments_holder).forceLayout();
+
+        Log.e("Close view","INVOKED CLOSE VIEW");
+
         /*
         Invoke motion layout transition
          */
-        ((MotionLayout) currentView).transitionToState(R.id.resListItemState1);
+        //((MotionLayout) currentView).transitionToState(R.id.resListItemState1);
+        ((MotionLayout) currentView).setTransition(R.id.resListItemState2, R.id.resListItemState1);
+        ((MotionLayout) currentView).transitionToEnd();
 
         //Invoke layout animator
         customLayoutAnimator.init(mainRecycler, currentView, reverse);

@@ -25,6 +25,8 @@ import com.ian_cornelius.kplcmobi.R;
 
 public class DescribePowerProblemFragment extends Fragment {
 
+    private boolean isFlushing = false;
+
     /*
     Radio button instances
      */
@@ -205,6 +207,8 @@ public class DescribePowerProblemFragment extends Fragment {
         /*
         Save our data in model
          */
+//        mEditDesc.setText(null);
+//        ((MotionLayout) mRadioBlown.getParent()).transitionToStart();
     }
 
 

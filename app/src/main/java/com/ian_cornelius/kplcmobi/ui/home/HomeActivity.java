@@ -11,6 +11,8 @@ For our UI widgets
 import android.support.constraint.motion.MotionLayout;
 
 //TextViews in navigation header and custom action bar
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 //Button in navigation header
@@ -30,6 +32,9 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Toast;
 
+//To help us post a thread that will run after some delay
+import android.os.Handler;
+
 import com.ian_cornelius.kplcmobi.R;
 import com.ian_cornelius.kplcmobi.ui.fragments.BuyTokensFragment;
 import com.ian_cornelius.kplcmobi.ui.fragments.CheckAndPayBillFragment;
@@ -39,8 +44,19 @@ import com.ian_cornelius.kplcmobi.ui.fragments.NotificationsFragment;
 import com.ian_cornelius.kplcmobi.ui.fragments.PurchaseHistoryFragment;
 import com.ian_cornelius.kplcmobi.ui.fragments.ReportPowerProblemFragment;
 import com.ian_cornelius.kplcmobi.ui.fragments.SettingsFragment;
+import com.ian_cornelius.kplcmobi.ui.fragments.SwitchAccFabContentFragment;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener{
+
+    //press twice to exit functionality
+    private boolean backToExitPressedOnce = false;
+
+    /*
+    For our fab animation
+     */
+    private MotionLayout mSwitchAccFabActivator;
+    private Animation closeAnimation;
+    private boolean fabReverse;
 
     /*
     Hold instances of drawer layout implementations
@@ -51,7 +67,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     /*
     Hold instances of motion layout
      */
-    private MotionLayout mDrawerToggleButton;
+    private MotionLayout mDrawerToggleButton, mDrawerCustomActionBar;
 
     /*
     Hold instances of text views in navigation header and custom action bar
@@ -80,6 +96,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         Get motion layout instances
          */
         mDrawerToggleButton = findViewById(R.id.drawer_toggle_btn);
+        mDrawerCustomActionBar = findViewById(R.id.drawerCustomActionBar);
 
         //Get custom action bar widgets references
         mTxtFragName = findViewById(R.id.txtFragName);
@@ -90,6 +107,17 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
          */
         mNavView = findViewById(R.id.navView);
 
+
+        /*
+        Try out our fab animation
+         */
+        mSwitchAccFabActivator = findViewById(R.id.switchAccFabActivator);
+
+        //Set up the rest of our custom fab
+        setUpFab();
+
+        //Hide fab
+        mDrawerCustomActionBar.transitionToStart();
 
         /*
         Extract the navigation header layout
@@ -186,6 +214,95 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+
+    /*
+    Method to set up our custom fab
+     */
+    private void setUpFab(){
+
+        closeAnimation = AnimationUtils.loadAnimation(this,R.anim.zoom_out_fab_content);
+        closeAnimation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+                getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().findFragmentById(R.id.fabContentHolder)).commit();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        mSwitchAccFabActivator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (!fabReverse){
+                    mSwitchAccFabActivator.transitionToEnd();
+                    getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.zoom_in_fab_content,R.anim.zoom_out_fab_content).replace(R.id.fabContentHolder,new SwitchAccFabContentFragment()).commit();
+
+                    //Disable our overlapping views. Case problem with buy tokens, check and pay bill, history, and
+                    //report power
+                    if (getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder) instanceof BuyTokensFragment){
+
+                        ((BuyTokensFragment) getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder)).toggleButtons(false);
+
+                    } else if (getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder) instanceof CheckAndPayBillFragment){
+
+                        ((CheckAndPayBillFragment) getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder)).toggleButtons(false);
+
+                    } else if (getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder) instanceof ReportPowerProblemFragment){
+
+                        ((ReportPowerProblemFragment) getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder)).toggleButtons(false);
+
+                    }
+                    //toggleOverlappingWidgets(false, false);
+
+                    /*
+                    Kill opacity of main content view. Simply, frag holder. Interface doesn't need to do this
+                     */
+                    ((View)v.getParent()).findViewById(R.id.home_fragments_holder).setAlpha(0.1f);
+
+                } else{
+                    mSwitchAccFabActivator.transitionToStart();
+                    ((View)v.getParent()).findViewById(R.id.fabContentHolder).startAnimation(closeAnimation);
+
+                    //Enable our overlapping views
+                    if (getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder) instanceof BuyTokensFragment){
+
+                        ((BuyTokensFragment) getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder)).toggleButtons(true);
+
+                    } else if (getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder) instanceof CheckAndPayBillFragment){
+
+                        ((CheckAndPayBillFragment) getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder)).toggleButtons(true);
+
+                    } else if (getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder) instanceof ReportPowerProblemFragment){
+
+                        ((ReportPowerProblemFragment) getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder)).toggleButtons(true);
+
+                    }
+                    //toggleOverlappingWidgets(true, false);
+
+                    /*
+                    Build back opacity of main content view
+                     */
+                    ((View) v.getParent()).findViewById(R.id.home_fragments_holder).setAlpha(1.0f);
+
+                }
+
+                fabReverse = !fabReverse;
+
+            }
+        });
+
+    }
+
     /*
     onClick method to implement our listeners
      */
@@ -220,6 +337,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     changeActionBarImage(R.drawable.settings_bar);
                     mTxtFragName.setText(R.string.settings);
                     mHomeDrawerLayout.closeDrawer(Gravity.START,true);
+
+                    //hide our fab
+                    toggleFab(false);
                 }
                 break;
 
@@ -237,6 +357,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     mTxtFragName.setText(R.string.buy_tokens);
                     changeActionBarImage(R.drawable.buy_tokens_bar);
                     mHomeDrawerLayout.closeDrawer(Gravity.START,true);
+
+                    //show our fab
+                    toggleFab(true);
 
                 }
                 break;
@@ -256,6 +379,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     changeActionBarImage(R.drawable.buy_tokens_bar);
                     mHomeDrawerLayout.closeDrawer(Gravity.START,true);
 
+                    //show our fab
+                    toggleFab(true);
+
                 }
                 break;
 
@@ -274,6 +400,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     changeActionBarImage(R.drawable.purchase_history_bar);
                     mHomeDrawerLayout.closeDrawer(Gravity.START,true);
 
+                    //hide our fab. Here, only shown with autolaunch
+                    toggleFab(false);
+
                 }
                 break;
 
@@ -291,6 +420,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     mTxtFragName.setText(R.string.report_power);
                     changeActionBarImage(R.drawable.report_power_bar);
                     mHomeDrawerLayout.closeDrawer(Gravity.START,true);
+
+                    //show our fab
+                    toggleFab(true);
 
                 }
                 break;
@@ -312,6 +444,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     changeActionBarImage(R.drawable.kplc_responses_bar);
                     mTxtFragName.setText(R.string.KPLC_reponses);
                     mHomeDrawerLayout.closeDrawer(Gravity.START,true);
+
+                    //hide our fab
+                    toggleFab(false);
                 }
                 break;
 
@@ -332,6 +467,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     changeActionBarImage(R.drawable.notification_bar);
                     mTxtFragName.setText(R.string.notifications);
                     mHomeDrawerLayout.closeDrawer(Gravity.START,true);
+
+                    //hide our fab
+                    toggleFab(false);
                 }
                 break;
 
@@ -352,6 +490,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     changeActionBarImage(R.drawable.inbox_bar);
                     mTxtFragName.setText(R.string.inbox);
                     mHomeDrawerLayout.closeDrawer(Gravity.START,true);
+
+                    //hide our fab
+                    toggleFab(false);
                 }
                 break;
 
@@ -380,18 +521,72 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
      */
     private void changeActionBarImage(final int resId){
 
-        Thread imageThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
+//        Thread imageThread = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//                mImageView.setImageResource(resId);
+//
+//            }
+//        });
+//
+//        //start thread
+//        imageThread.start();
 
-                mImageView.setImageResource(resId);
-
-            }
-        });
-
-        //start thread
-        imageThread.start();
+        mImageView.setImageResource(resId);
     }
+
+    /*
+    Method to tell activity to hide fab. Can protect it by requesting for asking instance, and ensuring it belongs
+    to valid classes, so technically, only those classes can access it.
+
+    Problem with interface is that 4 fragments should have access to this, and not one interface can help me do that.... I bet. Not sure 😁
+     */
+    public void toggleFab(boolean show){
+
+        //slide away our fab. Motion layout call
+        if (show){
+
+            mDrawerCustomActionBar.transitionToEnd();
+
+        } else {
+
+            mDrawerCustomActionBar.transitionToStart();
+        }
+
+        Log.e("HIDE FAB","REQUESTED");
+    }
+
+    /*
+    No default view. Once back pressed, prompt exit, if not in KPLC responses, with view opened
+     */
+    private void triggerClose(){
+
+        if (backToExitPressedOnce){
+
+            //means, didn't delay to press back twice (past 2 seconds)
+            //kill whole app
+            finishAffinity();
+
+        } else {
+
+            //first click, or delayed. Turn to true. Prompt message
+            backToExitPressedOnce = true;
+            Toast.makeText(this,"Press back twice to exit", Toast.LENGTH_SHORT).show();
+
+            //put a delay on reset. If they click back b4 this reset, app will close
+            new Handler().postDelayed(new Runnable(){
+
+                @Override
+                public void run(){
+
+                    //reset after 2 seconds, if pressed back again
+                    backToExitPressedOnce = false;
+                }
+            }, 2000);
+        }
+    }
+
 
     /*
     Detect back press. Perform appropriate action
@@ -420,7 +615,20 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             } else {
 
                 //default action
+                triggerClose();
             }
+        } else {
+
+            triggerClose();
         }
+    }
+
+
+    /*
+    Interface for button toggle communication between activity and fragments using this fab
+     */
+    public interface FabButtonToggle{
+
+        void toggleButtons(boolean enable);
     }
 }
