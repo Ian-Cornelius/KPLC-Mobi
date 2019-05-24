@@ -606,7 +606,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         if (currentFrag instanceof KPLCResponsesFragment){
 
             //check if expanded view
-            if (((KPLCResponsesFragment) currentFrag).getMainAdapter().getCurrentView() != null){
+            if (((KPLCResponsesFragment) currentFrag).getMainAdapter().getCurrentView() != null && ((KPLCResponsesFragment) currentFrag).getMainAdapter().isReverse()){
 
                 /*
                 We have an expanded view. Close it

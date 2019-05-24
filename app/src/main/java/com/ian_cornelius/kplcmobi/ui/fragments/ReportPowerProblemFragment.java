@@ -233,37 +233,13 @@ public class ReportPowerProblemFragment extends Fragment implements HomeActivity
             @Override
             public void onTransitionCompleted(MotionLayout motionLayout, int i) {
 
-                /*
-                Re-enable buttons, based on current progress state. If state 1, only enable btnNext,
-                because we are coming from state 2. If progress state is 3, only enable back
-                 */
-                if (progressState == 1){
+                toggleButtons(true);
 
-                    mBtnNext.setEnabled(true);
-                } else if (progressState == 3){
+                //bug fixing. I honestly don't know what's up. Internal motion layout beta issues (solved. Needed layout refresh)
 
-                    mBtnBack.setEnabled(true);
-
-                    /*
-                    Enable btnSendReport
-                     */
-                    mBtnSendReport.setEnabled(true);
-                } else{
-
-                    //progress state is 2
-                    mBtnBack.setEnabled(true);
-                    mBtnNext.setEnabled(true);
-                    mBtnSkip.setEnabled(true);
-
-                    mBtnSendReport.setEnabled(false); //In case coming from 3 to 2
-
-                    //bug fixing. I honestly don't know what's up. Internal motion layout beta issues
-
-                    //((MotionLayout) reportPowerProblemView).transitionToEnd();
-                    //((HomeActivity) getActivity()).toggleAlpha(1.0f);
-                    Log.e("HOME CALL", "INVOKED");
-                }
-
+                //((MotionLayout) reportPowerProblemView).transitionToEnd();
+                //((HomeActivity) getActivity()).toggleAlpha(1.0f);
+                Log.e("HOME CALL", "INVOKED");
             }
 
             @Override
@@ -307,9 +283,31 @@ public class ReportPowerProblemFragment extends Fragment implements HomeActivity
     @Override
     public void toggleButtons(boolean enable){
 
-        mBtnBack.setEnabled(enable);
-        mBtnNext.setEnabled(enable);
-        mBtnSkip.setEnabled(enable);
+        /*
+           Re-enable buttons, based on current progress state. If state 1, only enable btnNext,
+           because we are coming from state 2. If progress state is 3, only enable back
+         */
+        if (progressState == 1){
+
+            mBtnNext.setEnabled(enable);
+        } else if (progressState == 3){
+
+            mBtnBack.setEnabled(enable);
+
+                    /*
+                    Enable btnSendReport
+                     */
+            mBtnSendReport.setEnabled(enable);
+        } else{
+
+            //progress state is 2
+            mBtnBack.setEnabled(enable);
+            mBtnNext.setEnabled(enable);
+            mBtnSkip.setEnabled(enable);
+
+            mBtnSendReport.setEnabled(false); //In case coming from 3 to 2
+        }
+
     }
 
     /*

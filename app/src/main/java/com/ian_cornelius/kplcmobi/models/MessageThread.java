@@ -28,4 +28,8 @@ public class MessageThread {
     //no local message store is available
     public int newMessagesNum;
 
+    //Hold object that holds these messages?? Meaning threads and messages loaded at same time? Don't think its good. Let's load on request, using ref
+
+    //How do we show last message? Need to store it in thread, and updated on new message arrival
+
 }

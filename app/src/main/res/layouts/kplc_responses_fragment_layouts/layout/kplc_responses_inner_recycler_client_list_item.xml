@@ -13,33 +13,44 @@
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/custom_profile_image" />
+        app:srcCompat="@drawable/account_persona" />
 
-    <TextView
-        android:id="@+id/txtClientMessage"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="2dp"
         android:background="@drawable/messages_textview_bg"
-        android:fontFamily="@font/lato_regular"
-        android:maxWidth="180dp"
-        android:paddingLeft="15dp"
-        android:paddingTop="8dp"
-        android:paddingRight="12dp"
-        android:paddingBottom="12dp"
-        android:text="Hey KPLC! Just wanted to know if you good 😁"
-        android:textColor="@color/white"
-        android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/customProfileImage"
-        app:layout_constraintTop_toTopOf="@+id/customProfileImage" />
+        app:layout_constraintTop_toTopOf="@+id/customProfileImage">
 
-    <TextView
-        android:id="@+id/txtDateTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="23.2.2019 10:00AM"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/txtClientMessage"
-        app:layout_constraintTop_toBottomOf="@+id/txtClientMessage" />
+
+        <TextView
+            android:id="@+id/txtClientMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
+            android:fontFamily="@font/lato_regular"
+            android:maxWidth="180dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="12dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="16dp"
+            android:text="Hey KPLC! Just wanted to know if you good 😁"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            />
+
+        <TextView
+            android:id="@+id/txtDateTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="12dp"
+            android:text="23.2.2019 10:00AM"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            android:layout_gravity="right"/>
+
+    </android.support.design.widget.TextInputLayout>
+
 </android.support.constraint.ConstraintLayout>

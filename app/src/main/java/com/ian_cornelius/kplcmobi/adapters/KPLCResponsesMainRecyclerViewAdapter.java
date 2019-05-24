@@ -1,5 +1,6 @@
 package com.ian_cornelius.kplcmobi.adapters;
 
+import android.support.constraint.utils.ImageFilterView;
 import android.support.v7.widget.RecyclerView;
 
 /*
@@ -69,17 +70,17 @@ public class KPLCResponsesMainRecyclerViewAdapter extends RecyclerView.Adapter<K
             if (s.length() == 0){
 
                 //close edit text
-                //((MotionLayout)currentView).transitionToState(R.id.resListItemState2);
-                ((MotionLayout) currentView).setTransition(R.id.resListItemState3, R.id.resListItemState2);
-                ((MotionLayout) currentView).transitionToEnd();
+                ((MotionLayout)currentView).transitionToState(R.id.resListItemState2);
+                //((MotionLayout) currentView).setTransition(R.id.resListItemState3, R.id.resListItemState2);
+                //((MotionLayout) currentView).transitionToEnd();
             }
 
             if (s.length() == 1 && before == 0){
 
                 //open it, exposing send btn
-                //((MotionLayout) currentView).transitionToState(R.id.resListItemState3);
-                ((MotionLayout) currentView).setTransition(R.id.resListItemState2, R.id.resListItemState3);
-                ((MotionLayout) currentView).transitionToEnd();
+                ((MotionLayout) currentView).transitionToState(R.id.resListItemState3);
+                //((MotionLayout) currentView).setTransition(R.id.resListItemState2, R.id.resListItemState3);
+                //((MotionLayout) currentView).transitionToEnd();
             }
         }
 
@@ -153,6 +154,9 @@ public class KPLCResponsesMainRecyclerViewAdapter extends RecyclerView.Adapter<K
             //Save this as current view
             currentView = v;
 
+            //see what view ref am getting
+            Log.e("VIEW REF ONCLICK", " " + v);
+
             //disable clicks on this view - to avoid repetitive executions
             //Have to do this here, so that once anim starts, not disrupted. Re-enabling done
             //at anim end, for similar reasons.
@@ -160,9 +164,9 @@ public class KPLCResponsesMainRecyclerViewAdapter extends RecyclerView.Adapter<K
 
             //Always forward movement, not reversing. Reverse only useful for layout animator and scroll updater to only
             //animate properly and enable scrolling effectively
-            //((MotionLayout) v).transitionToState(R.id.resListItemState2);
-            ((MotionLayout) v).setTransition(R.id.resListItemState1, R.id.resListItemState2);
-            ((MotionLayout) v).transitionToEnd();
+            ((MotionLayout) v).transitionToState(R.id.resListItemState2);
+            //((MotionLayout) v).setTransition(R.id.resListItemState1, R.id.resListItemState2);
+            //((MotionLayout) v).transitionToEnd();
 
             customLayoutAnimator.init(mainRecycler,v,reverse);
             currentPosition = getAdapterPosition(); //Only need to set current position here.
@@ -262,7 +266,7 @@ public class KPLCResponsesMainRecyclerViewAdapter extends RecyclerView.Adapter<K
     }
 
     /*
-    Called at end of animation. Toggles reverse
+    Called at end of animation (by custom layout animator). Toggles reverse
      */
     public void toggleReverse(){
 
@@ -279,7 +283,17 @@ public class KPLCResponsesMainRecyclerViewAdapter extends RecyclerView.Adapter<K
 
             //Set current view to null, done at toggle reverse. Doing it at close curret view will give null pointer
             //cause animator may still be running, and toggle reverse will need it
+
+            //Bug fixing
+            ((HomeActivity)currentView.getContext()).getWindow().getDecorView().findViewById(R.id.home_fragments_holder).invalidate();
+            ((HomeActivity) currentView.getContext()).getWindow().getDecorView().findViewById(R.id.home_fragments_holder).requestLayout();
+            ((HomeActivity) currentView.getContext()).getWindow().getDecorView().findViewById(R.id.home_fragments_holder).forceLayout();
+
+            ((ImageFilterView) currentView.findViewById(R.id.listItemBackground)).setCrossfade(0.0f);
+
             currentView = null;
+            Log.e("CURRENT VIEW VAL NULL"," " + String.valueOf(currentView == null));
+
         } else {
 
             //See what loading data for inner adapter at this point does
@@ -287,22 +301,38 @@ public class KPLCResponsesMainRecyclerViewAdapter extends RecyclerView.Adapter<K
 
             //So, kill numMessages counter and set its text to zero. Update model. Logic for processing data still missing
 
+            //Bug fixing
+            ((HomeActivity)currentView.getContext()).getWindow().getDecorView().findViewById(R.id.home_fragments_holder).invalidate();
+            ((HomeActivity) currentView.getContext()).getWindow().getDecorView().findViewById(R.id.home_fragments_holder).requestLayout();
+            ((HomeActivity) currentView.getContext()).getWindow().getDecorView().findViewById(R.id.home_fragments_holder).forceLayout();
+
         }
         reverse = !reverse;
     }
 
     /*
     Use this method to get to know if we have an expanded view or not. Represented by var
-    currentView. If null, no expanded view. Else, we have an expanded view
+    currentView. If null, no expanded view. Else, we have an expanded view.
+
+    Used by HomeActivity to know if we have an expanded view, and close it onBackPressed
      */
     public View getCurrentView(){
 
         return currentView;
     }
 
+    //Used by HomeActivity to close, onBackPressed. Restricts interruption of motion, And relation, so
+    //restricts motion to run to end
+    public boolean isReverse(){
+
+        return  this.reverse;
+    }
+
 
     /*
     Method to tell this adapter to close currentView. Basically, all onClick functions done at reverse, done here
+
+    Invoked by HomeActivity, onBackPressed, if getCurrentView != null
      */
     public void closeCurrentView(){
 
@@ -322,9 +352,9 @@ public class KPLCResponsesMainRecyclerViewAdapter extends RecyclerView.Adapter<K
         /*
         Invoke motion layout transition
          */
-        //((MotionLayout) currentView).transitionToState(R.id.resListItemState1);
-        ((MotionLayout) currentView).setTransition(R.id.resListItemState2, R.id.resListItemState1);
-        ((MotionLayout) currentView).transitionToEnd();
+        ((MotionLayout) currentView).transitionToState(R.id.resListItemState1);
+        //((MotionLayout) currentView).setTransition(R.id.resListItemState2, R.id.resListItemState1);
+        //((MotionLayout) currentView).transitionToEnd();
 
         //Invoke layout animator
         customLayoutAnimator.init(mainRecycler, currentView, reverse);
