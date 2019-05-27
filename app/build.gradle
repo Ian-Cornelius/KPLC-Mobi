@@ -75,8 +75,11 @@ android {
                             //For custom dialog layout files
                             'src/main/res/layouts/custom_dialog_layouts/custom_dialog_wait_layouts',
 
-                            //For settings layout files
+                            //For custom dialog layout files
                             'src/main/res/layouts/custom_dialog_layouts/custom_dialog_fail_layouts',
+
+                            //For custom dialog layout files
+                            'src/main/res/layouts/custom_dialog_layouts',
 
                             'src/main/res/layouts/',
                             'src/main/res/'

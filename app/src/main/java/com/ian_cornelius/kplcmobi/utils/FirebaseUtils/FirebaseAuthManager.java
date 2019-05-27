@@ -4,7 +4,9 @@ package com.ian_cornelius.kplcmobi.utils.FirebaseUtils;
 This class will be used to log in, log out, or sign up new users.
 
 As a singleton such that we can easily get auth state
-in the entire app
+in the entire app, through the static req manager
+
+Final, so can't be inherited.
  */
 
 import android.support.annotation.NonNull;
@@ -17,7 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.ian_cornelius.kplcmobi.ui.login.LogInActivity;
 import com.ian_cornelius.kplcmobi.ui.signup.SignUpActivity;
 
-public class FirebaseAuthManager {
+public final class FirebaseAuthManager {
 
     //our only instance
     private static final FirebaseAuthManager authManager = new FirebaseAuthManager();
@@ -28,7 +30,7 @@ public class FirebaseAuthManager {
     private FirebaseAuth mAuth;
 
     //static method to get instance
-    public static FirebaseAuthManager getInstance() {
+    protected static FirebaseAuthManager getInstance() {
         return authManager;
     }
 
@@ -44,7 +46,7 @@ public class FirebaseAuthManager {
     /*
     Get current user
      */
-    public FirebaseUser getCurrentUser(){
+    protected FirebaseUser getCurrentUser(){
 
         return mAuth.getCurrentUser();
     }
@@ -52,7 +54,7 @@ public class FirebaseAuthManager {
     /*
     Sign up a user
      */
-    public void registerUser(final String email, final String password, SignUpActivity refActivity){
+    protected void registerUser(final String email, final String password, SignUpActivity refActivity){
 
         /*
         Invoke firebase method to create user with email and password - credentials used in KPLC mobi
@@ -77,7 +79,7 @@ public class FirebaseAuthManager {
     /*
     Sign in existing users
      */
-    public void logInUser(final String email, final String password, LogInActivity refActivity){
+    protected void logInUser(final String email, final String password, LogInActivity refActivity){
 
         /*
         Invoke firebase method to create user with email and password
@@ -100,13 +102,13 @@ public class FirebaseAuthManager {
     }
 
 
-    public interface AuthCallBack{
+    protected interface AuthCallBack{
 
         //called on successful log in or sign up
         void onSuccess();
 
         //called if log in or sign up fails
-        void onFailure(String failureException);
+        void onFailure(String authException);
     }
 
 }

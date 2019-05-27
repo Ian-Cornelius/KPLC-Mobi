@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetStart="@+id/dialogState0"
+        motion:constraintSetEnd="@+id/dialogState1"
+        motion:duration="10000"
+        motion:motionInterpolator="linear"/>
+
+    <Transition
+        motion:constraintSetStart="@+id/dialogState1"
+        motion:constraintSetEnd="@+id/dialogState2"
+        motion:duration="400"
+        motion:motionInterpolator="easeOut"/>
+
+
+    <ConstraintSet android:id="@+id/dialogState0">
+
+        <Constraint
+            android:id="@+id/dialogBg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/dialog_wait_illustration"
+            app:altSrc="@drawable/dialog_fail_illustration"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <CustomAttribute
+                motion:attributeName="crossfade"
+                motion:customFloatValue="0"/>
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/clockBg"
+            android:layout_width="29dp"
+            android:layout_height="29dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:alpha="1"
+            android:background="@drawable/custom_clock_ring"
+            app:layout_constraintStart_toStartOf="@+id/dialogBg"
+            app:layout_constraintTop_toTopOf="@+id/dialogBg" />
+
+        <Constraint
+            android:id="@+id/clockMinuteHand"
+            android:layout_width="2dp"
+            android:layout_height="12dp"
+            android:background="@drawable/custom_clock_arm"
+            android:rotation="0"
+            android:alpha="1"
+            app:layout_constraintBottom_toBottomOf="@+id/clockBg"
+            app:layout_constraintEnd_toEndOf="@+id/clockBg"
+            app:layout_constraintStart_toStartOf="@+id/clockBg"
+            app:layout_constraintTop_toTopOf="@+id/clockBg"
+            app:layout_constraintVertical_bias="0.3" />
+
+        <Constraint
+            android:id="@+id/clockHourHand"
+            android:layout_width="2dp"
+            android:layout_height="9dp"
+            android:background="@drawable/custom_clock_arm"
+            android:rotation="120"
+            android:alpha="1"
+            app:layout_constraintBottom_toBottomOf="@+id/clockBg"
+            app:layout_constraintEnd_toEndOf="@+id/clockBg"
+            app:layout_constraintStart_toStartOf="@+id/clockBg"
+            app:layout_constraintTop_toTopOf="@+id/clockBg"
+            app:layout_constraintVertical_bias="0.3" />
+
+        <Constraint
+            android:id="@+id/txtMainWaitMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lato_bold"
+            android:text="Please wait..."
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:alpha="1"
+            app:layout_constraintBottom_toBottomOf="@+id/dialogBg"
+            app:layout_constraintEnd_toEndOf="@+id/dialogBg"
+            app:layout_constraintStart_toStartOf="@+id/dialogBg"
+            app:layout_constraintTop_toTopOf="@+id/dialogBg"
+            app:layout_constraintVertical_bias="0.75" />
+
+        <Constraint
+            android:id="@+id/txtExpandedWaitMsg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/lato_bold"
+            android:text="We are logging you in"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/dialogBg"
+            app:layout_constraintStart_toStartOf="@+id/dialogBg"
+            app:layout_constraintTop_toBottomOf="@+id/txtMainWaitMsg" />
+
+        <Constraint
+            android:id="@+id/dialogErrorIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:alpha="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/dialog_error_face" />
+
+        <Constraint
+            android:id="@+id/txtFail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/oops"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:alpha="0"
+            app:layout_constraintBottom_toBottomOf="@+id/dialogErrorIcon"
+            app:layout_constraintStart_toEndOf="@+id/dialogErrorIcon"
+            app:layout_constraintTop_toTopOf="@+id/dialogErrorIcon" />
+
+        <Constraint
+            android:id="@+id/txtFailMsg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/log_in_err"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:alpha="0"
+            app:layout_constraintEnd_toEndOf="@+id/dialogBg"
+            app:layout_constraintStart_toStartOf="@+id/dialogErrorIcon"
+            app:layout_constraintTop_toBottomOf="@+id/dialogErrorIcon" />
+
+        <Constraint
+            android:id="@+id/btnOk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/okay"
+            android:textAlignment="viewEnd"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:enabled="false"
+            android:alpha="0"
+            app:layout_constraintEnd_toEndOf="@+id/txtFailMsg"
+            app:layout_constraintTop_toBottomOf="@+id/txtFailMsg" />
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/dialogState1">
+
+        <Constraint
+            android:id="@+id/dialogBg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/dialog_wait_illustration"
+            app:altSrc="@drawable/dialog_fail_illustration"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <CustomAttribute
+                motion:attributeName="crossfade"
+                motion:customFloatValue="0"/>
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/clockBg"
+            android:layout_width="29dp"
+            android:layout_height="29dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:alpha="1"
+            android:background="@drawable/custom_clock_ring"
+            app:layout_constraintStart_toStartOf="@+id/dialogBg"
+            app:layout_constraintTop_toTopOf="@+id/dialogBg" />
+
+        <Constraint
+            android:id="@+id/clockMinuteHand"
+            android:layout_width="2dp"
+            android:layout_height="12dp"
+            android:background="@drawable/custom_clock_arm"
+            android:rotation="360"
+            android:alpha="1"
+            app:layout_constraintBottom_toBottomOf="@+id/clockBg"
+            app:layout_constraintEnd_toEndOf="@+id/clockBg"
+            app:layout_constraintStart_toStartOf="@+id/clockBg"
+            app:layout_constraintTop_toTopOf="@+id/clockBg"
+            app:layout_constraintVertical_bias="0.3" />
+
+        <Constraint
+            android:id="@+id/clockHourHand"
+            android:layout_width="2dp"
+            android:layout_height="9dp"
+            android:background="@drawable/custom_clock_arm"
+            android:rotation="150"
+            android:alpha="1"
+            app:layout_constraintBottom_toBottomOf="@+id/clockBg"
+            app:layout_constraintEnd_toEndOf="@+id/clockBg"
+            app:layout_constraintStart_toStartOf="@+id/clockBg"
+            app:layout_constraintTop_toTopOf="@+id/clockBg"
+            app:layout_constraintVertical_bias="0.3" />
+
+        <Constraint
+            android:id="@+id/txtMainWaitMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lato_bold"
+            android:text="Please wait..."
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:alpha="1"
+            app:layout_constraintBottom_toBottomOf="@+id/dialogBg"
+            app:layout_constraintEnd_toEndOf="@+id/dialogBg"
+            app:layout_constraintStart_toStartOf="@+id/dialogBg"
+            app:layout_constraintTop_toTopOf="@+id/dialogBg"
+            app:layout_constraintVertical_bias="0.75" />
+
+        <Constraint
+            android:id="@+id/txtExpandedWaitMsg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/lato_bold"
+            android:text="We are logging you in"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/dialogBg"
+            app:layout_constraintStart_toStartOf="@+id/dialogBg"
+            app:layout_constraintTop_toBottomOf="@+id/txtMainWaitMsg" />
+
+        <Constraint
+            android:id="@+id/dialogErrorIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:alpha="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/dialog_error_face" />
+
+        <Constraint
+            android:id="@+id/txtFail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/oops"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:alpha="0"
+            app:layout_constraintBottom_toBottomOf="@+id/dialogErrorIcon"
+            app:layout_constraintStart_toEndOf="@+id/dialogErrorIcon"
+            app:layout_constraintTop_toTopOf="@+id/dialogErrorIcon" />
+
+        <Constraint
+            android:id="@+id/txtFailMsg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/log_in_err"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:alpha="0"
+            app:layout_constraintEnd_toEndOf="@+id/dialogBg"
+            app:layout_constraintStart_toStartOf="@+id/dialogErrorIcon"
+            app:layout_constraintTop_toBottomOf="@+id/dialogErrorIcon" />
+
+        <Constraint
+            android:id="@+id/btnOk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/okay"
+            android:textAlignment="viewEnd"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:enabled="false"
+            android:alpha="0"
+            app:layout_constraintEnd_toEndOf="@+id/txtFailMsg"
+            app:layout_constraintTop_toBottomOf="@+id/txtFailMsg" />
+    </ConstraintSet>
+
+
+    <ConstraintSet android:id="@+id/dialogState2">
+
+        <Constraint
+            android:id="@+id/dialogBg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/dialog_wait_illustration"
+            app:altSrc="@drawable/dialog_fail_illustration"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <CustomAttribute
+                motion:attributeName="crossfade"
+                motion:customFloatValue="1"/>
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/clockBg"
+            android:layout_width="29dp"
+            android:layout_height="29dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:alpha="0"
+            android:background="@drawable/custom_clock_ring"
+            app:layout_constraintStart_toStartOf="@+id/dialogBg"
+            app:layout_constraintTop_toTopOf="@+id/dialogBg" />
+
+        <Constraint
+            android:id="@+id/clockMinuteHand"
+            android:layout_width="2dp"
+            android:layout_height="12dp"
+            android:background="@drawable/custom_clock_arm"
+            android:rotation="360"
+            android:alpha="0"
+            app:layout_constraintBottom_toBottomOf="@+id/clockBg"
+            app:layout_constraintEnd_toEndOf="@+id/clockBg"
+            app:layout_constraintStart_toStartOf="@+id/clockBg"
+            app:layout_constraintTop_toTopOf="@+id/clockBg"
+            app:layout_constraintVertical_bias="0.3" />
+
+        <Constraint
+            android:id="@+id/clockHourHand"
+            android:layout_width="2dp"
+            android:layout_height="9dp"
+            android:background="@drawable/custom_clock_arm"
+            android:rotation="150"
+            android:alpha="0"
+            app:layout_constraintBottom_toBottomOf="@+id/clockBg"
+            app:layout_constraintEnd_toEndOf="@+id/clockBg"
+            app:layout_constraintStart_toStartOf="@+id/clockBg"
+            app:layout_constraintTop_toTopOf="@+id/clockBg"
+            app:layout_constraintVertical_bias="0.3" />
+
+        <Constraint
+            android:id="@+id/txtMainWaitMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lato_bold"
+            android:text="Please wait..."
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:alpha="0"
+            app:layout_constraintBottom_toBottomOf="@+id/dialogBg"
+            app:layout_constraintEnd_toEndOf="@+id/dialogBg"
+            app:layout_constraintStart_toStartOf="@+id/dialogBg"
+            app:layout_constraintTop_toTopOf="@+id/dialogBg"
+            app:layout_constraintVertical_bias="0.75" />
+
+        <Constraint
+            android:id="@+id/txtExpandedWaitMsg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/lato_bold"
+            android:text="We are logging you in"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:alpha="0"
+            app:layout_constraintEnd_toEndOf="@+id/dialogBg"
+            app:layout_constraintStart_toStartOf="@+id/dialogBg"
+            app:layout_constraintTop_toBottomOf="@+id/txtMainWaitMsg" />
+
+        <Constraint
+            android:id="@+id/dialogErrorIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:alpha="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/dialog_error_face" />
+
+        <Constraint
+            android:id="@+id/txtFail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/oops"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:alpha="1"
+            app:layout_constraintBottom_toBottomOf="@+id/dialogErrorIcon"
+            app:layout_constraintStart_toEndOf="@+id/dialogErrorIcon"
+            app:layout_constraintTop_toTopOf="@+id/dialogErrorIcon" />
+
+        <Constraint
+            android:id="@+id/txtFailMsg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/log_in_err"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:alpha="1"
+            app:layout_constraintEnd_toEndOf="@+id/dialogBg"
+            app:layout_constraintStart_toStartOf="@+id/dialogErrorIcon"
+            app:layout_constraintTop_toBottomOf="@+id/dialogErrorIcon" />
+
+        <Constraint
+            android:id="@+id/btnOk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/okay"
+            android:textAlignment="viewEnd"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:enabled="false"
+            android:alpha="1"
+            app:layout_constraintEnd_toEndOf="@+id/txtFailMsg"
+            app:layout_constraintTop_toBottomOf="@+id/txtFailMsg" />
+    </ConstraintSet>
+
+
+</MotionScene>

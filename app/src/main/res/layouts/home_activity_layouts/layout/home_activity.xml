@@ -41,6 +41,7 @@
                 android:cropToPadding="false"
                 android:padding="0dp"
                 android:scaleType="fitXY"
+                android:translationY="-2dp"
                 app:layout_constraintBottom_toTopOf="@+id/guidelineActBarBottom"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineActBarEnd"
                 app:layout_constraintStart_toStartOf="parent"

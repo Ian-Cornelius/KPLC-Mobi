@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@android:color/transparent"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
 
     <ImageView
         android:id="@+id/dialogFailBg"
@@ -32,26 +31,26 @@
         app:srcCompat="@drawable/dialog_error_face" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/txtFail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Oops!"
+        android:fontFamily="@font/lato_bold"
+        android:text="@string/oops"
         android:textColor="@color/white"
         android:textSize="16sp"
-        android:fontFamily="@font/lato_bold"
         app:layout_constraintBottom_toBottomOf="@+id/dialogErrorFace"
         app:layout_constraintStart_toEndOf="@+id/dialogErrorFace"
         app:layout_constraintTop_toTopOf="@+id/dialogErrorFace" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/txtFailMsg"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:fontFamily="@font/lato_bold"
-        android:text="We couldn't fulfill your request. \n\n Ensure you have keyed in the right credentials, or you have an active internet connection."
+        android:text="@string/log_in_err"
         android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/dialogFailBg"
@@ -70,6 +69,6 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintEnd_toEndOf="@+id/txtFailMsg"
+        app:layout_constraintTop_toBottomOf="@+id/txtFailMsg" />
 </android.support.constraint.ConstraintLayout>
