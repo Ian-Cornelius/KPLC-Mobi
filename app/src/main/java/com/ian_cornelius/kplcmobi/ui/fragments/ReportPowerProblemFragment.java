@@ -136,6 +136,15 @@ public class ReportPowerProblemFragment extends Fragment implements HomeActivity
                     ((MotionLayout) reportPowerProblemView).setTransition(R.id.reportFragmentScene2Start, R.id.reportFragmentScene2End);
                     ((MotionLayout) reportPowerProblemView).transitionToEnd();
 
+                    /*
+                     Once again, motion layout. I have to refresh views, for new frag to be drawn. Motion layout sort of blocking
+                     that. Put an edit text in it and it crumbles
+                     */
+                    getActivity().getWindow().getDecorView().findViewById(R.id.home_fragments_holder).invalidate();
+                    getActivity().getWindow().getDecorView().findViewById(R.id.home_fragments_holder).requestLayout();
+                    getActivity().getWindow().getDecorView().findViewById(R.id.home_fragments_holder).forceLayout();
+
+
                     getChildFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in, R.anim.slide_out).replace(R.id.reportFragsHolder, new FinishReportFragment()).commit();
 
                     progressState++;

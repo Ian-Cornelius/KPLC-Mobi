@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1067408767816",
+    "firebase_url": "https://kplc-mobi-aa5f2.firebaseio.com",
+    "project_id": "kplc-mobi-aa5f2",
+    "storage_bucket": "kplc-mobi-aa5f2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1067408767816:android:4ab2b4726aa97cb7",
+        "android_client_info": {
+          "package_name": "com.ian_cornelius.kplcmobi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1067408767816-ql9430upbqfhbv397ieeq3j2fk2qd9ib.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDri6AbRI_YvwgNRfVtwZ_-3E0bGy47fNw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1067408767816-ql9430upbqfhbv397ieeq3j2fk2qd9ib.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

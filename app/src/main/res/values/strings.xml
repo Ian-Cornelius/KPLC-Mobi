@@ -150,4 +150,6 @@
     <string name="new_phone">New phone number</string>
     <string name="change_phone_num">Change phone number</string>
 
+    <string name="okay">Okay</string>
+
 </resources>

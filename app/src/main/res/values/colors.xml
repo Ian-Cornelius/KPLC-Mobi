@@ -19,4 +19,7 @@
     <color name="kplcDarkYellow">#DCBB2B</color>
     <color name="custom_red">#E91B1B</color>
 
+    <color name="special_blue">#066AA6</color>
+    <color name="light_black">#29000000</color>
+
 </resources>

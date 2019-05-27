@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
+
+    <android.support.constraint.utils.ImageFilterView
+        android:id="@+id/dialogBg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/dialog_wait_illustration"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/clockBg"
+        android:layout_width="29dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/custom_clock_ring"
+        app:layout_constraintStart_toStartOf="@+id/dialogBg"
+        app:layout_constraintTop_toTopOf="@+id/dialogBg" />
+
+    <View
+        android:id="@+id/clockMinuteHand"
+        android:layout_width="2dp"
+        android:layout_height="12dp"
+        android:background="@drawable/custom_clock_arm"
+        android:rotation="0"
+        android:transformPivotY="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/clockBg"
+        app:layout_constraintEnd_toEndOf="@+id/clockBg"
+        app:layout_constraintStart_toStartOf="@+id/clockBg"
+        app:layout_constraintTop_toTopOf="@+id/clockBg"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <View
+        android:id="@+id/clockHourHand"
+        android:layout_width="2dp"
+        android:layout_height="9dp"
+        android:background="@drawable/custom_clock_arm"
+        android:rotation="115"
+        android:transformPivotY="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/clockBg"
+        app:layout_constraintEnd_toEndOf="@+id/clockBg"
+        app:layout_constraintStart_toStartOf="@+id/clockBg"
+        app:layout_constraintTop_toTopOf="@+id/clockBg"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <TextView
+        android:id="@+id/txtMainWaitMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_bold"
+        android:text="Please wait..."
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/dialogBg"
+        app:layout_constraintEnd_toEndOf="@+id/dialogBg"
+        app:layout_constraintStart_toStartOf="@+id/dialogBg"
+        app:layout_constraintTop_toTopOf="@+id/dialogBg"
+        app:layout_constraintVertical_bias="0.75" />
+
+    <TextView
+        android:id="@+id/txtExpandedWaitMsg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/lato_bold"
+        android:text="We are logging you in"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/dialogBg"
+        app:layout_constraintStart_toStartOf="@+id/dialogBg"
+        app:layout_constraintTop_toBottomOf="@+id/txtMainWaitMsg" />
+
+</android.support.constraint.ConstraintLayout>
