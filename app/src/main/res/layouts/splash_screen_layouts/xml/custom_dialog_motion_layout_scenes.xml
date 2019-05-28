@@ -7,8 +7,27 @@
     <Transition
         motion:constraintSetStart="@+id/dialogState0"
         motion:constraintSetEnd="@+id/dialogState1"
-        motion:duration="10000"
-        motion:motionInterpolator="linear"/>
+        motion:duration="30000"
+        motion:motionInterpolator="linear">
+
+        <KeyFrameSet>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/txtExpandedWaitMsg"
+                motion:framePosition="3"
+                motion:transitionEasing="linear"
+                android:alpha="0"
+                android:translationY="10dp"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/txtExpandedWaitMsg"
+                motion:framePosition="7"
+                motion:transitionEasing="linear"
+                android:alpha="1"
+                android:translationY="0dp"/>
+
+        </KeyFrameSet>
+    </Transition>
 
     <Transition
         motion:constraintSetStart="@+id/dialogState1"
@@ -99,66 +118,64 @@
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="14sp"
+            android:alpha="0"
+            android:translationY="10dp"
             app:layout_constraintEnd_toEndOf="@+id/dialogBg"
             app:layout_constraintStart_toStartOf="@+id/dialogBg"
             app:layout_constraintTop_toBottomOf="@+id/txtMainWaitMsg" />
 
         <Constraint
-            android:id="@+id/dialogErrorIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
-            android:alpha="0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/dialog_error_face" />
-
-        <Constraint
             android:id="@+id/txtFail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="8dp"
             android:fontFamily="@font/lato_bold"
             android:text="@string/oops"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:alpha="0"
-            app:layout_constraintBottom_toBottomOf="@+id/dialogErrorIcon"
-            app:layout_constraintStart_toEndOf="@+id/dialogErrorIcon"
-            app:layout_constraintTop_toTopOf="@+id/dialogErrorIcon" />
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Constraint
             android:id="@+id/txtFailMsg"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
+            android:layout_marginBottom="8dp"
             android:fontFamily="@font/lato_bold"
             android:text="@string/log_in_err"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:alpha="0"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@+id/btnOk"
             app:layout_constraintEnd_toEndOf="@+id/dialogBg"
-            app:layout_constraintStart_toStartOf="@+id/dialogErrorIcon"
-            app:layout_constraintTop_toBottomOf="@+id/dialogErrorIcon" />
+            app:layout_constraintStart_toStartOf="@+id/dialogBg" />
 
         <Constraint
             android:id="@+id/btnOk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginBottom="24dp"
             android:background="@android:color/transparent"
             android:fontFamily="@font/lato_bold"
             android:text="@string/okay"
-            android:textAlignment="viewEnd"
+            android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="15sp"
-            android:enabled="false"
+            android:enabled="true"
             android:alpha="0"
+            android:translationY="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/dialogBg"
             app:layout_constraintEnd_toEndOf="@+id/txtFailMsg"
-            app:layout_constraintTop_toBottomOf="@+id/txtFailMsg" />
+            app:layout_constraintStart_toStartOf="@+id/txtFailMsg"/>
 
     </ConstraintSet>
 
@@ -244,66 +261,64 @@
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="14sp"
+            android:alpha="1"
+            android:translationY="0dp"
             app:layout_constraintEnd_toEndOf="@+id/dialogBg"
             app:layout_constraintStart_toStartOf="@+id/dialogBg"
             app:layout_constraintTop_toBottomOf="@+id/txtMainWaitMsg" />
 
         <Constraint
-            android:id="@+id/dialogErrorIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
-            android:alpha="0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/dialog_error_face" />
-
-        <Constraint
             android:id="@+id/txtFail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="8dp"
             android:fontFamily="@font/lato_bold"
             android:text="@string/oops"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:alpha="0"
-            app:layout_constraintBottom_toBottomOf="@+id/dialogErrorIcon"
-            app:layout_constraintStart_toEndOf="@+id/dialogErrorIcon"
-            app:layout_constraintTop_toTopOf="@+id/dialogErrorIcon" />
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"  />
 
         <Constraint
             android:id="@+id/txtFailMsg"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
+            android:layout_marginBottom="8dp"
             android:fontFamily="@font/lato_bold"
             android:text="@string/log_in_err"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:alpha="0"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@+id/btnOk"
             app:layout_constraintEnd_toEndOf="@+id/dialogBg"
-            app:layout_constraintStart_toStartOf="@+id/dialogErrorIcon"
-            app:layout_constraintTop_toBottomOf="@+id/dialogErrorIcon" />
+            app:layout_constraintStart_toStartOf="@+id/dialogBg" />
 
         <Constraint
             android:id="@+id/btnOk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginBottom="24dp"
             android:background="@android:color/transparent"
             android:fontFamily="@font/lato_bold"
             android:text="@string/okay"
-            android:textAlignment="viewEnd"
+            android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="15sp"
-            android:enabled="false"
+            android:enabled="true"
             android:alpha="0"
+            android:translationY="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/dialogBg"
             app:layout_constraintEnd_toEndOf="@+id/txtFailMsg"
-            app:layout_constraintTop_toBottomOf="@+id/txtFailMsg" />
+            app:layout_constraintStart_toStartOf="@+id/txtFailMsg"/>
     </ConstraintSet>
 
 
@@ -395,61 +410,57 @@
             app:layout_constraintTop_toBottomOf="@+id/txtMainWaitMsg" />
 
         <Constraint
-            android:id="@+id/dialogErrorIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
-            android:alpha="1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/dialog_error_face" />
-
-        <Constraint
             android:id="@+id/txtFail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="8dp"
             android:fontFamily="@font/lato_bold"
             android:text="@string/oops"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:alpha="1"
-            app:layout_constraintBottom_toBottomOf="@+id/dialogErrorIcon"
-            app:layout_constraintStart_toEndOf="@+id/dialogErrorIcon"
-            app:layout_constraintTop_toTopOf="@+id/dialogErrorIcon" />
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"  />
 
         <Constraint
             android:id="@+id/txtFailMsg"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
+            android:layout_marginBottom="8dp"
             android:fontFamily="@font/lato_bold"
             android:text="@string/log_in_err"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:alpha="1"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@+id/btnOk"
             app:layout_constraintEnd_toEndOf="@+id/dialogBg"
-            app:layout_constraintStart_toStartOf="@+id/dialogErrorIcon"
-            app:layout_constraintTop_toBottomOf="@+id/dialogErrorIcon" />
+            app:layout_constraintStart_toStartOf="@+id/dialogBg" />
 
         <Constraint
             android:id="@+id/btnOk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginBottom="24dp"
             android:background="@android:color/transparent"
             android:fontFamily="@font/lato_bold"
             android:text="@string/okay"
-            android:textAlignment="viewEnd"
+            android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="15sp"
-            android:enabled="false"
+            android:enabled="true"
             android:alpha="1"
+            android:translationY="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/dialogBg"
             app:layout_constraintEnd_toEndOf="@+id/txtFailMsg"
-            app:layout_constraintTop_toBottomOf="@+id/txtFailMsg" />
+            app:layout_constraintStart_toStartOf="@+id/txtFailMsg"/>
     </ConstraintSet>
 
 

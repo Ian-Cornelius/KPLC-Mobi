@@ -9,11 +9,13 @@ Not inherited
 import android.util.Log;
 
 import com.google.firebase.auth.FirebaseUser;
+import com.ian_cornelius.kplcmobi.models.User;
+import com.ian_cornelius.kplcmobi.ui.fragments.SettingsFragment;
 import com.ian_cornelius.kplcmobi.ui.home.HomeActivity;
 import com.ian_cornelius.kplcmobi.ui.login.LogInActivity;
 import com.ian_cornelius.kplcmobi.ui.signup.SignUpActivity;
 
-public final class FirebaseStaticReqManager implements FirebaseAuthManager.AuthCallBack{
+public final class FirebaseStaticReqManager implements FirebaseAuthManager.AuthCallBack, FirebaseProfileManager.ProfileManagerCallbacks{
 
     //Hold current reference activity or frag, plus reqAuthType for interface callback
     private Object currentRefActivity;
@@ -100,7 +102,7 @@ public final class FirebaseStaticReqManager implements FirebaseAuthManager.AuthC
     //Get current user
     public FirebaseUser requestAuthCurrentUser(Object refActivity){
 
-        if (refActivity instanceof  LogInActivity){
+        if (refActivity instanceof  LogInActivity || refActivity instanceof FirebaseProfileManager){
 
             return FirebaseAuthManager.getInstance().getCurrentUser();
         } else {
@@ -119,24 +121,114 @@ public final class FirebaseStaticReqManager implements FirebaseAuthManager.AuthC
     public void onSuccess(){
 
         //Use currentRefActivity and AuthType to determine casting
+        if (reqAuthType == AuthType.LOGIN){
+
+
+        } else if (reqAuthType == AuthType.SIGNUP){
+
+            ((SignUpActivity) currentRefActivity).onSuccess();
+        }
     }
 
     @Override
-    public void onFailure(String authException){
+    public void onFailure(Exception authException){
 
+        //Use currentRefActivity and AuthType to determine casting
+        if (reqAuthType == AuthType.LOGIN){
+
+
+        } else if (reqAuthType == AuthType.SIGNUP){
+
+            ((SignUpActivity) currentRefActivity).onFailure(authException);
+        }
 
     }
 
 
     /*
-    Now an auth interface to be used by anyone who will seek auth services
+    Now an auth interface to be used by anyone who will seek auth services, specifically log in, out, or sign up
      */
     public interface AuthRequestCallBack{
 
         void onSuccess();
 
-        void onFailure (String authException);
+        void onFailure (Exception authException);
     }
 
+
+
+    /*
+    Save/load profile data methods
+     */
+
+    //Save
+    public void requestSaveProfile(User user, Object refActivity){
+
+        //ensure proper caller
+        if (refActivity instanceof SignUpActivity){
+
+            //Request for this profile to be saved by FirebaseProfileManager
+            new FirebaseProfileManager().saveProfileData(user);
+        } else {
+
+            Log.e("INVALID PROFILE REQUEST", "Coming from " + refActivity.getClass());
+        }
+    }
+
+    //Load
+    public void requestLoadProfile(Object refActivity){
+
+        //ensure proper caller
+        if (refActivity instanceof SettingsFragment){
+
+            //request to load data
+            new FirebaseProfileManager().getProfileData();
+        } else {
+
+            Log.e("INVALID PROFILE REQUEST", "Coming from " + refActivity.getClass());
+        }
+    }
+
+
+    /*
+    Implementation of profile request callbacks
+     */
+    @Override
+    public void onSaveSuccess(){
+
+        //Tell requester of success
+    }
+
+    @Override
+    public void onSaveFail(){
+
+        //Tell requester of failure
+    }
+
+    @Override
+    public void onProfileReqSuccess(User user){
+
+        //Send the user object to requester
+    }
+
+    @Override
+    public void onProfileReqFail(){
+
+        //Tell requester of failure
+    }
+
+    /*
+    Interface implemented by anyone seeking to load/save profile data
+     */
+    public interface ProfileRequestCallback{
+
+        void onSaveSuccess();
+
+        void onSaveFail();
+
+        void onProfileReqSuccess();
+
+        void onProfileReqFail();
+    }
 
 }

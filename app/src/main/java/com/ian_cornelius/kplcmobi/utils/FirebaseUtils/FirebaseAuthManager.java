@@ -66,10 +66,12 @@ public final class FirebaseAuthManager {
                 if (task.isSuccessful()){
 
                     //Tell SignUpActivity to remove dialog. Use AuthCallBack Interface, onSuccess() method
+                    FirebaseStaticReqManager.getInstance().onSuccess();
                 } else{
 
-                    //Tell SignUpActivity of failure using onFail() callback, passing exception. See if I can digest
+                    //Tell SignUpActivity of failure using onFailure() callback, passing exception. See if I can digest
                     //the exception to tell user accurate reason of failure
+                    FirebaseStaticReqManager.getInstance().onFailure(task.getException());
                 }
             }
         });
@@ -108,7 +110,7 @@ public final class FirebaseAuthManager {
         void onSuccess();
 
         //called if log in or sign up fails
-        void onFailure(String authException);
+        void onFailure(Exception authException);
     }
 
 }

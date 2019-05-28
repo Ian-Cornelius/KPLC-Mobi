@@ -151,8 +151,11 @@
     <string name="change_phone_num">Change phone number</string>
 
     <string name="okay">Okay</string>
-    <string name="oops">Oops!</string>
-    <string name="log_in_err">"We couldn't fulfill your request.\n\nEnsure you have entered the right credentials and you have an active internet connection</string>
-    <string name="sign_up_err">We ran into a problem.\n\nEnsure you have an active internet connection and try again</string>
+    <string name="oops">"Oops!\n\nWe couldn't fulfill your request"</string>
+    <string name="log_in_err">"Ensure you have entered the right credentials and you have an active internet connection</string>
+    <string name="sign_up_err">We ran into a problem.\nEnsure you have an active internet connection and try again</string>
+
+    <string name="no_empty">This field should not be empty</string>
+    <string name="confirm_pass_err">Please confirm your password</string>
 
 </resources>
