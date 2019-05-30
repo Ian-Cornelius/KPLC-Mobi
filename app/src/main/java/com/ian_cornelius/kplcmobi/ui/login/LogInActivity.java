@@ -6,12 +6,15 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.google.firebase.FirebaseNetworkException;
 import com.ian_cornelius.kplcmobi.R;
+import com.ian_cornelius.kplcmobi.ui.dialogs.ProcessDialog;
 import com.ian_cornelius.kplcmobi.ui.home.HomeActivity;
 import com.ian_cornelius.kplcmobi.ui.signup.SignUpActivity;
 
 //Get hold of our widgets
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,13 +26,16 @@ import android.widget.Toast;
 //Process auth requests
 import com.ian_cornelius.kplcmobi.utils.FirebaseUtils.FirebaseStaticReqManager;
 
-public class LogInActivity extends AppCompatActivity {
+public class LogInActivity extends AppCompatActivity implements FirebaseStaticReqManager.AuthRequestCallBack{
 
     //To hold our button instances
     private Button mBtnLogIn, mBtnCreateAcc, mBtnReqForPower;
 
     //To hold edit text instances
     private EditText mEditEmail, mEditPass;
+
+    //Show progress
+    private ProcessDialog processDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,8 +76,16 @@ public class LogInActivity extends AppCompatActivity {
                 //Validate data keyed in
                 if (validData()){
 
+                    //request login
+                    processDialog = new ProcessDialog();
+                    processDialog.setCancelable(false);
+
+                    processDialog.setMessagesPreShow("Please wait", "You're being logged in");
+                    processDialog.show(getSupportFragmentManager(), "PROCESS DIALOG");
+                    FirebaseStaticReqManager.getInstance().requestAuth(FirebaseStaticReqManager.AuthType.LOGIN,
+                            mEditEmail.getText().toString(), mEditPass.getText().toString(), LogInActivity.this);
                     //Show custom dialog, request for login. Switch of activity done on Success. Need to call finish? Proly yes. So that its removed from stack, reduce heap size. Thus on log out, start
-                    startActivity(new Intent(LogInActivity.this, HomeActivity.class));
+
                 } else{
 
                     Toast.makeText(getApplicationContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show();
@@ -102,6 +116,33 @@ public class LogInActivity extends AppCompatActivity {
         }
 
         return false;
+    }
+
+
+    /*
+    Override AuthRequestCallBacks
+     */
+    @Override
+    public void onSuccess(){
+
+        //Switch to home activity
+        startActivity(new Intent(LogInActivity.this, HomeActivity.class));
+        finish();
+
+    }
+
+    @Override
+    public void onFailure(Exception authException){
+
+        if (authException instanceof FirebaseNetworkException){
+
+            processDialog.transitionToError("Please ensure you have an active internet connection and try again");
+            Log.e("LOG IN EXCEPTION", authException.toString());
+        } else {
+
+            processDialog.transitionToError("You have entered invalid credentials. Please try again");
+            Log.e("LOG IN EXCEPTION", authException.toString());
+        }
     }
 
     //Deal with pressing of back button. Avoid going back to splash screen

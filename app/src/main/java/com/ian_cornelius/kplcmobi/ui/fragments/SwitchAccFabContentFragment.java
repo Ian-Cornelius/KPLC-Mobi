@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 //For radio buttons
 import android.widget.RadioButton;
@@ -140,10 +139,10 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
 
                     //Set up is for radio button 1
                     mRadioBtnAcc1.setText(metaData.getAccountNumber());
-                    mRadioBtnAcc1.setChecked(metaData.isActive());
+                    mRadioBtnAcc1.setChecked(metaData.isCurrent());
 
                     //If checked, hold our ID for transition purposes
-                    if (metaData.isActive()){
+                    if (metaData.isCurrent()){
 
                         previouslyCheckedRadioBtn = mRadioBtnAcc1;
                     }
@@ -153,10 +152,10 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
                     Log.e("Error","Getting into counter == 2, value of acc no. as " + metaData.getAccountNumber());
                     //Set up is for radio button 2
                     mRadioBtnAcc2.setText(metaData.getAccountNumber());
-                    mRadioBtnAcc2.setChecked(metaData.isActive());
+                    mRadioBtnAcc2.setChecked(metaData.isCurrent());
 
                     //If checked, hold our ID for transition purposes
-                    if (metaData.isActive()){
+                    if (metaData.isCurrent()){
 
                         previouslyCheckedRadioBtn = mRadioBtnAcc2;
 
@@ -175,10 +174,10 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
 
                     //Set up is for radio button 1
                     mRadioBtnAcc3.setText(metaData.getAccountNumber());
-                    mRadioBtnAcc3.setChecked(metaData.isActive());
+                    mRadioBtnAcc3.setChecked(metaData.isCurrent());
 
                     //If checked, hold our ID for transition purposes
-                    if (metaData.isActive()){
+                    if (metaData.isCurrent()){
 
                         previouslyCheckedRadioBtn = mRadioBtnAcc3;
 
@@ -195,10 +194,10 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
 
                     //Set up is for radio button 1
                     mRadioBtnAcc4.setText(metaData.getAccountNumber());
-                    mRadioBtnAcc4.setChecked(metaData.isActive());
+                    mRadioBtnAcc4.setChecked(metaData.isCurrent());
 
                     //If checked, hold our ID for transition purposes
-                    if (metaData.isActive()){
+                    if (metaData.isCurrent()){
 
                         previouslyCheckedRadioBtn = mRadioBtnAcc4;
                     }

@@ -9,13 +9,18 @@ Not inherited
 import android.util.Log;
 
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseError;
+import com.ian_cornelius.kplcmobi.models.AccountsFullMetaData;
+import com.ian_cornelius.kplcmobi.models.AccountsMiniMetaData;
 import com.ian_cornelius.kplcmobi.models.User;
+import com.ian_cornelius.kplcmobi.ui.fragments.AddAccountFragment;
 import com.ian_cornelius.kplcmobi.ui.fragments.SettingsFragment;
 import com.ian_cornelius.kplcmobi.ui.home.HomeActivity;
 import com.ian_cornelius.kplcmobi.ui.login.LogInActivity;
 import com.ian_cornelius.kplcmobi.ui.signup.SignUpActivity;
 
-public final class FirebaseStaticReqManager implements FirebaseAuthManager.AuthCallBack, FirebaseProfileManager.ProfileManagerCallbacks{
+public final class FirebaseStaticReqManager implements FirebaseAuthManager.AuthCallBack, FirebaseProfileManager.ProfileManagerCallbacks,
+                    FirebaseAccountsManager.AccountsAccessCallBack{
 
     //Hold current reference activity or frag, plus reqAuthType for interface callback
     private Object currentRefActivity;
@@ -30,7 +35,7 @@ public final class FirebaseStaticReqManager implements FirebaseAuthManager.AuthC
     private FirebaseStaticReqManager() {
     }
 
-    public static enum AuthType{
+    public enum AuthType{
 
         LOGIN,
         LOGOUT,
@@ -51,6 +56,9 @@ public final class FirebaseStaticReqManager implements FirebaseAuthManager.AuthC
 
         if (authType == AuthType.LOGIN){
 
+            Log.e("ERROR", "AUTH TYPE LOGIN");
+
+            Log.e("refActivity", String.valueOf(refActivity instanceof LogInActivity));
             //Ensure method is being called from correct activity
             if (refActivity instanceof LogInActivity){
 
@@ -91,7 +99,9 @@ public final class FirebaseStaticReqManager implements FirebaseAuthManager.AuthC
                 //save refActivity and authType
                 reqAuthType = authType;
                 currentRefActivity = refActivity;
+
                 //invoke log out
+                FirebaseAuthManager.getInstance().logOutUser();
             }
         } else {
 
@@ -102,7 +112,7 @@ public final class FirebaseStaticReqManager implements FirebaseAuthManager.AuthC
     //Get current user
     public FirebaseUser requestAuthCurrentUser(Object refActivity){
 
-        if (refActivity instanceof  LogInActivity || refActivity instanceof FirebaseProfileManager){
+        if (correctAuthUserCaller(refActivity)){
 
             return FirebaseAuthManager.getInstance().getCurrentUser();
         } else {
@@ -111,6 +121,13 @@ public final class FirebaseStaticReqManager implements FirebaseAuthManager.AuthC
         }
 
         return null;
+    }
+
+    //get list of correct callers
+    private boolean correctAuthUserCaller(Object refActivity){
+
+        return (refActivity instanceof  LogInActivity || refActivity instanceof FirebaseProfileManager
+        || refActivity instanceof FirebaseAccountsManager);
     }
 
 
@@ -123,11 +140,27 @@ public final class FirebaseStaticReqManager implements FirebaseAuthManager.AuthC
         //Use currentRefActivity and AuthType to determine casting
         if (reqAuthType == AuthType.LOGIN){
 
+            ((LogInActivity) currentRefActivity).onSuccess();
+
+            currentRefActivity = null;
+            reqAuthType = null;
 
         } else if (reqAuthType == AuthType.SIGNUP){
 
             ((SignUpActivity) currentRefActivity).onSuccess();
+
+            //remove currentRefActivity, and authType.
+            /*
+            Bad idea. Based on stack trace, onSuccess call will call the profile guy, run him. But once done, waiting
+            for callback, this code below runs. Sets my currentRefs to null (despite setting them b4), and
+            thus save acc data callback never invoked at caller cause of null pointer.
+
+            By design, sign up will chain calls, and its only one with this call access. So, don't set currentRefActivity to null here
+             */
+            //currentRefActivity = null;
+            reqAuthType = null;
         }
+
     }
 
     @Override
@@ -136,12 +169,19 @@ public final class FirebaseStaticReqManager implements FirebaseAuthManager.AuthC
         //Use currentRefActivity and AuthType to determine casting
         if (reqAuthType == AuthType.LOGIN){
 
+            ((LogInActivity) currentRefActivity).onFailure(authException);
+
+            currentRefActivity = null;
+            reqAuthType = null;
 
         } else if (reqAuthType == AuthType.SIGNUP){
 
             ((SignUpActivity) currentRefActivity).onFailure(authException);
         }
 
+        //remove currentRefActivity, and authType. Chain failed. So okay.
+        currentRefActivity = null;
+        reqAuthType = null;
     }
 
 
@@ -167,6 +207,9 @@ public final class FirebaseStaticReqManager implements FirebaseAuthManager.AuthC
         //ensure proper caller
         if (refActivity instanceof SignUpActivity){
 
+            //Might need to save currentRefActivity but not AuthType
+            currentRefActivity = refActivity;
+
             //Request for this profile to be saved by FirebaseProfileManager
             new FirebaseProfileManager().saveProfileData(user);
         } else {
@@ -180,6 +223,9 @@ public final class FirebaseStaticReqManager implements FirebaseAuthManager.AuthC
 
         //ensure proper caller
         if (refActivity instanceof SettingsFragment){
+
+            //Might need to save currentRefActivity but not AuthType
+            currentRefActivity = refActivity;
 
             //request to load data
             new FirebaseProfileManager().getProfileData();
@@ -197,24 +243,50 @@ public final class FirebaseStaticReqManager implements FirebaseAuthManager.AuthC
     public void onSaveSuccess(){
 
         //Tell requester of success
+
+        if (currentRefActivity instanceof SignUpActivity){
+
+            Log.e("FIREBASE REQ","INVOKED CALLBACK");
+            ((SignUpActivity) currentRefActivity).onSaveSuccess();
+        }
+        Log.e("CURRENT REF", "Null " + String.valueOf(currentRefActivity == null));
+
+        //Remove reference to currentRefActivity, if not sign up activity, cause of chaining
+        if (!(currentRefActivity instanceof SignUpActivity)){
+
+            currentRefActivity = null;
+        }
     }
 
     @Override
-    public void onSaveFail(){
+    public void onSaveFail(DatabaseError databaseError){
 
         //Tell requester of failure
+
+        if (currentRefActivity instanceof SignUpActivity){
+
+            ((SignUpActivity) currentRefActivity).onSaveFail(databaseError);
+        }
+        //Remove reference to currentRefActivity
+        currentRefActivity = null;
     }
 
     @Override
     public void onProfileReqSuccess(User user){
 
         //Send the user object to requester
+
+        //Remove reference to currentRefActivity
+        currentRefActivity = null;
     }
 
     @Override
-    public void onProfileReqFail(){
+    public void onProfileReqFail(DatabaseError databaseError){
 
         //Tell requester of failure
+
+        //Remove reference to currentRefActivity
+        currentRefActivity = null;
     }
 
     /*
@@ -224,11 +296,71 @@ public final class FirebaseStaticReqManager implements FirebaseAuthManager.AuthC
 
         void onSaveSuccess();
 
-        void onSaveFail();
+        void onSaveFail(DatabaseError databaseError);
 
-        void onProfileReqSuccess();
+        void onProfileReqSuccess(User user);
 
-        void onProfileReqFail();
+        void onProfileReqFail(DatabaseError databaseError);
+    }
+
+
+    /*
+    Create/Delete account methods
+     */
+
+    //create account
+    public void requestCreateAccount(Object refActivity, AccountsMiniMetaData miniMetaData, AccountsFullMetaData fullMetaData){
+
+        if (refActivity instanceof SignUpActivity || refActivity instanceof AddAccountFragment){
+
+            //perform call, save refActivity
+            currentRefActivity = refActivity;
+
+            new FirebaseAccountsManager(miniMetaData).createAccount(fullMetaData);
+        } else {
+
+            Log.e("INVALID ACC REQUEST","Coming from " + refActivity.getClass());
+        }
+    }
+
+    //load account
+
+    //remove account
+
+
+    /*
+    Implementation of FirebaseAccounts Manager interface for callbacks
+     */
+    @Override
+    public void onCreateAccSuccess(){
+
+        //Tell caller of success
+        ((SignUpActivity) currentRefActivity).onCreateAccSuccess();
+
+        //Null refActivity
+        currentRefActivity = null;
+    }
+
+    @Override
+    public void onCreateAccFail(DatabaseError databaseError){
+
+        //Tell caller of failure
+        ((SignUpActivity) currentRefActivity).onCreateAccFail(databaseError);
+
+        //Null refActivity
+        currentRefActivity = null;
+
+    }
+
+
+    /*
+    Implemented by actual caller
+     */
+    public interface AccountRequestCallback{
+
+        void onCreateAccSuccess();
+
+        void onCreateAccFail(DatabaseError databaseError);
     }
 
 }

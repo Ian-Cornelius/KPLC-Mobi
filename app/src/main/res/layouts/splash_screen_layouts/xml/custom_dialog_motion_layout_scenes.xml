@@ -13,17 +13,15 @@
         <KeyFrameSet>
 
             <KeyAttribute
-                motion:motionTarget="@+id/txtExpandedWaitMsg"
-                motion:framePosition="3"
+                motion:motionTarget="@+id/txtMainWaitMsg"
+                motion:framePosition="1"
                 motion:transitionEasing="linear"
-                android:alpha="0"
-                android:translationY="10dp"/>
+                android:translationY="0dp"/>
 
             <KeyAttribute
                 motion:motionTarget="@+id/txtExpandedWaitMsg"
-                motion:framePosition="7"
+                motion:framePosition="3"
                 motion:transitionEasing="linear"
-                android:alpha="1"
                 android:translationY="0dp"/>
 
         </KeyFrameSet>
@@ -99,7 +97,7 @@
             android:text="Please wait..."
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:alpha="1"
+            android:translationY="100dp"
             app:layout_constraintBottom_toBottomOf="@+id/dialogBg"
             app:layout_constraintEnd_toEndOf="@+id/dialogBg"
             app:layout_constraintStart_toStartOf="@+id/dialogBg"
@@ -118,8 +116,7 @@
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="14sp"
-            android:alpha="0"
-            android:translationY="10dp"
+            android:translationY="100dp"
             app:layout_constraintEnd_toEndOf="@+id/dialogBg"
             app:layout_constraintStart_toStartOf="@+id/dialogBg"
             app:layout_constraintTop_toBottomOf="@+id/txtMainWaitMsg" />
@@ -242,7 +239,7 @@
             android:text="Please wait..."
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:alpha="1"
+            android:translationY="0dp"
             app:layout_constraintBottom_toBottomOf="@+id/dialogBg"
             app:layout_constraintEnd_toEndOf="@+id/dialogBg"
             app:layout_constraintStart_toStartOf="@+id/dialogBg"
@@ -261,7 +258,6 @@
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="14sp"
-            android:alpha="1"
             android:translationY="0dp"
             app:layout_constraintEnd_toEndOf="@+id/dialogBg"
             app:layout_constraintStart_toStartOf="@+id/dialogBg"
@@ -385,7 +381,7 @@
             android:text="Please wait..."
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:alpha="0"
+            android:translationY="100dp"
             app:layout_constraintBottom_toBottomOf="@+id/dialogBg"
             app:layout_constraintEnd_toEndOf="@+id/dialogBg"
             app:layout_constraintStart_toStartOf="@+id/dialogBg"
@@ -404,7 +400,7 @@
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="14sp"
-            android:alpha="0"
+            android:translationY="200dp"
             app:layout_constraintEnd_toEndOf="@+id/dialogBg"
             app:layout_constraintStart_toStartOf="@+id/dialogBg"
             app:layout_constraintTop_toBottomOf="@+id/txtMainWaitMsg" />

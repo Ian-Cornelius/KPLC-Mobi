@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:text="@string/consumption_header"
         android:textColor="@color/kplcGreen"
-        android:textSize="20sp"
+        android:textSize="@dimen/text_size_header1"
         android:fontFamily="@font/lato_bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,7 +22,7 @@
         android:layout_marginStart="24dp"
         android:text="@string/no_action"
         android:textColor="@color/kplcGreen"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_body"
         android:fontFamily="@font/lato_bold"
         android:drawableLeft="@drawable/custom_tick_icon"
         android:drawablePadding="6dp"
@@ -38,7 +38,7 @@
         android:text="@string/previous_units_bought"
         android:fontFamily="@font/lato_regular"
         android:textColor="@color/custom_grey"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_body"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtConsumptionTrackHeader" />
 
@@ -50,7 +50,7 @@
         android:text="30"
         android:fontFamily="@font/lato_regular"
         android:textColor="@color/custom_grey"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_body"
         app:layout_constraintBottom_toBottomOf="@+id/txtPrevNumUnitsBought"
         app:layout_constraintStart_toEndOf="@+id/txtPrevNumUnitsBought"
         app:layout_constraintTop_toTopOf="@+id/txtPrevNumUnitsBought" />
@@ -63,7 +63,7 @@
         android:text="@string/units_consumed_estimate"
         android:fontFamily="@font/lato_regular"
         android:textColor="@color/custom_grey"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_body"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtPrevNumUnitsBought" />
 
@@ -75,7 +75,7 @@
         android:fontFamily="@font/lato_regular"
         android:text="10"
         android:textColor="@color/custom_grey"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_body"
         app:layout_constraintBottom_toBottomOf="@+id/txtEstNumConsumed"
         app:layout_constraintStart_toEndOf="@+id/txtEstNumConsumed"
         app:layout_constraintTop_toTopOf="@+id/txtEstNumConsumed" />
@@ -99,7 +99,7 @@
         android:text="@string/units_remaining_estimate"
         android:fontFamily="@font/lato_regular"
         android:textColor="@color/custom_grey"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_body"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtEstNumConsumed" />
 
@@ -111,7 +111,7 @@
         android:text="20"
         android:fontFamily="@font/lato_regular"
         android:textColor="@color/custom_grey"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_body"
         app:layout_constraintBottom_toBottomOf="@+id/txtEstRemaining"
         app:layout_constraintStart_toEndOf="@+id/txtEstRemaining"
         app:layout_constraintTop_toTopOf="@+id/txtEstRemaining" />
@@ -125,7 +125,7 @@
         android:text="@string/est_disclaimer"
         android:fontFamily="@font/lato_bold"
         android:textColor="@color/custom_grey"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_body"
         android:alpha="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnDisclaimer" />
@@ -133,7 +133,7 @@
     <TextView
         android:id="@+id/separator"
         android:layout_width="0dp"
-        android:layout_height="1dp"
+        android:layout_height="0.4dp"
         android:layout_marginTop="34dp"
         android:background="@color/custom_grey"
         app:layout_constraintEnd_toStartOf="@+id/guidelineSeparatorEnd"

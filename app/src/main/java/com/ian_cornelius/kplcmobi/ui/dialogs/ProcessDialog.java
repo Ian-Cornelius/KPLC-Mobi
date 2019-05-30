@@ -46,7 +46,7 @@ public class ProcessDialog extends DialogFragment {
         mTxtExpandedWaitMsg = dialogView.findViewById(R.id.txtExpandedWaitMsg);
         mBtnOk = dialogView.findViewById(R.id.btnOk);
 
-        mBtnOk.setEnabled(true);
+        mBtnOk.setEnabled(false);
         mBtnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,6 +98,20 @@ public class ProcessDialog extends DialogFragment {
         ((TextView)dialogView.findViewById(R.id.txtFailMsg)).setText(failMessage);
         dialogView.setProgress(1);
         dialogView.transitionToState(R.id.dialogState2);
+        mBtnOk.setEnabled(true);
+    }
+
+    /*
+    Get me wait and expanded wait message textview
+     */
+    public TextView getmTxtMainWaitMsg(){
+
+        return mTxtMainWaitMsg;
+    }
+
+    public TextView getmTxtExpandedWaitMsg(){
+
+        return mTxtExpandedWaitMsg;
     }
 
 

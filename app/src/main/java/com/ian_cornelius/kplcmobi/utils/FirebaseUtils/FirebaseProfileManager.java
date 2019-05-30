@@ -8,6 +8,7 @@ personal details)
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -55,12 +56,13 @@ public class FirebaseProfileManager {
                 if (databaseError == null){
 
                     //call onSaveSuccess() method of FirebaseStaticReqManager
+                    Log.e("SUCCESSFULL", "PROFILE CALLBACK");
                     FirebaseStaticReqManager.getInstance().onSaveSuccess();
                 } else {
 
                     //call onSaveFail() method of FirebaseStaticReqManager. In login, prompts deletion of this user
                     //since we can't have a user without profile info
-                    FirebaseStaticReqManager.getInstance().onSaveFail();
+                    FirebaseStaticReqManager.getInstance().onSaveFail(databaseError);
                 }
             }
         });
@@ -83,7 +85,7 @@ public class FirebaseProfileManager {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
                 //call onProfileReqFail(), tell user changing personal details that request could not be completed
-                FirebaseStaticReqManager.getInstance().onProfileReqFail();
+                FirebaseStaticReqManager.getInstance().onProfileReqFail(databaseError);
             }
         });
     }
@@ -96,10 +98,10 @@ public class FirebaseProfileManager {
 
         void onSaveSuccess();
 
-        void onSaveFail();
+        void onSaveFail(DatabaseError databaseError);
 
         void onProfileReqSuccess(User user);
 
-        void onProfileReqFail();
+        void onProfileReqFail(DatabaseError databaseError);
     }
 }

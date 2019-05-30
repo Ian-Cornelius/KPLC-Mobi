@@ -1,5 +1,6 @@
 package com.ian_cornelius.kplcmobi.ui.home;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -45,6 +46,8 @@ import com.ian_cornelius.kplcmobi.ui.fragments.PurchaseHistoryFragment;
 import com.ian_cornelius.kplcmobi.ui.fragments.ReportPowerProblemFragment;
 import com.ian_cornelius.kplcmobi.ui.fragments.SettingsFragment;
 import com.ian_cornelius.kplcmobi.ui.fragments.SwitchAccFabContentFragment;
+import com.ian_cornelius.kplcmobi.ui.login.LogInActivity;
+import com.ian_cornelius.kplcmobi.utils.FirebaseUtils.FirebaseStaticReqManager;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -498,6 +501,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.txtLogOut:
 
+                //Request log out
+                FirebaseStaticReqManager.getInstance().requestAuth(FirebaseStaticReqManager.AuthType.LOGOUT, this);
+                startActivity(new Intent(HomeActivity.this, LogInActivity.class));
                 finish();
                 break;
 

@@ -76,14 +76,14 @@ public class UserAccountsList {
 
         //First set
         metaData.setAccountNumber("34156787903");
-        metaData.setActive(false);
+        metaData.setCurrent(false);
 
         accountsMiniMetaDataArrayList.add(metaData);
 
         //Second set
         metaData = new AccountsMiniMetaData();
         metaData.setAccountNumber("12569872341");
-        metaData.setActive(true);
+        metaData.setCurrent(true);
 
         accountsMiniMetaDataArrayList.add(metaData);
 
@@ -93,14 +93,14 @@ public class UserAccountsList {
         //ALWAYS set up a new node
         metaData = new AccountsMiniMetaData();
         metaData.setAccountNumber("43109318734");
-        metaData.setActive(false);
+        metaData.setCurrent(false);
 
         accountsMiniMetaDataArrayList.add(metaData);
 
         //fourth set
         metaData = new AccountsMiniMetaData();
         metaData.setAccountNumber("43100094875");
-        metaData.setActive(false);
+        metaData.setCurrent(false);
 
         accountsMiniMetaDataArrayList.add(metaData);
 

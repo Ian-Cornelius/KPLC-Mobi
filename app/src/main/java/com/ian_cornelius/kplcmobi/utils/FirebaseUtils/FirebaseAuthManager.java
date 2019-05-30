@@ -93,14 +93,24 @@ public final class FirebaseAuthManager {
 
                 if (task.isSuccessful()){
 
-                    //Tell LogInActivity to remove dialog. Use AuthCallBack Interface, onSuccess() method
+                    //Tell LogInActivity to remove dialog. Use AuthCallBack Interface, onSuccess() method, through FirebaseStaticReqManager
+                    FirebaseStaticReqManager.getInstance().onSuccess();
                 } else{
 
                     //Tell LogInActivity of failure using onFail() callback, passing exception. See if I can digest
                     //the exception to tell user accurate reason of failure
+                    FirebaseStaticReqManager.getInstance().onFailure(task.getException());
                 }
             }
         });
+    }
+
+    /*
+    Sign out current user
+     */
+    protected void logOutUser(){
+
+        mAuth.signOut();
     }
 
 

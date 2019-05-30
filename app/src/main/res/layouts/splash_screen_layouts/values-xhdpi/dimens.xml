@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_size_header1">18sp</dimen>
+    <dimen name="text_size_header2">16sp</dimen>
+    <dimen name="text_size_body">14sp</dimen>
+</resources>

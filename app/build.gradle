@@ -16,6 +16,9 @@ android {
 
         buildConfigField 'String', 'ROOT_REF', "\"" + properties.getProperty("rootRef") + "\""
         buildConfigField 'String', 'PROFILE_REF', "\"" + properties.getProperty("profileRef") + "\""
+        buildConfigField 'String', 'ACC_LIST_REF', "\"" + properties.getProperty("accListRef") + "\""
+        buildConfigField 'String', 'ACC_DATA_REF', "\"" + properties.getProperty("accDataRef") + "\""
+        buildConfigField 'String', 'ACC_DETAILS_REF', "\"" + properties.getProperty("accDetailsRef") + "\""
     }
     buildTypes {
         release {

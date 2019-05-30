@@ -1,11 +1,16 @@
 package com.ian_cornelius.kplcmobi.ui.signup;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.google.firebase.FirebaseNetworkException;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.database.DatabaseError;
 import com.ian_cornelius.kplcmobi.R;
+import com.ian_cornelius.kplcmobi.models.AccountsFullMetaData;
+import com.ian_cornelius.kplcmobi.models.AccountsMiniMetaData;
 import com.ian_cornelius.kplcmobi.models.User;
 
 /*
@@ -30,9 +35,13 @@ import android.widget.Toast;
 import java.util.regex.Pattern;
 
 import com.ian_cornelius.kplcmobi.ui.dialogs.ProcessDialog;
+import com.ian_cornelius.kplcmobi.ui.home.HomeActivity;
 import com.ian_cornelius.kplcmobi.utils.FirebaseUtils.FirebaseStaticReqManager;
+import com.ian_cornelius.kplcmobi.utils.account_manager.AccountsManager;
+import com.ian_cornelius.kplcmobi.utils.animators.TextSwitchFadeAnimator;
 
-public class SignUpActivity extends AppCompatActivity implements FirebaseStaticReqManager.AuthRequestCallBack{
+public class SignUpActivity extends AppCompatActivity implements FirebaseStaticReqManager.AuthRequestCallBack,
+        FirebaseStaticReqManager.ProfileRequestCallback, FirebaseStaticReqManager.AccountRequestCallback{
 
     /*
     Instances of our widgets
@@ -48,8 +57,8 @@ public class SignUpActivity extends AppCompatActivity implements FirebaseStaticR
     //Show process dialog
     ProcessDialog dialog;
 
-    //Load profile data
-    User user;
+    //Know if process dialog is set up or not
+    private boolean dialogActive = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +117,7 @@ public class SignUpActivity extends AppCompatActivity implements FirebaseStaticR
                     //Show custom messages
                     dialog.setMessagesPreShow("Hang on", "We are adding you to the system");
                     dialog.show(getSupportFragmentManager(), "PROCESS_DIALOG");
+                    dialogActive = true;
                     FirebaseStaticReqManager.getInstance().requestAuth(FirebaseStaticReqManager.AuthType.SIGNUP,
                             mEditEmail.getText().toString(), mEditPass.getText().toString(), SignUpActivity.this);
                 } else {
@@ -280,8 +290,15 @@ public class SignUpActivity extends AppCompatActivity implements FirebaseStaticR
     public void onSuccess(){
 
         //Request to save profile data
-        dialog.dismiss();
-        Toast.makeText(this,"Signed up user",Toast.LENGTH_SHORT).show();
+        //dialog.dismiss();
+        //Toast.makeText(this,"Signed up user",Toast.LENGTH_SHORT).show();
+
+        //Tell user what's happening
+        TextSwitchFadeAnimator.switchText(dialog.getmTxtMainWaitMsg(), dialog.getmTxtExpandedWaitMsg(), "Almost there","We are setting up your profile");
+        //dialog.setMessagesPostShow("Almost there...", "We are setting up your profile");
+
+        FirebaseStaticReqManager.getInstance().requestSaveProfile(generateUser(),this);
+        //Log.e("TXT SWITCH FADE", "INVOKED");
     }
 
     @Override
@@ -295,21 +312,142 @@ public class SignUpActivity extends AppCompatActivity implements FirebaseStaticR
 
             dialog.transitionToError("This email address is already in use. Please key in a different one");
             Log.e("SIGN UP EXCEPTION", failureException.toString());
-        }
-
-        if (failureException instanceof FirebaseNetworkException){
+        } else if (failureException instanceof FirebaseNetworkException){
 
             dialog.transitionToError("Seem's like you don't have an active internet connection. Please check and try again");
             Log.e("SIGN UP EXCEPTION",failureException.toString());
+        } else if (failureException instanceof FirebaseAuthInvalidCredentialsException){
+
+            dialog.transitionToError("Please check your credentials. Your email might be badly formatted");
+            Log.e("SIGN UP EXCEPTION", failureException.toString());
+        } else {
+
+            dialog.transitionToError("Please check your connection and try again");
+            Log.e("SIGN UP EXCEPTION",failureException.toString());
         }
+        dialogActive = false;
     }
+
+
+    /*
+    Method to generate user data for profile
+     */
+    private User generateUser(){
+
+        User user= new User();
+
+        user.setUserName(mEditName.getText().toString());
+        user.setEmail(mEditEmail.getText().toString());
+        user.setPhoneNumber(mEditPhone.getText().toString());
+
+        return user;
+    }
+
+    /*
+    Overridden Profile callback methods
+     */
+    @Override
+    public void onSaveSuccess(){
+
+        //request to save account
+        //Toast.makeText(this,"Saved profile data",Toast.LENGTH_SHORT).show();
+        Log.e("save success", "INVOKED");
+        //dialog.setMessagesPostShow("Finishing up","We're adding your account details");
+        TextSwitchFadeAnimator.switchText(dialog.getmTxtMainWaitMsg(), dialog.getmTxtExpandedWaitMsg(), "Finishing up", "We are saving your account details");
+        FirebaseStaticReqManager.getInstance().requestCreateAccount(this, generateMiniMetaData(), generateFullData());
+    }
+
+    @Override
+    public void onSaveFail(DatabaseError databaseError){
+
+
+        //display error. Remove user from system if possible. What if bundles done? Need way to do this later, or do 2 step sign up
+        dialog.transitionToError("We couldn't set up your profile");
+        Log.e("PROFILE SAVE ERR",databaseError.toString());
+        dialogActive = false;
+    }
+
+    @Override
+    public void onProfileReqSuccess(User user){
+
+        //Do nothing. Not needed
+    }
+
+    @Override
+    public void onProfileReqFail(DatabaseError databaseError){
+
+        //Do nothing. Not needed
+    }
+
+
+    /*
+    Generate mini account data and full account data
+     */
+    private AccountsMiniMetaData generateMiniMetaData(){
+
+        AccountsMiniMetaData miniMetaData = new AccountsMiniMetaData();
+
+        miniMetaData.setAccountNumber(mEditMtrNo.getText().toString());
+        miniMetaData.setCurrent(true);
+        miniMetaData.setPostPay(false);
+
+        return miniMetaData;
+    }
+
+
+    /*
+    Generate full account data
+     */
+    private AccountsFullMetaData generateFullData(){
+
+        AccountsFullMetaData fullMetaData = new AccountsFullMetaData();
+
+        fullMetaData.setPrimary(true);
+        fullMetaData.setOwnerName(mEditName.getText().toString());
+        fullMetaData.setStatus(AccountsManager.STATUS_ACTIVE);
+        fullMetaData.setAccType(AccountsManager.PRE_PAID);
+        fullMetaData.setAccArrears(AccountsManager.ARREARS_NIL);
+
+        return fullMetaData;
+    }
+
+
+    /*
+    Overridden account callback methods
+     */
+    @Override
+    public void onCreateAccSuccess(){
+
+
+        //Take me to home screen baby!!
+        startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
+        finish();
+
+    }
+
+    @Override
+    public void onCreateAccFail(DatabaseError databaseError){
+
+
+        dialog.transitionToError("We couldn't complete the sign up. Please try again");
+        Log.e("ACC SAVE ERROR", databaseError.toString());
+        dialogActive = false;
+    }
+
 
     @Override
     public void onBackPressed(){
 
         //do custom actions on back pressed. Confirm interruption of sign up process
-        dialog.setCancelable(true);
-        dialog.dismiss();
+//        dialog.setCancelable(true);
+  //      dialog.dismiss();
+        if (dialogActive){
+
+            //do nothing
+        } else {
+
+            super.onBackPressed();
+        }
 
     }
 }
