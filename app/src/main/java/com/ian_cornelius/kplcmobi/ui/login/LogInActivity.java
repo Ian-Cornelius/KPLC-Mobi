@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import com.google.firebase.FirebaseNetworkException;
 import com.ian_cornelius.kplcmobi.R;
+import com.ian_cornelius.kplcmobi.models.ConsumptionTrackLastHistoryRecord;
 import com.ian_cornelius.kplcmobi.ui.dialogs.ProcessDialog;
 import com.ian_cornelius.kplcmobi.ui.home.HomeActivity;
 import com.ian_cornelius.kplcmobi.ui.signup.SignUpActivity;
@@ -25,6 +26,7 @@ import android.widget.Toast;
 
 //Process auth requests
 import com.ian_cornelius.kplcmobi.utils.FirebaseUtils.FirebaseStaticReqManager;
+import com.ian_cornelius.kplcmobi.utils.data_managers.ConsumptionTrackLocalStoreManager;
 
 public class LogInActivity extends AppCompatActivity implements FirebaseStaticReqManager.AuthRequestCallBack{
 
@@ -45,6 +47,22 @@ public class LogInActivity extends AppCompatActivity implements FirebaseStaticRe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.log_in_activity);
+
+        /*
+        Test local consumption track persistence with pseudo-data
+         */
+        ConsumptionTrackLocalStoreManager localStoreManager = ConsumptionTrackLocalStoreManager.getInstance();
+
+        //Post local history. Repeated posts don't affect maths which varies based on time elapsed
+        ConsumptionTrackLastHistoryRecord record = new ConsumptionTrackLastHistoryRecord();
+        record.setPrevUnitsBought(30);
+        record.setMonthlyAverageUnits(30);
+        record.setLastDate("30/5/2019 08:55");
+
+        localStoreManager.postChanges(record, getApplicationContext());
+
+        //expect consumed units to be updated accordingly, once broadcast 1st fires. And it was. And
+        //I think it will work beautifully
 
         //By pass all this if user still logged in
         if (FirebaseStaticReqManager.getInstance().requestAuthCurrentUser(this) != null){

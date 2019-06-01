@@ -21,6 +21,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.ian_cornelius.kplcmobi.R;
+import com.ian_cornelius.kplcmobi.models.CurrentConsumption;
+import com.ian_cornelius.kplcmobi.utils.data_managers.ConsumptionTrackLocalStoreManager;
 import com.ian_cornelius.kplcmobi.utils.data_managers.ConsumptionTrackManager;
 import com.ian_cornelius.kplcmobi.utils.generators.ConsumptionTrackGenerator;
 
@@ -55,7 +57,7 @@ public class ConsumptionTrackController {
         mTxtShowEstConsumed = consumptionTrackMotionLayout.findViewById(R.id.txtShowEstConsumed);
         mTxtShowEstRemaining = consumptionTrackMotionLayout.findViewById(R.id.txtShowEstRem);
 
-        //now call the widget set up (onClick listeners)
+        //now call the widget set up (onClick listeners and local var's)
         setUpWidgets();
     }
 
@@ -87,6 +89,19 @@ public class ConsumptionTrackController {
 
         //try my alarms
         //setAlarms(context);
+
+        //try getting the local save
+        CurrentConsumption consumption = (CurrentConsumption) ConsumptionTrackLocalStoreManager.getInstance().readLocal(ConsumptionTrackLocalStoreManager.REQUEST_CURRENT_CONSUMPTION, mTxtShowEstConsumed.getContext());
+
+        if (consumption.getPrevUnitsBought() == 0){
+
+            //problem, log
+            Log.e("LOCAL STORE ERROR", "FAILED READING VAL. NOT SET OR READ ERROR IN CONTROLLER");
+        } else {
+
+            //update metrics
+            updateMetrics(consumption.getPrevUnitsBought(), consumption.getConsumedUnits());
+        }
     }
 
 
@@ -154,7 +169,5 @@ public class ConsumptionTrackController {
             mTxtShowEstRemaining.setText(String.valueOf(prevUnits - consumedUnits));
         }
 
-        //Update ConsumptionTrack recorder model and save val locally. To show later.
-        //Use object box
     }
 }

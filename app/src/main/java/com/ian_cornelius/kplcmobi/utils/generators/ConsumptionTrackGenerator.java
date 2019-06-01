@@ -48,7 +48,9 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.ian_cornelius.kplcmobi.models.ConsumptionTrackLastHistoryRecord;
 import com.ian_cornelius.kplcmobi.utils.FirebaseUtils.FirebaseStaticReqManager;
+import com.ian_cornelius.kplcmobi.utils.data_managers.ConsumptionTrackLocalStoreManager;
 import com.ian_cornelius.kplcmobi.utils.data_managers.ConsumptionTrackManager;
 import com.ian_cornelius.kplcmobi.utils.services.AlarmResetService;
 
@@ -63,19 +65,24 @@ public class ConsumptionTrackGenerator extends BroadcastReceiver {
     public void onReceive (Context context, Intent intent){
 
         //Handle reboots while user still signed in
-        if (false){
+        if (intent.getAction() != null){
 
-            //First, ensure we still have the signed in user. Firebase maintains local auth
-            //status. Use classes I've defined for that...cause of reference error? Maybe not...
-            //But just to be safe
+            if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")){
 
-            //Wait...alarm cancelled on log out. So this condition may never be...or what if data cleared?
-            if (FirebaseStaticReqManager.getInstance().requestAuthCurrentUser(this) != null){
 
-                //Have a logged in user. Can reset my alarm to continue
-                Intent serviceIntent = new Intent(context, AlarmResetService.class);
-                context.startService(serviceIntent);
+                //First, ensure we still have the signed in user. Firebase maintains local auth
+                //status. Use classes I've defined for that...cause of reference error? Maybe not...
+                //But just to be safe
+
+                //Wait...alarm cancelled on log out. So this condition may never be...or what if data cleared?
+                if (FirebaseStaticReqManager.getInstance().requestAuthCurrentUser(this) != null){
+
+                    //Have a logged in user. Can reset my alarm to continue
+                    Intent serviceIntent = new Intent(context, AlarmResetService.class);
+                    context.startService(serviceIntent);
+                }
             }
+
 
         } else {
 
@@ -100,13 +107,13 @@ public class ConsumptionTrackGenerator extends BroadcastReceiver {
 
         Alternatively, if local persistence works well for firebase, use firebase data and sieve it here
         */
-        private String lastDate = "30/5/2019 08:55"; //format dd/mm/yy hh:mm
-        private float monthlyAverageUnits = 30;
-        private float consumptionRatePerHour;
+        private String lastDate; //= "30/5/2019 08:55"; //format dd/mm/yy hh:mm
+        private float monthlyAverageUnits; //= 30;
+        private float consumptionRatePerHour; //derived
 
         //Hold units bought and consumed
-        private int prevUnitsBought = 30; //not a necessary var. Actually necessary. To infer remaining units
-        private float consumedUnits;
+        private int prevUnitsBought; //= 30; //not a necessary var. Actually necessary. To infer remaining units
+        private float consumedUnits; //derived
 
         private final PendingResult pendingResult;
         private final Intent intent;
@@ -124,7 +131,9 @@ public class ConsumptionTrackGenerator extends BroadcastReceiver {
         @Override
         protected String doInBackground(String... strings){
 
-            calculateCurrentConsumption();
+            //calculateCurrentConsumption();
+            calculateConsumption();
+
             return strings.toString();
         }
 
@@ -167,12 +176,46 @@ public class ConsumptionTrackGenerator extends BroadcastReceiver {
             consumedUnits = consumptionRatePerHour*elapsedTimeHrs();
         }
 
+        private void calculateConsumption(){
+
+            /*
+            NEW CODE
+             */
+            //get last history
+            ConsumptionTrackLastHistoryRecord record = (ConsumptionTrackLastHistoryRecord) ConsumptionTrackLocalStoreManager.getInstance().readLocal(ConsumptionTrackLocalStoreManager.REQUEST_LAST_HISTORY, context);
+
+            if (record.getPrevUnitsBought() == 0){
+
+                //we have a problem. Set all vals to zero and return. Log at manager
+                prevUnitsBought = 0;
+                consumedUnits = 0;
+                return;
+
+            } else {
+
+                //extract data
+                prevUnitsBought = record.getPrevUnitsBought();
+                monthlyAverageUnits = record.getMonthlyAverageUnits();
+                lastDate = record.getLastDate();
+            }
+
+            //now get rate per hour
+            consumptionRatePerHour = monthlyAverageUnits/(30*24);
+            Log.e("CONSUMPTION RATE", String.valueOf(consumptionRatePerHour));
+
+            /*
+            Knowing rate per hour, get time elapsed (in hours), and know total consumed
+             */
+            consumedUnits = consumptionRatePerHour*elapsedTimeHrs();
+
+        }
+
 
         //Calculate elapsed time (hrs)
         private long elapsedTimeHrs(){
 
             //Set our date format
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/M/yyyy hh:mm");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(ConsumptionTrackLocalStoreManager.LOCAL_DATE_FORMAT);
 
             //Hold our elapsedHrs
             long elapsedHrs = 0;
@@ -191,15 +234,6 @@ public class ConsumptionTrackGenerator extends BroadcastReceiver {
 
                 Log.e("Failed to parse", e.toString());
             }
-
-            /*
-            Elapsed time will be (daysElapsed - 1)*24, + hrsElapsed
-
-            Doing -1 to cater for 24 hours possibly not yet passed. Passed if current time > prevTime.
-            Do 24 + time diff between currentTime and prevTime.
-
-            No need for this maths with new format
-             */
 
             Log.e("ELAPSED HOURS",String.valueOf(elapsedHrs));
             return  elapsedHrs;

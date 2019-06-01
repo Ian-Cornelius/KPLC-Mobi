@@ -52,30 +52,47 @@ public class ConsumptionTrackManager {
      */
     public void updateMetrics(int prevUnitsBought, float consumedUnits, Context notifContext){
 
-        //Simple test now. Just work with checking if registered or not and do appropriate action
-        if (controllerRegistered){
+        if (prevUnitsBought == 0){
 
-            //Show toast. Was using context passed to do that
-            //Toast.makeText(context, "Seen your register!!", Toast.LENGTH_SHORT).show();
-            //tell controller to update metrics
-            controller.updateMetrics(prevUnitsBought, consumedUnits);
-
+            //using prev units bought cause it can never be zero with sample size 1 or greater
+            Log.e("CONSUMPTION TRACK", "ERROR IN LOCAL STORE ACCESS");
+            Toast.makeText(notifContext, "Failed to calculate consumption track", Toast.LENGTH_LONG).show();
         } else {
 
-            //Show notification. Need to pass context to do this
-            NotificationManager notificationManager = (NotificationManager) notifContext.getSystemService(Context.NOTIFICATION_SERVICE);
 
-            //Notification notification = new Notification(R.drawable.location_icon, "Wuuuuhuuuuuuu", System.currentTimeMillis());
+            //Simple test now. Just work with checking if registered or not and do appropriate action
+            if (controllerRegistered){
 
-            Notification.Builder builder = new Notification.Builder(notifContext);
-            builder.setContentTitle("Consumption track");
-            builder.setContentText("Legend!!");
-            builder.setSmallIcon(R.drawable.location_icon);
+                //Show toast. Was using context passed to do that
+                //Toast.makeText(context, "Seen your register!!", Toast.LENGTH_SHORT).show();
+                //tell controller to update metrics
+                controller.updateMetrics(prevUnitsBought, consumedUnits);
 
-            notificationManager.notify(0, builder.build());
+            } else {
 
-            Log.e("NOTIFICATIONS","WENT THROUGH THIS ONE WELL");
+                //Show notification. Need to pass context to do this
+                NotificationManager notificationManager = (NotificationManager) notifContext.getSystemService(Context.NOTIFICATION_SERVICE);
 
+                //Notification notification = new Notification(R.drawable.location_icon, "Wuuuuhuuuuuuu", System.currentTimeMillis());
+
+                Notification.Builder builder = new Notification.Builder(notifContext);
+                builder.setContentTitle("Consumption track");
+                builder.setContentText("Legend!!");
+                builder.setSmallIcon(R.drawable.location_icon);
+
+                notificationManager.notify(0, builder.build());
+
+                Log.e("NOTIFICATIONS","WENT THROUGH THIS ONE WELL");
+
+            }
+
+
+            //Update record
+            ConsumptionTrackLocalStoreManager localStoreManager = ConsumptionTrackLocalStoreManager.getInstance();
+            if (!localStoreManager.postChanges(consumedUnits, notifContext)){
+
+                Log.e("CONSUMPTION TRACK", "ERROR UPDATING VALUES");
+            }
         }
     }
 
