@@ -37,6 +37,10 @@ public class LogInActivity extends AppCompatActivity implements FirebaseStaticRe
     //Show progress
     private ProcessDialog processDialog;
 
+    //Tell us of a saved auth
+    public static final String SAVED_AUTH = "SAVED_AUTH";
+    public static final String NEW_AUTH = "NEW_AUTH";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +50,13 @@ public class LogInActivity extends AppCompatActivity implements FirebaseStaticRe
         if (FirebaseStaticReqManager.getInstance().requestAuthCurrentUser(this) != null){
 
             //Switch of activity done on Success.
-            startActivity(new Intent(LogInActivity.this, HomeActivity.class));
+
+            //Put in bundle args
+            Bundle bundle = new Bundle();
+            bundle.putString("STATUS",SAVED_AUTH);
+            Intent intent = new Intent(LogInActivity.this, HomeActivity.class);
+            intent.putExtra("STATUS",bundle);
+            startActivity(intent);
         }
 
         /*
@@ -126,7 +136,11 @@ public class LogInActivity extends AppCompatActivity implements FirebaseStaticRe
     public void onSuccess(){
 
         //Switch to home activity
-        startActivity(new Intent(LogInActivity.this, HomeActivity.class));
+        Bundle bundle = new Bundle();
+        bundle.putString("STATUS", NEW_AUTH);
+        Intent intent = new Intent(LogInActivity.this, HomeActivity.class);
+        intent.putExtra("STATUS", bundle);
+        startActivity(intent);
         finish();
 
     }

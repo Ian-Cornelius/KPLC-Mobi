@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.ian_cornelius.kplcmobi.R;
 
@@ -22,6 +21,7 @@ Controllers for UI
  */
 import com.ian_cornelius.kplcmobi.controllers.ConsumptionTrackController;
 import com.ian_cornelius.kplcmobi.controllers.PlannedOutagesController;
+import com.ian_cornelius.kplcmobi.ui.login.LogInActivity;
 
 
 public class NotificationsFragment extends Fragment {
@@ -84,7 +84,38 @@ public class NotificationsFragment extends Fragment {
         //Pass our container. Now just our main notifications
         plannedOutagesController.setViewContainer(notificationsView);
 
+        //Alarm test. Tell controller to setUpAlarm, if newAuth. Arguments only set by log in
+        if (getArguments() != null) {
+
+
+            if (getArguments().getString("STATUS").equals(LogInActivity.NEW_AUTH)){
+
+                consumptionTrackController.setAlarms(getActivity());
+            } else if (getArguments().getString("STATUS").equals(LogInActivity.SAVED_AUTH)){
+
+                Log.e("args", "SAVED AUTH");
+            }
+        }
+
         return notificationsView;
+    }
+
+    //Register alarms
+    @Override
+    public void onStart(){
+
+        super.onStart();
+
+        //test my alarms
+        consumptionTrackController.requestRegister();
+    }
+
+    //test my alarms
+    @Override
+    public void onStop(){
+        super.onStop();
+
+        consumptionTrackController.requestDeregister();
     }
 
 

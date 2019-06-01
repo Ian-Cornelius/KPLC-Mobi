@@ -18,6 +18,7 @@ import com.ian_cornelius.kplcmobi.ui.fragments.SettingsFragment;
 import com.ian_cornelius.kplcmobi.ui.home.HomeActivity;
 import com.ian_cornelius.kplcmobi.ui.login.LogInActivity;
 import com.ian_cornelius.kplcmobi.ui.signup.SignUpActivity;
+import com.ian_cornelius.kplcmobi.utils.generators.ConsumptionTrackGenerator;
 
 public final class FirebaseStaticReqManager implements FirebaseAuthManager.AuthCallBack, FirebaseProfileManager.ProfileManagerCallbacks,
                     FirebaseAccountsManager.AccountsAccessCallBack{
@@ -127,7 +128,7 @@ public final class FirebaseStaticReqManager implements FirebaseAuthManager.AuthC
     private boolean correctAuthUserCaller(Object refActivity){
 
         return (refActivity instanceof  LogInActivity || refActivity instanceof FirebaseProfileManager
-        || refActivity instanceof FirebaseAccountsManager);
+        || refActivity instanceof FirebaseAccountsManager || refActivity instanceof ConsumptionTrackGenerator);
     }
 
 

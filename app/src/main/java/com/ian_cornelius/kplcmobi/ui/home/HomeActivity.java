@@ -1,5 +1,7 @@
 package com.ian_cornelius.kplcmobi.ui.home;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -48,6 +50,7 @@ import com.ian_cornelius.kplcmobi.ui.fragments.SettingsFragment;
 import com.ian_cornelius.kplcmobi.ui.fragments.SwitchAccFabContentFragment;
 import com.ian_cornelius.kplcmobi.ui.login.LogInActivity;
 import com.ian_cornelius.kplcmobi.utils.FirebaseUtils.FirebaseStaticReqManager;
+import com.ian_cornelius.kplcmobi.utils.generators.ConsumptionTrackGenerator;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -211,8 +214,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        //Put up our notifications fragment
-        getSupportFragmentManager().beginTransaction().replace(R.id.home_fragments_holder,new NotificationsFragment()).commit();
+        //Put up our notifications fragment, passing in passed in bundle
+        NotificationsFragment fragment = new NotificationsFragment();
+        fragment.setArguments(getIntent().getBundleExtra("STATUS"));
+        getSupportFragmentManager().beginTransaction().replace(R.id.home_fragments_holder,fragment).commit();
 
 
     }
@@ -503,6 +508,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
                 //Request log out
                 FirebaseStaticReqManager.getInstance().requestAuth(FirebaseStaticReqManager.AuthType.LOGOUT, this);
+
+                //remove user's alarms
+                removeAlarms();
+
+                //Switch to log in activity
                 startActivity(new Intent(HomeActivity.this, LogInActivity.class));
                 finish();
                 break;
@@ -561,6 +571,19 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         Log.e("HIDE FAB","REQUESTED");
+    }
+
+    /*
+    Method to cancel alarm
+     */
+    private void removeAlarms(){
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+        Intent alarmIntent = new Intent(this, ConsumptionTrackGenerator.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, 0);
+
+        alarmManager.cancel(pendingIntent);
     }
 
     /*

@@ -30,7 +30,7 @@
         android:text="@string/menu"
         android:textColor="@color/custom_grey"
         android:fontFamily="@font/lato_bold"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_header2"
         app:layout_constraintStart_toStartOf="@+id/guidelineTxtMenuStart"
         app:layout_constraintTop_toTopOf="@+id/guidelineTxtMenuTop" />
 
@@ -49,7 +49,7 @@
         android:text="@string/settings"
         android:textColor="@color/custom_grey"
         android:fontFamily="@font/lato_bold"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_header2"
         app:layout_constraintStart_toStartOf="@+id/guidelineTxtSettings"
         app:layout_constraintTop_toTopOf="@+id/guidelineTxtMenuTop" />
 
@@ -77,7 +77,7 @@
         android:fontFamily="@font/lato_regular"
         android:text="@string/buy_power"
         android:textColor="@color/kplcGreen"
-        android:textSize="18sp"
+        android:textSize="@dimen/text_size_header1"
         app:layout_constraintStart_toStartOf="@+id/guidelineAllTxtsStart"
         app:layout_constraintTop_toBottomOf="@+id/txtMenu" />
 
@@ -114,7 +114,7 @@
         android:text="@string/buy_tokens"
         android:textColor="@color/custom_grey"
         android:fontFamily="@font/lato_bold"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_header2"
         app:layout_constraintStart_toStartOf="@+id/guidelineAllTxtsStart"
         app:layout_constraintTop_toBottomOf="@+id/headerTxtBuyPower" />
 
@@ -134,7 +134,7 @@
         android:text="@string/buy_post_paid"
         android:textColor="@color/custom_grey"
         android:fontFamily="@font/lato_bold"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_header2"
         app:layout_constraintStart_toStartOf="@+id/guidelineAllTxtsStart"
         app:layout_constraintTop_toBottomOf="@+id/txtBuyTokens" />
 
@@ -154,7 +154,7 @@
         android:text="@string/purchase_history"
         android:textColor="@color/custom_grey"
         android:fontFamily="@font/lato_bold"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_header2"
         app:layout_constraintStart_toStartOf="@+id/guidelineAllTxtsStart"
         app:layout_constraintTop_toBottomOf="@+id/txtPostPaid" />
 
@@ -174,7 +174,7 @@
         android:text="@string/power_issues"
         android:textColor="@color/kplcGreen"
         android:fontFamily="@font/lato_regular"
-        android:textSize="18sp"
+        android:textSize="@dimen/text_size_header1"
         app:layout_constraintStart_toStartOf="@+id/guidelineAllTxtsStart"
         app:layout_constraintTop_toBottomOf="@+id/txtPurchaseHist" />
 
@@ -211,7 +211,7 @@
         android:text="@string/report_power"
         android:textColor="@color/custom_grey"
         android:fontFamily="@font/lato_bold"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_header2"
         app:layout_constraintStart_toStartOf="@+id/guidelineAllTxtsStart"
         app:layout_constraintTop_toBottomOf="@+id/headerTxtPowerIssuesSep" />
 
@@ -231,7 +231,7 @@
         android:text="@string/KPLC_reponses"
         android:textColor="@color/custom_grey"
         android:fontFamily="@font/lato_bold"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_header2"
         app:layout_constraintStart_toStartOf="@+id/guidelineAllTxtsStart"
         app:layout_constraintTop_toBottomOf="@+id/txtReportPower" />
 
@@ -248,7 +248,7 @@
         android:paddingBottom="2dp"
         android:text="@string/New"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="@dimen/text_size_body"
         app:layout_constraintBottom_toBottomOf="@+id/txtKPLCRes"
         app:layout_constraintStart_toEndOf="@+id/txtKPLCRes"
         app:layout_constraintTop_toTopOf="@+id/txtKPLCRes" />
@@ -269,7 +269,7 @@
         android:text="@string/notifications"
         android:textColor="@color/kplcGreen"
         android:fontFamily="@font/lato_regular"
-        android:textSize="18sp"
+        android:textSize="@dimen/text_size_header1"
         app:layout_constraintStart_toStartOf="@+id/guidelineAllTxtsStart"
         app:layout_constraintTop_toBottomOf="@+id/txtKPLCRes" />
 
@@ -306,7 +306,7 @@
         android:text="@string/all_notifications"
         android:textColor="@color/custom_grey"
         android:fontFamily="@font/lato_bold"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_header2"
         app:layout_constraintStart_toStartOf="@+id/guidelineAllTxtsStart"
         app:layout_constraintTop_toBottomOf="@+id/headerTxtNotificationsSep" />
 
@@ -326,7 +326,7 @@
         android:text="@string/messages"
         android:textColor="@color/kplcGreen"
         android:fontFamily="@font/lato_regular"
-        android:textSize="18sp"
+        android:textSize="@dimen/text_size_header1"
         app:layout_constraintStart_toStartOf="@+id/guidelineAllTxtsStart"
         app:layout_constraintTop_toBottomOf="@+id/txtAllNotifications" />
 
@@ -363,7 +363,7 @@
         android:text="@string/inbox"
         android:textColor="@color/custom_grey"
         android:fontFamily="@font/lato_bold"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_header2"
         app:layout_constraintStart_toStartOf="@+id/guidelineAllTxtsStart"
         app:layout_constraintTop_toBottomOf="@+id/headerTxtMessSep" />
 
@@ -382,7 +382,7 @@
         android:paddingBottom="2dp"
         android:text="@string/New"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="@dimen/text_size_body"
         app:layout_constraintBottom_toBottomOf="@+id/txtInbox"
         app:layout_constraintStart_toEndOf="@+id/txtInbox"
         app:layout_constraintTop_toTopOf="@+id/txtInbox" />
@@ -403,7 +403,7 @@
         android:text="@string/log_out"
         android:textColor="@color/custom_grey"
         android:fontFamily="@font/lato_bold"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_header2"
         android:drawableLeft="@drawable/log_out_icon"
         android:drawablePadding="11dp"
         app:layout_constraintStart_toStartOf="@+id/guidelineAllTxtsStart"
@@ -430,6 +430,7 @@
         android:text="@string/apply_power"
         android:textAllCaps="false"
         android:textColor="@color/custom_grey"
+        android:textSize="@dimen/text_size_body"
         app:layout_constraintStart_toStartOf="@+id/guidelineAllTxtsStart"
         app:layout_constraintTop_toBottomOf="@+id/txtLogOut" />
 

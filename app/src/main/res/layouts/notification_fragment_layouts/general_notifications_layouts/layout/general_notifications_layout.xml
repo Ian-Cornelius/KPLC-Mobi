@@ -10,10 +10,10 @@
         android:id="@+id/txtNotificationsHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/lato_regular"
+        android:fontFamily="@font/lato_bold"
         android:text="@string/general_notif"
         android:textColor="@color/kplcGreen"
-        android:textSize="20sp"
+        android:textSize="@dimen/text_size_header1"
         android:layout_marginTop="50dp"
         app:layout_constraintStart_toStartOf="@+id/guidelineListItemsStart"
         app:layout_constraintTop_toBottomOf="@+id/consumptionTrackLayoutContainer" />
@@ -28,14 +28,14 @@
         android:fontFamily="@font/lato_regular"
         android:text="@string/no_notif"
         android:textColor="@color/custom_grey"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_body"
         app:layout_constraintStart_toStartOf="@+id/guidelineListItemsStart"
         app:layout_constraintTop_toBottomOf="@+id/txtNotificationsHeader" />
 
     <TextView
         android:id="@+id/genNotifsSeparator"
         android:layout_width="0dp"
-        android:layout_height="1dp"
+        android:layout_height="0.4dp"
         android:layout_marginTop="34dp"
         android:background="@color/custom_grey"
         app:layout_constraintEnd_toStartOf="@+id/guidelineAllNotifsSepEnd"

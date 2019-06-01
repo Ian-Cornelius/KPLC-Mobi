@@ -42,6 +42,7 @@
                 android:padding="0dp"
                 android:scaleType="fitXY"
                 android:translationY="-2dp"
+                android:translationX="-2dp"
                 app:layout_constraintBottom_toTopOf="@+id/guidelineActBarBottom"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineActBarEnd"
                 app:layout_constraintStart_toStartOf="parent"
@@ -72,7 +73,7 @@
                 android:fontFamily="@font/lato_regular"
                 android:text="@string/notifications"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="@dimen/text_size_header1"
                 app:layout_constraintBottom_toTopOf="@+id/guidelineActBarBottom"
                 app:layout_constraintEnd_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toTopOf="parent" />

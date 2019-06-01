@@ -16,7 +16,7 @@
         android:fontFamily="@font/lato_bold"
         android:text="@string/consumption_header"
         android:textColor="@color/kplcGreen"
-        android:textSize="20sp"
+        android:textSize="@dimen/text_size_header1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,7 +30,7 @@
         android:fontFamily="@font/lato_bold"
         android:text="@string/no_action"
         android:textColor="@color/kplcGreen"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_body"
         app:layout_constraintBottom_toBottomOf="@+id/txtConsumptionTrackHeader"
         app:layout_constraintStart_toEndOf="@+id/txtConsumptionTrackHeader"
         app:layout_constraintTop_toTopOf="@+id/txtConsumptionTrackHeader" />
@@ -43,7 +43,7 @@
         android:fontFamily="@font/lato_regular"
         android:text="@string/previous_units_bought"
         android:textColor="@color/custom_grey"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_body"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtConsumptionTrackHeader" />
 
@@ -55,7 +55,7 @@
         android:fontFamily="@font/lato_regular"
         android:text="30"
         android:textColor="@color/custom_grey"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_body"
         app:layout_constraintBottom_toBottomOf="@+id/txtPrevNumUnitsBought"
         app:layout_constraintStart_toEndOf="@+id/txtPrevNumUnitsBought"
         app:layout_constraintTop_toTopOf="@+id/txtPrevNumUnitsBought" />
@@ -68,7 +68,7 @@
         android:fontFamily="@font/lato_regular"
         android:text="@string/units_consumed_estimate"
         android:textColor="@color/custom_grey"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_body"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtPrevNumUnitsBought" />
 
@@ -80,7 +80,7 @@
         android:fontFamily="@font/lato_regular"
         android:text="10"
         android:textColor="@color/custom_grey"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_body"
         app:layout_constraintBottom_toBottomOf="@+id/txtEstNumConsumed"
         app:layout_constraintStart_toEndOf="@+id/txtEstNumConsumed"
         app:layout_constraintTop_toTopOf="@+id/txtEstNumConsumed" />
@@ -104,7 +104,7 @@
         android:fontFamily="@font/lato_regular"
         android:text="@string/units_remaining_estimate"
         android:textColor="@color/custom_grey"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_body"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtEstNumConsumed" />
 
@@ -116,7 +116,7 @@
         android:fontFamily="@font/lato_regular"
         android:text="20"
         android:textColor="@color/custom_grey"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_body"
         app:layout_constraintBottom_toBottomOf="@+id/txtEstRemaining"
         app:layout_constraintStart_toEndOf="@+id/txtEstRemaining"
         app:layout_constraintTop_toTopOf="@+id/txtEstRemaining" />
@@ -132,7 +132,7 @@
         android:fontFamily="@font/lato_bold"
         android:text="@string/est_disclaimer"
         android:textColor="@color/custom_grey"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_body"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnDisclaimer" />
@@ -140,7 +140,7 @@
     <TextView
         android:id="@+id/separator"
         android:layout_width="0dp"
-        android:layout_height="1dp"
+        android:layout_height="0.4dp"
         android:layout_marginTop="34dp"
         android:background="@color/custom_grey"
         app:layout_constraintEnd_toStartOf="@+id/guidelineSeparatorEnd"

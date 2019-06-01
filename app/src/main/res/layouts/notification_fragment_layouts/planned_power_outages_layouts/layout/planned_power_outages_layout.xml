@@ -13,7 +13,7 @@
         android:fontFamily="@font/lato_bold"
         android:text="@string/planned_outages_header"
         android:textColor="@color/kplcGreen"
-        android:textSize="20sp"
+        android:textSize="@dimen/text_size_header1"
         android:layout_marginTop="50dp"
         app:layout_constraintStart_toStartOf="@+id/guidelineListItemsStart"
         app:layout_constraintTop_toBottomOf="@+id/genNotifsSeparator" />
@@ -25,7 +25,7 @@
         android:fontFamily="@font/lato_regular"
         android:text="@string/this_week"
         android:textColor="@color/custom_grey"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_header2"
         android:layout_marginTop="22dp"
         app:layout_constraintStart_toStartOf="@+id/guidelineListItemsStart"
         app:layout_constraintTop_toBottomOf="@+id/headerPlannedOutages" />
@@ -33,7 +33,7 @@
     <TextView
         android:id="@+id/weeklySeparator"
         android:layout_width="0dp"
-        android:layout_height="1dp"
+        android:layout_height="0.2dp"
         android:layout_marginTop="18dp"
         android:background="@drawable/dashed_separator"
         app:layout_constraintEnd_toStartOf="@+id/guidelineAllNotifsSepEnd"
@@ -48,7 +48,7 @@
         android:fontFamily="@font/lato_bold"
         android:text="@string/no_planned_outage"
         android:textColor="@color/custom_grey"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_body"
         app:layout_constraintBottom_toBottomOf="@+id/headerWeek"
         app:layout_constraintStart_toEndOf="@+id/headerWeek"
         app:layout_constraintTop_toTopOf="@+id/headerWeek" />
@@ -69,7 +69,7 @@
         android:fontFamily="@font/lato_regular"
         android:text="@string/this_month"
         android:textColor="@color/custom_grey"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_header2"
         android:layout_marginTop="19dp"
         app:layout_constraintStart_toStartOf="@+id/guidelineListItemsStart"
         app:layout_constraintTop_toTopOf="@+id/weeklySeparator" />
@@ -82,7 +82,7 @@
         android:fontFamily="@font/lato_bold"
         android:text="@string/no_planned_outage"
         android:textColor="@color/custom_grey"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_body"
         app:layout_constraintBottom_toBottomOf="@+id/headerMonth"
         app:layout_constraintStart_toEndOf="@+id/headerMonth"
         app:layout_constraintTop_toTopOf="@+id/headerMonth" />
@@ -90,7 +90,7 @@
     <TextView
         android:id="@+id/plannedOutagesSep"
         android:layout_width="0dp"
-        android:layout_height="1dp"
+        android:layout_height="0.4dp"
         android:layout_marginTop="16dp"
         android:background="@color/custom_grey"
         app:layout_constraintEnd_toStartOf="@+id/guidelineAllNotifsSepEnd"
