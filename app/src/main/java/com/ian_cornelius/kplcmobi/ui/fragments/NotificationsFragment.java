@@ -100,6 +100,9 @@ public class NotificationsFragment extends Fragment {
         return notificationsView;
     }
 
+    //TODO Method to update incase of a switch of accounts, or new user logon. Handle with log in arguments
+    //New log in, update last purchase
+
     //Register alarms
     @Override
     public void onStart(){

@@ -18,7 +18,7 @@
             android:layout_height="297dp"
             android:background="@android:color/transparent"
             android:orientation="vertical"
-            android:translationX="0dp"
+            android:translationX="8dp"
             app:layout_constraintBottom_toTopOf="@+id/guidelineSwitchAccCustFabBottom"
             app:layout_constraintEnd_toEndOf="@+id/guidelineSwitchAccCustFabEnd"/>
 

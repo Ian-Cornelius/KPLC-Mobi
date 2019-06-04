@@ -70,10 +70,10 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="30dp"
                 android:layout_marginBottom="8dp"
-                android:fontFamily="@font/lato_regular"
+                android:fontFamily="@font/lato_bold"
                 android:text="@string/notifications"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_size_header1"
+                android:textSize="@dimen/text_size_header2"
                 app:layout_constraintBottom_toTopOf="@+id/guidelineActBarBottom"
                 app:layout_constraintEnd_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toTopOf="parent" />

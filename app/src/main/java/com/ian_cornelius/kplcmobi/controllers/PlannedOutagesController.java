@@ -32,6 +32,7 @@ later
 import android.content.Context;
 import android.graphics.Typeface;
 import android.util.Log;
+import android.util.TypedValue;
 import android.widget.TextView;
 import android.view.View;
 
@@ -176,8 +177,11 @@ public class PlannedOutagesController{
 
                 }
 
+                //text sizes
+                tempTextViewRef.setTextSize(TypedValue.COMPLEX_UNIT_PX, context.getResources().getDimension(R.dimen.text_size_body));
+
                 //Standard text properties
-                tempTextViewRef.setTextSize(16);
+                //tempTextViewRef.setTextSize(16);
                 tempTextViewRef.setTypeface(Typeface.createFromAsset(notifFrag.getActivity().getAssets(),"fonts/lato_regular.ttf"));
                 tempTextViewRef.setId(i + 1);
 

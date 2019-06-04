@@ -32,7 +32,11 @@ public class PurchaseHistoryListFragment extends Fragment {
     Sort button to sort list. Activate its frag.
      */
     private Button mBtnSort;
-    private Animation mClassicZoomOut;
+
+    /*
+    New exit anim
+     */
+    private Animation mSlideDownFadeOut;
 
     private View fragView;
 
@@ -46,8 +50,12 @@ public class PurchaseHistoryListFragment extends Fragment {
         Get button reference
          */
         mBtnSort = purchaseHistListFragment.findViewById(R.id.btnSort);
-        mClassicZoomOut = AnimationUtils.loadAnimation(getActivity(), R.anim.classic_zoom_out);
         fragView = purchaseHistListFragment.findViewById(R.id.sortContentFragmentHolder);
+
+        /*
+        New anim
+         */
+        mSlideDownFadeOut = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_down_fade_out);
 
         /*
         Instantiate recycler view and adapters
@@ -79,7 +87,7 @@ public class PurchaseHistoryListFragment extends Fragment {
                  */
                 SortContentFragment fragment = new SortContentFragment();
                 fragment.getFragmentAndAdapter(getFragInstance(),adapter);
-                getChildFragmentManager().beginTransaction().setCustomAnimations(R.anim.classic_zoom_in, R.anim.classic_zoom_out).replace(R.id.sortContentFragmentHolder, fragment).commit();
+                getChildFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_up_fade_in, R.anim.classic_zoom_out).replace(R.id.sortContentFragmentHolder, fragment).commit();
 
                 mBtnSort.setEnabled(false);
 
@@ -89,7 +97,7 @@ public class PurchaseHistoryListFragment extends Fragment {
         /*
         Animation listener
          */
-        mClassicZoomOut.setAnimationListener(new Animation.AnimationListener() {
+        mSlideDownFadeOut.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
 
@@ -140,7 +148,7 @@ public class PurchaseHistoryListFragment extends Fragment {
        /*
        Play animation, which will kill frag on end
         */
-       fragView.startAnimation(mClassicZoomOut);
+       fragView.startAnimation(mSlideDownFadeOut);
    }
 
     @Override

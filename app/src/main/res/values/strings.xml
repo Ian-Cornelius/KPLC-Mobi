@@ -59,7 +59,7 @@
     <string name="cash">Cash</string>
     <string name="units">Units (Kwh)</string>
     <string name="or">OR</string>
-    <string name="suggest_units">Suggested number of units:</string>
+    <string name="suggest_units">Suggested:</string>
     <string name="view_hist">View history</string>
     <string name="purchase">Purchase</string>
     <string name="token_num">Token number:</string>

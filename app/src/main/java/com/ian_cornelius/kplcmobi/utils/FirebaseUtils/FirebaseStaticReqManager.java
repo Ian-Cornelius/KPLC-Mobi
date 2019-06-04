@@ -9,23 +9,32 @@ Not inherited
 import android.util.Log;
 
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.ian_cornelius.kplcmobi.models.AccountsFullMetaData;
 import com.ian_cornelius.kplcmobi.models.AccountsMiniMetaData;
 import com.ian_cornelius.kplcmobi.models.User;
 import com.ian_cornelius.kplcmobi.ui.fragments.AddAccountFragment;
+import com.ian_cornelius.kplcmobi.ui.fragments.BuyTokensFragment;
 import com.ian_cornelius.kplcmobi.ui.fragments.SettingsFragment;
 import com.ian_cornelius.kplcmobi.ui.home.HomeActivity;
 import com.ian_cornelius.kplcmobi.ui.login.LogInActivity;
 import com.ian_cornelius.kplcmobi.ui.signup.SignUpActivity;
+import com.ian_cornelius.kplcmobi.utils.account_manager.AccountsManager;
 import com.ian_cornelius.kplcmobi.utils.generators.ConsumptionTrackGenerator;
 
 public final class FirebaseStaticReqManager implements FirebaseAuthManager.AuthCallBack, FirebaseProfileManager.ProfileManagerCallbacks,
-                    FirebaseAccountsManager.AccountsAccessCallBack{
+                    FirebaseAccountsManager.AccountsAccessCallBack, FirebaseTokenRatesManager.TokenRatesWatcher {
 
-    //Hold current reference activity or frag, plus reqAuthType for interface callback
+    //Hold current reference activity or frag, plus reqAuthType for interface callback, plus special for
+    //non-blocking acc_manager requests
+    private Object accManagerRef = null;
     private Object currentRefActivity;
     private AuthType reqAuthType;
+
+    //save heap. Save refs to chained call objects to avoid redundant creations
+    private FirebaseAccountsManager firebaseAccountsManager = null;
+    private FirebaseTokenRatesManager firebaseTokenRatesManager = null;
 
     private static final FirebaseStaticReqManager ourInstance = new FirebaseStaticReqManager();
 
@@ -312,11 +321,12 @@ public final class FirebaseStaticReqManager implements FirebaseAuthManager.AuthC
     //create account
     public void requestCreateAccount(Object refActivity, AccountsMiniMetaData miniMetaData, AccountsFullMetaData fullMetaData){
 
-        if (refActivity instanceof SignUpActivity || refActivity instanceof AddAccountFragment){
+        if (refActivity instanceof SignUpActivity){ //Only sign up activity has direct access. Since no limits needed
 
-            //perform call, save refActivity
+            //perform call, save refActivity.
             currentRefActivity = refActivity;
 
+            //Not chained @static req manager. Just write. So no need to store this ref
             new FirebaseAccountsManager(miniMetaData).createAccount(fullMetaData);
         } else {
 
@@ -324,7 +334,40 @@ public final class FirebaseStaticReqManager implements FirebaseAuthManager.AuthC
         }
     }
 
-    //load account
+    //load account. Since we are loading acc list and details together, chain this call. Okay, bad idea, cause I have to save
+    public void requestAccList(Object refActivity){
+
+        if (refActivity instanceof AccountsManager){
+
+            //Correct call. Save refActivity for callback, load data. Might face issue here, since its a non-blocking call. Thinking of having a separate ref for acc manager, just to avoid this confusion.
+            //Yes, diff ref for acc manager
+            accManagerRef = refActivity;
+
+            //Loosely chained. Store ref to avoid double creation by static req manager
+            firebaseAccountsManager = new FirebaseAccountsManager();
+            //call for data load
+            firebaseAccountsManager.getAccsList();
+        } else {
+
+            Log.e("INVALID ACC LIST REQ", "Coming from " + refActivity.getClass());
+        }
+    }
+
+    //Load acc details
+    public void requestAccDetails(Object refActivity){
+
+        if (refActivity instanceof  AccountsManager){
+
+            //Correct call.
+           // accManagerRef = refActivity;
+
+            //call for data load
+            firebaseAccountsManager.getAccDetails();
+        } else {
+
+            Log.e("INVALID ACC DETAILS REQ", "Coming from " + refActivity.getClass());
+        }
+    }
 
     //remove account
 
@@ -353,6 +396,50 @@ public final class FirebaseStaticReqManager implements FirebaseAuthManager.AuthC
 
     }
 
+    @Override
+    public void onGetAccListSuccess(DataSnapshot snapshot){
+
+
+        //only acc manager can request this
+        ((AccountsManager) accManagerRef).onGetAccListSuccess(snapshot);
+
+    }
+
+    @Override
+    public void onGetAccListFail(DatabaseError databaseError){
+
+
+        //only acc manager can request this
+        ((AccountsManager) accManagerRef).onGetAccListFail(databaseError);
+
+        accManagerRef = null;
+
+        //remove ref to firebase accounts manager
+        firebaseAccountsManager = null;
+    }
+
+    @Override
+    public void onGetAccDetailsSuccess(DataSnapshot snapshot){
+
+        ((AccountsManager) accManagerRef).onGetAccDetailsSuccess(snapshot);
+
+        //Done. Safely put as null
+        accManagerRef = null;
+
+        //remove ref to firebase accounts manager
+        firebaseAccountsManager = null;
+    }
+
+    @Override
+    public void onGetAccDetailsFail(DatabaseError databaseError){
+
+        ((AccountsManager) accManagerRef).onGetAccDetailsFail(databaseError);
+
+        accManagerRef = null;
+
+        //remove ref to firebase accounts manager
+        firebaseAccountsManager = null;
+    }
 
     /*
     Implemented by actual caller
@@ -362,6 +449,80 @@ public final class FirebaseStaticReqManager implements FirebaseAuthManager.AuthC
         void onCreateAccSuccess();
 
         void onCreateAccFail(DatabaseError databaseError);
+
+        void onGetAccListSuccess(DataSnapshot snapshot);
+
+        void onGetAccListFail(DatabaseError databaseError);
+
+        void onGetAccDetailsSuccess(DataSnapshot snapshot);
+
+        void onGetAccDetailsFail (DatabaseError databaseError);
     }
+
+
+
+    /*
+    Method to get token rates
+     */
+    public void requestTokenRates(Object refActivity){
+
+        if (refActivity instanceof BuyTokensFragment){
+
+            //correct call. Request FirebaseTokenRates Manager...no parallel calls. So safe to do line below
+            currentRefActivity = refActivity;
+
+            firebaseTokenRatesManager = new FirebaseTokenRatesManager();
+            firebaseTokenRatesManager.getTokenRates();
+
+        } else {
+
+            Log.e("INVALID TOKEN RATES REQ", "Coming from " + refActivity.getClass());
+        }
+    }
+
+    /*
+    If activity closes, request close channel
+     */
+    public void requestCloseTokenChannel(Object refActivity){
+
+        if (refActivity instanceof BuyTokensFragment){
+
+            //correct call. Close channel
+            firebaseTokenRatesManager.closeChannel();
+
+            firebaseTokenRatesManager = null;
+
+            currentRefActivity = null;
+        }
+    }
+
+    /*
+    Implementation of interface callbacks
+     */
+    @Override
+    public void onRatesChange(float rate){
+
+
+    }
+
+    @Override
+    public void onRatesReadFail(DatabaseError databaseError){
+
+        //Not sure of immediate killing. What if it refires? Like the rest btw?
+
+    }
+
+    /*
+    Interface for whoever requires token rates access
+     */
+    public interface TokenRatesWatcher{
+
+        void onRatesChange(float rate);
+
+        void onRatesReadFail(DatabaseError databaseError);
+
+    }
+
+    //TODO: DATABASE ERROR FAIL IN CASE OF NO NETWORK?
 
 }

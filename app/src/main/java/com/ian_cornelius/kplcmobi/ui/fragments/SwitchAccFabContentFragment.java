@@ -18,6 +18,9 @@ import android.widget.Toast;
 import com.ian_cornelius.kplcmobi.R;
 import com.ian_cornelius.kplcmobi.utils.UserAccountsList;
 import com.ian_cornelius.kplcmobi.models.AccountsMiniMetaData;
+import com.ian_cornelius.kplcmobi.utils.account_manager.AccountsManager;
+
+import java.util.ArrayList;
 
 
 public class SwitchAccFabContentFragment extends Fragment implements View.OnClickListener{
@@ -42,6 +45,11 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
     For radio buttons
      */
     private RadioButton mRadioBtnAcc1, mRadioBtnAcc2, mRadioBtnAcc3, mRadioBtnAcc4;
+
+    /*
+    Hold our accounts list
+     */
+    private ArrayList<AccountsMiniMetaData> accountsList = null;
 
 
     @Override
@@ -84,7 +92,9 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
 
         //Changes. Accounts list process invoked on entrance to any frag that needs it. Singleton maintains state
         //Singleton state only changed by settings, under manage accounts (addition or removal of an account)
-        userAccountsList = UserAccountsList.getInstance();
+        //userAccountsList = UserAccountsList.getInstance();
+
+        accountsList = AccountsManager.getInstance().getAccountsList(this);
 
         //Set up our texts appropriately
         setUpRadioTexts();
@@ -112,7 +122,7 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
         /*
         Check if array list is empty (should never be, for a signed in user). If it is, major error
          */
-        if (userAccountsList.accountsMiniMetaDataArrayList == null){
+        if (accountsList == null){
 
             Log.e("Error","Getting an empty arraylist for accounts");
             Toast.makeText(getActivity(),"We can't get the list of accounts that belong to you. " +
@@ -120,7 +130,7 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
         } else{
 
             //Get our size
-            listSize = userAccountsList.accountsMiniMetaDataArrayList.size();
+            listSize = accountsList.size();
 
             Log.e("Error","Getting list size as " + listSize);
 
@@ -129,7 +139,7 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
             Populate radio text, and checked status. Only one should be checked (since based first on consumed data,
             need to enforce at model
              */
-            for (AccountsMiniMetaData metaData: userAccountsList.accountsMiniMetaDataArrayList) {
+            for (AccountsMiniMetaData metaData: accountsList) {
 
                 //increment counter
                 Log.e("Error","Increment counter from " + counter);
@@ -404,6 +414,10 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
         mRadioBtnAcc4.setEnabled(enable);
     }
 
+
+    //TODO Method to update current selection index, since using same array list, just rad btn num - 1. Check interface below. Update manager, for it to update locally and also post to db, then update ref activity, which locks itself to switch account when fired, removes lock when stopped
+
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -426,11 +440,12 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+    public interface OnAccountSwitchListener {
+        // TODO: Use this interface to tell when current account has been switched
+        void onAccountSwitch(int newIndex);
     }
 
     //TODO: This alpha-5 version of motion layout is seriously buggy. Need a way to deal with the current animation
     //TODO: If all fails, use set progress hack. Or keyframe hack
+    //TODO: Okay, this buggy boy worked, after beta-1 release
 }

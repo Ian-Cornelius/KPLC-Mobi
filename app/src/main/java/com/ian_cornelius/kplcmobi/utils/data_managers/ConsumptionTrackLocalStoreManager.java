@@ -55,7 +55,7 @@ public class ConsumptionTrackLocalStoreManager {
     public static final int REQUEST_CURRENT_CONSUMPTION = 2;
 
     //for date format
-    public static final String LOCAL_DATE_FORMAT = "dd/M/yyyy hh:mm";
+    public static final String LOCAL_DATE_FORMAT = "dd/MM/yyyy HH:mm";
 
     private static final ConsumptionTrackLocalStoreManager consumptionTrackLocalStoreManager = new ConsumptionTrackLocalStoreManager();
 

@@ -13,18 +13,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseError;
 import com.ian_cornelius.kplcmobi.R;
 import com.ian_cornelius.kplcmobi.ui.home.HomeActivity;
+import com.ian_cornelius.kplcmobi.utils.FirebaseUtils.FirebaseStaticReqManager;
+import com.ian_cornelius.kplcmobi.utils.account_manager.AccountsManager;
 
 
-public class BuyTokensFragment extends Fragment implements HomeActivity.FabButtonToggle{
+public class BuyTokensFragment extends Fragment implements HomeActivity.FabButtonToggle, FirebaseStaticReqManager.TokenRatesWatcher {
 
     /*
     Hold our edit texts and buttons references
      */
     private EditText mEditCashAmnt, mEditUnitsAmnt;
     private Button mBtnViewHist, mBtnPurchase;
+    private TextView mTxtShwWhichAcc;
 
 
     @Override
@@ -47,6 +52,14 @@ public class BuyTokensFragment extends Fragment implements HomeActivity.FabButto
         mBtnViewHist = buyTokensLayout.findViewById(R.id.btnViewHist);
         mBtnPurchase = buyTokensLayout.findViewById(R.id.btnPurchase);
 
+        mTxtShwWhichAcc = buyTokensLayout.findViewById(R.id.txtShowWhichAcc);
+
+        mTxtShwWhichAcc.setText("For account: " + AccountsManager.getInstance().getCurrentAccNumber());
+        mTxtShwWhichAcc.setTextColor(getActivity().getResources().getColor(R.color.kplcBlue));
+
+//        mTxtShwWhichAcc.setTextSize(14 * getResources().getConfiguration().densityDpi);
+
+       // mTxtShwWhichAcc.setTextSize(8* getResources().getDisplayMetrics().density);
         /*
         Handle button clicks
          */
@@ -121,6 +134,46 @@ public class BuyTokensFragment extends Fragment implements HomeActivity.FabButto
         mBtnViewHist.setEnabled(enable);
 
         Log.e("INTERFACE AT TOKENS","TOGGLE INVOKED");
+    }
+
+    /*
+    Implement token rates watcher, to have live updates of token rates, incase they change midway
+     */
+    @Override
+    public void onRatesChange(float rate){
+
+
+    }
+
+    @Override
+    public void onRatesReadFail(DatabaseError databaseError){
+
+
+    }
+
+    /*
+    Use lifecycle to set up or kill watchers
+     */
+    @Override
+    public void onStart(){
+
+        super.onStart();
+
+        /*
+        Request for token watcher
+         */
+        FirebaseStaticReqManager.getInstance().requestTokenRates(this);
+    }
+
+    @Override
+    public void onStop(){
+
+        super.onStop();
+
+        /*
+        close channel
+         */
+        FirebaseStaticReqManager.getInstance().requestCloseTokenChannel(this);
     }
 
 

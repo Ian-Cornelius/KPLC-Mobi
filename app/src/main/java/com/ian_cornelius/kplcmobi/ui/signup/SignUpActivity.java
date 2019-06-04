@@ -7,6 +7,7 @@ import android.os.Bundle;
 import com.google.firebase.FirebaseNetworkException;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.ian_cornelius.kplcmobi.R;
 import com.ian_cornelius.kplcmobi.models.AccountsFullMetaData;
@@ -419,6 +420,9 @@ public class SignUpActivity extends AppCompatActivity implements FirebaseStaticR
     public void onCreateAccSuccess(){
 
 
+        //Get accounts manager to request first account list and save this detail
+        AccountsManager.getInstance().setUpData(this);
+
         //Take me to home screen baby!!
         startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
         finish();
@@ -432,6 +436,30 @@ public class SignUpActivity extends AppCompatActivity implements FirebaseStaticR
         dialog.transitionToError("We couldn't complete the sign up. Please try again");
         Log.e("ACC SAVE ERROR", databaseError.toString());
         dialogActive = false;
+    }
+
+    @Override
+    public void onGetAccListSuccess(DataSnapshot snapshot){
+
+        //do nothing. Not needed
+    }
+
+    @Override
+    public void onGetAccListFail(DatabaseError databaseError){
+
+        //do nothing. Not needed.
+    }
+
+    @Override
+    public void onGetAccDetailsSuccess(DataSnapshot snapshot){
+
+        //do nothing. Not needed
+    }
+
+    @Override
+    public void onGetAccDetailsFail(DatabaseError databaseError){
+
+        //do nothing. Not needed
     }
 
 

@@ -117,6 +117,7 @@ public class ConsumptionTrackController {
         Log.e("alarm intent null", String.valueOf(alarmIntent == null));
         Log.e("pending intent null", String.valueOf(pendingIntent == null));
 
+        //TODO change alarm to exact and allow while idle, to allow when  phone is asleep in android 6+
         alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, 0, AlarmManager.INTERVAL_HOUR, pendingIntent);
     }
 

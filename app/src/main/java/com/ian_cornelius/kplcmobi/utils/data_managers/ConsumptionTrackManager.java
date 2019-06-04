@@ -92,6 +92,9 @@ public class ConsumptionTrackManager {
             if (!localStoreManager.postChanges(consumedUnits, notifContext)){
 
                 Log.e("CONSUMPTION TRACK", "ERROR UPDATING VALUES");
+            } else {
+
+                Log.e("CONSUMPTION TRACK", "SUCCESSFUL SAVE");
             }
         }
     }

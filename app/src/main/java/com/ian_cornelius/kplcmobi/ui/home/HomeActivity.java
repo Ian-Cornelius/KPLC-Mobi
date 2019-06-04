@@ -50,6 +50,7 @@ import com.ian_cornelius.kplcmobi.ui.fragments.SettingsFragment;
 import com.ian_cornelius.kplcmobi.ui.fragments.SwitchAccFabContentFragment;
 import com.ian_cornelius.kplcmobi.ui.login.LogInActivity;
 import com.ian_cornelius.kplcmobi.utils.FirebaseUtils.FirebaseStaticReqManager;
+import com.ian_cornelius.kplcmobi.utils.account_manager.AccountsManager;
 import com.ian_cornelius.kplcmobi.utils.generators.ConsumptionTrackGenerator;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener{
@@ -251,60 +252,69 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
 
-                if (!fabReverse){
-                    mSwitchAccFabActivator.transitionToEnd();
-                    getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.zoom_in_fab_content,R.anim.zoom_out_fab_content).replace(R.id.fabContentHolder,new SwitchAccFabContentFragment()).commit();
+                //refuse to switch accounts if list not loaded
+                if (AccountsManager.getInstance().accManagerWait()){
 
-                    //Disable our overlapping views. Case problem with buy tokens, check and pay bill, history, and
-                    //report power
-                    if (getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder) instanceof BuyTokensFragment){
+                    Toast.makeText(getApplicationContext(), "We're having trouble getting your accounts list. Please check your internet connection", Toast.LENGTH_SHORT).show();
+                } else {
 
-                        ((BuyTokensFragment) getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder)).toggleButtons(false);
 
-                    } else if (getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder) instanceof CheckAndPayBillFragment){
+                    if (!fabReverse){
+                        mSwitchAccFabActivator.transitionToEnd();
+                        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.zoom_in_fab_content,R.anim.zoom_out_fab_content).replace(R.id.fabContentHolder,new SwitchAccFabContentFragment()).commit();
 
-                        ((CheckAndPayBillFragment) getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder)).toggleButtons(false);
+                        //Disable our overlapping views. Case problem with buy tokens, check and pay bill, history, and
+                        //report power
+                        if (getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder) instanceof BuyTokensFragment){
 
-                    } else if (getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder) instanceof ReportPowerProblemFragment){
+                            ((BuyTokensFragment) getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder)).toggleButtons(false);
 
-                        ((ReportPowerProblemFragment) getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder)).toggleButtons(false);
+                        } else if (getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder) instanceof CheckAndPayBillFragment){
 
-                    }
-                    //toggleOverlappingWidgets(false, false);
+                            ((CheckAndPayBillFragment) getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder)).toggleButtons(false);
+
+                        } else if (getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder) instanceof ReportPowerProblemFragment){
+
+                            ((ReportPowerProblemFragment) getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder)).toggleButtons(false);
+
+                        }
+                        //toggleOverlappingWidgets(false, false);
 
                     /*
                     Kill opacity of main content view. Simply, frag holder. Interface doesn't need to do this
                      */
-                    ((View)v.getParent()).findViewById(R.id.home_fragments_holder).setAlpha(0.1f);
+                        ((View)v.getParent()).findViewById(R.id.home_fragments_holder).setAlpha(0.1f);
 
-                } else{
-                    mSwitchAccFabActivator.transitionToStart();
-                    ((View)v.getParent()).findViewById(R.id.fabContentHolder).startAnimation(closeAnimation);
+                    } else{
+                        mSwitchAccFabActivator.transitionToStart();
+                        ((View)v.getParent()).findViewById(R.id.fabContentHolder).startAnimation(closeAnimation);
 
-                    //Enable our overlapping views
-                    if (getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder) instanceof BuyTokensFragment){
+                        //Enable our overlapping views
+                        if (getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder) instanceof BuyTokensFragment){
 
-                        ((BuyTokensFragment) getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder)).toggleButtons(true);
+                            ((BuyTokensFragment) getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder)).toggleButtons(true);
 
-                    } else if (getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder) instanceof CheckAndPayBillFragment){
+                        } else if (getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder) instanceof CheckAndPayBillFragment){
 
-                        ((CheckAndPayBillFragment) getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder)).toggleButtons(true);
+                            ((CheckAndPayBillFragment) getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder)).toggleButtons(true);
 
-                    } else if (getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder) instanceof ReportPowerProblemFragment){
+                        } else if (getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder) instanceof ReportPowerProblemFragment){
 
-                        ((ReportPowerProblemFragment) getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder)).toggleButtons(true);
+                            ((ReportPowerProblemFragment) getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder)).toggleButtons(true);
 
-                    }
-                    //toggleOverlappingWidgets(true, false);
+                        }
+                        //toggleOverlappingWidgets(true, false);
 
                     /*
                     Build back opacity of main content view
                      */
-                    ((View) v.getParent()).findViewById(R.id.home_fragments_holder).setAlpha(1.0f);
+                        ((View) v.getParent()).findViewById(R.id.home_fragments_holder).setAlpha(1.0f);
 
+                    }
+
+                    fabReverse = !fabReverse;
                 }
 
-                fabReverse = !fabReverse;
 
             }
         });
@@ -512,6 +522,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 //remove user's alarms
                 removeAlarms();
 
+                //flush acc data stored in AccountManager local vars
+                AccountsManager.getInstance().flushData();
+
                 //Switch to log in activity
                 startActivity(new Intent(HomeActivity.this, LogInActivity.class));
                 finish();
@@ -660,4 +673,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         void toggleButtons(boolean enable);
     }
+
+    //TODO Woooohooo Firebase is the bomb!! I don't have to refire failed requests. Ask user to switch on data, Firebase remembers failed requesta and retries. Done that beautifully for account manager. DAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANG!!!
 }

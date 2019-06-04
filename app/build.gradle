@@ -19,6 +19,7 @@ android {
         buildConfigField 'String', 'ACC_LIST_REF', "\"" + properties.getProperty("accListRef") + "\""
         buildConfigField 'String', 'ACC_DATA_REF', "\"" + properties.getProperty("accDataRef") + "\""
         buildConfigField 'String', 'ACC_DETAILS_REF', "\"" + properties.getProperty("accDetailsRef") + "\""
+        buildConfigField 'String', "TOKEN_RATES_REF", "\"" + properties.getProperty("tokenRatesRef") + "\""
     }
     buildTypes {
         release {

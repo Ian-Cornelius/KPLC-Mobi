@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 //Process auth requests
 import com.ian_cornelius.kplcmobi.utils.FirebaseUtils.FirebaseStaticReqManager;
+import com.ian_cornelius.kplcmobi.utils.account_manager.AccountsManager;
 import com.ian_cornelius.kplcmobi.utils.data_managers.ConsumptionTrackLocalStoreManager;
 
 public class LogInActivity extends AppCompatActivity implements FirebaseStaticReqManager.AuthRequestCallBack{
@@ -66,6 +67,9 @@ public class LogInActivity extends AppCompatActivity implements FirebaseStaticRe
 
         //By pass all this if user still logged in
         if (FirebaseStaticReqManager.getInstance().requestAuthCurrentUser(this) != null){
+
+            //Test load acc data
+            AccountsManager.getInstance().setUpData(this);
 
             //Switch of activity done on Success.
 
@@ -153,6 +157,9 @@ public class LogInActivity extends AppCompatActivity implements FirebaseStaticRe
     @Override
     public void onSuccess(){
 
+        //Test load acc data
+        AccountsManager.getInstance().setUpData(this);
+
         //Switch to home activity
         Bundle bundle = new Bundle();
         bundle.putString("STATUS", NEW_AUTH);
@@ -183,6 +190,6 @@ public class LogInActivity extends AppCompatActivity implements FirebaseStaticRe
 
         //close the app
         finishAffinity();
-        System.exit(0);
+        //System.exit(0);
     }
 }
