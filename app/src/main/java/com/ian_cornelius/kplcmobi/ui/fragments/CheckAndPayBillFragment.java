@@ -72,7 +72,7 @@ public class CheckAndPayBillFragment extends Fragment implements HomeActivity.Fa
                 mCheckAndPayBillMainContent.transitionToEnd();
 
                 //hide fab from view
-                ((HomeActivity)getActivity()).toggleFab(false);
+                ((HomeActivity)getActivity()).toggleFab(false, false);
 
             }
         });
@@ -86,7 +86,7 @@ public class CheckAndPayBillFragment extends Fragment implements HomeActivity.Fa
                 mCheckAndPayBillMainContent.transitionToStart();
 
                 //Show fab
-                ((HomeActivity) getActivity()).toggleFab(true);
+                ((HomeActivity) getActivity()).toggleFab(true, false);
             }
         });
 

@@ -3,9 +3,11 @@ package com.ian_cornelius.kplcmobi.ui.fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +44,10 @@ public class DescribePowerProblemFragment extends Fragment {
     private int charCount = 0;
     private boolean isRadioSelected = false;
 
+    private int y = 0;
+    private boolean alreadyScrolled = false;
+    private int prevLineCount = 1;
+
     private final TextWatcher characterCounter = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -55,7 +61,69 @@ public class DescribePowerProblemFragment extends Fragment {
             Set our text view to current length
              */
             mTxtCharCount.setText(String.valueOf(s.length()) + "/200");
+
+            if (prevLineCount != mEditDesc.getLineCount()){
+
+//                mEditDesc.scrollTo(0, mEditDesc.getLineCount()*(int)(mEditDesc.getTextSize()/getResources().getDisplayMetrics().density) - updateY());
+
+                /*
+                TODO. THIS IS NOT A TODO, BUT A RANT. AKI YA NANI MOTION LAYOUT!!!!! 5 HOURS TO GET THE SOLUTION TO YOUR EDIT TEXT BUG IS THIS...AGAIN....GOOGLE DEVS NYINYI! LABISH😂
+                 */
+                getParentFragment().getView().invalidate();
+                getParentFragment().getView().requestLayout();
+                getParentFragment().getView().forceLayout();
+//                mEditDesc.computeScroll();
+                //Bug fixing
+//                getActivity().getWindow().getDecorView().findViewById(R.id.home_fragments_holder).invalidate();
+//                getActivity().getWindow().getDecorView().findViewById(R.id.home_fragments_holder).requestLayout();
+//                getActivity().getWindow().getDecorView().findViewById(R.id.home_fragments_holder).forceLayout();
+//
+//                mEditDesc.invalidate();
+//                mEditDesc.requestLayout();
+//                mEditDesc.forceLayout();
+
+                prevLineCount = mEditDesc.getLineCount();
+            }
+
+//            if (s.length() > 1 && s.length() > charCount){
+//
+//                mEditDesc.scrollTo(0, mEditDesc.getLineCount()*(int)(mEditDesc.getTextSize()/getResources().getDisplayMetrics().density) + updateY());
+//                prevLineCount = mEditDesc.getLineCount();
+//                Log.e("CALLED SCROLL", "UPDATE Y " + String.valueOf(y) + "prev line count " + String.valueOf(prevLineCount));
+//            } else if (s.length() > 1 && s.length() < charCount){
+//
+//                mEditDesc.scrollTo(0, (mEditDesc.getLineCount()*(int)(mEditDesc.getTextSize()/getResources().getDisplayMetrics().density) + prevLineCount > mEditDesc.getLineCount() ? y-=2 : 0));
+//                prevLineCount = mEditDesc.getLineCount();
+//            }
             charCount = s.length();
+//            if (s.length() > charCount){
+//
+//            }
+//
+//            if (s.length() > 1 && count > before  && count == 1 && before == 0){
+//
+//                if (!alreadyScrolled && (s.length() > charCount || s.length() == charCount)){ //== charcount, at first enter press. Count == before too. Char @last index same too
+//
+//                    mEditDesc.scrollTo(0, y+= mEditDesc.getTextSize()/getResources().getDisplayMetrics().density);
+//                    Log.e("Y", String.valueOf(y));
+//                    alreadyScrolled = true;
+//                    mEditDesc.getLineCount();
+//
+//                } else {
+//
+//                    Log.e("DOUBLE SWITCH", "FALSE");
+//                    alreadyScrolled =false;
+//                }
+////                mEditDesc.scrollTo(0, y+= mEditDesc.getTextSize()/getResources().getDisplayMetrics().density);
+//
+//            } else if (s.length() < charCount && count < before && count == 0 && before == 1){
+//
+//                mEditDesc.scrollTo(0, y != 0 ? y-= mEditDesc.getTextSize()/getResources().getDisplayMetrics().density : 0);
+//                Log.e("REVERSE Y", String.valueOf(y));
+//            }
+
+            Log.e("CHAR", "LENGTH " + s.length() + " COUNT " + count + " BEFORE " + before);
+            Log.e("CHAR AT", String.valueOf(s.length() != 0?s.charAt(s.length() - 1):0));
 
         }
 
@@ -64,6 +132,14 @@ public class DescribePowerProblemFragment extends Fragment {
 
         }
     };
+
+    private int updateY(){
+
+
+        y = prevLineCount < mEditDesc.getLineCount() ? y*2: y;
+
+        return y;
+    }
 
 
     @Override

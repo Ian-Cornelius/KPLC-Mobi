@@ -35,7 +35,7 @@
         android:fontFamily="@font/lato_regular"
         android:text="Primary account"
         android:textColor="@color/custom_grey"
-        android:textSize="14sp"
+        android:textSize="@dimen/text_size_body"
         app:layout_constraintBottom_toBottomOf="@+id/roundDotPrimaryAcc"
         app:layout_constraintStart_toEndOf="@+id/roundDotPrimaryAcc"
         app:layout_constraintTop_toTopOf="@+id/roundDotPrimaryAcc" />
@@ -57,7 +57,7 @@
         android:fontFamily="@font/lato_regular"
         android:text="Owner name: Ian Omondi C."
         android:textColor="@color/custom_grey"
-        android:textSize="14sp"
+        android:textSize="@dimen/text_size_body"
         app:layout_constraintBottom_toBottomOf="@+id/roundDotOwner"
         app:layout_constraintStart_toStartOf="@+id/txtIsPrimary"
         app:layout_constraintTop_toTopOf="@+id/roundDotOwner" />
@@ -79,7 +79,7 @@
         android:fontFamily="@font/lato_regular"
         android:text="Status: Active"
         android:textColor="@color/custom_grey"
-        android:textSize="14sp"
+        android:textSize="@dimen/text_size_body"
         app:layout_constraintBottom_toBottomOf="@+id/roundDotStatus"
         app:layout_constraintStart_toStartOf="@+id/txtOwnerName"
         app:layout_constraintTop_toTopOf="@+id/roundDotStatus" />
@@ -101,7 +101,7 @@
         android:fontFamily="@font/lato_regular"
         android:text="Account type: Post paid"
         android:textColor="@color/custom_grey"
-        android:textSize="14sp"
+        android:textSize="@dimen/text_size_body"
         app:layout_constraintBottom_toBottomOf="@+id/roundDotAccType"
         app:layout_constraintStart_toStartOf="@+id/txtStatus"
         app:layout_constraintTop_toTopOf="@+id/roundDotAccType" />
@@ -123,7 +123,7 @@
         android:fontFamily="@font/lato_regular"
         android:text="Account arrears: NIL"
         android:textColor="@color/custom_grey"
-        android:textSize="14sp"
+        android:textSize="@dimen/text_size_body"
         app:layout_constraintBottom_toBottomOf="@+id/roundDotAccArrears"
         app:layout_constraintStart_toStartOf="@+id/txtAccType"
         app:layout_constraintTop_toTopOf="@+id/roundDotAccArrears" />

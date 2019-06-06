@@ -22,7 +22,7 @@
         android:padding="12dp"
         android:textColor="@color/custom_grey"
         android:textColorHint="@color/custom_grey"
-        android:textSize="14sp"
+        android:textSize="@dimen/text_size_body"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -40,7 +40,7 @@
         android:padding="12dp"
         android:textColor="@color/custom_grey"
         android:textColorHint="@color/custom_grey"
-        android:textSize="14sp"
+        android:textSize="@dimen/text_size_body"
         app:layout_constraintEnd_toEndOf="@+id/editOld"
         app:layout_constraintStart_toStartOf="@+id/editOld"
         app:layout_constraintTop_toBottomOf="@+id/editOld" />
@@ -55,6 +55,7 @@
         android:drawablePadding="9dp"
         android:fontFamily="@font/lato_regular"
         android:text="@string/change_id"
+        android:textSize="@dimen/text_size_body"
         android:textAllCaps="false"
         android:textColor="@color/custom_grey"
         app:layout_constraintStart_toStartOf="@+id/editNew"

@@ -7,24 +7,29 @@
     android:background="@color/white">
 
 
-    <android.support.constraint.Guideline
-        android:id="@+id/guidelineListItemBottom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="1" />
-
-    <android.support.constraint.utils.ImageFilterView
-        android:id="@+id/listItemBackground"
+    <ImageView
+        android:id="@+id/expandedBg"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:alpha="0.0"
         android:scaleType="fitXY"
-        android:src="@drawable/full_history_bg"
-        app:altSrc="@drawable/sort_list_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/msg_thread_bg_expanded" />
+
+    <ImageView
+        android:id="@+id/shrunkBg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="1.0"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/msg_thread_bg" />
 
     <TextView
         android:id="@+id/txtResponseHeader"
@@ -35,7 +40,7 @@
         android:fontFamily="@font/lato_bold"
         android:text="Power Report 23/3/2019 - REF 23456698827392"
         android:textColor="@color/custom_grey"
-        android:textSize="14sp"
+        android:textSize="@dimen/text_size_body"
         app:layout_constraintBottom_toBottomOf="@+id/kplcLogoResponses"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/kplcLogoResponses"
@@ -64,12 +69,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtLastMessageTrunc" />
 
+    <ImageButton
+        android:id="@+id/btnSendMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:background="@android:color/transparent"
+        android:translationX="-600dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editReply"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editReply"
+        app:srcCompat="@drawable/send_btn" />
+
     <EditText
         android:id="@+id/editReply"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/ash_grey_edit_text_bg_full_round"
         android:ems="10"
@@ -82,9 +99,9 @@
         android:paddingBottom="12dp"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
-        android:textSize="14sp"
+        android:textSize="@dimen/text_size_body"
         android:translationY="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/listItemBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -96,7 +113,7 @@
         android:fontFamily="@font/lato_regular"
         android:text="Hi Ian, we've received your complaint. Our..."
         android:textColor="@color/custom_grey"
-        android:textSize="14sp"
+        android:textSize="@dimen/text_size_body"
         app:layout_constraintEnd_toEndOf="@+id/txtResponseHeader"
         app:layout_constraintStart_toStartOf="@+id/txtResponseHeader"
         app:layout_constraintTop_toBottomOf="@+id/txtResponseHeader" />

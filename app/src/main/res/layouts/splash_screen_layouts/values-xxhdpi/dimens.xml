@@ -3,4 +3,5 @@
     <dimen name="text_size_header1">20sp</dimen>
     <dimen name="text_size_header2">18sp</dimen>
     <dimen name="text_size_body">16sp</dimen>
+    <dimen name="text_size_micro">14sp</dimen>
 </resources>

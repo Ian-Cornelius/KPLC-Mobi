@@ -106,7 +106,7 @@ public class BuyTokensFragment extends Fragment implements HomeActivity.FabButto
                 buyTokensLayout.findViewById(R.id.buy_tokens_main_content_layout).setAlpha(0.1f);
 
                 //request activity to hide fab
-                ((HomeActivity)getActivity()).toggleFab(false);
+                ((HomeActivity)getActivity()).toggleFab(false, false);
 
                 getChildFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_up, R.anim.slide_up).replace(R.id.token_purchase_success_fragment_holder, new BuyTokensSuccessCustomSnackBar()).commit();
 

@@ -3,6 +3,7 @@ package com.ian_cornelius.kplcmobi.ui.home;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.support.constraint.motion.MotionScene;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -87,6 +88,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     //Image View in custom action bar
     private ImageView mImageView;
+
+    //Know if to autolaunch fab or not
+    private boolean autoLaunch = false;
 
 
     @Override
@@ -239,6 +243,13 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onAnimationEnd(Animation animation) {
 
+                //slide away if autoLaunch trigger
+                if (autoLaunch){
+
+                    //reset autolaunch here to avoid a relaunch, and successfully pull of an auto launch
+                    autoLaunch = false;
+                    mDrawerCustomActionBar.transitionToStart();
+                }
                 getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().findFragmentById(R.id.fabContentHolder)).commit();
             }
 
@@ -252,72 +263,82 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
 
-                //refuse to switch accounts if list not loaded
-                if (AccountsManager.getInstance().accManagerWait()){
+                launchFabContent(v);
 
-                    Toast.makeText(getApplicationContext(), "We're having trouble getting your accounts list. Please check your internet connection", Toast.LENGTH_SHORT).show();
-                } else {
+            }
+        });
+
+        setUpFabMotionListener();
+
+    }
+
+    /*
+    Method to open our fab content
+     */
+    private void launchFabContent(View v){
+
+        //refuse to switch accounts if list not loaded
+        if (AccountsManager.getInstance().accManagerWait()){
+
+            Toast.makeText(getApplicationContext(), "We're having trouble getting your accounts list. Please check your internet connection", Toast.LENGTH_SHORT).show();
+        } else {
 
 
-                    if (!fabReverse){
-                        mSwitchAccFabActivator.transitionToEnd();
-                        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.zoom_in_fab_content,R.anim.zoom_out_fab_content).replace(R.id.fabContentHolder,new SwitchAccFabContentFragment()).commit();
+            if (!fabReverse){
+                mSwitchAccFabActivator.transitionToEnd();
+                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.zoom_in_fab_content,R.anim.zoom_out_fab_content).replace(R.id.fabContentHolder,new SwitchAccFabContentFragment()).commit();
 
-                        //Disable our overlapping views. Case problem with buy tokens, check and pay bill, history, and
-                        //report power
-                        if (getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder) instanceof BuyTokensFragment){
+                //Disable our overlapping views. Case problem with buy tokens, check and pay bill, history, and
+                //report power
+                if (getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder) instanceof BuyTokensFragment){
 
-                            ((BuyTokensFragment) getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder)).toggleButtons(false);
+                    ((BuyTokensFragment) getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder)).toggleButtons(false);
 
-                        } else if (getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder) instanceof CheckAndPayBillFragment){
+                } else if (getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder) instanceof CheckAndPayBillFragment){
 
-                            ((CheckAndPayBillFragment) getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder)).toggleButtons(false);
+                    ((CheckAndPayBillFragment) getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder)).toggleButtons(false);
 
-                        } else if (getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder) instanceof ReportPowerProblemFragment){
+                } else if (getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder) instanceof ReportPowerProblemFragment){
 
-                            ((ReportPowerProblemFragment) getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder)).toggleButtons(false);
+                    ((ReportPowerProblemFragment) getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder)).toggleButtons(false);
 
-                        }
-                        //toggleOverlappingWidgets(false, false);
+                }
+                //toggleOverlappingWidgets(false, false);
 
                     /*
                     Kill opacity of main content view. Simply, frag holder. Interface doesn't need to do this
                      */
-                        ((View)v.getParent()).findViewById(R.id.home_fragments_holder).setAlpha(0.1f);
+                ((View)v.getParent()).findViewById(R.id.home_fragments_holder).setAlpha(0.1f);
 
-                    } else{
-                        mSwitchAccFabActivator.transitionToStart();
-                        ((View)v.getParent()).findViewById(R.id.fabContentHolder).startAnimation(closeAnimation);
+            } else{
+                mSwitchAccFabActivator.transitionToStart();
+                ((View)v.getParent()).findViewById(R.id.fabContentHolder).startAnimation(closeAnimation);
 
-                        //Enable our overlapping views
-                        if (getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder) instanceof BuyTokensFragment){
+                //Enable our overlapping views
+                if (getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder) instanceof BuyTokensFragment){
 
-                            ((BuyTokensFragment) getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder)).toggleButtons(true);
+                    ((BuyTokensFragment) getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder)).toggleButtons(true);
 
-                        } else if (getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder) instanceof CheckAndPayBillFragment){
+                } else if (getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder) instanceof CheckAndPayBillFragment){
 
-                            ((CheckAndPayBillFragment) getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder)).toggleButtons(true);
+                    ((CheckAndPayBillFragment) getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder)).toggleButtons(true);
 
-                        } else if (getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder) instanceof ReportPowerProblemFragment){
+                } else if (getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder) instanceof ReportPowerProblemFragment){
 
-                            ((ReportPowerProblemFragment) getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder)).toggleButtons(true);
+                    ((ReportPowerProblemFragment) getSupportFragmentManager().findFragmentById(R.id.home_fragments_holder)).toggleButtons(true);
 
-                        }
-                        //toggleOverlappingWidgets(true, false);
+                }
+                //toggleOverlappingWidgets(true, false);
 
                     /*
                     Build back opacity of main content view
                      */
-                        ((View) v.getParent()).findViewById(R.id.home_fragments_holder).setAlpha(1.0f);
-
-                    }
-
-                    fabReverse = !fabReverse;
-                }
-
+                ((View) v.getParent()).findViewById(R.id.home_fragments_holder).setAlpha(1.0f);
 
             }
-        });
+
+            fabReverse = !fabReverse;
+        }
 
     }
 
@@ -357,7 +378,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     mHomeDrawerLayout.closeDrawer(Gravity.START,true);
 
                     //hide our fab
-                    toggleFab(false);
+                    toggleFab(false, false);
                 }
                 break;
 
@@ -377,7 +398,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     mHomeDrawerLayout.closeDrawer(Gravity.START,true);
 
                     //show our fab
-                    toggleFab(true);
+                    toggleFab(true, false);
 
                 }
                 break;
@@ -398,7 +419,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     mHomeDrawerLayout.closeDrawer(Gravity.START,true);
 
                     //show our fab
-                    toggleFab(true);
+                    toggleFab(true, false);
 
                 }
                 break;
@@ -419,7 +440,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     mHomeDrawerLayout.closeDrawer(Gravity.START,true);
 
                     //hide our fab. Here, only shown with autolaunch
-                    toggleFab(false);
+                    toggleFab(false, false);
 
                 }
                 break;
@@ -440,7 +461,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     mHomeDrawerLayout.closeDrawer(Gravity.START,true);
 
                     //show our fab
-                    toggleFab(true);
+                    toggleFab(true, false);
 
                 }
                 break;
@@ -464,7 +485,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     mHomeDrawerLayout.closeDrawer(Gravity.START,true);
 
                     //hide our fab
-                    toggleFab(false);
+                    toggleFab(false, false);
                 }
                 break;
 
@@ -487,7 +508,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     mHomeDrawerLayout.closeDrawer(Gravity.START,true);
 
                     //hide our fab
-                    toggleFab(false);
+                    toggleFab(false, false);
                 }
                 break;
 
@@ -510,7 +531,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     mHomeDrawerLayout.closeDrawer(Gravity.START,true);
 
                     //hide our fab
-                    toggleFab(false);
+                    toggleFab(false, false);
                 }
                 break;
 
@@ -571,12 +592,28 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     Problem with interface is that 4 fragments should have access to this, and not one interface can help me do that.... I bet. Not sure 😁
      */
-    public void toggleFab(boolean show){
+    public void toggleFab(boolean show, boolean autoLaunch){
 
         //slide away our fab. Motion layout call
         if (show){
 
-            mDrawerCustomActionBar.transitionToEnd();
+            //Do the empty test, if with autolaunch, to avoid autolaunch failing at launchFab()
+            if (autoLaunch){
+
+                if (AccountsManager.getInstance().accManagerWait()){
+
+                    Toast.makeText(getApplicationContext(), "We're having trouble getting your accounts list. Please check your internet connection", Toast.LENGTH_SHORT).show();
+                } else {
+
+                    this.autoLaunch = true;
+                    mDrawerCustomActionBar.transitionToEnd();
+
+                }
+            } else {
+
+                //not auto launching
+                mDrawerCustomActionBar.transitionToEnd();
+            }
 
         } else {
 
@@ -584,6 +621,46 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         Log.e("HIDE FAB","REQUESTED");
+    }
+
+    /*
+    Set up listener for auto launch
+     */
+    private void setUpFabMotionListener(){
+
+        mDrawerCustomActionBar.setTransitionListener(new MotionLayout.TransitionListener() {
+            @Override
+            public void onTransitionStarted(MotionLayout motionLayout, int i, int i1) {
+
+            }
+
+            @Override
+            public void onTransitionChange(MotionLayout motionLayout, int i, int i1, float v) {
+
+            }
+
+            @Override
+            public void onTransitionCompleted(MotionLayout motionLayout, int i) {
+
+                if (autoLaunch){
+
+                    //launch fab content
+                    launchFabContent(mSwitchAccFabActivator);
+
+                    //Autolaunch changed to false after we close the fab content
+                }
+            }
+
+            @Override
+            public void onTransitionTrigger(MotionLayout motionLayout, int i, boolean b, float v) {
+
+            }
+
+            @Override
+            public boolean allowsTransition(MotionScene.Transition transition) {
+                return false;
+            }
+        });
     }
 
     /*

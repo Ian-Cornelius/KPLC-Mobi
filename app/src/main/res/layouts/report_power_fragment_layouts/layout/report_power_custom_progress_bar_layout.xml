@@ -16,6 +16,7 @@
         android:text="@string/desc_problem"
         android:textColor="@color/custom_grey"
         android:alpha="1.0"
+        android:textSize="@dimen/text_size_body"
         app:layout_constraintEnd_toEndOf="@+id/markerIcon1"
         app:layout_constraintStart_toStartOf="@+id/markerIcon1"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,6 +29,7 @@
         android:text="@string/location"
         android:textColor="@color/custom_grey"
         android:alpha="0.0"
+        android:textSize="@dimen/text_size_body"
         app:layout_constraintEnd_toEndOf="@+id/markerIcon1"
         app:layout_constraintStart_toStartOf="@+id/markerIcon1"
         app:layout_constraintTop_toTopOf="parent" />
@@ -40,6 +42,7 @@
         android:text="@string/send_report"
         android:textColor="@color/custom_grey"
         android:alpha="0.0"
+        android:textSize="@dimen/text_size_body"
         app:layout_constraintEnd_toEndOf="@+id/markerIcon1"
         app:layout_constraintStart_toStartOf="@+id/markerIcon1"
         app:layout_constraintTop_toTopOf="parent" />

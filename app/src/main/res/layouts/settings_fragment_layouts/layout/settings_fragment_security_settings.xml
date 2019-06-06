@@ -22,7 +22,7 @@
         android:text="@string/sec_settings"
         android:textAlignment="gravity"
         android:textColor="@color/kplcGreen"
-        android:textSize="18sp"
+        android:textSize="@dimen/text_size_header1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,7 +43,7 @@
         android:fontFamily="@font/lato_regular"
         android:text="@string/change_pass"
         android:textColor="@color/custom_grey"
-        android:textSize="14sp"
+        android:textSize="@dimen/text_size_body"
         app:layout_constraintBottom_toBottomOf="@+id/bulletChangePass"
         app:layout_constraintStart_toEndOf="@+id/bulletChangePass"
         app:layout_constraintTop_toTopOf="@+id/bulletChangePass" />
@@ -82,6 +82,7 @@
         android:layout_marginStart="8dp"
         android:background="@android:color/transparent"
         android:text="@string/back"
+        android:textSize="@dimen/text_size_body"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="@+id/separator"
         app:layout_constraintStart_toEndOf="@+id/separator"

@@ -54,6 +54,8 @@ public class KPLCResponsesMainRecyclerViewAdapter extends RecyclerView.Adapter<K
     private int currentPosition = 0;
     private int rollBackPosition  = 0;
 
+    private int prevLineCount = 1;
+
     /*
     Text watcher to assist in final animation
      */
@@ -67,21 +69,38 @@ public class KPLCResponsesMainRecyclerViewAdapter extends RecyclerView.Adapter<K
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-            if (s.length() == 0){
+            //and this was also solved by one line of code, with just one test. Regex, what I can I do without you?
+            if (s.toString().matches("\\s*")){//s.toString().split(" ").length == 0 || s.length() == 0 || s.toString().split("\n").length == 0
 
                 //close edit text
-                ((MotionLayout)currentView).transitionToState(R.id.resListItemState2);
+                ((MotionLayout)currentView).transitionToState(R.id.resListItemState4);
                 //((MotionLayout) currentView).setTransition(R.id.resListItemState3, R.id.resListItemState2);
                 //((MotionLayout) currentView).transitionToEnd();
-            }
-
-            if (s.length() == 1 && before == 0){
+            }else {
 
                 //open it, exposing send btn
                 ((MotionLayout) currentView).transitionToState(R.id.resListItemState3);
                 //((MotionLayout) currentView).setTransition(R.id.resListItemState2, R.id.resListItemState3);
                 //((MotionLayout) currentView).transitionToEnd();
             }
+
+            if (prevLineCount != ((EditText)currentView.findViewById(R.id.editReply)).getLineCount()){
+
+//                currentView.invalidate();
+//                currentView.requestLayout();
+//                currentView.forceLayout();
+
+                //Bug fixing
+                ((HomeActivity)currentView.getContext()).getWindow().getDecorView().findViewById(R.id.home_fragments_holder).invalidate();
+                ((HomeActivity) currentView.getContext()).getWindow().getDecorView().findViewById(R.id.home_fragments_holder).requestLayout();
+                ((HomeActivity) currentView.getContext()).getWindow().getDecorView().findViewById(R.id.home_fragments_holder).forceLayout();
+
+
+                prevLineCount = ((EditText) currentView.findViewById(R.id.editReply)).getLineCount();
+            }
+
+            Log.e("VALS",  "new line " + s.toString().split("\n").length + " Space " + s.toString().split(" ").length + " sum " + (s.toString().split("\n").length + s.toString().split(" ").length) + " actual " + s.length());
+            Log.e("DETECTING EMPTY", String.valueOf(s.toString().matches("\\s*")));
         }
 
         @Override
@@ -289,7 +308,7 @@ public class KPLCResponsesMainRecyclerViewAdapter extends RecyclerView.Adapter<K
             ((HomeActivity) currentView.getContext()).getWindow().getDecorView().findViewById(R.id.home_fragments_holder).requestLayout();
             ((HomeActivity) currentView.getContext()).getWindow().getDecorView().findViewById(R.id.home_fragments_holder).forceLayout();
 
-            ((ImageFilterView) currentView.findViewById(R.id.listItemBackground)).setCrossfade(0.0f);
+//            ((ImageFilterView) currentView.findViewById(R.id.listItemBackground)).setCrossfade(0.0f);
 
             currentView = null;
             Log.e("CURRENT VIEW VAL NULL"," " + String.valueOf(currentView == null));
@@ -305,6 +324,9 @@ public class KPLCResponsesMainRecyclerViewAdapter extends RecyclerView.Adapter<K
             ((HomeActivity)currentView.getContext()).getWindow().getDecorView().findViewById(R.id.home_fragments_holder).invalidate();
             ((HomeActivity) currentView.getContext()).getWindow().getDecorView().findViewById(R.id.home_fragments_holder).requestLayout();
             ((HomeActivity) currentView.getContext()).getWindow().getDecorView().findViewById(R.id.home_fragments_holder).forceLayout();
+
+            //Bring the keyboard up
+            ((MotionLayout) currentView).transitionToState(R.id.resListItemState4);
 
         }
         reverse = !reverse;

@@ -18,6 +18,7 @@ import android.support.constraint.motion.MotionLayout;
 import com.ian_cornelius.kplcmobi.adapters.KPLCResponsesInnerRecyclerAdapter;
 
 import com.ian_cornelius.kplcmobi.R;
+import com.ian_cornelius.kplcmobi.ui.home.HomeActivity;
 import com.ian_cornelius.kplcmobi.utils.layout_managers.CustomLinearLayoutManager;
 
 /**
@@ -30,6 +31,8 @@ public class InboxFragment extends Fragment {
     private EditText mEditMsg;
     private MotionLayout inboxView;
     private TextWatcher charWatcher;
+
+    private int prevLineCount = 1;
 
 
    @Override
@@ -46,14 +49,21 @@ public class InboxFragment extends Fragment {
            @Override
            public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-               if (s.length() == 0){
+               if (s.toString().matches("\\s*")){
 
                    inboxView.transitionToStart();
-               }
-
-               if (s.length() == 1){
+               } else {
 
                    inboxView.transitionToEnd();
+               }
+
+               if (prevLineCount != mEditMsg.getLineCount()){
+
+                   //Bug fixing
+                   ((HomeActivity)mEditMsg.getContext()).getWindow().getDecorView().findViewById(R.id.home_fragments_holder).invalidate();
+                   ((HomeActivity) mEditMsg.getContext()).getWindow().getDecorView().findViewById(R.id.home_fragments_holder).requestLayout();
+                   ((HomeActivity) mEditMsg.getContext()).getWindow().getDecorView().findViewById(R.id.home_fragments_holder).forceLayout();
+
                }
            }
 

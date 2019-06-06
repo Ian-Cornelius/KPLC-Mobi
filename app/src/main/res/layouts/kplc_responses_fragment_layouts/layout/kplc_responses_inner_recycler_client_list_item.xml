@@ -36,7 +36,7 @@
             android:paddingBottom="16dp"
             android:text="Hey KPLC! Just wanted to know if you good 😁"
             android:textColor="@color/white"
-            android:textSize="14sp"
+            android:textSize="@dimen/text_size_body"
             />
 
         <TextView
@@ -47,7 +47,7 @@
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="12dp"
             android:text="23.2.2019 10:00AM"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_size_micro"
             android:textColor="@color/white"
             android:layout_gravity="right"/>
 
