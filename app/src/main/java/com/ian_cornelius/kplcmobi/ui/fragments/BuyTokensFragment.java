@@ -22,7 +22,7 @@ import com.ian_cornelius.kplcmobi.utils.FirebaseUtils.FirebaseStaticReqManager;
 import com.ian_cornelius.kplcmobi.utils.account_manager.AccountsManager;
 
 
-public class BuyTokensFragment extends Fragment implements HomeActivity.FabButtonToggle, FirebaseStaticReqManager.TokenRatesWatcher {
+public class BuyTokensFragment extends Fragment implements HomeActivity.FabButtonToggle, FirebaseStaticReqManager.TokenRatesWatcher, AccountsManager.OnAccountsSwitch {
 
     /*
     Hold our edit texts and buttons references
@@ -160,6 +160,11 @@ public class BuyTokensFragment extends Fragment implements HomeActivity.FabButto
         super.onStart();
 
         /*
+        Attach for account manager events
+         */
+        AccountsManager.getInstance().attachForEvents(this);
+
+        /*
         Request for token watcher
          */
         FirebaseStaticReqManager.getInstance().requestTokenRates(this);
@@ -169,6 +174,11 @@ public class BuyTokensFragment extends Fragment implements HomeActivity.FabButto
     public void onStop(){
 
         super.onStop();
+
+        /*
+        Detach from account manager events
+         */
+        AccountsManager.getInstance().detachFromEvents(this);
 
         /*
         close channel
@@ -187,6 +197,22 @@ public class BuyTokensFragment extends Fragment implements HomeActivity.FabButto
     public void onDetach() {
         super.onDetach();
 
+    }
+
+    /*
+    Implementation of interface, for account switch events
+     */
+    @Override
+    public void onAccountsSwitch(String accNo, boolean isPostPay){
+
+        if (isPostPay){
+
+            //show UI error
+        } else {
+
+            //update val at acc num
+            mTxtShwWhichAcc.setText("For account: " + accNo);
+        }
     }
 
 

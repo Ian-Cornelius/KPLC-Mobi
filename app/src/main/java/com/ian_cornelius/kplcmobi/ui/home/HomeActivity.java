@@ -128,7 +128,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         setUpFab();
 
         //Hide fab
-        mDrawerCustomActionBar.transitionToStart();
+        //mDrawerCustomActionBar.transitionToStart();
+        toggleFab(true, false);
 
         /*
         Extract the navigation header layout
@@ -507,8 +508,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     mTxtFragName.setText(R.string.notifications);
                     mHomeDrawerLayout.closeDrawer(Gravity.START,true);
 
-                    //hide our fab
-                    toggleFab(false, false);
+                    //show our fab. Auto launch too much. But nice one. Important in purchase hist cause of double fab
+                    toggleFab(true, false);
                 }
                 break;
 
@@ -740,6 +741,14 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
             triggerClose();
         }
+    }
+
+    @Override
+    public void onDestroy(){
+
+        super.onDestroy();
+
+        AccountsManager.getInstance().flushData();
     }
 
 

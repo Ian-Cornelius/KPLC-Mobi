@@ -19,14 +19,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ian_cornelius.kplcmobi.R;
 import com.ian_cornelius.kplcmobi.models.CurrentConsumption;
+import com.ian_cornelius.kplcmobi.utils.account_manager.AccountsManager;
 import com.ian_cornelius.kplcmobi.utils.data_managers.ConsumptionTrackLocalStoreManager;
 import com.ian_cornelius.kplcmobi.utils.data_managers.ConsumptionTrackManager;
 import com.ian_cornelius.kplcmobi.utils.generators.ConsumptionTrackGenerator;
 
-public class ConsumptionTrackController {
+public class ConsumptionTrackController implements AccountsManager.OnAccountsSwitch{
 
     //Test my alarms
     private ConsumptionTrackManager consumptionTrackManager;
@@ -123,12 +125,17 @@ public class ConsumptionTrackController {
 
 
     /*
-    To request register to manager
+    To request register to consumption track manager, that handles updating of consumption track records, on calculation
+
+   Also, register with accounts manager
      */
     public void requestRegister(){
 
         consumptionTrackManager = ConsumptionTrackManager.getInstance();
         consumptionTrackManager.register(mDisclaimerButton.getContext(), this);
+
+        //Attach for accounts manager events
+        AccountsManager.getInstance().attachForEvents(this);
 
     }
 
@@ -139,10 +146,13 @@ public class ConsumptionTrackController {
 
         consumptionTrackManager.deregister();
         consumptionTrackManager = null;
+
+        //Attach for accounts manager events
+        AccountsManager.getInstance().detachFromEvents(this);
     }
 
     /*
-    Update metrics
+    Update metrics. Called by Consumption Track Manager
      */
     public void updateMetrics(int prevUnits, float consumedUnits){
 
@@ -171,4 +181,14 @@ public class ConsumptionTrackController {
         }
 
     }
+
+    /*
+    Overriden interface methods
+     */
+    @Override
+    public void onAccountsSwitch(String accNo, boolean isPostpay){
+
+        Toast.makeText(mTxtShowEstConsumed.getContext(), "Got callback: accNo " + accNo + " isPostPay " + String.valueOf(isPostpay), Toast.LENGTH_SHORT).show();
+    }
+
 }

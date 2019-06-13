@@ -26,11 +26,6 @@ import java.util.ArrayList;
 public class SwitchAccFabContentFragment extends Fragment implements View.OnClickListener{
 
     /*
-    Help us access the user accounts list
-     */
-    private UserAccountsList userAccountsList;
-
-    /*
     Help us know the previously checked radio button, avoiding need to loop through all radio buttons, finding which
     one was checked then setting up appropriate motion layout transition
      */
@@ -122,7 +117,7 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
         /*
         Check if array list is empty (should never be, for a signed in user). If it is, major error
          */
-        if (accountsList == null){
+        if (accountsList.size() == 0){
 
             Log.e("Error","Getting an empty arraylist for accounts");
             Toast.makeText(getActivity(),"We can't get the list of accounts that belong to you. " +
@@ -345,6 +340,9 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
                      */
                     previouslyCheckedRadioBtn = mRadioBtnAcc1;
 
+                    //TODO Request model update here, at accounts manager, b4 changing prev checked btn. Can do after. Just change index
+                    AccountsManager.getInstance().onAccountSwitch(0);
+
                     break;
 
                 case R.id.radioBtnAcc2:
@@ -360,6 +358,8 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
                     Now set the previously checked button to this one
                      */
                     previouslyCheckedRadioBtn = mRadioBtnAcc2;
+
+                    AccountsManager.getInstance().onAccountSwitch(1);
 
                     break;
 
@@ -377,6 +377,8 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
                      */
                     previouslyCheckedRadioBtn = mRadioBtnAcc3;
 
+                    AccountsManager.getInstance().onAccountSwitch(2);
+
                     break;
 
                 case R.id.radioBtnAcc4:
@@ -392,6 +394,8 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
                     Now set previously checked button to this one
                      */
                     previouslyCheckedRadioBtn = mRadioBtnAcc4;
+
+                    AccountsManager.getInstance().onAccountSwitch(3);
 
                     break;
 
@@ -427,6 +431,9 @@ public class SwitchAccFabContentFragment extends Fragment implements View.OnClic
     @Override
     public void onDetach() {
         super.onDetach();
+
+        //Tell accounts manager to update changes. If failure, okay. Doing here to avoid excess network requests
+        AccountsManager.getInstance().updateCurrentSelection();
 
     }
 

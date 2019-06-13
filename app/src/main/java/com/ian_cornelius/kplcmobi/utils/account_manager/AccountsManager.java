@@ -8,6 +8,24 @@ A singleton of course
 Save requests should also be done here. Consider for sign up login? Naa....just array list size.
 
 Enforce max acc number here
+
+So, when account is changed, need to inform consumption track manager of change, so that calculations change.
+
+Also, if we are working with a frag, it uses its life cycle to attach itself here for callback on changes
+
+And what changes will they be interested in?
+
+Well, if you switch accounts (need to tell current frag of new account number, for it to update on UI
+
+Need also to know if post pay account is available, for post pay screen to show correct message...
+
+
+Okay, major models update. Pre-paid and post-paid separated. No more isPostPaid var. Then, mergedCurrentAcc var (Still a node of minimetadata) to tell us which acc number is the merged current, making it easy to switch content in consumption track and
+purchase history. Text in consumption track also changes based on acc type. So, will still maintain acc type var, to help us access it details too.
+
+Let's just do this. Maintain single list. Current account consistent in all screens. If current not matching required type, show error on screen
+
+On model update, tell attached frag of change, and let it do appropriate action
  */
 
 import android.content.Context;
@@ -16,8 +34,11 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.ian_cornelius.kplcmobi.controllers.ConsumptionTrackController;
 import com.ian_cornelius.kplcmobi.models.AccountsFullMetaData;
 import com.ian_cornelius.kplcmobi.models.AccountsMiniMetaData;
+import com.ian_cornelius.kplcmobi.ui.fragments.BuyTokensFragment;
+import com.ian_cornelius.kplcmobi.ui.fragments.CheckAndPayBillFragment;
 import com.ian_cornelius.kplcmobi.ui.fragments.SwitchAccFabContentFragment;
 import com.ian_cornelius.kplcmobi.utils.FirebaseUtils.FirebaseStaticReqManager;
 
@@ -26,7 +47,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.ListIterator;
 
-public class AccountsManager implements FirebaseStaticReqManager.AccountRequestCallback{
+public class AccountsManager implements FirebaseStaticReqManager.AccountRequestCallback, SwitchAccFabContentFragment.OnAccountSwitchListener{
 
     /*
     Constant, static, string values. Help when creating accounts
@@ -62,6 +83,7 @@ public class AccountsManager implements FirebaseStaticReqManager.AccountRequestC
 
     //Hold index of currently active account. Default -1, so that error thrown if default access tried
     private int currentlyActiveAccIndex = -1;
+    private int prevActiveAccIndex = -1; //Help when flushing data to db
 
     //Tell us of ping errors, ping status. Default, true
     //TODO: MAKE USE OF THESE VARS IN SWITCH ACC FAB CONTENT FRAG
@@ -69,6 +91,20 @@ public class AccountsManager implements FirebaseStaticReqManager.AccountRequestC
     private boolean pingActive = false;
 
     private Context toastContext;
+
+    //this will reference the object that will receive event callbacks on account selection change
+    private Object callbackObj;
+
+    //Know if we have post paid or prepaid account....not necessary. Method to return easily
+    public final int LOAD_ERROR = -1;
+    private AccountsRequestType accountsRequestType;
+
+    public enum AccountsRequestType{
+
+        POST_PAID,
+        PRE_PAID,
+        MERGED
+    }
 
 
     /*
@@ -128,6 +164,7 @@ public class AccountsManager implements FirebaseStaticReqManager.AccountRequestC
             if (datasnapshot.getValue(AccountsMiniMetaData.class).isCurrent()){
 
                 currentlyActiveAccIndex = index;
+                prevActiveAccIndex = currentlyActiveAccIndex;
             }
 
             //update index
@@ -220,6 +257,22 @@ public class AccountsManager implements FirebaseStaticReqManager.AccountRequestC
 
     /*
     Method to get accounts list
+
+    TODO: MODIFY THIS TO CATER FOR POST PAY AND PRE-PAY REQUESTS ONLY, and merged requests
+
+    Have load context, specifying which type of acc the frag needs. Can be POST_PAID, PRE_PAID, MERGED
+
+    For merged, have merged current. Takes val of currently active prepay. Switches to a post paid account on selection
+
+    Merged request, uses isMergedCurrent in model. So, store prev mergedCurrent, for switching purposes?
+
+    Update child on these changes?
+
+    Model update needed. Add isMergedCurrent in metadata
+
+    Maintain two array lists. One for post pay, other for pre-paid. Nope. Just seive data. Then be told of changes. Order by index, so index ref able to help in sorting changes
+
+    On create acc, if has post pay, then new one being created not current. Same logic for pre-paid. In prod, ask for meta details, get JSON payload in format required, store in model, look at saved details in acc manager, (if not sign up, and update current)
      */
     public ArrayList<AccountsMiniMetaData> getAccountsList(Object refActivity){
 
@@ -258,6 +311,23 @@ public class AccountsManager implements FirebaseStaticReqManager.AccountRequestC
 
 
     /*
+    Get account type of current account. Used by buy tokens and check and pay bill
+     */
+    public boolean isCurrentPostPay(){
+
+        return accountsList.get(currentlyActiveAccIndex).isPostPay();
+//
+//        if (currentlyActiveAccIndex != -1){
+//
+//            return accountsList.get(currentlyActiveAccIndex).isPostPay();
+//        } else {
+//
+//            return LOAD_ERROR; //useless piece of code. Always check we don't have errors first, then request val
+//        }
+    }
+
+
+    /*
     Know current account retrieval status
      */
     public boolean accManagerWait(){
@@ -276,4 +346,99 @@ public class AccountsManager implements FirebaseStaticReqManager.AccountRequestC
         accountsDetails.clear();
     }
 
+
+    /*
+    Implement interface to tell us when current account has been changed
+     */
+    @Override
+    public void onAccountSwitch(int newIndex){
+
+        //change currently active index
+        Log.e("ACC MANAGER", "GOT ACC SWITCH CALLBACK, INDEX " + newIndex);
+        currentlyActiveAccIndex = newIndex;
+    }
+
+    /*
+    Update current selection in db, called by switch acc content fragment on fragment detach
+     */
+    public void updateCurrentSelection(){
+
+        if (prevActiveAccIndex != currentlyActiveAccIndex){
+
+            Log.e("ACC MANAGER", "TRIGGERED CURRENT FLUSH TO DB");
+            accountsList.get(prevActiveAccIndex).setCurrent(false);
+            accountsList.get(currentlyActiveAccIndex).setCurrent(true);
+            prevActiveAccIndex = currentlyActiveAccIndex;
+
+            //tell attached frag of changes, using interface
+            sendEvent();
+
+            //update only if preActiveAccIndex was changed from val of currentIndex. Flush to db
+        }
+
+    }
+
+    /*
+    Used by classes interested with account manager to register for events
+     */
+    public void attachForEvents(Object refObj){
+
+        if (validClass(refObj)){
+
+            callbackObj = refObj;
+        } else{
+
+            Log.e("Acc Manager Exception", "Illegal attach request from " + refObj.getClass());
+        }
+    }
+
+    public void detachFromEvents(Object refObj){
+
+        if (callbackObj == refObj){
+
+            callbackObj = null;
+        } else{
+
+            Log.e("Acc Manager Exception", "Illegal detach request from " + refObj.getClass());
+        }
+    }
+
+    /*
+    Method invoked to send event callback to attached object
+     */
+    private void sendEvent(){
+
+        if (callbackObj instanceof ConsumptionTrackController){
+
+            ((ConsumptionTrackController) callbackObj).onAccountsSwitch(getCurrentAccNumber(), isCurrentPostPay());
+        } else if (callbackObj instanceof BuyTokensFragment){
+
+            ((BuyTokensFragment) callbackObj).onAccountsSwitch(getCurrentAccNumber(), isCurrentPostPay());
+        }
+
+        //By default, local store manager for consumption track always updated with change
+    }
+
+
+    /*
+    Test the passed ref is of a valid class
+     */
+    private boolean validClass(Object refObj){
+
+        return refObj instanceof ConsumptionTrackController || refObj instanceof BuyTokensFragment || refObj instanceof CheckAndPayBillFragment;
+    }
+
+
+    /*
+    Interface implemented by class that needs to know when account selection changes
+     */
+    public interface OnAccountsSwitch{
+
+        void onAccountsSwitch(String accNo, boolean isPostPay);
+    }
+
 }
+
+/*
+Ignoring account ordering. Will cause problems. Only when viewing, will we show isPrimary at 1st place, rest placed anyhowly.
+ */
